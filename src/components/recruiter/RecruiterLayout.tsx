@@ -1,4 +1,5 @@
 import { Outlet, Link, useLocation } from "react-router-dom";
+import { RecruiterProvider } from "@/contexts/RecruiterContext";
 import { cn } from "@/lib/utils";
 import {
   LayoutDashboard, Briefcase, Users, ClipboardList, MessageCircle, BarChart3, Settings, LogOut, Menu, X,
@@ -140,7 +141,10 @@ export function RecruiterLayout() {
   const [candidateStage, setCandidateStage] = useState("all");
   const [selectedCandidate, setSelectedCandidate] = useState<DetailedCandidate | null>(null);
   const [viewModal, setViewModal] = useState(false);
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
+  const recruiterInitials = user?.name
+    ? user.name.split(' ').map((n: string) => n[0]).join('').toUpperCase().slice(0, 2)
+    : 'RC';
 
   const handleLogout = async () => {
     setIsMobileMenuOpen(false);
@@ -211,6 +215,7 @@ export function RecruiterLayout() {
   );
 
   return (
+    <RecruiterProvider>
     <div className="min-h-screen flex flex-col md:flex-row bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
       {/* Mobile Header */}
       <div className="md:hidden flex items-center justify-between p-4 border-b bg-card shadow-sm">
@@ -222,10 +227,18 @@ export function RecruiterLayout() {
         </div>
       </div>
 
+      {/* Mobile overlay */}
+      {isMobileMenuOpen && (
+        <div
+          className="md:hidden fixed inset-0 bg-black/50 z-40"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
       <aside className={cn(
-        "w-full md:w-64 lg:w-72 border-r bg-card flex-shrink-0 transition-all duration-300",
-        isMobileMenuOpen ? "block" : "hidden md:flex md:flex-col"
+        "fixed md:relative z-50 md:z-auto w-72 md:w-64 lg:w-72 h-screen border-r bg-card flex-shrink-0 flex flex-col transition-all duration-300",
+        isMobileMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
       )}>
         <div className="p-5 hidden md:block border-b">
           <div className="flex items-center justify-between">
@@ -290,7 +303,7 @@ export function RecruiterLayout() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-auto min-h-screen">
+      <main className="flex-1 overflow-auto min-h-screen md:ml-0 pt-16 md:pt-0">
         {/* Top Header */}
         <header className="sticky top-0 z-40 bg-card/95 backdrop-blur border-b px-4 md:px-6 py-4">
           <div className="flex items-center justify-between gap-4">
@@ -388,17 +401,17 @@ export function RecruiterLayout() {
                 <PopoverTrigger asChild>
                   <Button variant="ghost" size="sm" className="gap-2">
                     <Avatar className="h-8 w-8">
-                      <AvatarImage src="/placeholder-avatar.jpg" />
-                      <AvatarFallback className="bg-primary text-primary-foreground">JD</AvatarFallback>
+                      <AvatarImage src="" />
+                      <AvatarFallback className="bg-primary text-primary-foreground">{recruiterInitials}</AvatarFallback>
                     </Avatar>
-                    <span className="hidden md:inline text-sm font-medium">John Doe</span>
+                    <span className="hidden md:inline text-sm font-medium">{user?.name || 'Recruiter'}</span>
                     <ChevronDown className="h-4 w-4" />
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent align="end" className="w-56">
                   <div className="px-2 py-1.5">
-                    <p className="font-medium">John Doe</p>
-                    <p className="text-xs text-muted-foreground">john@company.com</p>
+                    <p className="font-medium">{user?.name || 'Recruiter'}</p>
+                    <p className="text-xs text-muted-foreground">{user?.email || ''}</p>
                   </div>
                   <Separator className="my-2" />
                   <Button variant="ghost" className="w-full justify-start text-sm" onClick={() => navigate("/recruiter/settings")}>
@@ -1656,5 +1669,6 @@ export function RecruiterLayout() {
         </div>
       </main>
     </div>
+    </RecruiterProvider>
   );
 }

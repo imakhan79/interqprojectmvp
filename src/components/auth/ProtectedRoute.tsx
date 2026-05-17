@@ -21,7 +21,13 @@ export function ProtectedRoute({ children, allowedRoles }: ProtectedRouteProps) 
       }
 
       if (allowedRoles && user && !allowedRoles.includes(user.role)) {
-        navigate("/dashboard", { replace: true });
+        const roleRedirect: Record<string, string> = {
+          admin: "/admin",
+          company: "/company",
+          recruiter: "/recruiter",
+          jobseeker: "/jobseeker",
+        };
+        navigate(roleRedirect[user.role] || "/dashboard", { replace: true });
         return;
       }
     }

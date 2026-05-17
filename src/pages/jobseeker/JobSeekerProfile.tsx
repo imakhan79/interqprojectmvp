@@ -28,7 +28,7 @@ const JobSeekerProfile = () => {
   });
 
   const [form, setForm] = useState({
-    full_name: "",
+    full_name: user?.name || "",
     phone_number: "",
     location: "",
     country: "",

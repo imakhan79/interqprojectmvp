@@ -10,7 +10,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import interqLogo from "/interq-logo.png";
 
 const navItems = [
   { label: "Dashboard", icon: LayoutDashboard, path: "/company" },
@@ -152,7 +151,7 @@ export function CompanyLayout() {
       <aside className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-card border-r transform transition-transform duration-200 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'} flex flex-col`}>
         <div className="p-4 border-b flex items-center justify-between">
           <div className="flex items-center gap-3 min-w-0">
-            <img src={interqLogo} alt="InterQ" className="h-10 flex-shrink-0" />
+            <img src="/interq-logo.png" alt="InterQ" className="h-10 flex-shrink-0" />
             <div className="min-w-0">
               <p className="text-sm font-semibold truncate">{company.name}</p>
             </div>

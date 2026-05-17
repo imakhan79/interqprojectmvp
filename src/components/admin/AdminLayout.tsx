@@ -6,7 +6,7 @@ import {
   LayoutDashboard, Building2, Users, Shield, Briefcase, UserCheck,
   Calendar, FileText, BarChart3, Settings, CreditCard, Plug,
   ScrollText, LogOut, Menu, X, Search, Bell, ChevronRight,
-  Moon, Sun, HelpCircle, Keyboard, Activity, UserCog, Flag
+  Moon, Sun, HelpCircle, Keyboard, Activity, UserCog, Flag, Award
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -39,23 +39,31 @@ const navSections = [
       { to: "/admin", icon: LayoutDashboard, label: "Dashboard", exact: true },
       { to: "/admin/companies", icon: Building2, label: "Companies" },
       { to: "/admin/users", icon: Users, label: "Users & Teams" },
-      { to: "/admin/roles", icon: Shield, label: "Roles & Permissions" },
+      { to: "/admin/role-management", icon: Shield, label: "Roles & Permissions" },
     ],
   },
   {
     label: "Recruitment",
     items: [
       { to: "/admin/jobs", icon: Briefcase, label: "Jobs" },
-      { to: "/admin/candidates", icon: UserCheck, label: "Candidates" },
+      { to: "/admin/job-seekers", icon: UserCheck, label: "Job Seekers" },
       { to: "/admin/interviews", icon: Calendar, label: "Interviews" },
       { to: "/admin/offers", icon: FileText, label: "Offers" },
+    ],
+  },
+  {
+    label: "Assessments",
+    items: [
+      { to: "/admin/tests", icon: UserCog, label: "Test Management" },
+      { to: "/admin/results", icon: BarChart3, label: "Results" },
+      { to: "/admin/certificates", icon: Award, label: "Certificates" },
     ],
   },
   {
     label: "Analytics",
     items: [
       { to: "/admin/reports", icon: BarChart3, label: "Reports" },
-      { to: "/admin/activity", icon: Activity, label: "Activity" },
+      { to: "/admin/logs", icon: Activity, label: "Activity Logs" },
     ],
   },
   {
@@ -64,15 +72,18 @@ const navSections = [
       { to: "/admin/billing", icon: CreditCard, label: "Billing" },
       { to: "/admin/integrations", icon: Plug, label: "Integrations" },
       { to: "/admin/security", icon: Shield, label: "Security" },
-      { to: "/admin/audit", icon: ScrollText, label: "Audit Logs" },
+      { to: "/admin/audit-logs", icon: ScrollText, label: "Audit Logs" },
       { to: "/admin/settings", icon: Settings, label: "Settings" },
     ],
   },
 ];
 
 export function AdminLayout() {
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
   const location = useLocation();
+  const userInitials = user?.name
+    ? user.name.split(' ').map((n: string) => n[0]).join('').toUpperCase().slice(0, 2)
+    : 'AD';
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const { theme, setTheme } = useTheme();
@@ -129,7 +140,7 @@ export function AdminLayout() {
             </DropdownMenu>
             <Avatar className="h-8 w-8">
               <AvatarImage src="" />
-              <AvatarFallback className="bg-primary/10 text-primary text-xs">SA</AvatarFallback>
+              <AvatarFallback className="bg-primary/10 text-primary text-xs">{userInitials}</AvatarFallback>
             </Avatar>
           </div>
         </div>
@@ -163,11 +174,11 @@ export function AdminLayout() {
               <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/50">
                 <Avatar className="h-10 w-10 border-2 border-primary/20">
                   <AvatarImage src="" />
-                  <AvatarFallback className="bg-primary text-primary-foreground font-semibold">SA</AvatarFallback>
+                  <AvatarFallback className="bg-primary text-primary-foreground font-semibold">{userInitials}</AvatarFallback>
                 </Avatar>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium truncate">Super Admin</p>
-                  <p className="text-xs text-muted-foreground truncate">admin@platform.com</p>
+                  <p className="text-sm font-medium truncate">{user?.name || 'Admin'}</p>
+                  <p className="text-xs text-muted-foreground truncate">{user?.email || 'admin@interq.com'}</p>
                 </div>
               </div>
             </div>

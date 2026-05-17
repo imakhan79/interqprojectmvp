@@ -145,8 +145,7 @@ const TeamsManagement: React.FC = () => {
   }, [editTeam, formData, addTeam, updateTeam])
 
   const roleColors = {
-    super_admin: 'bg-purple-500 text-white',
-    admin: 'bg-blue-500 text-white',
+    admin: 'bg-purple-500 text-white',
     recruiter: 'bg-green-500 text-white',
     hiring_manager: 'bg-orange-500 text-white',
     interviewer: 'bg-indigo-500 text-white',

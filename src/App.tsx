@@ -7,6 +7,7 @@ import React from "react";
 import { Suspense, lazy } from "react";
 import { SimpleAuthProvider } from "@/contexts/SimpleAuthContext";
 import { JobSeekerDashboardProvider } from "@/contexts/JobSeekerDashboardContext";
+import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import { ChatbotWidget } from "@/components/chatbot/ChatbotWidget";
 import UnifiedLayout from "@/components/layouts/UnifiedLayout";
 import UnifiedDashboard from "@/pages/UnifiedDashboard";
@@ -77,6 +78,11 @@ const JobSeekerManagement = lazy(() => import("./pages/admin/JobSeekerManagement
 const CertificateManagement = lazy(() => import("./pages/admin/CertificateManagement"));
 const ActivityLogs = lazy(() => import("./pages/admin/ActivityLogs"));
 const RoleManagement = lazy(() => import("./pages/admin/RoleManagement"));
+const AdminOffersManagement = lazy(() => import("./pages/admin/OffersManagement"));
+const AdminBillingPage = lazy(() => import("./pages/admin/AdminBilling"));
+const AdminIntegrationsPage = lazy(() => import("./pages/admin/AdminIntegrations"));
+const AdminSecurityPage = lazy(() => import("./pages/admin/AdminSecurity"));
+const AdminAuditLogsPage = lazy(() => import("./pages/admin/AdminAuditLogs"));
 const BookSession = lazy(() => import("./pages/BookSession"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const EvaluationReport = lazy(() => import("./pages/EvaluationReport"));
@@ -124,6 +130,11 @@ const RecruiterDashboard = lazy(() => import("./pages/recruiter/RecruiterDashboa
 const RecruiterPipeline = lazy(() => import("./pages/recruiter/Pipeline"));
 const RecruiterAssessments = lazy(() => import("./pages/recruiter/Assessments"));
 const RecruiterInterviews = lazy(() => import("./pages/recruiter/Interviews"));
+const RecruiterCandidates = lazy(() => import("./pages/recruiter/Candidates"));
+const RecruiterJobOpenings = lazy(() => import("./pages/recruiter/JobOpenings"));
+const RecruiterOffers = lazy(() => import("./pages/recruiter/Offers"));
+const RecruiterReports = lazy(() => import("./pages/recruiter/RecruiterReports"));
+const RecruiterSettings = lazy(() => import("./pages/recruiter/Settings"));
 const EvaluationReports = lazy(() => import("./pages/recruiter/DynamicEvaluationReports"));
 const JobSeekerLayout = lazy(() => import("./components/jobseeker/JobSeekerLayout").then(m => ({ default: m.JobSeekerLayout })));
 const JobSeekerDashboard = lazy(() => import("./pages/jobseeker/JobSeekerDashboard"));
@@ -225,14 +236,14 @@ const App = () => (
               <Route path="/help-center" element={<HelpCenter />} />
               <Route path="/careers" element={<Careers />} />
               <Route path="/book-session" element={<BookSession />} />
-              <Route path="/dashboard" element={<Dashboard />} />
+              {/* /dashboard already defined above as unified dashboard */}
               <Route path="/evaluation-report" element={<EvaluationReport />} />
               <Route path="/professional-report" element={<ProfessionalEvaluationReport />} />
               <Route path="/guidelines" element={<Guidelines />} />
               <Route path="/expert-portal" element={<ExpertPortal />} />
               <Route path="/candidate-portal" element={<CandidatePortal />} />
               <Route path="/company-signup" element={<CompanySignup />} />
-              <Route path="/company" element={<CompanyLayout />}>
+              <Route path="/company" element={<ProtectedRoute allowedRoles={["company"]}><CompanyLayout /></ProtectedRoute>}>
                 <Route index element={<CompanyDashboard />} />
                 <Route path="jobs" element={<CompanyJobs />} />
                 <Route path="candidates" element={<CompanyCandidates />} />
@@ -243,7 +254,7 @@ const App = () => (
                 <Route path="logs" element={<CompanyAuditLogs />} />
                 <Route path="settings" element={<CompanySettings />} />
               </Route>
-              <Route path="/jobseeker" element={<JobSeekerLayout />}>
+              <Route path="/jobseeker" element={<ProtectedRoute allowedRoles={["jobseeker"]}><JobSeekerLayout /></ProtectedRoute>}>
                 <Route index element={<JobSeekerDashboard />} />
                 <Route path="applications" element={<JobSeekerApplications />} />
                 <Route path="assessments" element={<JobSeekerAssessments />} />
@@ -264,7 +275,7 @@ const App = () => (
               <Route path="/api-docs" element={<LegalPage title="API Documentation" content="InterQ provides a RESTful API for enterprise integrations. Authentication uses JWT tokens. Key endpoints: POST /api/jobs, GET /api/candidates, POST /api/interviews. Rate limit: 1000 requests/hour. Contact api@interq.com for access keys and full documentation." />} />
               <Route path="/partner-application" element={<LegalPage title="Partner Application" content="Interested in becoming an InterQ partner? We work with HR consultancies, staffing agencies, and technology providers. Partners receive revenue sharing, co-marketing support, and dedicated account management. Email partners@interq.com with your company details to apply." />} />
               <Route path="/newsletter" element={<LegalPage title="Newsletter" content="Subscribe to the InterQ newsletter for hiring trends, platform updates, and best practices. We send 2-4 emails per month. Email newsletter@interq.com with 'Subscribe' in the subject line, or unsubscribe at any time using the link in any email." />} />
-              <Route path="/admin" element={<AdminLayout />}>
+              <Route path="/admin" element={<ProtectedRoute allowedRoles={["admin"]}><ErrorBoundary><AdminLayout /></ErrorBoundary></ProtectedRoute>}>
                 <Route index element={<AdminDashboard />} />
                 <Route path="tests" element={<TestManagement />} />
                 <Route path="question-bank" element={<QuestionBank />} />
@@ -283,18 +294,24 @@ const App = () => (
                 <Route path="scoring" element={<CollaborativeScoring />} />
                 <Route path="reports" element={<AdminReports />} />
                 <Route path="settings" element={<AdminSettings />} />
-<Route path="users" element={<UserTeamsDashboard />} />
+                <Route path="users" element={<UserTeamsDashboard />} />
+                <Route path="offers" element={<AdminOffersManagement />} />
+                <Route path="billing" element={<AdminBillingPage />} />
+                <Route path="integrations" element={<AdminIntegrationsPage />} />
+                <Route path="security" element={<AdminSecurityPage />} />
+                <Route path="audit-logs" element={<AdminAuditLogsPage />} />
               </Route>
-              <Route path="/recruiter" element={<ErrorBoundary><RecruiterLayout /></ErrorBoundary>}>
+              <Route path="/recruiter" element={<ProtectedRoute allowedRoles={["recruiter"]}><ErrorBoundary><RecruiterLayout /></ErrorBoundary></ProtectedRoute>}>
                 <Route index element={<RecruiterDashboard />} />
                 <Route path="evaluation-reports" element={<EvaluationReports />} />
-                <Route path="jobs" element={<RecruiterDashboard />} />
-                <Route path="candidates" element={<RecruiterDashboard />} />
-                <Route path="interviews" element={<RecruiterDashboard />} />
-                <Route path="offers" element={<RecruiterDashboard />} />
-                <Route path="reports" element={<RecruiterDashboard />} />
-                <Route path="settings" element={<RecruiterDashboard />} />
-
+                <Route path="jobs" element={<RecruiterJobOpenings />} />
+                <Route path="candidates" element={<RecruiterCandidates />} />
+                <Route path="pipeline" element={<RecruiterPipeline />} />
+                <Route path="interviews" element={<RecruiterInterviews />} />
+                <Route path="assessments" element={<RecruiterAssessments />} />
+                <Route path="offers" element={<RecruiterOffers />} />
+                <Route path="reports" element={<RecruiterReports />} />
+                <Route path="settings" element={<RecruiterSettings />} />
               </Route>
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />

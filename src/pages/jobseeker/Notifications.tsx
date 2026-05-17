@@ -17,6 +17,7 @@ import {
   Filter,
 } from "lucide-react";
 import { mockNotifications } from "@/data/adminModuleData";
+import { useToast } from "@/hooks/use-toast";
 
 export default function JobSeekerNotifications() {
   const [filter, setFilter] = useState<string>("all");
@@ -28,11 +29,11 @@ export default function JobSeekerNotifications() {
 
   const filteredNotifications = notifications.filter((notif) => {
     if (filter === "all") return true;
-    if (filter === "unread") return !notif.isRead;
+    if (filter === "unread") return !notif.read;
     return true;
   });
 
-  const unreadCount = notifications.filter((n) => !n.isRead).length;
+  const unreadCount = notifications.filter((n) => !n.read).length;
 
   const notificationIcons: Record<string, React.ReactNode> = {
     interview_scheduled: <Calendar className="w-5 h-5 text-blue-600" />,
@@ -90,14 +91,14 @@ export default function JobSeekerNotifications() {
           <Card
             key={notification.id}
             className={`transition ${
-              !notification.isRead ? "bg-blue-50/50 border-blue-200" : ""
+              !notification.read ? "bg-blue-50/50 border-blue-200" : ""
             }`}
           >
             <CardContent className="p-4">
               <div className="flex items-start space-x-4">
                 <div
                   className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
-                    !notification.isRead ? "bg-blue-100" : "bg-gray-100"
+                    !notification.read ? "bg-blue-100" : "bg-gray-100"
                   }`}
                 >
                   {notificationIcons[notification.type] || <Bell className="w-5 h-5 text-gray-600" />}
@@ -108,15 +109,15 @@ export default function JobSeekerNotifications() {
                       <h3 className="font-semibold text-gray-900">{notification.title}</h3>
                       <p className="text-sm text-gray-600 mt-1">{notification.message}</p>
                     </div>
-                    {!notification.isRead && (
+                    {!notification.read && (
                       <Badge variant="default" className="ml-2">
                         New
                       </Badge>
                     )}
                   </div>
                   <p className="text-xs text-gray-400 mt-2">
-                    {new Date(notification.createdAt).toLocaleDateString()} at{" "}
-                    {new Date(notification.createdAt).toLocaleTimeString([], {
+                    {new Date(notification.timestamp).toLocaleDateString()} at{" "}
+                    {new Date(notification.timestamp).toLocaleTimeString([], {
                       hour: "2-digit",
                       minute: "2-digit",
                     })}

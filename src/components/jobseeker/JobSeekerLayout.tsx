@@ -57,7 +57,7 @@ export function JobSeekerLayout() {
     refetchInterval: 30000,
   });
 
-  const userName = profile?.full_name || user?.email?.split("@")[0] || "Job Seeker";
+  const userName = profile?.full_name || user?.name || user?.email?.split("@")[0] || "Job Seeker";
 
   const handleSignOut = () => {
     signOut();

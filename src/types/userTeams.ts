@@ -10,7 +10,7 @@ export interface User {
   phone?: string
   avatar?: string
   initials: string
-  role: 'super_admin' | 'admin' | 'recruiter' | 'hiring_manager' | 'interviewer' | 'viewer'
+  role: 'admin' | 'recruiter' | 'hiring_manager' | 'interviewer' | 'viewer'
   status: 'active' | 'inactive' | 'pending' | 'suspended'
   department: string
   teamIds: string[]

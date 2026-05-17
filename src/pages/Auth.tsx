@@ -295,7 +295,7 @@ const Auth = () => {
                         <TabsTrigger value="signup">Sign Up</TabsTrigger>
                       </TabsList>
 
-                      <TabsContent value="signin" className="space-y-4 pb-12 sm:pb-0">
+                      <TabsContent value="signin" className="space-y-4">
                         <form onSubmit={handleLogin} className="space-y-4">
                           <div className="space-y-2">
                             <Label htmlFor="email">Email</Label>
@@ -375,30 +375,30 @@ const Auth = () => {
                         </form>
                       </TabsContent>
 
-                      <TabsContent value="signup" className="space-y-4 pb-12 sm:pb-0">
+                      <TabsContent value="signup" className="space-y-4">
                         <form onSubmit={handleSignup} className="space-y-4">
                           <div className="space-y-2">
                             <Label>I am a...</Label>
                             <div className="grid grid-cols-2 gap-2">
-                              {(["jobseeker", "company", "recruiter", "admin"] as AccountRole[]).map((role) => {
+                              {(["jobseeker", "company", "recruiter"] as AccountRole[]).map((role) => {
                                 const config = roleConfig[role];
                                 const Icon = config.icon;
-                                
+
                                 return (
                                   <button
                                     key={role}
                                     type="button"
                                     onClick={() => setSelectedRole(role)}
                                     className={`flex items-center gap-2 p-3 rounded-lg border-2 transition-all ${
-                                      selectedRole === role 
-                                        ? "border-blue-500 bg-blue-50" 
+                                      selectedRole === role
+                                        ? "border-blue-500 bg-blue-50"
                                         : "border-gray-100 hover:border-gray-200"
                                     }`}
                                   >
                                     <div className={`w-8 h-8 ${config.color} rounded-lg flex items-center justify-center`}>
                                       <Icon className="w-4 h-4 text-white" />
                                     </div>
-                                    <span className="text-sm font-medium capitalize">{role === "jobseeker" ? "Job Seeker" : role}</span>
+                                    <span className="text-sm font-medium capitalize">{role === "jobseeker" ? "Job Seeker" : role === "recruiter" ? "Recruiter" : "Company"}</span>
                                   </button>
                                 );
                               })}

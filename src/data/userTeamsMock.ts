@@ -81,7 +81,7 @@ export const mockUsers: User[] = [
     name: 'Lisa Wang',
     email: 'lisa.w@interq.com',
     initials: 'LW',
-    role: 'super_admin',
+    role: 'admin',
     status: 'active',
     department: 'Executive',
     teamIds: ['1', '2'],
@@ -146,7 +146,6 @@ export const departments = [
 ]
 
 export const roles = [
-  'super_admin',
   'admin',
   'recruiter',
   'hiring_manager',

@@ -58,7 +58,7 @@ export default function CompanyJobs() {
   const stats = {
     total: mockJobs.length,
     open: mockJobs.filter((j) => j.status === "open").length,
-    totalApplicants: mockJobs.reduce((sum, j) => sum + j.applicationsCount, 0),
+    totalApplicants: mockJobs.reduce((sum, j) => sum + (j.applications || 0), 0),
   };
 
   return (
@@ -199,7 +199,7 @@ export default function CompanyJobs() {
                 <TableCell>
                   <div className="flex items-center">
                     <Users className="w-4 h-4 mr-1 text-gray-400" />
-                    <span className="font-medium">{job.applicationsCount}</span>
+                    <span className="font-medium">{job.applications ?? 0}</span>
                   </div>
                 </TableCell>
                 <TableCell>

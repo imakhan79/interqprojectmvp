@@ -34,7 +34,7 @@ import { User, UserStatus } from '@/types/adminModule';
 import { cn } from '@/lib/utils';
 
 const ROLE_COLORS: Record<string, { bg: string; text: string; border: string }> = {
-  'Super Admin': { bg: 'bg-red-500/10', text: 'text-red-600', border: 'border-red-500/30' },
+  'Admin': { bg: 'bg-red-500/10', text: 'text-red-600', border: 'border-red-500/30' },
   'Company Admin': { bg: 'bg-blue-500/10', text: 'text-blue-600', border: 'border-blue-500/30' },
   'Recruiter': { bg: 'bg-green-500/10', text: 'text-green-600', border: 'border-green-500/30' },
   'Hiring Manager': { bg: 'bg-yellow-500/10', text: 'text-yellow-600', border: 'border-yellow-500/30' },
@@ -50,7 +50,7 @@ const STATUS_CONFIG: Record<UserStatus, { label: string; color: string; icon: Re
   suspended: { label: 'Suspended', color: 'bg-red-500/10 text-red-600 border-red-500/30', icon: <UserX className="h-3 w-3" /> },
 };
 
-const ROLES = ['Super Admin', 'Company Admin', 'Recruiter', 'Hiring Manager', 'Interviewer', 'HR Executive', 'Department Head'];
+const ROLES = ['Admin', 'Company Admin', 'Recruiter', 'Hiring Manager', 'Interviewer', 'HR Executive', 'Department Head'];
 const DEPARTMENTS = ['IT', 'HR', 'Engineering', 'Finance', 'Admin', 'Sales', 'Marketing', 'Operations', 'Product', 'Design'];
 const ITEMS_PER_PAGE = 10;
 
