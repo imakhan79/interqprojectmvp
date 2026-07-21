@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Bell, CheckCheck, Briefcase, UserCheck, Calendar, FileText, AlertCircle } from "lucide-react";
+import { formatDistanceToNow } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/SimpleAuthContext";
-import { mockActivityFeed } from "@/data/adminModuleData";
+import { supabase } from "@/integrations/supabase/client";
+import { useRealtimeTable } from "@/hooks/useRealtimeTable";
 
 interface Notification {
   id: string;
@@ -15,6 +17,19 @@ interface Notification {
   read: boolean;
   type: "info" | "success" | "warning" | "error";
   icon: "job" | "candidate" | "interview" | "offer" | "alert";
+}
+
+interface NotificationRow {
+  id: string;
+  user_id: string | null;
+  company_id: string | null;
+  role: string | null;
+  type: string;
+  title: string;
+  message: string | null;
+  link: string | null;
+  is_read: boolean;
+  created_at: string;
 }
 
 // Role-based notifications generated from activity feed
@@ -43,6 +58,31 @@ function getRoleNotifications(role: string): Notification[] {
   return base;
 }
 
+// The notifications table's `type` column is free-text (set by whatever inserted
+// the row), so map it onto our icon/severity vocabulary with simple keyword rules.
+function mapDbNotification(row: NotificationRow): Notification {
+  const t = row.type.toLowerCase();
+  let icon: Notification["icon"] = "alert";
+  if (t.includes("offer")) icon = "offer";
+  else if (t.includes("interview")) icon = "interview";
+  else if (t.includes("candidate") || t.includes("application")) icon = "candidate";
+  else if (t.includes("job")) icon = "job";
+
+  let type: Notification["type"] = "info";
+  if (t.includes("success") || t.includes("accepted") || t.includes("hired")) type = "success";
+  else if (t.includes("warn")) type = "warning";
+  else if (t.includes("error") || t.includes("declined") || t.includes("reject")) type = "error";
+
+  return {
+    id: row.id,
+    message: row.title + (row.message ? ` — ${row.message}` : ""),
+    time: formatDistanceToNow(new Date(row.created_at), { addSuffix: true }),
+    read: row.is_read,
+    type,
+    icon,
+  };
+}
+
 const IconMap: Record<string, any> = {
   job: Briefcase,
   candidate: UserCheck,
@@ -61,13 +101,65 @@ const typeColors: Record<string, string> = {
 export function NotificationBell() {
   const { user } = useAuth();
   const role = user?.role || "jobseeker";
-  const [notifications, setNotifications] = useState<Notification[]>(() => getRoleNotifications(role));
+  const isRealUser = !!user && !user.isDemo;
+
+  const [notifications, setNotifications] = useState<Notification[]>(() =>
+    isRealUser ? [] : getRoleNotifications(role)
+  );
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isRealUser || !user) return;
+
+    let cancelled = false;
+    supabase
+      .from("notifications")
+      .select("*")
+      .eq("user_id", user.id)
+      .order("created_at", { ascending: false })
+      .limit(20)
+      .then(({ data, error }) => {
+        if (cancelled || error || !data) return;
+        setNotifications((data as NotificationRow[]).map(mapDbNotification));
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isRealUser, user]);
+
+  useRealtimeTable({
+    table: "notifications",
+    filter: user ? `user_id=eq.${user.id}` : undefined,
+    enabled: isRealUser,
+    onChange: (payload) => {
+      if (payload.eventType === "INSERT") {
+        setNotifications(prev => [mapDbNotification(payload.new as unknown as NotificationRow), ...prev]);
+      } else if (payload.eventType === "UPDATE") {
+        const updated = mapDbNotification(payload.new as unknown as NotificationRow);
+        setNotifications(prev => prev.map(n => (n.id === updated.id ? updated : n)));
+      } else if (payload.eventType === "DELETE") {
+        const oldId = (payload.old as { id?: string })?.id;
+        setNotifications(prev => prev.filter(n => n.id !== oldId));
+      }
+    },
+  });
 
   const unreadCount = notifications.filter(n => !n.read).length;
 
-  const markAllRead = () => setNotifications(prev => prev.map(n => ({ ...n, read: true })));
-  const markRead = (id: string) => setNotifications(prev => prev.map(n => n.id === id ? { ...n, read: true } : n));
+  const markAllRead = useCallback(() => {
+    setNotifications(prev => prev.map(n => ({ ...n, read: true })));
+    if (isRealUser && user) {
+      supabase.from("notifications").update({ is_read: true }).eq("user_id", user.id).eq("is_read", false);
+    }
+  }, [isRealUser, user]);
+
+  const markRead = useCallback((id: string) => {
+    setNotifications(prev => prev.map(n => n.id === id ? { ...n, read: true } : n));
+    if (isRealUser) {
+      supabase.from("notifications").update({ is_read: true }).eq("id", id);
+    }
+  }, [isRealUser]);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

@@ -102,8 +102,10 @@ const Auth = () => {
     });
     
     if (result.success) {
-      // Navigation is handled by useEffect in SimpleAuthProvider
-      // But we can show a success toast or message here if we want
+      if (result.needsVerification) {
+        navigate("/verify-email");
+      }
+      // Otherwise navigation is handled by useEffect in SimpleAuthProvider
     } else {
       setError(result.error || "Signup failed");
     }

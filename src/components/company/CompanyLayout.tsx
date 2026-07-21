@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/SimpleAuthContext";
 import { supabase } from "@/integrations/supabase/client";
+import { useCompanyId } from "@/hooks/useCompanyId";
 import {
   LayoutDashboard, FileText, Users, ClipboardList, MessageSquare,
   Settings, BarChart3, Briefcase, LogOut, Menu, X, ChevronDown,
-  Building2, Bell, ScrollText, AlertCircle, Plus
+  Building2, Bell, ScrollText, AlertCircle, Plus, UserPlus
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -18,6 +19,7 @@ const navItems = [
   { label: "Tests & Questions", icon: ClipboardList, path: "/company/tests" },
   { label: "Interviews", icon: MessageSquare, path: "/company/interviews" },
   { label: "Results & Reports", icon: BarChart3, path: "/company/results" },
+  { label: "Team", icon: UserPlus, path: "/company/team" },
   { label: "Notifications", icon: Bell, path: "/company/notifications" },
   { label: "Audit Logs", icon: ScrollText, path: "/company/logs" },
   { label: "Settings", icon: Settings, path: "/company/settings" },
@@ -33,6 +35,7 @@ export function CompanyLayout() {
   const { user, signOut, isLoading: authLoading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const { companyId, loading: companyIdLoading } = useCompanyId();
   const [company, setCompany] = useState<Company | null>(null);
   const [loadingCompany, setLoadingCompany] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -42,11 +45,11 @@ export function CompanyLayout() {
       navigate("/auth");
       return;
     }
-    if (!user) return;
+    if (!user || companyIdLoading) return;
 
     if (user.isDemo && user.role === "company") {
       setCompany({
-        id: user.companyId || "comp_demo_001",
+        id: companyId || "comp_demo_001",
         name: user.companyName || "TechCorp Solutions",
         logo_url: null
       });
@@ -54,18 +57,21 @@ export function CompanyLayout() {
       return;
     }
 
+    if (!companyId) {
+      setCompany(null);
+      setLoadingCompany(false);
+      return;
+    }
+
     const fetchCompany = async () => {
       try {
-        const { data: membership } = await (supabase as any)
-          .from("company_members")
-          .select("company_id, role, companies(id, name, logo_url)")
-          .eq("user_id", user.id)
-          .limit(1)
-          .single();
+        const { data } = await supabase
+          .from("companies")
+          .select("id, name, logo_url")
+          .eq("id", companyId)
+          .maybeSingle();
 
-        if (membership?.companies) {
-          setCompany(membership.companies as Company);
-        }
+        setCompany(data as Company | null);
       } catch (error) {
         console.error("Error fetching company:", error);
       } finally {
@@ -73,9 +79,9 @@ export function CompanyLayout() {
       }
     };
     fetchCompany();
-  }, [user, authLoading, navigate]);
+  }, [user, authLoading, navigate, companyId, companyIdLoading]);
 
-  if (authLoading || loadingCompany) {
+  if (authLoading || companyIdLoading || loadingCompany) {
     return (
       <div className="flex h-screen bg-background">
         <div className="w-64 border-r p-4 space-y-4">

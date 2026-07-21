@@ -26,6 +26,8 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
+import { useNavigate } from 'react-router-dom';
+import { useCompanyId } from '@/hooks/useCompanyId';
 import {
   Building2,
   Users,
@@ -120,6 +122,7 @@ interface DashboardStats {
 
 export default function CompanyDashboard() {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('overview');
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -161,16 +164,29 @@ export default function CompanyDashboard() {
     status: 'open' as const
   });
 
-  const COMPANY_ID = '00000000-0000-0000-0000-000000000001';
+  const { companyId: resolvedCompanyId, loading: companyIdLoading } = useCompanyId();
+  const [companyId, setCompanyId] = useState<string | null>(null);
+  const [noCompany, setNoCompany] = useState(false);
 
   const loadData = useCallback(async () => {
+    if (companyIdLoading) return;
     setLoading(true);
     try {
+      if (!resolvedCompanyId) {
+        setNoCompany(true);
+        setCompany(null);
+        setJobs([]);
+        setCandidates([]);
+        return;
+      }
+      setNoCompany(false);
+      setCompanyId(resolvedCompanyId);
+
       // Fetch company
       const { data: companyData, error: companyError } = await supabase
         .from('companies')
         .select('*')
-        .eq('id', COMPANY_ID)
+        .eq('id', resolvedCompanyId)
         .single();
 
       if (companyError && companyError.code !== 'PGRST116') {
@@ -183,7 +199,7 @@ export default function CompanyDashboard() {
       const { data: jobsData, error: jobsError } = await supabase
         .from('jobs')
         .select('*')
-        .eq('company_id', COMPANY_ID)
+        .eq('company_id', resolvedCompanyId)
         .order('created_at', { ascending: false });
 
       if (jobsError) {
@@ -196,7 +212,7 @@ export default function CompanyDashboard() {
       const { data: candidatesData, error: candidatesError } = await supabase
         .from('candidates')
         .select('*')
-        .eq('company_id', COMPANY_ID)
+        .eq('company_id', resolvedCompanyId)
         .order('created_at', { ascending: false });
 
       if (candidatesError) {
@@ -208,7 +224,7 @@ export default function CompanyDashboard() {
       // Calculate stats
       const jobsList = jobsData || [];
       const candidatesList = candidatesData || [];
-      
+
       setStats({
         totalJobs: jobsList.length,
         openJobs: jobsList.filter(j => j.status === 'open').length,
@@ -230,7 +246,7 @@ export default function CompanyDashboard() {
     } finally {
       setLoading(false);
     }
-  }, [toast]);
+  }, [resolvedCompanyId, companyIdLoading, toast]);
 
   useEffect(() => {
     loadData();
@@ -308,10 +324,14 @@ export default function CompanyDashboard() {
         if (error) throw error;
         toast({ title: 'Job updated successfully' });
       } else {
+        if (!companyId) {
+          toast({ title: 'No company found for your account', variant: 'destructive' });
+          return;
+        }
         const { error } = await supabase
           .from('jobs')
           .insert({
-            company_id: COMPANY_ID,
+            company_id: companyId,
             title: jobForm.title.trim(),
             department: jobForm.department || null,
             location: jobForm.location?.trim() || null,
@@ -477,6 +497,24 @@ export default function CompanyDashboard() {
       <div className="flex items-center justify-center h-64">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
         <span className="ml-2">Loading data from Supabase...</span>
+      </div>
+    );
+  }
+
+  if (noCompany) {
+    return (
+      <div className="flex flex-col items-center justify-center h-96 text-center gap-4 px-4">
+        <Building2 className="h-12 w-12 text-muted-foreground" />
+        <div>
+          <h2 className="text-xl font-semibold">No company workspace yet</h2>
+          <p className="text-muted-foreground mt-1 max-w-md">
+            Your account isn't linked to a company workspace. Create one to start posting jobs and managing candidates.
+          </p>
+        </div>
+        <Button onClick={() => navigate('/company-signup')}>
+          <Plus className="h-4 w-4 mr-2" />
+          Create Company Workspace
+        </Button>
       </div>
     );
   }

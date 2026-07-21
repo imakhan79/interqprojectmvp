@@ -91,6 +91,8 @@ const Guidelines = lazy(() => import("./pages/Guidelines"));
 const ExpertPortal = lazy(() => import("./pages/ExpertPortal"));
 const CandidatePortal = lazy(() => import("./pages/CandidatePortal"));
 const CompanySignup = lazy(() => import("./pages/company/CompanySignup"));
+const JoinCompany = lazy(() => import("./pages/JoinCompany"));
+const CompanyTeam = lazy(() => import("./pages/company/CompanyTeam"));
 const CompanyLayout = lazy(() => import("./components/company/CompanyLayout").then(m => ({ default: m.CompanyLayout })));
 const CompanyDashboard = lazy(() => import("./pages/company/CompanyDashboard"));
 const CompanyJobs = lazy(() => import("./pages/company/CompanyJobs"));
@@ -143,6 +145,7 @@ const JobSeekerInterviews = lazy(() => import("./pages/jobseeker/Interviews"));
 const InterviewSession = lazy(() => import("./pages/jobseeker/InterviewSession"));
 const JobSeekerApplications = lazy(() => import("./pages/jobseeker/Applications"));
 const JobSeekerResults = lazy(() => import("./pages/jobseeker/JobSeekerResults"));
+const JobSeekerOffers = lazy(() => import("./pages/jobseeker/JobSeekerOffers"));
 const JobSeekerCertificates = lazy(() => import("./pages/jobseeker/JobSeekerCertificates"));
 const JobSeekerProfile = lazy(() => import("./pages/jobseeker/JobSeekerProfile"));
 const JobSeekerPrivacy = lazy(() => import("./pages/jobseeker/JobSeekerPrivacy"));
@@ -243,6 +246,7 @@ const App = () => (
               <Route path="/expert-portal" element={<ExpertPortal />} />
               <Route path="/candidate-portal" element={<CandidatePortal />} />
               <Route path="/company-signup" element={<CompanySignup />} />
+              <Route path="/join-company" element={<JoinCompany />} />
               <Route path="/company" element={<ProtectedRoute allowedRoles={["company"]}><CompanyLayout /></ProtectedRoute>}>
                 <Route index element={<CompanyDashboard />} />
                 <Route path="jobs" element={<CompanyJobs />} />
@@ -250,6 +254,7 @@ const App = () => (
                 <Route path="tests" element={<CompanyTests />} />
                 <Route path="interviews" element={<CompanyInterviews />} />
                 <Route path="results" element={<CompanyResults />} />
+                <Route path="team" element={<CompanyTeam />} />
                 <Route path="notifications" element={<CompanyNotifications />} />
                 <Route path="logs" element={<CompanyAuditLogs />} />
                 <Route path="settings" element={<CompanySettings />} />
@@ -261,6 +266,7 @@ const App = () => (
                 <Route path="interviews" element={<JobSeekerInterviews />} />
                 <Route path="interview/:id" element={<InterviewSession />} />
                 <Route path="results" element={<JobSeekerResults />} />
+                <Route path="offers" element={<JobSeekerOffers />} />
                 <Route path="certificates" element={<JobSeekerCertificates />} />
                 <Route path="profile" element={<JobSeekerProfile />} />
                 <Route path="privacy" element={<JobSeekerPrivacy />} />
