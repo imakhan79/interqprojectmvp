@@ -1,9 +1,10 @@
-import { AssessmentQuestion } from "./assessments";
+import { AssessmentQuestion, TOTAL_QUESTIONS } from "./assessments";
 
-// Sample questions for different assessments - each assessment will have 60 questions
+// Sample questions for different assessments - each assessment will have
+// TOTAL_QUESTIONS questions (see assessments.ts to change the count)
 export const assessmentQuestions: AssessmentQuestion[] = [
   // Python Easy Questions (assessment python_easy_1)
-  ...Array.from({ length: 60 }, (_, i) => ({
+  ...Array.from({ length: TOTAL_QUESTIONS }, (_, i): AssessmentQuestion => ({
     id: `python_easy_1_q${i + 1}`,
     assessment_id: "python_easy_1",
     question: `What is the output of print(${2 ** i % 10}) in Python?`,
@@ -16,7 +17,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
   })),
 
   // Python Medium Questions (assessment python_medium_1)
-  ...Array.from({ length: 60 }, (_, i) => ({
+  ...Array.from({ length: TOTAL_QUESTIONS }, (_, i): AssessmentQuestion => ({
     id: `python_medium_1_q${i + 1}`,
     assessment_id: "python_medium_1",
     question: `What does the following Python code do?\n\ndef func(${['x', 'y', 'z'][i % 3]}):\n    return ${['x * 2', 'y + 1', 'z ** 2'][i % 3]}`,
@@ -29,7 +30,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
   })),
 
   // AWS Easy Questions (assessment aws_easy_1)
-  ...Array.from({ length: 60 }, (_, i) => ({
+  ...Array.from({ length: TOTAL_QUESTIONS }, (_, i): AssessmentQuestion => ({
     id: `aws_easy_1_q${i + 1}`,
     assessment_id: "aws_easy_1",
     question: `Which AWS service is primarily used for ${['file storage', 'compute instances', 'database hosting', 'content delivery'][i % 4]}?`,
@@ -42,7 +43,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
   })),
 
   // SQL Easy Questions (assessment sql_easy_1)
-  ...Array.from({ length: 60 }, (_, i) => ({
+  ...Array.from({ length: TOTAL_QUESTIONS }, (_, i): AssessmentQuestion => ({
     id: `sql_easy_1_q${i + 1}`,
     assessment_id: "sql_easy_1",
     question: `Which SQL command is used to ${['retrieve data', 'insert data', 'update data', 'delete data'][i % 4]} from a table?`,
@@ -55,7 +56,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
   })),
 
   // JavaScript Easy Questions (assessment js_easy_1)
-  ...Array.from({ length: 60 }, (_, i) => ({
+  ...Array.from({ length: TOTAL_QUESTIONS }, (_, i): AssessmentQuestion => ({
     id: `js_easy_1_q${i + 1}`,
     assessment_id: "js_easy_1",
     question: `What does the following JavaScript code output?\n\nconsole.log(typeof ${['42', '"hello"', 'true', 'null'][i % 4]});`,
@@ -68,7 +69,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
   })),
 
   // Linux Easy Questions (assessment linux_easy_1)
-  ...Array.from({ length: 60 }, (_, i) => ({
+  ...Array.from({ length: TOTAL_QUESTIONS }, (_, i): AssessmentQuestion => ({
     id: `linux_easy_1_q${i + 1}`,
     assessment_id: "linux_easy_1",
     question: `Which Linux command is used to ${['list files', 'change directory', 'show current directory', 'create directory'][i % 4]}?`,
@@ -81,7 +82,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
   })),
 
   // Docker Easy Questions (assessment docker_easy_1)
-  ...Array.from({ length: 60 }, (_, i) => ({
+  ...Array.from({ length: TOTAL_QUESTIONS }, (_, i): AssessmentQuestion => ({
     id: `docker_easy_1_q${i + 1}`,
     assessment_id: "docker_easy_1",
     question: `Which Docker command is used to ${['run a container', 'build an image', 'list containers', 'pull an image'][i % 4]}?`,
@@ -94,7 +95,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
   })),
 
   // React Easy Questions (assessment react_easy_1)
-  ...Array.from({ length: 60 }, (_, i) => ({
+  ...Array.from({ length: TOTAL_QUESTIONS }, (_, i): AssessmentQuestion => ({
     id: `react_easy_1_q${i + 1}`,
     assessment_id: "react_easy_1",
     question: `In React, what is ${['JSX', 'props', 'state', 'components'][i % 4]}?`,
@@ -107,7 +108,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
   })),
 
   // DevOps Easy Questions (assessment devops_easy_1)
-  ...Array.from({ length: 60 }, (_, i) => ({
+  ...Array.from({ length: TOTAL_QUESTIONS }, (_, i): AssessmentQuestion => ({
     id: `devops_easy_1_q${i + 1}`,
     assessment_id: "devops_easy_1",
     question: `What does ${['CI', 'CD', 'IaC', 'SCM'][i % 4]} stand for in DevOps?`,
@@ -120,7 +121,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
   })),
 
   // Security Easy Questions (assessment security_easy_1)
-  ...Array.from({ length: 60 }, (_, i) => ({
+  ...Array.from({ length: TOTAL_QUESTIONS }, (_, i): AssessmentQuestion => ({
     id: `security_easy_1_q${i + 1}`,
     assessment_id: "security_easy_1",
     question: `What type of attack involves ${['sending unsolicited emails', 'flooding a network', 'stealing session data', 'encrypting files'][i % 4]}?`,
@@ -133,7 +134,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
   })),
 
   // Medium difficulty questions for various assessments
-  ...Array.from({ length: 60 }, (_, i) => ({
+  ...Array.from({ length: TOTAL_QUESTIONS }, (_, i): AssessmentQuestion => ({
     id: `python_medium_2_q${i + 1}`,
     assessment_id: "python_medium_2",
     question: `In Python, what is the correct way to define a function that ${['returns a list', 'takes variable arguments', 'has default parameters', 'is a generator'][i % 4]}?`,
@@ -146,7 +147,7 @@ export const assessmentQuestions: AssessmentQuestion[] = [
   })),
 
   // Hard difficulty questions
-  ...Array.from({ length: 60 }, (_, i) => ({
+  ...Array.from({ length: TOTAL_QUESTIONS }, (_, i): AssessmentQuestion => ({
     id: `python_hard_1_q${i + 1}`,
     assessment_id: "python_hard_1",
     question: `Advanced Python: What does the following decorator do?\n\n@wraps(func)\ndef wrapper(*args, **kwargs):\n    ${['log execution time', 'cache results', 'validate input', 'handle exceptions'][i % 4]}`,
@@ -157,6 +158,8117 @@ export const assessmentQuestions: AssessmentQuestion[] = [
     correct_answer: ["A", "B", "C", "D"][i % 4],
     difficulty: "hard"
   })),
+  // Python — Python Data Types & Variables (assessment python_easy_2)
+  ...([
+    {
+      id: "python_easy_2_q1",
+      assessment_id: "python_easy_2",
+      question: "Which of these is an immutable data type in Python?",
+      option_a: "list",
+      option_b: "dict",
+      option_c: "tuple",
+      option_d: "set",
+      correct_answer: "C",
+      difficulty: "easy"
+    },
+    {
+      id: "python_easy_2_q2",
+      assessment_id: "python_easy_2",
+      question: "What is the output of type(5.0) in Python?",
+      option_a: "<class 'int'>",
+      option_b: "<class 'float'>",
+      option_c: "<class 'str'>",
+      option_d: "<class 'complex'>",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "python_easy_2_q3",
+      assessment_id: "python_easy_2",
+      question: "Which keyword is used to declare a variable as global inside a function?",
+      option_a: "global",
+      option_b: "nonlocal",
+      option_c: "static",
+      option_d: "extern",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "python_easy_2_q4",
+      assessment_id: "python_easy_2",
+      question: "What does type([]) return?",
+      option_a: "<class 'list'>",
+      option_b: "<class 'tuple'>",
+      option_c: "<class 'dict'>",
+      option_d: "<class 'set'>",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "python_easy_2_q5",
+      assessment_id: "python_easy_2",
+      question: "Which of the following is a valid variable name in Python?",
+      option_a: "2var",
+      option_b: "var_2",
+      option_c: "var-2",
+      option_d: "var 2",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "python_easy_2_q6",
+      assessment_id: "python_easy_2",
+      question: "What is the result of 7 // 2 in Python?",
+      option_a: "3.5",
+      option_b: "3",
+      option_c: "4",
+      option_d: "3.0",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "python_easy_2_q7",
+      assessment_id: "python_easy_2",
+      question: "Which built-in function converts the string \"123\" to an integer?",
+      option_a: "str()",
+      option_b: "int()",
+      option_c: "float()",
+      option_d: "chr()",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "python_easy_2_q8",
+      assessment_id: "python_easy_2",
+      question: "What data type does the expression 3 + 4j represent in Python?",
+      option_a: "float",
+      option_b: "complex",
+      option_c: "int",
+      option_d: "decimal",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "python_easy_2_q9",
+      assessment_id: "python_easy_2",
+      question: "Which of the following creates an empty dictionary?",
+      option_a: "{}",
+      option_b: "[]",
+      option_c: "()",
+      option_d: "set()",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "python_easy_2_q10",
+      assessment_id: "python_easy_2",
+      question: "What is the output of bool(0) in Python?",
+      option_a: "True",
+      option_b: "False",
+      option_c: "0",
+      option_d: "None",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "python_easy_2_q11",
+      assessment_id: "python_easy_2",
+      question: "Which operator checks whether two variables refer to the same object in memory?",
+      option_a: "==",
+      option_b: "is",
+      option_c: "in",
+      option_d: "=",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "python_easy_2_q12",
+      assessment_id: "python_easy_2",
+      question: "What is the type of the value None in Python?",
+      option_a: "NoneType",
+      option_b: "null",
+      option_c: "undefined",
+      option_d: "void",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "python_easy_2_q13",
+      assessment_id: "python_easy_2",
+      question: "Which built-in function converts a list to a tuple?",
+      option_a: "list()",
+      option_b: "tuple()",
+      option_c: "set()",
+      option_d: "dict()",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "python_easy_2_q14",
+      assessment_id: "python_easy_2",
+      question: "What is the output of \"5\" + \"5\" in Python?",
+      option_a: "10",
+      option_b: "55",
+      option_c: "Error",
+      option_d: "5.5",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "python_easy_2_q15",
+      assessment_id: "python_easy_2",
+      question: "Which of these is a mutable data type in Python?",
+      option_a: "tuple",
+      option_b: "str",
+      option_c: "list",
+      option_d: "frozenset",
+      correct_answer: "C",
+      difficulty: "easy"
+    },
+  ] as AssessmentQuestion[]),
+
+  // AWS — AWS EC2 Basics (assessment aws_easy_2)
+  ...([
+    {
+      id: "aws_easy_2_q1",
+      assessment_id: "aws_easy_2",
+      question: "What does EC2 stand for?",
+      option_a: "Elastic Compute Cloud",
+      option_b: "Elastic Container Cloud",
+      option_c: "Elastic Cloud Compute",
+      option_d: "Elastic Compute Center",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "aws_easy_2_q2",
+      assessment_id: "aws_easy_2",
+      question: "Which protocol is typically used to connect to a Linux EC2 instance for remote administration?",
+      option_a: "RDP",
+      option_b: "SSH",
+      option_c: "FTP",
+      option_d: "Telnet",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "aws_easy_2_q3",
+      assessment_id: "aws_easy_2",
+      question: "What is an AMI in AWS?",
+      option_a: "Amazon Machine Image",
+      option_b: "Amazon Managed Instance",
+      option_c: "Amazon Monitoring Interface",
+      option_d: "Amazon Module Index",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "aws_easy_2_q4",
+      assessment_id: "aws_easy_2",
+      question: "Which EC2 pricing model offers the lowest cost for interruptible, flexible workloads?",
+      option_a: "On-Demand",
+      option_b: "Reserved",
+      option_c: "Spot",
+      option_d: "Dedicated Host",
+      correct_answer: "C",
+      difficulty: "easy"
+    },
+    {
+      id: "aws_easy_2_q5",
+      assessment_id: "aws_easy_2",
+      question: "Which resource controls inbound and outbound traffic directly at the EC2 instance level?",
+      option_a: "IAM Role",
+      option_b: "Security Group",
+      option_c: "S3 Bucket Policy",
+      option_d: "Route Table",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "aws_easy_2_q6",
+      assessment_id: "aws_easy_2",
+      question: "Which EC2 storage type is ephemeral and lost when the instance stops?",
+      option_a: "EBS",
+      option_b: "Instance Store",
+      option_c: "S3",
+      option_d: "EFS",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "aws_easy_2_q7",
+      assessment_id: "aws_easy_2",
+      question: "What is commonly used to securely access an EC2 Linux instance without a password?",
+      option_a: "An SSH key pair",
+      option_b: "An API key",
+      option_c: "An access key",
+      option_d: "A session token",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "aws_easy_2_q8",
+      assessment_id: "aws_easy_2",
+      question: "Which EC2 instance family is optimized for compute-intensive workloads?",
+      option_a: "T3",
+      option_b: "C5",
+      option_c: "R5",
+      option_d: "I3",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "aws_easy_2_q9",
+      assessment_id: "aws_easy_2",
+      question: "What is the default SSH username for connecting to an Ubuntu EC2 instance?",
+      option_a: "root",
+      option_b: "admin",
+      option_c: "ubuntu",
+      option_d: "ec2-user",
+      correct_answer: "C",
+      difficulty: "easy"
+    },
+    {
+      id: "aws_easy_2_q10",
+      assessment_id: "aws_easy_2",
+      question: "Which AWS feature automatically adjusts the number of EC2 instances based on demand?",
+      option_a: "Auto Scaling",
+      option_b: "Elastic Load Balancer",
+      option_c: "CloudWatch",
+      option_d: "Elastic Beanstalk",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "aws_easy_2_q11",
+      assessment_id: "aws_easy_2",
+      question: "By default, what happens to the root EBS volume's data when the attached EC2 instance is terminated?",
+      option_a: "It persists automatically",
+      option_b: "It is deleted by default",
+      option_c: "It moves to S3",
+      option_d: "It becomes read-only",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "aws_easy_2_q12",
+      assessment_id: "aws_easy_2",
+      question: "Which EC2 purchasing option requires an upfront 1- or 3-year commitment for a discounted rate?",
+      option_a: "Spot Instance",
+      option_b: "Reserved Instance",
+      option_c: "On-Demand",
+      option_d: "Dedicated Instance",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "aws_easy_2_q13",
+      assessment_id: "aws_easy_2",
+      question: "Can multiple security groups be associated with a single EC2 instance's network interface?",
+      option_a: "No, only one is allowed",
+      option_b: "Yes, multiple security groups can be attached",
+      option_c: "No, security groups apply to VPCs only",
+      option_d: "Only via a Network ACL",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "aws_easy_2_q14",
+      assessment_id: "aws_easy_2",
+      question: "Which AWS CLI command launches a new EC2 instance?",
+      option_a: "aws ec2 run-instances",
+      option_b: "aws ec2 start-instances",
+      option_c: "aws ec2 create-instances",
+      option_d: "aws ec2 launch-instances",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "aws_easy_2_q15",
+      assessment_id: "aws_easy_2",
+      question: "What is an Elastic IP address in AWS?",
+      option_a: "A temporary IP address that changes on reboot",
+      option_b: "A static public IPv4 address you can allocate to your account",
+      option_c: "A private-only IP address",
+      option_d: "A DNS hostname",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+  ] as AssessmentQuestion[]),
+
+  // AWS — AWS S3 & Storage (assessment aws_medium_1)
+  ...([
+    {
+      id: "aws_medium_1_q1",
+      assessment_id: "aws_medium_1",
+      question: "What is the maximum size of a single object uploaded to S3 in one PUT operation?",
+      option_a: "5 GB",
+      option_b: "5 TB",
+      option_c: "500 GB",
+      option_d: "1 TB",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_1_q2",
+      assessment_id: "aws_medium_1",
+      question: "Which S3 storage class is designed for infrequently accessed data that still needs rapid retrieval?",
+      option_a: "S3 Standard",
+      option_b: "S3 Standard-IA",
+      option_c: "S3 Glacier Deep Archive",
+      option_d: "S3 Intelligent-Tiering",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_1_q3",
+      assessment_id: "aws_medium_1",
+      question: "Which S3 feature allows you to keep multiple variants of an object in the same bucket?",
+      option_a: "Versioning",
+      option_b: "Replication",
+      option_c: "Lifecycle policy",
+      option_d: "Object Lock",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_1_q4",
+      assessment_id: "aws_medium_1",
+      question: "Which S3 feature automatically transitions objects between storage classes based on age or access patterns?",
+      option_a: "Cross-Region Replication",
+      option_b: "Lifecycle configuration",
+      option_c: "Transfer Acceleration",
+      option_d: "Event Notification",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_1_q5",
+      assessment_id: "aws_medium_1",
+      question: "What is used to grant resource-level, JSON-based permissions directly on an S3 bucket?",
+      option_a: "Security Group",
+      option_b: "Bucket Policy",
+      option_c: "Network ACL",
+      option_d: "Route Table",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_1_q6",
+      assessment_id: "aws_medium_1",
+      question: "Which EBS volume type is best suited for high-performance databases requiring high IOPS?",
+      option_a: "gp2",
+      option_b: "st1",
+      option_c: "io1/io2",
+      option_d: "sc1",
+      correct_answer: "C",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_1_q7",
+      assessment_id: "aws_medium_1",
+      question: "What retrieval time does S3 Glacier's \"Expedited\" retrieval option typically provide?",
+      option_a: "5-12 hours",
+      option_b: "1-5 minutes",
+      option_c: "3-5 days",
+      option_d: "Instant",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_1_q8",
+      assessment_id: "aws_medium_1",
+      question: "Which storage service provides a fully managed NFS file system that can be mounted by multiple EC2 instances?",
+      option_a: "EBS",
+      option_b: "EFS",
+      option_c: "S3",
+      option_d: "FSx for Windows",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_1_q9",
+      assessment_id: "aws_medium_1",
+      question: "What durability figure is S3 Standard storage designed to provide?",
+      option_a: "99.9%",
+      option_b: "99.99%",
+      option_c: "99.999999999% (11 nines)",
+      option_d: "99.95%",
+      correct_answer: "C",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_1_q10",
+      assessment_id: "aws_medium_1",
+      question: "Which S3 feature prevents an object from being deleted or overwritten for a fixed retention period?",
+      option_a: "Versioning alone",
+      option_b: "Object Lock",
+      option_c: "Bucket Policy alone",
+      option_d: "MFA Delete alone",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_1_q11",
+      assessment_id: "aws_medium_1",
+      question: "What does S3 Cross-Region Replication (CRR) do?",
+      option_a: "Compress objects automatically",
+      option_b: "Automatically copy objects to a bucket in a different AWS region",
+      option_c: "Encrypt objects at rest only",
+      option_d: "Cache objects at CloudFront edge locations",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_1_q12",
+      assessment_id: "aws_medium_1",
+      question: "Which EBS volume type is the lowest-cost option, designed for large, infrequently accessed, sequential workloads?",
+      option_a: "gp3",
+      option_b: "io2",
+      option_c: "sc1",
+      option_d: "st1",
+      correct_answer: "C",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_1_q13",
+      assessment_id: "aws_medium_1",
+      question: "Which AWS service is used to physically transfer very large datasets into S3 using a shippable device?",
+      option_a: "Snowball",
+      option_b: "Direct Connect",
+      option_c: "Storage Gateway",
+      option_d: "DataSync",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_1_q14",
+      assessment_id: "aws_medium_1",
+      question: "Which S3 feature can automatically trigger a Lambda function when a new object is uploaded?",
+      option_a: "Event Notifications",
+      option_b: "Lifecycle Policy",
+      option_c: "Access Points",
+      option_d: "Transfer Acceleration",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_1_q15",
+      assessment_id: "aws_medium_1",
+      question: "As of December 2020, what consistency model does Amazon S3 provide for all read and write operations?",
+      option_a: "Eventual consistency only",
+      option_b: "Strong read-after-write consistency",
+      option_c: "Weak consistency",
+      option_d: "Session consistency",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+  ] as AssessmentQuestion[]),
+
+  // AWS — AWS VPC & Networking (assessment aws_medium_2)
+  ...([
+    {
+      id: "aws_medium_2_q1",
+      assessment_id: "aws_medium_2",
+      question: "What is a VPC in AWS?",
+      option_a: "A virtual private cloud providing an isolated network environment",
+      option_b: "A physical data center",
+      option_c: "A load balancer",
+      option_d: "A DNS service",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_2_q2",
+      assessment_id: "aws_medium_2",
+      question: "Which component allows resources in a VPC to communicate directly with the public internet?",
+      option_a: "NAT Gateway",
+      option_b: "Internet Gateway",
+      option_c: "VPN Gateway",
+      option_d: "Peering Connection",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_2_q3",
+      assessment_id: "aws_medium_2",
+      question: "What is the purpose of a NAT Gateway?",
+      option_a: "Allow inbound internet traffic into a private subnet",
+      option_b: "Allow instances in a private subnet to initiate outbound internet access without being publicly reachable",
+      option_c: "Route traffic between two VPCs",
+      option_d: "Provide DNS resolution",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_2_q4",
+      assessment_id: "aws_medium_2",
+      question: "Which component controls traffic at the subnet level and is stateless?",
+      option_a: "Security Group",
+      option_b: "Network ACL",
+      option_c: "Route Table",
+      option_d: "IAM Policy",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_2_q5",
+      assessment_id: "aws_medium_2",
+      question: "Security Groups in a VPC are best described as:",
+      option_a: "Stateless",
+      option_b: "Stateful",
+      option_c: "Only applicable to outbound traffic",
+      option_d: "Only usable for on-premises networks",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_2_q6",
+      assessment_id: "aws_medium_2",
+      question: "Which feature connects two VPCs so instances can communicate using private IP addresses?",
+      option_a: "VPC Peering",
+      option_b: "Internet Gateway",
+      option_c: "NAT Instance",
+      option_d: "Elastic IP",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_2_q7",
+      assessment_id: "aws_medium_2",
+      question: "What is the largest CIDR block allowed for a single VPC in AWS?",
+      option_a: "/16",
+      option_b: "/28",
+      option_c: "/8",
+      option_d: "/32",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_2_q8",
+      assessment_id: "aws_medium_2",
+      question: "Which resource determines how traffic is routed between subnets and gateways within a VPC?",
+      option_a: "Route Table",
+      option_b: "Security Group",
+      option_c: "Network ACL",
+      option_d: "DHCP Option Set",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_2_q9",
+      assessment_id: "aws_medium_2",
+      question: "Which AWS service provides a dedicated, private network connection from an on-premises data center to AWS?",
+      option_a: "VPN",
+      option_b: "Direct Connect",
+      option_c: "Transit Gateway",
+      option_d: "PrivateLink",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_2_q10",
+      assessment_id: "aws_medium_2",
+      question: "What does a VPC endpoint allow you to do?",
+      option_a: "Privately connect a VPC to supported AWS services without traversing the public internet",
+      option_b: "Expose EC2 instances directly to the internet",
+      option_c: "Balance load across multiple instances",
+      option_d: "Cache DNS responses",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_2_q11",
+      assessment_id: "aws_medium_2",
+      question: "Which subnet type has a route to an Internet Gateway in its route table?",
+      option_a: "Public subnet",
+      option_b: "Private subnet",
+      option_c: "Isolated subnet",
+      option_d: "VPN-only subnet",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_2_q12",
+      assessment_id: "aws_medium_2",
+      question: "Which AWS service lets you connect multiple VPCs and on-premises networks through a central hub?",
+      option_a: "Transit Gateway",
+      option_b: "VPC Peering",
+      option_c: "Direct Connect Gateway",
+      option_d: "Route 53",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_2_q13",
+      assessment_id: "aws_medium_2",
+      question: "Do Network ACL rules automatically apply to every subnet in a VPC?",
+      option_a: "Yes, automatically to all subnets",
+      option_b: "No, only to subnets explicitly associated with them",
+      option_c: "Only to public subnets",
+      option_d: "Only to private subnets",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_2_q14",
+      assessment_id: "aws_medium_2",
+      question: "Which port must typically be open in a security group to allow SSH access to an instance?",
+      option_a: "22",
+      option_b: "80",
+      option_c: "443",
+      option_d: "3389",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "aws_medium_2_q15",
+      assessment_id: "aws_medium_2",
+      question: "When both a Network ACL and a Security Group are configured for the same traffic, what happens?",
+      option_a: "Only the NACL rules apply",
+      option_b: "Only the Security Group rules apply",
+      option_c: "Traffic must pass both the NACL and the Security Group rules",
+      option_d: "The least restrictive rule always wins",
+      correct_answer: "C",
+      difficulty: "medium"
+    },
+  ] as AssessmentQuestion[]),
+
+  // AWS — AWS Advanced Architecture (assessment aws_hard_1)
+  ...([
+    {
+      id: "aws_hard_1_q1",
+      assessment_id: "aws_hard_1",
+      question: "Which AWS service is commonly used to decouple microservices using asynchronous message queuing?",
+      option_a: "SQS",
+      option_b: "EC2",
+      option_c: "IAM",
+      option_d: "CloudFront",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "aws_hard_1_q2",
+      assessment_id: "aws_hard_1",
+      question: "What is the primary benefit of a Multi-AZ RDS deployment?",
+      option_a: "Lower cost",
+      option_b: "High availability with automatic failover to a standby replica",
+      option_c: "Faster read replicas",
+      option_d: "Lower write latency",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "aws_hard_1_q3",
+      assessment_id: "aws_hard_1",
+      question: "Which AWS service provides global, low-latency content delivery from edge locations?",
+      option_a: "CloudFront",
+      option_b: "Route 53",
+      option_c: "Direct Connect",
+      option_d: "API Gateway",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "aws_hard_1_q4",
+      assessment_id: "aws_hard_1",
+      question: "In the AWS Well-Architected Framework, which pillar focuses on running workloads effectively while continually improving processes?",
+      option_a: "Security",
+      option_b: "Operational Excellence",
+      option_c: "Reliability",
+      option_d: "Cost Optimization",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "aws_hard_1_q5",
+      assessment_id: "aws_hard_1",
+      question: "Which pattern effectively handles sudden traffic spikes for a stateless web tier?",
+      option_a: "An Auto Scaling group behind an Elastic Load Balancer",
+      option_b: "A single large EC2 instance",
+      option_c: "Manual scaling only",
+      option_d: "Reserved Instances exclusively",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "aws_hard_1_q6",
+      assessment_id: "aws_hard_1",
+      question: "Which AWS service lets you run code without provisioning or managing servers?",
+      option_a: "Lambda",
+      option_b: "EC2",
+      option_c: "Lightsail",
+      option_d: "ECS with the EC2 launch type",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "aws_hard_1_q7",
+      assessment_id: "aws_hard_1",
+      question: "What is the purpose of AWS Global Accelerator?",
+      option_a: "Improve availability and performance of applications using the AWS global network",
+      option_b: "Manage IAM permissions",
+      option_c: "Provision EC2 instances",
+      option_d: "Store static files",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "aws_hard_1_q8",
+      assessment_id: "aws_hard_1",
+      question: "Which strategy most directly improves read scalability for a heavily read-dominated relational workload?",
+      option_a: "Writing more data to the primary database",
+      option_b: "Adding read replicas",
+      option_c: "Increasing instance storage",
+      option_d: "Disabling caching",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "aws_hard_1_q9",
+      assessment_id: "aws_hard_1",
+      question: "What is a key characteristic of an event-driven architecture built with EventBridge?",
+      option_a: "Tight coupling of producer and consumer services",
+      option_b: "Synchronous request-response only",
+      option_c: "Loose coupling of services through events and rules",
+      option_d: "Requires constant polling by consumers",
+      correct_answer: "C",
+      difficulty: "hard"
+    },
+    {
+      id: "aws_hard_1_q10",
+      assessment_id: "aws_hard_1",
+      question: "Which approach helps achieve near-zero RTO/RPO disaster recovery across AWS regions?",
+      option_a: "Single-region backups only",
+      option_b: "A multi-region active-active architecture",
+      option_c: "Manual snapshots taken occasionally",
+      option_d: "Local-only replication",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "aws_hard_1_q11",
+      assessment_id: "aws_hard_1",
+      question: "How does an Application Load Balancer differ from a Network Load Balancer?",
+      option_a: "ALB operates at Layer 4, NLB at Layer 7",
+      option_b: "ALB operates at Layer 7 (HTTP/HTTPS), NLB at Layer 4 (TCP/UDP)",
+      option_c: "They operate identically",
+      option_d: "ALB only supports raw TCP",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "aws_hard_1_q12",
+      assessment_id: "aws_hard_1",
+      question: "Which design reduces coupling between one event producer and multiple independent consumers?",
+      option_a: "Direct API calls between every producer and consumer",
+      option_b: "SNS fan-out to multiple SQS queues",
+      option_c: "A shared database that all consumers poll",
+      option_d: "Hardcoded service URLs",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "aws_hard_1_q13",
+      assessment_id: "aws_hard_1",
+      question: "What is the primary purpose of AWS Step Functions?",
+      option_a: "Store objects durably",
+      option_b: "Orchestrate distributed workflows across multiple AWS services",
+      option_c: "Provide DNS resolution",
+      option_d: "Manage IAM roles",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "aws_hard_1_q14",
+      assessment_id: "aws_hard_1",
+      question: "For high availability, a production application's resources should typically span at minimum how many Availability Zones?",
+      option_a: "1",
+      option_b: "2 or more",
+      option_c: "Exactly 5",
+      option_d: "It doesn't matter",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "aws_hard_1_q15",
+      assessment_id: "aws_hard_1",
+      question: "Which caching strategy reduces read load on a relational database for frequently accessed data?",
+      option_a: "Disabling all indexes",
+      option_b: "Placing ElastiCache in front of the database",
+      option_c: "Increasing instance size only",
+      option_d: "Adding read replicas exclusively",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+  ] as AssessmentQuestion[]),
+
+  // SQL — SQL Joins & Relationships (assessment sql_easy_2)
+  ...([
+    {
+      id: "sql_easy_2_q1",
+      assessment_id: "sql_easy_2",
+      question: "Which JOIN returns only rows that match in both tables?",
+      option_a: "INNER JOIN",
+      option_b: "LEFT JOIN",
+      option_c: "RIGHT JOIN",
+      option_d: "FULL OUTER JOIN",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "sql_easy_2_q2",
+      assessment_id: "sql_easy_2",
+      question: "Which JOIN returns all rows from the left table and only the matched rows from the right table?",
+      option_a: "INNER JOIN",
+      option_b: "LEFT JOIN",
+      option_c: "RIGHT JOIN",
+      option_d: "CROSS JOIN",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "sql_easy_2_q3",
+      assessment_id: "sql_easy_2",
+      question: "What does a FULL OUTER JOIN return?",
+      option_a: "Only matching rows",
+      option_b: "All rows from the left table only",
+      option_c: "All rows when there is a match in either table",
+      option_d: "A Cartesian product",
+      correct_answer: "C",
+      difficulty: "easy"
+    },
+    {
+      id: "sql_easy_2_q4",
+      assessment_id: "sql_easy_2",
+      question: "What is a foreign key used for?",
+      option_a: "Uniquely identifying a row in its own table",
+      option_b: "Linking a row to a related row in another table",
+      option_c: "Encrypting sensitive data",
+      option_d: "Indexing a column for speed",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "sql_easy_2_q5",
+      assessment_id: "sql_easy_2",
+      question: "Which clause combines rows from two or more tables based on a related column?",
+      option_a: "WHERE",
+      option_b: "JOIN",
+      option_c: "GROUP BY",
+      option_d: "ORDER BY",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "sql_easy_2_q6",
+      assessment_id: "sql_easy_2",
+      question: "What does a CROSS JOIN produce?",
+      option_a: "Matched rows only",
+      option_b: "A Cartesian product of both tables",
+      option_c: "Only unmatched rows",
+      option_d: "Aggregated rows",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "sql_easy_2_q7",
+      assessment_id: "sql_easy_2",
+      question: "In a one-to-many relationship, the foreign key is typically placed on which side?",
+      option_a: "The \"one\" side",
+      option_b: "The \"many\" side",
+      option_c: "Both sides equally",
+      option_d: "Neither side",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "sql_easy_2_q8",
+      assessment_id: "sql_easy_2",
+      question: "Which technique finds rows in one table with no matching row in another table?",
+      option_a: "INNER JOIN",
+      option_b: "LEFT JOIN combined with a WHERE right.col IS NULL check",
+      option_c: "CROSS JOIN",
+      option_d: "NATURAL JOIN",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "sql_easy_2_q9",
+      assessment_id: "sql_easy_2",
+      question: "What is a primary key?",
+      option_a: "A column that can contain duplicate values",
+      option_b: "A column (or set of columns) that uniquely identifies each row in a table",
+      option_c: "A reference to another table's key",
+      option_d: "An index that is optional",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "sql_easy_2_q10",
+      assessment_id: "sql_easy_2",
+      question: "Which keyword removes duplicate rows from a query's result set?",
+      option_a: "UNIQUE",
+      option_b: "DISTINCT",
+      option_c: "FILTER",
+      option_d: "ONLY",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "sql_easy_2_q11",
+      assessment_id: "sql_easy_2",
+      question: "What is a self join?",
+      option_a: "Joining a table to itself",
+      option_b: "Joining two entirely different tables",
+      option_c: "A syntax error",
+      option_d: "A Cartesian product only",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "sql_easy_2_q12",
+      assessment_id: "sql_easy_2",
+      question: "Which constraint enforces referential integrity between two tables?",
+      option_a: "FOREIGN KEY constraint",
+      option_b: "UNIQUE constraint",
+      option_c: "CHECK constraint",
+      option_d: "DEFAULT constraint",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "sql_easy_2_q13",
+      assessment_id: "sql_easy_2",
+      question: "In a many-to-many relationship, what is typically used to model the relationship?",
+      option_a: "A single foreign key column",
+      option_b: "A junction (associative) table",
+      option_c: "A composite primary key alone",
+      option_d: "A view",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "sql_easy_2_q14",
+      assessment_id: "sql_easy_2",
+      question: "What does the ON clause specify in a JOIN statement?",
+      option_a: "Which columns to return",
+      option_b: "The condition used to match rows between the two tables",
+      option_c: "The sort order of results",
+      option_d: "The grouping criteria",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "sql_easy_2_q15",
+      assessment_id: "sql_easy_2",
+      question: "Which join type is equivalent to listing two tables in the FROM clause separated by a comma with a WHERE condition?",
+      option_a: "LEFT JOIN",
+      option_b: "INNER JOIN",
+      option_c: "FULL JOIN",
+      option_d: "CROSS JOIN",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+  ] as AssessmentQuestion[]),
+
+  // SQL — SQL Advanced Queries (assessment sql_medium_1)
+  ...([
+    {
+      id: "sql_medium_1_q1",
+      assessment_id: "sql_medium_1",
+      question: "What is a subquery?",
+      option_a: "A query nested inside another query",
+      option_b: "A stored procedure",
+      option_c: "A database view",
+      option_d: "An index",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_1_q2",
+      assessment_id: "sql_medium_1",
+      question: "Which clause filters groups after an aggregation has been applied?",
+      option_a: "WHERE",
+      option_b: "HAVING",
+      option_c: "GROUP BY",
+      option_d: "FILTER",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_1_q3",
+      assessment_id: "sql_medium_1",
+      question: "What does COUNT(*) do?",
+      option_a: "Counts only distinct values",
+      option_b: "Counts all rows, including those with NULLs",
+      option_c: "Sums numeric columns",
+      option_d: "Returns the average of a column",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_1_q4",
+      assessment_id: "sql_medium_1",
+      question: "Which function returns the average value of a numeric column?",
+      option_a: "SUM()",
+      option_b: "AVG()",
+      option_c: "COUNT()",
+      option_d: "MEAN()",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_1_q5",
+      assessment_id: "sql_medium_1",
+      question: "What is a correlated subquery?",
+      option_a: "A subquery that does not reference the outer query at all",
+      option_b: "A subquery that references columns from the outer query",
+      option_c: "A subquery allowed only in the FROM clause",
+      option_d: "A subquery that always returns NULL",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_1_q6",
+      assessment_id: "sql_medium_1",
+      question: "Which operator checks whether a value exists within a subquery's result set?",
+      option_a: "LIKE",
+      option_b: "IN",
+      option_c: "BETWEEN",
+      option_d: "IS",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_1_q7",
+      assessment_id: "sql_medium_1",
+      question: "What does the EXISTS operator return?",
+      option_a: "The actual matching rows from the subquery",
+      option_b: "TRUE or FALSE depending on whether the subquery returns any rows",
+      option_c: "A count of matching rows",
+      option_d: "NULL always",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_1_q8",
+      assessment_id: "sql_medium_1",
+      question: "Which clause must appear before GROUP BY in a SELECT statement's evaluation order?",
+      option_a: "ORDER BY",
+      option_b: "HAVING",
+      option_c: "WHERE",
+      option_d: "LIMIT",
+      correct_answer: "C",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_1_q9",
+      assessment_id: "sql_medium_1",
+      question: "What is a Common Table Expression (CTE)?",
+      option_a: "A temporary named result set defined with a WITH clause",
+      option_b: "A permanent table",
+      option_c: "A type of index",
+      option_d: "A trigger",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_1_q10",
+      assessment_id: "sql_medium_1",
+      question: "Which window function assigns a unique, gap-free sequential number to each row, even for ties?",
+      option_a: "RANK()",
+      option_b: "DENSE_RANK()",
+      option_c: "ROW_NUMBER()",
+      option_d: "NTILE()",
+      correct_answer: "C",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_1_q11",
+      assessment_id: "sql_medium_1",
+      question: "How does UNION differ from UNION ALL?",
+      option_a: "UNION removes duplicate rows; UNION ALL keeps them",
+      option_b: "UNION ALL removes duplicates; UNION keeps them",
+      option_c: "They behave identically",
+      option_d: "UNION only works on numeric columns",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_1_q12",
+      assessment_id: "sql_medium_1",
+      question: "Which ranking window function allows tied rows to share a rank while leaving a gap in the sequence?",
+      option_a: "ROW_NUMBER()",
+      option_b: "RANK()",
+      option_c: "LAG()",
+      option_d: "LEAD()",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_1_q13",
+      assessment_id: "sql_medium_1",
+      question: "What does the LAG() window function do?",
+      option_a: "Accesses a value from a following row in the result set",
+      option_b: "Accesses a value from a preceding row within the same result set",
+      option_c: "Sums values within a partition",
+      option_d: "Counts rows in a partition",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_1_q14",
+      assessment_id: "sql_medium_1",
+      question: "Which clause limits the number of rows a query returns?",
+      option_a: "LIMIT (or TOP/FETCH depending on the database)",
+      option_b: "WHERE",
+      option_c: "HAVING",
+      option_d: "DISTINCT",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_1_q15",
+      assessment_id: "sql_medium_1",
+      question: "What does a subquery placed in the FROM clause act as?",
+      option_a: "A trigger",
+      option_b: "A derived table (inline view)",
+      option_c: "A stored procedure",
+      option_d: "A constraint",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+  ] as AssessmentQuestion[]),
+
+  // SQL — SQL Optimization (assessment sql_medium_2)
+  ...([
+    {
+      id: "sql_medium_2_q1",
+      assessment_id: "sql_medium_2",
+      question: "What is the primary purpose of a database index?",
+      option_a: "Enforce column data types",
+      option_b: "Speed up data retrieval operations",
+      option_c: "Encrypt stored data",
+      option_d: "Reduce total storage size",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_2_q2",
+      assessment_id: "sql_medium_2",
+      question: "Which type of index physically reorders a table's data based on the indexed column(s)?",
+      option_a: "Clustered index",
+      option_b: "Non-clustered index",
+      option_c: "Bitmap index",
+      option_d: "Hash index",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_2_q3",
+      assessment_id: "sql_medium_2",
+      question: "How many clustered indexes can a single table typically have?",
+      option_a: "Unlimited",
+      option_b: "One",
+      option_c: "Two",
+      option_d: "Zero, always",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_2_q4",
+      assessment_id: "sql_medium_2",
+      question: "What does the EXPLAIN (or EXPLAIN PLAN) command show for a query?",
+      option_a: "The raw data returned by the query",
+      option_b: "The execution plan the query optimizer intends to use",
+      option_c: "The table's schema definition",
+      option_d: "Only the index definitions",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_2_q5",
+      assessment_id: "sql_medium_2",
+      question: "What is a covering index?",
+      option_a: "An index that includes all the columns a query needs, avoiding a lookup back to the table",
+      option_b: "An index placed on every column of a table",
+      option_c: "A unique constraint",
+      option_d: "An index used only for foreign keys",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_2_q6",
+      assessment_id: "sql_medium_2",
+      question: "What can commonly degrade write performance on a heavily updated table?",
+      option_a: "Having too many indexes that must be maintained on every write",
+      option_b: "Using WHERE clauses",
+      option_c: "Using primary keys",
+      option_d: "Using JOINs in SELECT statements",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_2_q7",
+      assessment_id: "sql_medium_2",
+      question: "What is index fragmentation?",
+      option_a: "When index pages become disorganized on disk, reducing scan efficiency",
+      option_b: "When an index has too few entries",
+      option_c: "When a table has no primary key",
+      option_d: "When queries return only NULL values",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_2_q8",
+      assessment_id: "sql_medium_2",
+      question: "Which practice reduces unnecessary I/O by retrieving only needed columns instead of SELECT *?",
+      option_a: "Column pruning",
+      option_b: "Row locking",
+      option_c: "Full index scanning",
+      option_d: "Table partitioning",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_2_q9",
+      assessment_id: "sql_medium_2",
+      question: "What does query plan caching help avoid?",
+      option_a: "Re-parsing and re-optimizing identical queries repeatedly",
+      option_b: "Data corruption",
+      option_c: "Index fragmentation",
+      option_d: "Deadlocks",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_2_q10",
+      assessment_id: "sql_medium_2",
+      question: "Which join strategy is generally most efficient when joining a small table to a large, properly indexed table?",
+      option_a: "Nested loop join",
+      option_b: "Cartesian join",
+      option_c: "Unindexed full table scan join",
+      option_d: "Random join",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_2_q11",
+      assessment_id: "sql_medium_2",
+      question: "What is table partitioning primarily used for?",
+      option_a: "Splitting a large table into smaller, more manageable pieces to improve performance and maintenance",
+      option_b: "Encrypting sensitive columns",
+      option_c: "Creating foreign key relationships",
+      option_d: "Normalizing table structure",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_2_q12",
+      assessment_id: "sql_medium_2",
+      question: "Why can a leading wildcard in a LIKE clause (e.g., LIKE '%value') hurt performance?",
+      option_a: "It prevents the optimizer from efficiently using a standard B-tree index",
+      option_b: "It always causes a syntax error",
+      option_c: "It disables transactions",
+      option_d: "It forces an exclusive table lock",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_2_q13",
+      assessment_id: "sql_medium_2",
+      question: "What is a materialized view primarily used for?",
+      option_a: "Physically storing query results to speed up repeated complex queries",
+      option_b: "Enforcing constraints on a table",
+      option_c: "Replacing indexes entirely",
+      option_d: "Storing temporary session variables",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_2_q14",
+      assessment_id: "sql_medium_2",
+      question: "Which statistics does a query optimizer rely on to choose an efficient execution plan?",
+      option_a: "Table and index cardinality/statistics",
+      option_b: "The application's UI layout",
+      option_c: "The database server's hostname",
+      option_d: "Network latency to the client",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "sql_medium_2_q15",
+      assessment_id: "sql_medium_2",
+      question: "What is the main performance benefit of using parameterized (bind-variable) queries for repeated similar queries?",
+      option_a: "They allow the database to reuse a cached execution plan and reduce parsing overhead",
+      option_b: "They increase table size",
+      option_c: "They automatically disable indexes",
+      option_d: "They prevent the use of JOINs",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+  ] as AssessmentQuestion[]),
+
+  // SQL — SQL Database Design (assessment sql_hard_1)
+  ...([
+    {
+      id: "sql_hard_1_q1",
+      assessment_id: "sql_hard_1",
+      question: "What is the primary goal of database normalization?",
+      option_a: "Increase data redundancy",
+      option_b: "Reduce data redundancy and improve data integrity",
+      option_c: "Improve UI rendering speed",
+      option_d: "Increase table count without any structural benefit",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "sql_hard_1_q2",
+      assessment_id: "sql_hard_1",
+      question: "Which normal form eliminates partial dependencies on a composite primary key?",
+      option_a: "1NF",
+      option_b: "2NF",
+      option_c: "3NF",
+      option_d: "BCNF",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "sql_hard_1_q3",
+      assessment_id: "sql_hard_1",
+      question: "What does Third Normal Form (3NF) primarily eliminate that 2NF does not?",
+      option_a: "Repeating groups",
+      option_b: "Partial dependencies",
+      option_c: "Transitive dependencies",
+      option_d: "Multi-valued dependencies",
+      correct_answer: "C",
+      difficulty: "hard"
+    },
+    {
+      id: "sql_hard_1_q4",
+      assessment_id: "sql_hard_1",
+      question: "What is a transitive dependency?",
+      option_a: "A non-key attribute depends on another non-key attribute rather than directly on the key",
+      option_b: "A primary key depends on itself",
+      option_c: "A foreign key depends on a primary key",
+      option_d: "An index depends on a column",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "sql_hard_1_q5",
+      assessment_id: "sql_hard_1",
+      question: "Which constraint ensures a column's values are both unique and never NULL?",
+      option_a: "UNIQUE",
+      option_b: "PRIMARY KEY",
+      option_c: "CHECK",
+      option_d: "DEFAULT",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "sql_hard_1_q6",
+      assessment_id: "sql_hard_1",
+      question: "Denormalization is typically applied to achieve what tradeoff?",
+      option_a: "Improve read performance at the cost of some data redundancy",
+      option_b: "Eliminate all redundancy at any cost",
+      option_c: "Enforce stricter integrity with no downsides",
+      option_d: "Remove all indexes",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "sql_hard_1_q7",
+      assessment_id: "sql_hard_1",
+      question: "What does a CHECK constraint enforce?",
+      option_a: "That a column's value satisfies a specified boolean condition",
+      option_b: "A foreign key relationship",
+      option_c: "A specific sort order for query results",
+      option_d: "Removal of duplicate rows",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "sql_hard_1_q8",
+      assessment_id: "sql_hard_1",
+      question: "In an Entity-Relationship diagram, what does a cardinality of \"1:N\" represent?",
+      option_a: "A one-to-one relationship",
+      option_b: "A one-to-many relationship",
+      option_c: "A many-to-many relationship",
+      option_d: "No relationship at all",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "sql_hard_1_q9",
+      assessment_id: "sql_hard_1",
+      question: "What is Boyce-Codd Normal Form (BCNF) primarily concerned with?",
+      option_a: "Ensuring every determinant in the table is a candidate key",
+      option_b: "Removing all foreign keys from the schema",
+      option_c: "Ensuring atomic values only",
+      option_d: "Eliminating the use of indexes",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "sql_hard_1_q10",
+      assessment_id: "sql_hard_1",
+      question: "Which design approach resolves a many-to-many relationship between two entities?",
+      option_a: "Adding a single foreign key to one of the two tables",
+      option_b: "Creating a junction (bridge) table with foreign keys to both entities",
+      option_c: "Merging both entities into a single table",
+      option_d: "Removing the relationship entirely",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "sql_hard_1_q11",
+      assessment_id: "sql_hard_1",
+      question: "What does referential integrity guarantee?",
+      option_a: "Every foreign key value matches an existing primary key value in the referenced table, or is NULL",
+      option_b: "Every column in a table must be NOT NULL",
+      option_c: "Every table name in the database is unique",
+      option_d: "Every table must have an index",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "sql_hard_1_q12",
+      assessment_id: "sql_hard_1",
+      question: "What does the acronym ACID stand for in database transaction theory?",
+      option_a: "Atomicity, Consistency, Isolation, Durability",
+      option_b: "Access, Control, Integrity, Data",
+      option_c: "Atomic, Concurrent, Indexed, Durable",
+      option_d: "Aggregation, Consistency, Isolation, Design",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "sql_hard_1_q13",
+      assessment_id: "sql_hard_1",
+      question: "Which transaction isolation level is most prone to allowing \"phantom reads\"?",
+      option_a: "Serializable",
+      option_b: "Read Committed",
+      option_c: "Snapshot isolation",
+      option_d: "Chaos isolation",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "sql_hard_1_q14",
+      assessment_id: "sql_hard_1",
+      question: "What is a surrogate key?",
+      option_a: "A natural key derived directly from business data",
+      option_b: "An artificial key (e.g., an auto-increment ID) with no business meaning, used as the primary key",
+      option_c: "A type of foreign key only",
+      option_d: "A composite key made purely of business attributes",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "sql_hard_1_q15",
+      assessment_id: "sql_hard_1",
+      question: "Why might over-normalization hurt performance in a read-heavy reporting system?",
+      option_a: "It requires many joins to reconstruct data that's frequently queried together",
+      option_b: "It increases data redundancy",
+      option_c: "It removes the need for primary keys",
+      option_d: "It disables indexing entirely",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+  ] as AssessmentQuestion[]),
+
+  // JavaScript — JavaScript DOM Manipulation (assessment js_easy_2)
+  ...([
+    {
+      id: "js_easy_2_q1",
+      assessment_id: "js_easy_2",
+      question: "Which method selects a single element by its id attribute?",
+      option_a: "document.getElementById()",
+      option_b: "document.querySelectorAll()",
+      option_c: "document.getElementsByClassName()",
+      option_d: "document.createElement()",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "js_easy_2_q2",
+      assessment_id: "js_easy_2",
+      question: "Which method attaches an event listener to a DOM element?",
+      option_a: "element.addEventListener()",
+      option_b: "element.onEvent()",
+      option_c: "element.listen()",
+      option_d: "element.bindEvent()",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "js_easy_2_q3",
+      assessment_id: "js_easy_2",
+      question: "What does document.createElement() do?",
+      option_a: "Removes an element from the page",
+      option_b: "Creates a new, detached HTML element node",
+      option_c: "Selects an existing element",
+      option_d: "Applies a CSS rule",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "js_easy_2_q4",
+      assessment_id: "js_easy_2",
+      question: "Which property sets or gets an element's text content without parsing it as HTML?",
+      option_a: "innerHTML",
+      option_b: "textContent",
+      option_c: "outerHTML",
+      option_d: "value",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "js_easy_2_q5",
+      assessment_id: "js_easy_2",
+      question: "Which method appends a new child node to the end of a parent element's children?",
+      option_a: "appendChild()",
+      option_b: "removeChild()",
+      option_c: "replaceChild()",
+      option_d: "insertBefore()",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "js_easy_2_q6",
+      assessment_id: "js_easy_2",
+      question: "Which event fires when a user clicks on an element?",
+      option_a: "onchange",
+      option_b: "onclick",
+      option_c: "onload",
+      option_d: "onhover",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "js_easy_2_q7",
+      assessment_id: "js_easy_2",
+      question: "Which method removes an element directly from the DOM?",
+      option_a: "element.remove()",
+      option_b: "element.delete()",
+      option_c: "element.hide()",
+      option_d: "element.destroy()",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "js_easy_2_q8",
+      assessment_id: "js_easy_2",
+      question: "What does element.classList.add(\"active\") do?",
+      option_a: "Removes the \"active\" class from the element",
+      option_b: "Adds the \"active\" class to the element's class list",
+      option_c: "Checks whether the \"active\" class exists",
+      option_d: "Toggles the \"active\" class on and off",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "js_easy_2_q9",
+      assessment_id: "js_easy_2",
+      question: "Which method returns the first element in the document matching a given CSS selector?",
+      option_a: "querySelector()",
+      option_b: "getElementById() for any selector",
+      option_c: "getElementsByTagName()",
+      option_d: "querySelectorAll()",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "js_easy_2_q10",
+      assessment_id: "js_easy_2",
+      question: "What does the acronym DOM stand for?",
+      option_a: "Document Object Model",
+      option_b: "Data Object Management",
+      option_c: "Document Oriented Markup",
+      option_d: "Dynamic Object Model",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "js_easy_2_q11",
+      assessment_id: "js_easy_2",
+      question: "Which event fires once the entire page, including images and stylesheets, has fully loaded?",
+      option_a: "DOMContentLoaded",
+      option_b: "load",
+      option_c: "ready",
+      option_d: "init",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "js_easy_2_q12",
+      assessment_id: "js_easy_2",
+      question: "How do you set an input element's \"value\" attribute using the DOM API?",
+      option_a: "element.setAttribute(\"value\", \"new\")",
+      option_b: "element.getAttribute(\"value\")",
+      option_c: "element.attribute = \"new\"",
+      option_d: "element.value.set(\"new\")",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "js_easy_2_q13",
+      assessment_id: "js_easy_2",
+      question: "Which property gives access to an element's parent node in the DOM tree?",
+      option_a: "element.parentNode",
+      option_b: "element.childNodes",
+      option_c: "element.nextSibling",
+      option_d: "element.ownerDocument",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "js_easy_2_q14",
+      assessment_id: "js_easy_2",
+      question: "What does calling event.preventDefault() inside an event handler do?",
+      option_a: "Stops the event from bubbling up to parent elements",
+      option_b: "Prevents the browser's default action associated with that event",
+      option_c: "Removes the event listener permanently",
+      option_d: "Cancels all future events on the page",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "js_easy_2_q15",
+      assessment_id: "js_easy_2",
+      question: "Which method selects all elements matching a CSS selector and returns a static NodeList?",
+      option_a: "querySelector()",
+      option_b: "querySelectorAll()",
+      option_c: "getElementById()",
+      option_d: "getAttribute()",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+  ] as AssessmentQuestion[]),
+
+  // JavaScript — JavaScript ES6+ (assessment js_medium_1)
+  ...([
+    {
+      id: "js_medium_1_q1",
+      assessment_id: "js_medium_1",
+      question: "What does the let keyword provide that var does not?",
+      option_a: "Function-level scoping only",
+      option_b: "Block-level scoping",
+      option_c: "Only global scoping",
+      option_d: "No scoping rules at all",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_1_q2",
+      assessment_id: "js_medium_1",
+      question: "What is destructuring in ES6?",
+      option_a: "A syntax for extracting values from arrays or objects into distinct variables",
+      option_b: "A way to merge two objects together",
+      option_c: "A loop construct",
+      option_d: "A special type of function",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_1_q3",
+      assessment_id: "js_medium_1",
+      question: "What does the spread operator (...) do when applied to an array in a function call or new array literal?",
+      option_a: "Combines multiple arrays into a single nested array",
+      option_b: "Expands the array's elements individually",
+      option_c: "Removes duplicate elements",
+      option_d: "Reverses the array's order",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_1_q4",
+      assessment_id: "js_medium_1",
+      question: "What is the key difference in how arrow functions handle \"this\" compared to regular functions?",
+      option_a: "Arrow functions get their own dynamic \"this\" binding",
+      option_b: "Arrow functions inherit \"this\" lexically from their enclosing scope",
+      option_c: "Arrow functions cannot reference \"this\" under any circumstance",
+      option_d: "There is no difference at all",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_1_q5",
+      assessment_id: "js_medium_1",
+      question: "What syntax do template literals use for string interpolation?",
+      option_a: "Single quotes combined with the + operator",
+      option_b: "Backticks with ${} placeholders",
+      option_c: "Double quotes with % formatting",
+      option_d: "Square brackets around the expression",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_1_q6",
+      assessment_id: "js_medium_1",
+      question: "What does the const keyword declare?",
+      option_a: "A variable that can later be reassigned freely",
+      option_b: "A block-scoped variable whose binding cannot be reassigned",
+      option_c: "A variable with global scope only",
+      option_d: "A function declaration",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_1_q7",
+      assessment_id: "js_medium_1",
+      question: "What does Object.assign() do?",
+      option_a: "Deletes properties from an object",
+      option_b: "Copies enumerable own properties from one or more source objects into a target object",
+      option_c: "Creates a deep clone of an object",
+      option_d: "Freezes an object so it cannot change",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_1_q8",
+      assessment_id: "js_medium_1",
+      question: "What is a default parameter in an ES6 function?",
+      option_a: "A parameter that always throws if omitted",
+      option_b: "A parameter that takes a predefined value when no argument (or undefined) is passed",
+      option_c: "A parameter that is always required",
+      option_d: "A parameter with a fixed, enforced type",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_1_q9",
+      assessment_id: "js_medium_1",
+      question: "What does the class keyword introduced in ES6 provide?",
+      option_a: "An entirely new primitive data type",
+      option_b: "Syntactic sugar over JavaScript's existing prototype-based inheritance",
+      option_c: "A full replacement for functions",
+      option_d: "Automatic block scoping for all variables",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_1_q10",
+      assessment_id: "js_medium_1",
+      question: "What does Array.prototype.map() return?",
+      option_a: "The original array, mutated in place",
+      option_b: "A new array containing the results of calling a function on every element",
+      option_c: "A single aggregated value",
+      option_d: "undefined",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_1_q11",
+      assessment_id: "js_medium_1",
+      question: "What is a JavaScript Promise primarily used to represent?",
+      option_a: "Purely synchronous error handling",
+      option_b: "The eventual completion (or failure) of an asynchronous operation",
+      option_c: "A way to declare block-scoped variables",
+      option_d: "A special kind of loop",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_1_q12",
+      assessment_id: "js_medium_1",
+      question: "What capability does the ES6 import/export syntax provide?",
+      option_a: "A native module system for sharing code between files",
+      option_b: "A way to import only CSS files",
+      option_c: "Dynamic typing for variables",
+      option_d: "Class-based inheritance",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_1_q13",
+      assessment_id: "js_medium_1",
+      question: "What does Array.prototype.filter() return?",
+      option_a: "A single boolean value",
+      option_b: "A new array containing only the elements that pass a provided test function",
+      option_c: "The first element that matches a condition",
+      option_d: "The array's length",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_1_q14",
+      assessment_id: "js_medium_1",
+      question: "What are computed property names in ES6 object literals used for?",
+      option_a: "Using a bracketed expression to dynamically define an object's property key",
+      option_b: "Marking a property as read-only",
+      option_c: "Hiding a property from enumeration",
+      option_d: "Freezing an entire object",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_1_q15",
+      assessment_id: "js_medium_1",
+      question: "What does the optional chaining operator (?.) do?",
+      option_a: "Throws an error immediately if a property in the chain doesn't exist",
+      option_b: "Safely accesses nested object properties, short-circuiting to undefined instead of throwing",
+      option_c: "Chains multiple unrelated functions together",
+      option_d: "Merges two separate objects",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+  ] as AssessmentQuestion[]),
+
+  // JavaScript — JavaScript Async Programming (assessment js_medium_2)
+  ...([
+    {
+      id: "js_medium_2_q1",
+      assessment_id: "js_medium_2",
+      question: "What does placing async before a function declaration do?",
+      option_a: "Forces the function to run synchronously",
+      option_b: "Makes the function implicitly return a Promise",
+      option_c: "Prevents the function from ever running",
+      option_d: "Converts the function into a generator",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_2_q2",
+      assessment_id: "js_medium_2",
+      question: "What does the await keyword do inside an async function?",
+      option_a: "Pauses execution of that async function until the awaited Promise settles",
+      option_b: "Permanently blocks the entire application",
+      option_c: "Cancels the awaited Promise",
+      option_d: "Automatically converts a callback API into a Promise",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_2_q3",
+      assessment_id: "js_medium_2",
+      question: "What are the three possible states of a JavaScript Promise?",
+      option_a: "Started, Running, Finished",
+      option_b: "Pending, Fulfilled, Rejected",
+      option_c: "Open, Closed, Error",
+      option_d: "Init, Resolve, Reject",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_2_q4",
+      assessment_id: "js_medium_2",
+      question: "What does Promise.all() do?",
+      option_a: "Resolves as soon as the first promise resolves or rejects",
+      option_b: "Resolves when every promise resolves, or rejects immediately if any one of them rejects",
+      option_c: "Runs the given promises strictly one after another",
+      option_d: "Cancels every promise passed to it",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_2_q5",
+      assessment_id: "js_medium_2",
+      question: "What is commonly referred to as \"callback hell\"?",
+      option_a: "A recommended pattern for writing clean asynchronous code",
+      option_b: "Deeply nested callbacks that make code difficult to read and maintain",
+      option_c: "A specific JavaScript runtime error",
+      option_d: "A unit testing framework",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_2_q6",
+      assessment_id: "js_medium_2",
+      question: "What does Promise.race() return?",
+      option_a: "The result of whichever promise settles first, whether fulfilled or rejected",
+      option_b: "The combined results of all the promises",
+      option_c: "Only the promises that were rejected",
+      option_d: "Nothing; it never resolves",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_2_q7",
+      assessment_id: "js_medium_2",
+      question: "How should you typically handle errors inside an async/await function?",
+      option_a: "Using try/catch blocks around the awaited calls",
+      option_b: "Only with .then() and never with try/catch",
+      option_c: "Errors cannot be caught in async functions",
+      option_d: "Using window.onerror exclusively",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_2_q8",
+      assessment_id: "js_medium_2",
+      question: "What does calling .then() on a Promise do?",
+      option_a: "Registers callbacks to run on fulfillment and/or rejection of that Promise",
+      option_b: "Immediately cancels the Promise",
+      option_c: "Converts asynchronous code into fully synchronous code",
+      option_d: "Declares a new local variable",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_2_q9",
+      assessment_id: "js_medium_2",
+      question: "What is the JavaScript event loop responsible for?",
+      option_a: "Compiling JavaScript source into machine code",
+      option_b: "Coordinating execution of the call stack alongside the callback and microtask queues for async work",
+      option_c: "Rendering the DOM to the screen",
+      option_d: "Handling only CSS animations",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_2_q10",
+      assessment_id: "js_medium_2",
+      question: "How do microtasks (like Promise callbacks) relate to macrotasks (like setTimeout callbacks) in the event loop?",
+      option_a: "Microtasks run before the next macrotask, once the current call stack is empty",
+      option_b: "Macrotasks always run before any microtask",
+      option_c: "They are processed identically with no ordering guarantee",
+      option_d: "Microtasks never actually execute",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_2_q11",
+      assessment_id: "js_medium_2",
+      question: "What does Promise.allSettled() return?",
+      option_a: "It rejects immediately the moment any single promise fails",
+      option_b: "An array describing the outcome (fulfilled or rejected) of every promise, regardless of failures",
+      option_c: "Only the results of the fulfilled promises",
+      option_d: "A single boolean summarizing all promises",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_2_q12",
+      assessment_id: "js_medium_2",
+      question: "What does the fetch() function return?",
+      option_a: "A Promise that resolves to a Response object",
+      option_b: "The raw response body synchronously",
+      option_c: "A plain callback function",
+      option_d: "An XMLHttpRequest instance",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_2_q13",
+      assessment_id: "js_medium_2",
+      question: "What happens if you call an async function but forget to await it?",
+      option_a: "It causes a compile-time error",
+      option_b: "You receive the still-pending Promise object rather than its eventually resolved value",
+      option_c: "It executes fully synchronously regardless",
+      option_d: "The function body never runs at all",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_2_q14",
+      assessment_id: "js_medium_2",
+      question: "What is a generator function (using function* and yield) primarily useful for?",
+      option_a: "Lazily producing a sequence of values that can be paused and resumed at each yield",
+      option_b: "Declaring block-scoped constants",
+      option_c: "Applying CSS styles dynamically",
+      option_d: "Defining new ES6 classes",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "js_medium_2_q15",
+      assessment_id: "js_medium_2",
+      question: "What does setTimeout(fn, 0) actually guarantee about when fn executes?",
+      option_a: "fn executes immediately and synchronously",
+      option_b: "fn is queued to run only after the current call stack has fully cleared, not exactly at 0ms",
+      option_c: "fn never executes",
+      option_d: "fn always executes before any synchronous code",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+  ] as AssessmentQuestion[]),
+
+  // JavaScript — JavaScript Advanced Concepts (assessment js_hard_1)
+  ...([
+    {
+      id: "js_hard_1_q1",
+      assessment_id: "js_hard_1",
+      question: "What is a closure in JavaScript?",
+      option_a: "A function bundled together with references to its surrounding lexical scope",
+      option_b: "A way to close a browser tab programmatically",
+      option_c: "A specific kind of syntax error",
+      option_d: "A specialized loop construct",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "js_hard_1_q2",
+      assessment_id: "js_hard_1",
+      question: "What does the prototype chain enable in JavaScript?",
+      option_a: "Objects inheriting properties and methods from other objects",
+      option_b: "Automatic variable hoisting",
+      option_c: "Asynchronous code execution",
+      option_d: "Implicit type coercion",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "js_hard_1_q3",
+      assessment_id: "js_hard_1",
+      question: "What is the result of typeof NaN in JavaScript?",
+      option_a: "\"NaN\"",
+      option_b: "\"number\"",
+      option_c: "\"undefined\"",
+      option_d: "\"object\"",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "js_hard_1_q4",
+      assessment_id: "js_hard_1",
+      question: "What does Object.freeze() do to an object?",
+      option_a: "Deletes every property on the object",
+      option_b: "Prevents new properties from being added and existing ones from being modified or removed",
+      option_c: "Serializes the object into a JSON string",
+      option_d: "Makes the object iterable by default",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "js_hard_1_q5",
+      assessment_id: "js_hard_1",
+      question: "What is the key difference between == and === in JavaScript?",
+      option_a: "There is no meaningful difference between them",
+      option_b: "== performs type coercion before comparing; === does not",
+      option_c: "=== has been deprecated in modern JavaScript",
+      option_d: "== is actually the stricter comparison operator",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "js_hard_1_q6",
+      assessment_id: "js_hard_1",
+      question: "What is hoisting in JavaScript?",
+      option_a: "The behavior where variable and function declarations are conceptually moved to the top of their scope during compilation",
+      option_b: "A CSS layout technique",
+      option_c: "A mechanism for importing external modules",
+      option_d: "A built-in error-handling mechanism",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "js_hard_1_q7",
+      assessment_id: "js_hard_1",
+      question: "Which pattern relies on closures to create private, encapsulated state in JavaScript?",
+      option_a: "The module pattern",
+      option_b: "Excessive use of global variables",
+      option_c: "Classical multiple inheritance",
+      option_d: "Unbounded recursion",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "js_hard_1_q8",
+      assessment_id: "js_hard_1",
+      question: "Inside a regular function invoked as obj.method(), what does \"this\" refer to?",
+      option_a: "The global object, unconditionally",
+      option_b: "The object the method was called on (obj)",
+      option_c: "undefined, unconditionally",
+      option_d: "The function itself",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "js_hard_1_q9",
+      assessment_id: "js_hard_1",
+      question: "What is memoization?",
+      option_a: "Caching the results of expensive function calls so they aren't recomputed for the same inputs",
+      option_b: "A form of memory leak",
+      option_c: "A garbage collection algorithm",
+      option_d: "A synonym for closures with no distinct meaning",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "js_hard_1_q10",
+      assessment_id: "js_hard_1",
+      question: "What is the purpose of the WeakMap object in JavaScript?",
+      option_a: "Store key-value pairs where object keys are held weakly, allowing them to be garbage collected",
+      option_b: "Store only string keys",
+      option_c: "Serve as a full replacement for the regular Map object",
+      option_d: "Enforce strict static typing",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "js_hard_1_q11",
+      assessment_id: "js_hard_1",
+      question: "What does currying refer to in functional JavaScript programming?",
+      option_a: "Transforming a function that takes multiple arguments into a sequence of functions each taking a single argument",
+      option_b: "A browser caching strategy",
+      option_c: "A DOM manipulation technique",
+      option_d: "A specialized type of for-loop",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "js_hard_1_q12",
+      assessment_id: "js_hard_1",
+      question: "What commonly causes a memory leak involving closures in long-running JavaScript applications?",
+      option_a: "Retaining references to variables or DOM nodes that are no longer needed, preventing garbage collection",
+      option_b: "Declaring variables with const instead of let",
+      option_c: "Using arrow functions instead of regular functions",
+      option_d: "Declaring too many classes",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "js_hard_1_q13",
+      assessment_id: "js_hard_1",
+      question: "How do call(), apply(), and bind() differ from one another?",
+      option_a: "They behave identically in every way",
+      option_b: "call and apply invoke the function immediately with a given \"this\" (apply takes arguments as an array), while bind returns a new function with \"this\" permanently bound",
+      option_c: "bind invokes the function immediately",
+      option_d: "None of them have any effect on \"this\"",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "js_hard_1_q14",
+      assessment_id: "js_hard_1",
+      question: "What is a Proxy object used for in JavaScript?",
+      option_a: "Intercepting and customizing fundamental operations performed on an object, such as property get/set",
+      option_b: "Making raw network HTTP requests",
+      option_c: "Spawning new web worker threads",
+      option_d: "Compiling TypeScript source code",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "js_hard_1_q15",
+      assessment_id: "js_hard_1",
+      question: "What does implementing the Symbol.iterator protocol on an object enable?",
+      option_a: "Defining custom iteration behavior for that object, usable in constructs like for...of loops",
+      option_b: "Creating fully private class variables",
+      option_c: "Static type checking at compile time",
+      option_d: "Centralized error handling across the app",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Linux — Linux User Management (assessment linux_easy_2)
+  ...([
+    {
+      id: "linux_easy_2_q1",
+      assessment_id: "linux_easy_2",
+      question: "Which command creates a new user account in Linux?",
+      option_a: "useradd",
+      option_b: "newuser",
+      option_c: "mkuser",
+      option_d: "createuser",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "linux_easy_2_q2",
+      assessment_id: "linux_easy_2",
+      question: "Which file stores basic user account information such as username, UID, and home directory?",
+      option_a: "/etc/shadow",
+      option_b: "/etc/passwd",
+      option_c: "/etc/group",
+      option_d: "/etc/fstab",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "linux_easy_2_q3",
+      assessment_id: "linux_easy_2",
+      question: "Which file stores users' encrypted password hashes?",
+      option_a: "/etc/passwd",
+      option_b: "/etc/shadow",
+      option_c: "/etc/group",
+      option_d: "/etc/sudoers",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "linux_easy_2_q4",
+      assessment_id: "linux_easy_2",
+      question: "Which command is used to change a user's password?",
+      option_a: "passwd",
+      option_b: "chpasswd only",
+      option_c: "userpass",
+      option_d: "setpass",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "linux_easy_2_q5",
+      assessment_id: "linux_easy_2",
+      question: "Which command adds an existing user to an additional group?",
+      option_a: "usermod -aG groupname username",
+      option_b: "groupadd username",
+      option_c: "useradd -g",
+      option_d: "chgrp username",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "linux_easy_2_q6",
+      assessment_id: "linux_easy_2",
+      question: "What does the whoami command display?",
+      option_a: "The currently logged-in username",
+      option_b: "A list of all users on the system",
+      option_c: "The current primary group",
+      option_d: "The system hostname",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "linux_easy_2_q7",
+      assessment_id: "linux_easy_2",
+      question: "Which command deletes a user account from the system?",
+      option_a: "userdel",
+      option_b: "rmuser",
+      option_c: "deluser (Debian-only)",
+      option_d: "removeuser",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "linux_easy_2_q8",
+      assessment_id: "linux_easy_2",
+      question: "What is the UID conventionally assigned to the root user?",
+      option_a: "1",
+      option_b: "100",
+      option_c: "0",
+      option_d: "1000",
+      correct_answer: "C",
+      difficulty: "easy"
+    },
+    {
+      id: "linux_easy_2_q9",
+      assessment_id: "linux_easy_2",
+      question: "Which command lets you switch to another user's session from the command line?",
+      option_a: "su",
+      option_b: "sudo (only)",
+      option_c: "chuser",
+      option_d: "login",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "linux_easy_2_q10",
+      assessment_id: "linux_easy_2",
+      question: "What does the sudo command allow a permitted user to do?",
+      option_a: "Change only their own password",
+      option_b: "Execute commands with the privileges of another user, typically root",
+      option_c: "Create new groups exclusively",
+      option_d: "Encrypt files on disk",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "linux_easy_2_q11",
+      assessment_id: "linux_easy_2",
+      question: "Which file lists the groups defined on a system along with their members?",
+      option_a: "/etc/passwd",
+      option_b: "/etc/group",
+      option_c: "/etc/shadow",
+      option_d: "/etc/gshadow (only)",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "linux_easy_2_q12",
+      assessment_id: "linux_easy_2",
+      question: "Which command displays the groups a given user belongs to?",
+      option_a: "groups username",
+      option_b: "usermod -l",
+      option_c: "chgrp -l",
+      option_d: "passwd -S",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "linux_easy_2_q13",
+      assessment_id: "linux_easy_2",
+      question: "What information does the id command display for the current user?",
+      option_a: "The system's hostname",
+      option_b: "The user's UID, GID, and group memberships",
+      option_c: "The running kernel version",
+      option_d: "Disk usage statistics",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "linux_easy_2_q14",
+      assessment_id: "linux_easy_2",
+      question: "Which command locks a user account without deleting it?",
+      option_a: "passwd -l username",
+      option_b: "userdel -l username",
+      option_c: "usermod -x username",
+      option_d: "chage -l username",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "linux_easy_2_q15",
+      assessment_id: "linux_easy_2",
+      question: "Which directory conventionally holds individual users' home directories by default?",
+      option_a: "/usr",
+      option_b: "/home",
+      option_c: "/var",
+      option_d: "/opt",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Linux — Linux System Administration (assessment linux_medium_1)
+  ...([
+    {
+      id: "linux_medium_1_q1",
+      assessment_id: "linux_medium_1",
+      question: "Which command displays currently running processes and updates in real time?",
+      option_a: "ps",
+      option_b: "top",
+      option_c: "ls",
+      option_d: "df",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_1_q2",
+      assessment_id: "linux_medium_1",
+      question: "What does sending signal 9 (SIGKILL) via the kill command do to a process?",
+      option_a: "Gracefully asks the process to terminate",
+      option_b: "Forcefully and immediately terminates the process",
+      option_c: "Pauses the process temporarily",
+      option_d: "Restarts the process",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_1_q3",
+      assessment_id: "linux_medium_1",
+      question: "Which command reports disk space usage for mounted file systems?",
+      option_a: "df",
+      option_b: "du",
+      option_c: "free",
+      option_d: "top",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_1_q4",
+      assessment_id: "linux_medium_1",
+      question: "Which command reports the amount of used and free physical memory (RAM)?",
+      option_a: "df",
+      option_b: "du",
+      option_c: "free",
+      option_d: "ps",
+      correct_answer: "C",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_1_q5",
+      assessment_id: "linux_medium_1",
+      question: "What does the nice command control for a process?",
+      option_a: "Its scheduling priority",
+      option_b: "Its file permissions",
+      option_c: "Its network bandwidth",
+      option_d: "Its disk quota",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_1_q6",
+      assessment_id: "linux_medium_1",
+      question: "Which command lists all processes on the system with detailed information, regardless of terminal?",
+      option_a: "ps aux",
+      option_b: "ls -la",
+      option_c: "top -n",
+      option_d: "df -h",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_1_q7",
+      assessment_id: "linux_medium_1",
+      question: "Which systemd command starts a given service?",
+      option_a: "systemctl start servicename",
+      option_b: "service start servicename",
+      option_c: "systemctl enable servicename",
+      option_d: "init start servicename",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_1_q8",
+      assessment_id: "linux_medium_1",
+      question: "What does systemctl enable servicename accomplish?",
+      option_a: "Starts the service immediately",
+      option_b: "Configures the service to start automatically at boot",
+      option_c: "Stops the running service",
+      option_d: "Restarts the service",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_1_q9",
+      assessment_id: "linux_medium_1",
+      question: "Which utility schedules a one-time task to run at a specified future time?",
+      option_a: "cron",
+      option_b: "at",
+      option_c: "a systemd timer unit (only)",
+      option_d: "sleep",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_1_q10",
+      assessment_id: "linux_medium_1",
+      question: "What is the purpose of cron and crontab?",
+      option_a: "Schedule recurring tasks to run automatically at defined intervals",
+      option_b: "Manage user passwords",
+      option_c: "Monitor real-time network traffic",
+      option_d: "Compress files",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_1_q11",
+      assessment_id: "linux_medium_1",
+      question: "Which directory commonly holds system log files on many Linux distributions?",
+      option_a: "/var/log",
+      option_b: "/etc/log",
+      option_c: "/usr/log",
+      option_d: "/home/log",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_1_q12",
+      assessment_id: "linux_medium_1",
+      question: "What benefit does df -h provide compared to plain df?",
+      option_a: "Hexadecimal-formatted output",
+      option_b: "Human-readable sizes such as KB, MB, and GB",
+      option_c: "A historical log of disk usage over time",
+      option_d: "Only hidden filesystem entries",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_1_q13",
+      assessment_id: "linux_medium_1",
+      question: "Which command changes the owning user (and optionally group) of a file?",
+      option_a: "chown",
+      option_b: "chmod",
+      option_c: "chgrp (only)",
+      option_d: "chattr",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_1_q14",
+      assessment_id: "linux_medium_1",
+      question: "What permissions does chmod 755 file.sh assign?",
+      option_a: "Owner: read/write/execute; Group and Others: read/execute",
+      option_b: "Owner: read only",
+      option_c: "Everyone: full read/write/execute access",
+      option_d: "No access for anyone",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_1_q15",
+      assessment_id: "linux_medium_1",
+      question: "Which command displays how long the system has been running along with load averages?",
+      option_a: "uptime",
+      option_b: "whoami",
+      option_c: "hostname",
+      option_d: "uname",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Linux — Linux Networking (assessment linux_medium_2)
+  ...([
+    {
+      id: "linux_medium_2_q1",
+      assessment_id: "linux_medium_2",
+      question: "Which command displays network interface configuration on modern Linux distributions?",
+      option_a: "ip addr",
+      option_b: "ifconfig (the only option on modern distros)",
+      option_c: "netstat -r (only)",
+      option_d: "route",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_2_q2",
+      assessment_id: "linux_medium_2",
+      question: "Which command tests basic network connectivity to a remote host using ICMP echo requests?",
+      option_a: "ping",
+      option_b: "curl",
+      option_c: "wget",
+      option_d: "traceroute (only)",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_2_q3",
+      assessment_id: "linux_medium_2",
+      question: "What does the command ss -tuln (or the older netstat -tuln) show?",
+      option_a: "Listening TCP/UDP ports and their sockets",
+      option_b: "DNS zone records",
+      option_c: "The routing table only",
+      option_d: "The ARP cache",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_2_q4",
+      assessment_id: "linux_medium_2",
+      question: "Which file typically holds a Linux system's DNS server configuration?",
+      option_a: "/etc/hosts",
+      option_b: "/etc/resolv.conf",
+      option_c: "/etc/network/interfaces",
+      option_d: "/etc/nsswitch.conf (only)",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_2_q5",
+      assessment_id: "linux_medium_2",
+      question: "What information does the traceroute command display?",
+      option_a: "The network path (hops) packets take to reach a destination host",
+      option_b: "A list of open ports",
+      option_c: "DNS resolution results only",
+      option_d: "Current bandwidth usage",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_2_q6",
+      assessment_id: "linux_medium_2",
+      question: "Which command displays or configures a Linux system's routing table?",
+      option_a: "route or ip route",
+      option_b: "ifconfig",
+      option_c: "ping",
+      option_d: "dig -r",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_2_q7",
+      assessment_id: "linux_medium_2",
+      question: "What TCP port does SSH use by default?",
+      option_a: "21",
+      option_b: "22",
+      option_c: "80",
+      option_d: "443",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_2_q8",
+      assessment_id: "linux_medium_2",
+      question: "Which command tool performs DNS lookups for a domain name?",
+      option_a: "dig or nslookup",
+      option_b: "ping",
+      option_c: "traceroute",
+      option_d: "netstat",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_2_q9",
+      assessment_id: "linux_medium_2",
+      question: "What is the purpose of the /etc/hosts file?",
+      option_a: "Statically maps hostnames to IP addresses locally, bypassing DNS lookups",
+      option_b: "Stores firewall routing rules",
+      option_c: "Configures the system firewall",
+      option_d: "Stores SSH authorized keys",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_2_q10",
+      assessment_id: "linux_medium_2",
+      question: "Which modern tool is commonly used to configure Linux firewall rules (a successor to iptables)?",
+      option_a: "nftables or firewalld",
+      option_b: "ping",
+      option_c: "traceroute",
+      option_d: "ssh",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_2_q11",
+      assessment_id: "linux_medium_2",
+      question: "What does a subnet mask of 255.255.255.0 (a /24) indicate?",
+      option_a: "8 bits are reserved for the network portion",
+      option_b: "24 bits are reserved for the network portion, leaving 8 for hosts",
+      option_c: "16 bits are reserved for hosts",
+      option_d: "No host addresses are available",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_2_q12",
+      assessment_id: "linux_medium_2",
+      question: "Which command-line tool downloads files over HTTP/HTTPS/FTP directly from the terminal?",
+      option_a: "wget or curl",
+      option_b: "ssh",
+      option_c: "scp (only)",
+      option_d: "rsync (only)",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_2_q13",
+      assessment_id: "linux_medium_2",
+      question: "What is the purpose of the ARP protocol on a local network?",
+      option_a: "Resolve IP addresses to their corresponding MAC addresses",
+      option_b: "Resolve domain names to IP addresses",
+      option_c: "Encrypt network traffic",
+      option_d: "Route packets between separate networks",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_2_q14",
+      assessment_id: "linux_medium_2",
+      question: "Which command securely copies files between two hosts over an SSH connection?",
+      option_a: "scp",
+      option_b: "ftp",
+      option_c: "telnet",
+      option_d: "rsync is the only option",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "linux_medium_2_q15",
+      assessment_id: "linux_medium_2",
+      question: "How does a firewall rule with target DROP differ from one with target REJECT?",
+      option_a: "DROP silently discards matching packets; REJECT discards them and sends a response back",
+      option_b: "They behave identically",
+      option_c: "DROP always allows the traffic through",
+      option_d: "REJECT silently discards packets with no response",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Linux — Linux Security & Hardening (assessment linux_hard_1)
+  ...([
+    {
+      id: "linux_hard_1_q1",
+      assessment_id: "linux_hard_1",
+      question: "What does the principle of least privilege mean in Linux security hardening?",
+      option_a: "Grant users and processes only the minimum permissions necessary to function",
+      option_b: "Grant root access to all users for convenience",
+      option_c: "Disable all system logging",
+      option_d: "Allow all inbound network ports by default",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "linux_hard_1_q2",
+      assessment_id: "linux_hard_1",
+      question: "What does SELinux primarily provide?",
+      option_a: "Mandatory Access Control (MAC) policies enforced directly by the kernel",
+      option_b: "A drop-in replacement for a firewall only",
+      option_c: "Full-disk encryption",
+      option_d: "Package management functionality",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "linux_hard_1_q3",
+      assessment_id: "linux_hard_1",
+      question: "What does running chattr +i on a file accomplish?",
+      option_a: "Makes the file immutable, preventing modification or deletion even by root",
+      option_b: "Changes the file's ownership",
+      option_c: "Compresses the file",
+      option_d: "Encrypts the file's contents",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "linux_hard_1_q4",
+      assessment_id: "linux_hard_1",
+      question: "What does the auditd daemon primarily provide?",
+      option_a: "A framework for logging and auditing security-relevant kernel and system events",
+      option_b: "User password management",
+      option_c: "Network interface configuration",
+      option_d: "Kernel compilation",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "linux_hard_1_q5",
+      assessment_id: "linux_hard_1",
+      question: "What is a common SSH hardening step regarding the root account?",
+      option_a: "Enable PermitRootLogin yes for administrator convenience",
+      option_b: "Disable direct root login over SSH by setting PermitRootLogin no",
+      option_c: "Replace SSH with Telnet",
+      option_d: "Allow empty passwords for root",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "linux_hard_1_q6",
+      assessment_id: "linux_hard_1",
+      question: "What does the fail2ban tool do?",
+      option_a: "Automatically bans IP addresses that show malicious behavior such as repeated failed logins",
+      option_b: "Encrypts disks at rest",
+      option_c: "Manages scheduled cron jobs",
+      option_d: "Compiles software from source",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "linux_hard_1_q7",
+      assessment_id: "linux_hard_1",
+      question: "What does AppArmor provide, similarly to SELinux?",
+      option_a: "Mandatory Access Control enforced through per-application security profiles",
+      option_b: "DNS resolution services",
+      option_c: "Package management",
+      option_d: "Disk partitioning",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "linux_hard_1_q8",
+      assessment_id: "linux_hard_1",
+      question: "Why is disabling unused services and daemons recommended in a hardened Linux configuration?",
+      option_a: "It reduces the system's overall attack surface",
+      option_b: "It improves font rendering quality",
+      option_c: "It only increases free disk space",
+      option_d: "It only speeds up the boot animation",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "linux_hard_1_q9",
+      assessment_id: "linux_hard_1",
+      question: "What does the /etc/sudoers file control?",
+      option_a: "Which users can run commands as another user (typically root) and under what constraints",
+      option_b: "Which users may log in over SSH",
+      option_c: "Default file permissions",
+      option_d: "Network firewall rules",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "linux_hard_1_q10",
+      assessment_id: "linux_hard_1",
+      question: "What is a key security benefit of SSH key-based authentication over password authentication?",
+      option_a: "It is substantially more resistant to brute-force login attacks",
+      option_b: "It requires no configuration whatsoever",
+      option_c: "It disables encryption of the SSH session",
+      option_d: "It is inherently slower to authenticate",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "linux_hard_1_q11",
+      assessment_id: "linux_hard_1",
+      question: "What does the umask value control on a Linux system?",
+      option_a: "The default permission bits assigned to newly created files and directories",
+      option_b: "User account expiration dates",
+      option_c: "Password complexity requirements",
+      option_d: "The firewall's default policy",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "linux_hard_1_q12",
+      assessment_id: "linux_hard_1",
+      question: "What is the security purpose of full-disk encryption technologies like LUKS on Linux?",
+      option_a: "Protect data at rest if the physical disk is stolen or accessed offline",
+      option_b: "Speed up overall disk I/O",
+      option_c: "Automatically compress stored data",
+      option_d: "Prevent network-based attacks",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "linux_hard_1_q13",
+      assessment_id: "linux_hard_1",
+      question: "What does PAM (Pluggable Authentication Modules) let administrators do?",
+      option_a: "Configure how applications authenticate users in a flexible, modular way",
+      option_b: "Manage disk partition layouts",
+      option_c: "Configure DNS resolution",
+      option_d: "Schedule cron jobs",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "linux_hard_1_q14",
+      assessment_id: "linux_hard_1",
+      question: "What best describes a rootkit?",
+      option_a: "A legitimate built-in system administration utility",
+      option_b: "Malicious software designed to gain and maintain privileged access while concealing its presence",
+      option_c: "A specific firewall configuration profile",
+      option_d: "A standard backup utility",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "linux_hard_1_q15",
+      assessment_id: "linux_hard_1",
+      question: "What security benefit does mounting /tmp with the noexec option provide?",
+      option_a: "Prevents binaries placed in /tmp from being executed, mitigating certain attack techniques",
+      option_b: "Speeds up file access within /tmp",
+      option_c: "Automatically encrypts everything written to /tmp",
+      option_d: "Prevents any writes to /tmp whatsoever",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Docker — Docker Images & Registries (assessment docker_easy_2)
+  ...([
+    {
+      id: "docker_easy_2_q1",
+      assessment_id: "docker_easy_2",
+      question: "Which file defines the instructions used to build a Docker image?",
+      option_a: "docker-compose.yml",
+      option_b: "Dockerfile",
+      option_c: "image.json",
+      option_d: "manifest.yml",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "docker_easy_2_q2",
+      assessment_id: "docker_easy_2",
+      question: "Which command builds a Docker image from a Dockerfile?",
+      option_a: "docker build",
+      option_b: "docker run",
+      option_c: "docker create",
+      option_d: "docker compile",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "docker_easy_2_q3",
+      assessment_id: "docker_easy_2",
+      question: "What does docker push do?",
+      option_a: "Downloads an image from a registry",
+      option_b: "Uploads a local image to a registry",
+      option_c: "Deletes a local image",
+      option_d: "Starts a container",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "docker_easy_2_q4",
+      assessment_id: "docker_easy_2",
+      question: "What is Docker Hub?",
+      option_a: "A local file system for storing containers",
+      option_b: "A public cloud-based registry for hosting and sharing Docker images",
+      option_c: "A container runtime engine",
+      option_d: "A Kubernetes cluster manager",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "docker_easy_2_q5",
+      assessment_id: "docker_easy_2",
+      question: "Which Dockerfile instruction specifies the base image to build from?",
+      option_a: "FROM",
+      option_b: "RUN",
+      option_c: "CMD",
+      option_d: "BASE",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "docker_easy_2_q6",
+      assessment_id: "docker_easy_2",
+      question: "What does docker pull do?",
+      option_a: "Downloads an image from a registry to the local machine",
+      option_b: "Removes a local image",
+      option_c: "Builds a new image",
+      option_d: "Starts a container from an image",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "docker_easy_2_q7",
+      assessment_id: "docker_easy_2",
+      question: "Which command lists Docker images stored locally?",
+      option_a: "docker images",
+      option_b: "docker ps",
+      option_c: "docker ls",
+      option_d: "docker containers",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "docker_easy_2_q8",
+      assessment_id: "docker_easy_2",
+      question: "What does the Dockerfile COPY instruction do?",
+      option_a: "Copies files from the build context on the host into the image",
+      option_b: "Copies files directly between two running containers",
+      option_c: "Copies only environment variables",
+      option_d: "Copies volume definitions",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "docker_easy_2_q9",
+      assessment_id: "docker_easy_2",
+      question: "What is the purpose of an image tag such as myapp:1.0?",
+      option_a: "Identify a specific version or variant of an image",
+      option_b: "Set the container's resource limits",
+      option_c: "Define the container's network settings",
+      option_d: "Grant filesystem permissions",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "docker_easy_2_q10",
+      assessment_id: "docker_easy_2",
+      question: "Which command removes a locally stored Docker image?",
+      option_a: "docker rmi",
+      option_b: "docker rm",
+      option_c: "docker delete",
+      option_d: "docker clean",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "docker_easy_2_q11",
+      assessment_id: "docker_easy_2",
+      question: "What does the docker tag command do?",
+      option_a: "Creates a new tag (alias) that references an existing image",
+      option_b: "Permanently deletes an image",
+      option_c: "Starts a new container",
+      option_d: "Rebuilds an image from scratch",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "docker_easy_2_q12",
+      assessment_id: "docker_easy_2",
+      question: "What is a \"layer\" in a Docker image?",
+      option_a: "A network configuration setting",
+      option_b: "A read-only filesystem change produced by each Dockerfile instruction",
+      option_c: "A container's active runtime process",
+      option_d: "A mounted volume",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "docker_easy_2_q13",
+      assessment_id: "docker_easy_2",
+      question: "What does the Dockerfile CMD instruction specify?",
+      option_a: "The default command executed when a container starts, unless overridden",
+      option_b: "The base image to use",
+      option_c: "A build-time-only argument",
+      option_d: "Only a network port to expose",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "docker_easy_2_q14",
+      assessment_id: "docker_easy_2",
+      question: "Which command shows the layer-by-layer build history of an image?",
+      option_a: "docker history",
+      option_b: "docker inspect (only)",
+      option_c: "docker logs",
+      option_d: "docker top",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "docker_easy_2_q15",
+      assessment_id: "docker_easy_2",
+      question: "What is a key benefit of using a private container registry?",
+      option_a: "Securely store proprietary images and control who can access them",
+      option_b: "Force all images to be made publicly available",
+      option_c: "Eliminate the need for Dockerfiles",
+      option_d: "Remove the need for image tags",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Docker — Docker Compose (assessment docker_medium_1)
+  ...([
+    {
+      id: "docker_medium_1_q1",
+      assessment_id: "docker_medium_1",
+      question: "What is the primary purpose of Docker Compose?",
+      option_a: "Build a single image in isolation",
+      option_b: "Define and run multi-container Docker applications from one YAML configuration file",
+      option_c: "Replace Dockerfiles entirely",
+      option_d: "Manage a Kubernetes cluster",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_1_q2",
+      assessment_id: "docker_medium_1",
+      question: "Which file does Docker Compose use by default to define an application's services?",
+      option_a: "Dockerfile",
+      option_b: "docker-compose.yml",
+      option_c: "compose.json",
+      option_d: "services.yaml (only)",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_1_q3",
+      assessment_id: "docker_medium_1",
+      question: "Which command starts the services defined in a docker-compose.yml file in detached (background) mode?",
+      option_a: "docker-compose up -d",
+      option_b: "docker-compose start",
+      option_c: "docker-compose run",
+      option_d: "docker-compose build -d",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_1_q4",
+      assessment_id: "docker_medium_1",
+      question: "What does the depends_on key control in a Compose service definition?",
+      option_a: "The startup order of services relative to one another",
+      option_b: "Network bandwidth allocation",
+      option_c: "Volume mount paths",
+      option_d: "Which image tag is used",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_1_q5",
+      assessment_id: "docker_medium_1",
+      question: "What does the volumes key in a Compose service configuration do?",
+      option_a: "Mounts host paths or named volumes into the container's filesystem",
+      option_b: "Defines environment variables for the container",
+      option_c: "Sets CPU and memory limits",
+      option_d: "Specifies the base image to build",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_1_q6",
+      assessment_id: "docker_medium_1",
+      question: "Which command stops and removes the containers and networks created by docker-compose up?",
+      option_a: "docker-compose down",
+      option_b: "docker-compose stop (only)",
+      option_c: "docker-compose kill",
+      option_d: "docker-compose rm (only)",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_1_q7",
+      assessment_id: "docker_medium_1",
+      question: "How do services defined in the same docker-compose.yml file typically reach one another over the network?",
+      option_a: "By using each other's service name as a hostname on the default Compose network",
+      option_b: "Only via localhost",
+      option_c: "They cannot communicate with each other at all",
+      option_d: "Only through external public IP addresses",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_1_q8",
+      assessment_id: "docker_medium_1",
+      question: "What does the environment key in a Compose service definition configure?",
+      option_a: "Environment variables passed into the container",
+      option_b: "The host operating system",
+      option_c: "The Docker build context",
+      option_d: "Port mappings",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_1_q9",
+      assessment_id: "docker_medium_1",
+      question: "What is the purpose of the ports key in a docker-compose.yml service definition?",
+      option_a: "Map a container's internal port to a port on the host machine",
+      option_b: "Define a named volume mount",
+      option_c: "Set an environment variable",
+      option_d: "Define the network's name",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_1_q10",
+      assessment_id: "docker_medium_1",
+      question: "Which command rebuilds the images defined for services in a docker-compose.yml file?",
+      option_a: "docker-compose build",
+      option_b: "docker-compose up (alone, without --build)",
+      option_c: "docker-compose start",
+      option_d: "docker-compose restart",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_1_q11",
+      assessment_id: "docker_medium_1",
+      question: "What does docker-compose logs -f do?",
+      option_a: "Follows and streams the live log output of the running services",
+      option_b: "Permanently deletes all logs",
+      option_c: "Restarts every service",
+      option_d: "Lists all running containers",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_1_q12",
+      assessment_id: "docker_medium_1",
+      question: "What is a named volume in Docker Compose used for?",
+      option_a: "Persisting data outside a container's writable layer, independent of the container's lifecycle",
+      option_b: "Defining network aliases",
+      option_c: "Setting CPU resource limits",
+      option_d: "Passing build arguments",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_1_q13",
+      assessment_id: "docker_medium_1",
+      question: "What does the build key in a Compose service definition specify?",
+      option_a: "The build context and Dockerfile used to build a custom image for that service",
+      option_b: "The container's entrypoint command",
+      option_c: "The container's network mode",
+      option_d: "The container's volume mounts",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_1_q14",
+      assessment_id: "docker_medium_1",
+      question: "Which Compose command runs multiple instances of a given service?",
+      option_a: "docker-compose up --scale service=3",
+      option_b: "docker-compose scale-up",
+      option_c: "docker-compose replicate",
+      option_d: "docker-compose multiply",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_1_q15",
+      assessment_id: "docker_medium_1",
+      question: "What is the purpose of the top-level version key historically found in a docker-compose.yml file?",
+      option_a: "Declares which Compose file format/schema features are available",
+      option_b: "Names the primary service",
+      option_c: "Specifies the image tag to use",
+      option_d: "Defines the network name",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Docker — Docker Networking (assessment docker_medium_2)
+  ...([
+    {
+      id: "docker_medium_2_q1",
+      assessment_id: "docker_medium_2",
+      question: "What is the default network driver used when a container is run without specifying --network?",
+      option_a: "host",
+      option_b: "bridge",
+      option_c: "overlay",
+      option_d: "none",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_2_q2",
+      assessment_id: "docker_medium_2",
+      question: "What does Docker's host network mode do?",
+      option_a: "Fully isolates the container's network stack from the host",
+      option_b: "Shares the host machine's network namespace directly with the container",
+      option_c: "Disables networking for the container entirely",
+      option_d: "Creates a new virtual overlay network",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_2_q3",
+      assessment_id: "docker_medium_2",
+      question: "What is the purpose of Docker's overlay network driver?",
+      option_a: "Enable containers on different Docker hosts (e.g., in a Swarm) to communicate with each other",
+      option_b: "Disable all container networking",
+      option_c: "Provide host-only networking exclusively",
+      option_d: "Replace DNS resolution entirely",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_2_q4",
+      assessment_id: "docker_medium_2",
+      question: "Which command creates a new user-defined bridge network?",
+      option_a: "docker network create mynetwork",
+      option_b: "docker network run mynetwork",
+      option_c: "docker create network mynetwork",
+      option_d: "docker bridge new mynetwork",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_2_q5",
+      assessment_id: "docker_medium_2",
+      question: "What is a key advantage of user-defined bridge networks over the default bridge network?",
+      option_a: "Automatic DNS-based service discovery between containers by name",
+      option_b: "Faster disk I/O for containers",
+      option_c: "Automatically encrypted volumes",
+      option_d: "Reduced final image size",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_2_q6",
+      assessment_id: "docker_medium_2",
+      question: "What does the flag -p 8080:80 do when running a container?",
+      option_a: "Maps host port 8080 to the container's port 80",
+      option_b: "Maps the container's port 8080 to the host's port 80",
+      option_c: "Sets a CPU usage limit",
+      option_d: "Sets an environment variable",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_2_q7",
+      assessment_id: "docker_medium_2",
+      question: "What networking capability does the none network mode give a container?",
+      option_a: "Full, unrestricted internet access",
+      option_b: "Complete network isolation, with only a loopback interface",
+      option_c: "Access limited to the host network only",
+      option_d: "Access limited to other containers only",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_2_q8",
+      assessment_id: "docker_medium_2",
+      question: "Can two containers on Docker's default bridge network reach each other by container name out of the box?",
+      option_a: "Yes, by default with no extra configuration",
+      option_b: "No, not by default; a user-defined network (or legacy links) is required",
+      option_c: "Only if they share a public IP",
+      option_d: "Only when using host networking",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_2_q9",
+      assessment_id: "docker_medium_2",
+      question: "What is Docker's embedded DNS server used for on user-defined networks?",
+      option_a: "Resolving container names to their internal IP addresses",
+      option_b: "Resolving external internet domain names exclusively",
+      option_c: "Load balancing traffic from outside the host",
+      option_d: "Encrypting network traffic",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_2_q10",
+      assessment_id: "docker_medium_2",
+      question: "What information does docker network inspect <network> show?",
+      option_a: "Details about a network's configuration and the containers connected to it",
+      option_b: "A container's application logs",
+      option_c: "An image's build layers",
+      option_d: "Volume disk usage statistics",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_2_q11",
+      assessment_id: "docker_medium_2",
+      question: "In Docker Swarm, what does creating an overlay network with the encrypted option provide?",
+      option_a: "Encrypts traffic exchanged between nodes across that overlay network",
+      option_b: "Encrypts the contents of container images",
+      option_c: "Encrypts only named volumes",
+      option_d: "Provides no additional protection",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_2_q12",
+      assessment_id: "docker_medium_2",
+      question: "What does the Dockerfile EXPOSE instruction actually do?",
+      option_a: "Documents which port(s) the container listens on, without publishing them to the host by itself",
+      option_b: "Automatically publishes that port to the host machine",
+      option_c: "Opens a corresponding rule in the host firewall",
+      option_d: "Creates a load balancer for that port",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_2_q13",
+      assessment_id: "docker_medium_2",
+      question: "Which command disconnects a running container from a specific Docker network?",
+      option_a: "docker network disconnect",
+      option_b: "docker network rm",
+      option_c: "docker stop",
+      option_d: "docker network prune",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_2_q14",
+      assessment_id: "docker_medium_2",
+      question: "What is a macvlan network used for in Docker?",
+      option_a: "Assigning a container its own MAC address so it appears as a physical device on the network",
+      option_b: "Disabling container networking",
+      option_c: "Load balancing traffic across containers",
+      option_d: "Performing DNS resolution",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "docker_medium_2_q15",
+      assessment_id: "docker_medium_2",
+      question: "What happens to container-to-container communication when a container is run with --network none?",
+      option_a: "Containers can still freely communicate with each other",
+      option_b: "That container has no network access to communicate with anything",
+      option_c: "Communication happens but is automatically encrypted",
+      option_d: "Only outbound internet traffic is permitted",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Docker — Docker Advanced Topics (assessment docker_hard_1)
+  ...([
+    {
+      id: "docker_hard_1_q1",
+      assessment_id: "docker_hard_1",
+      question: "What role does a container runtime like containerd play in relation to Kubernetes?",
+      option_a: "It replaces Kubernetes entirely",
+      option_b: "It implements the Container Runtime Interface (CRI) so the kubelet can run containers",
+      option_c: "It is purely a networking plugin",
+      option_d: "It manages persistent volume provisioning only",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "docker_hard_1_q2",
+      assessment_id: "docker_hard_1",
+      question: "What is the purpose of a multi-stage build in a Dockerfile?",
+      option_a: "Reduce the final image size by separating build-time dependencies from the runtime image",
+      option_b: "Run several containers simultaneously from one Dockerfile",
+      option_c: "Create multiple isolated networks",
+      option_d: "Directly enable Kubernetes scheduling",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "docker_hard_1_q3",
+      assessment_id: "docker_hard_1",
+      question: "What does the docker system prune command do?",
+      option_a: "Removes unused containers, networks, and images (and optionally volumes)",
+      option_b: "Deletes every currently running container",
+      option_c: "Stops the Docker daemon",
+      option_d: "Forces a rebuild of all local images",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "docker_hard_1_q4",
+      assessment_id: "docker_hard_1",
+      question: "In Kubernetes, which resource wraps one or more containers as the smallest deployable unit?",
+      option_a: "Deployment",
+      option_b: "Pod",
+      option_c: "Service",
+      option_d: "Node",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "docker_hard_1_q5",
+      assessment_id: "docker_hard_1",
+      question: "What is the purpose of a Dockerfile HEALTHCHECK instruction?",
+      option_a: "Allow Docker to periodically test whether the container is still functioning correctly",
+      option_b: "Encrypt the container's filesystem",
+      option_c: "Limit the container's CPU usage",
+      option_d: "Define a Kubernetes network policy",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "docker_hard_1_q6",
+      assessment_id: "docker_hard_1",
+      question: "What does running a container with the --read-only flag do?",
+      option_a: "Mounts the container's root filesystem as read-only for improved security",
+      option_b: "Prevents the container from starting at all",
+      option_c: "Disables all container logging",
+      option_d: "Removes any attached volumes",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "docker_hard_1_q7",
+      assessment_id: "docker_hard_1",
+      question: "Why would you set resource limits such as --memory and --cpus when running a container?",
+      option_a: "Prevent a single container from consuming excessive host resources",
+      option_b: "Increase the container's image size",
+      option_c: "Enable networking for the container",
+      option_d: "Speed up the image build process",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "docker_hard_1_q8",
+      assessment_id: "docker_hard_1",
+      question: "What does a container orchestrator like Kubernetes automate that plain Docker does not, out of the box?",
+      option_a: "Scheduling, scaling, self-healing, and networking of containers across a cluster of machines",
+      option_b: "Only building container images",
+      option_c: "Only storing container images",
+      option_d: "Only rotating container logs",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "docker_hard_1_q9",
+      assessment_id: "docker_hard_1",
+      question: "What is the purpose of Docker Content Trust (image signing)?",
+      option_a: "Verify the integrity and publisher of an image before it is pulled or run",
+      option_b: "Compress images to reduce their size",
+      option_c: "Speed up image builds",
+      option_d: "Manage volume mounts",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "docker_hard_1_q10",
+      assessment_id: "docker_hard_1",
+      question: "What does the term \"immutable infrastructure\" mean in a containerized environment?",
+      option_a: "Running containers are replaced with new ones rather than modified in place when updates are needed",
+      option_b: "Containers can never be stopped once started",
+      option_c: "Containers are prevented from ever using volumes",
+      option_d: "Containers cannot be attached to any network",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "docker_hard_1_q11",
+      assessment_id: "docker_hard_1",
+      question: "What is the \"sidecar container\" pattern?",
+      option_a: "A secondary container deployed alongside a main container (e.g., in the same Pod) to provide supporting functionality like logging or proxying",
+      option_b: "A full backup copy of the main container's data",
+      option_c: "A specific Docker network driver",
+      option_d: "A local build cache mechanism",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "docker_hard_1_q12",
+      assessment_id: "docker_hard_1",
+      question: "What does docker exec -it <container> /bin/sh let you do?",
+      option_a: "Permanently delete the container",
+      option_b: "Open an interactive shell session inside a currently running container",
+      option_c: "Build a brand-new image",
+      option_d: "Stop the running container",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "docker_hard_1_q13",
+      assessment_id: "docker_hard_1",
+      question: "Why might a team choose a distroless or minimal base image for production containers?",
+      option_a: "Reduce the attack surface and image size by excluding unnecessary OS packages and shells",
+      option_b: "Increase build times intentionally",
+      option_c: "Add extra debugging tools by default",
+      option_d: "Enable GUI applications inside the container",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "docker_hard_1_q14",
+      assessment_id: "docker_hard_1",
+      question: "What is the benefit of caching Docker build layers within a CI/CD pipeline?",
+      option_a: "Faster subsequent builds by reusing layers that haven't changed",
+      option_b: "Produces larger final images",
+      option_c: "Slows down deployments deliberately",
+      option_d: "Provides no measurable benefit",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "docker_hard_1_q15",
+      assessment_id: "docker_hard_1",
+      question: "Which Kubernetes object is commonly used to manage the desired state and rolling updates of a set of Pods running containerized applications?",
+      option_a: "ConfigMap",
+      option_b: "Deployment",
+      option_c: "Secret",
+      option_d: "Namespace",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+  ] as AssessmentQuestion[]),
+
+  // React — React State Management (assessment react_easy_2)
+  ...([
+    {
+      id: "react_easy_2_q1",
+      assessment_id: "react_easy_2",
+      question: "Which hook is used to add local state to a functional component?",
+      option_a: "useEffect",
+      option_b: "useState",
+      option_c: "useContext",
+      option_d: "useReducer (only)",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "react_easy_2_q2",
+      assessment_id: "react_easy_2",
+      question: "What does calling the updater function returned by useState do?",
+      option_a: "Immediately mutates the state variable in place",
+      option_b: "Schedules a re-render of the component with the new state value",
+      option_c: "Deletes the component from the tree",
+      option_d: "Pauses all rendering",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "react_easy_2_q3",
+      assessment_id: "react_easy_2",
+      question: "What is the correct syntax to declare state with an initial value of 0?",
+      option_a: "const [count, setCount] = useState(0)",
+      option_b: "const count = useState(0)",
+      option_c: "let count = State(0)",
+      option_d: "const count = new State(0)",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "react_easy_2_q4",
+      assessment_id: "react_easy_2",
+      question: "Why is directly mutating state, such as state.value = 5, discouraged in React?",
+      option_a: "It is forbidden by JavaScript syntax and throws an error",
+      option_b: "React won't detect the change and the component won't re-render as expected",
+      option_c: "It causes a TypeScript compile error",
+      option_d: "It is actually the recommended approach",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "react_easy_2_q5",
+      assessment_id: "react_easy_2",
+      question: "What generally happens if you call a state setter with the exact same value as the current state?",
+      option_a: "React always re-renders regardless",
+      option_b: "React may bail out of re-rendering since the value hasn't changed",
+      option_c: "It throws a runtime error",
+      option_d: "It resets all other unrelated state",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "react_easy_2_q6",
+      assessment_id: "react_easy_2",
+      question: "What is the safest way to update state based on its previous value?",
+      option_a: "Always call setCount(count + 1)",
+      option_b: "Call setCount(prevCount => prevCount + 1)",
+      option_c: "Directly assign count = count + 1",
+      option_d: "Call useState.update()",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "react_easy_2_q7",
+      assessment_id: "react_easy_2",
+      question: "Can a single functional component call useState more than once for different pieces of state?",
+      option_a: "No, only one useState call is allowed per component",
+      option_b: "Yes, you can call useState multiple times for independent pieces of state",
+      option_c: "Only inside class components",
+      option_d: "Only when combined with useReducer",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "react_easy_2_q8",
+      assessment_id: "react_easy_2",
+      question: "What does \"lifting state up\" mean in React?",
+      option_a: "Moving shared state to the closest common ancestor component so multiple children can access it",
+      option_b: "Removing state from the component entirely",
+      option_c: "Storing data in global variables instead",
+      option_d: "Moving state values into CSS",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "react_easy_2_q9",
+      assessment_id: "react_easy_2",
+      question: "What kinds of values can useState hold?",
+      option_a: "Only numbers",
+      option_b: "Only strings",
+      option_c: "Any JavaScript value, including objects and arrays",
+      option_d: "Only boolean values",
+      correct_answer: "C",
+      difficulty: "easy"
+    },
+    {
+      id: "react_easy_2_q10",
+      assessment_id: "react_easy_2",
+      question: "When does a functional component re-render after its state is updated?",
+      option_a: "It never re-renders automatically",
+      option_b: "React schedules a re-render after the state setter function is called",
+      option_c: "Only after a full page refresh",
+      option_d: "Only when the component's props change",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "react_easy_2_q11",
+      assessment_id: "react_easy_2",
+      question: "What is a common pitfall when updating an object stored in state?",
+      option_a: "Forgetting to spread the previous object, causing other properties to be lost",
+      option_b: "Objects cannot be stored in React state at all",
+      option_c: "useState rejects object values outright",
+      option_d: "Objects are automatically merged like class setState",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "react_easy_2_q12",
+      assessment_id: "react_easy_2",
+      question: "Unlike class components' this.setState, what does the useState setter not do by default?",
+      option_a: "Automatically shallow-merge the new state with the previous state object",
+      option_b: "Trigger a component re-render",
+      option_c: "Accept a function as its argument",
+      option_d: "Update the component's state at all",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "react_easy_2_q13",
+      assessment_id: "react_easy_2",
+      question: "How does \"props\" generally differ from \"state\" in a React component?",
+      option_a: "Props are data passed in from a parent and are typically read-only within the child",
+      option_b: "Internal mutable data owned by the component itself",
+      option_c: "Props and state are exactly the same thing",
+      option_d: "Props refer only to CSS styling",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "react_easy_2_q14",
+      assessment_id: "react_easy_2",
+      question: "Which hook is generally preferred over useState for more complex state logic with multiple sub-values or transitions?",
+      option_a: "useEffect",
+      option_b: "useReducer",
+      option_c: "useMemo",
+      option_d: "useRef",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "react_easy_2_q15",
+      assessment_id: "react_easy_2",
+      question: "What is the initial rendered value if useState() is called with no argument at all?",
+      option_a: "0",
+      option_b: "null",
+      option_c: "undefined",
+      option_d: "An empty string",
+      correct_answer: "C",
+      difficulty: "easy"
+    },
+  ] as AssessmentQuestion[]),
+
+  // React — React Hooks (assessment react_medium_1)
+  ...([
+    {
+      id: "react_medium_1_q1",
+      assessment_id: "react_medium_1",
+      question: "When does useEffect run by default, if no dependency array is provided?",
+      option_a: "Only once, on the initial mount",
+      option_b: "After every completed render, both mount and update",
+      option_c: "Only right before the component unmounts",
+      option_d: "It never runs automatically",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_1_q2",
+      assessment_id: "react_medium_1",
+      question: "What does passing an empty dependency array [] to useEffect achieve?",
+      option_a: "Runs the effect after every single render",
+      option_b: "Runs the effect only once, right after the initial render",
+      option_c: "Prevents the effect from ever running",
+      option_d: "Runs the effect before the component renders",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_1_q3",
+      assessment_id: "react_medium_1",
+      question: "What is the purpose of the cleanup function optionally returned from useEffect?",
+      option_a: "Runs before the component re-renders again or unmounts, to clean up subscriptions or timers",
+      option_b: "Runs only before the very first render",
+      option_c: "Replaces the entire component",
+      option_d: "Deletes all of the component's state",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_1_q4",
+      assessment_id: "react_medium_1",
+      question: "What common problem does useContext help solve?",
+      option_a: "Avoiding \"prop drilling\" by letting components consume shared data directly",
+      option_b: "Managing purely local component state",
+      option_c: "Fully replacing useEffect",
+      option_d: "Automatically validating form inputs",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_1_q5",
+      assessment_id: "react_medium_1",
+      question: "What must wrap the components that consume a given context value via useContext?",
+      option_a: "A matching Context.Provider",
+      option_b: "A React.Fragment",
+      option_c: "A class component specifically",
+      option_d: "Nothing is required at all",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_1_q6",
+      assessment_id: "react_medium_1",
+      question: "What is a custom hook in React?",
+      option_a: "A hook built directly into the React library",
+      option_b: "A reusable JavaScript function, conventionally prefixed with \"use\", that can call other hooks",
+      option_c: "A special kind of CSS class",
+      option_d: "A component lifecycle method",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_1_q7",
+      assessment_id: "react_medium_1",
+      question: "What rule governs where React hooks may be called?",
+      option_a: "Hooks may be called freely inside loops and conditionals",
+      option_b: "Hooks must be called at the top level of a function component or custom hook, never inside loops or conditions",
+      option_c: "Hooks can only be called inside class components",
+      option_d: "Hooks must be called only after the component renders",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_1_q8",
+      assessment_id: "react_medium_1",
+      question: "What does useCallback primarily help with?",
+      option_a: "Memoizing a function reference so it isn't needlessly re-created on every render",
+      option_b: "Managing side effects directly",
+      option_c: "Fetching remote data",
+      option_d: "Providing context values",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_1_q9",
+      assessment_id: "react_medium_1",
+      question: "What is the purpose of useMemo?",
+      option_a: "Memoize an expensive computed value so it is only recalculated when its dependencies change",
+      option_b: "Manage a component's local state",
+      option_c: "Handle side effects",
+      option_d: "Provide a context value to descendants",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_1_q10",
+      assessment_id: "react_medium_1",
+      question: "What can happen if a variable used inside useEffect is omitted from its dependency array?",
+      option_a: "Nothing; omitting dependencies is always completely safe",
+      option_b: "The effect may end up using a stale value of that variable, a common source of bugs",
+      option_c: "React throws a compile-time error every time",
+      option_d: "The component simply fails to render",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_1_q11",
+      assessment_id: "react_medium_1",
+      question: "What is useRef commonly used for?",
+      option_a: "Persisting a mutable value across renders without triggering a re-render, or accessing a DOM node directly",
+      option_b: "Managing global application state",
+      option_c: "Fetching data from an API",
+      option_d: "Applying CSS styles to a component",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_1_q12",
+      assessment_id: "react_medium_1",
+      question: "In a custom hook such as useFetch(url), what is typically returned to the calling component?",
+      option_a: "Nothing; custom hooks cannot return any value",
+      option_b: "State such as {data, loading, error} that the consuming component can use",
+      option_c: "Only raw JSX markup",
+      option_d: "An instance of a JavaScript class",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_1_q13",
+      assessment_id: "react_medium_1",
+      question: "Why can't useState be called conditionally, such as inside an if statement?",
+      option_a: "It's purely a style preference with no functional consequence",
+      option_b: "It would break the consistent order of hook calls that React relies on across renders",
+      option_c: "It always crashes the browser tab immediately",
+      option_d: "There is actually no restriction on this at all",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_1_q14",
+      assessment_id: "react_medium_1",
+      question: "What role does the second argument (the dependency array) play in useEffect?",
+      option_a: "Controls when the effect re-runs, based on whether any listed value has changed",
+      option_b: "Sets the component's initial state value",
+      option_c: "Defines the component's prop types",
+      option_d: "Has no effect on the hook's behavior",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_1_q15",
+      assessment_id: "react_medium_1",
+      question: "Which combination of hooks is commonly used to implement reducer-style logic for more complex global state shared via context?",
+      option_a: "useContext together with useReducer",
+      option_b: "useMemo used entirely on its own",
+      option_c: "useRef used entirely on its own",
+      option_d: "useLayoutEffect used entirely on its own",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+  ] as AssessmentQuestion[]),
+
+  // React — React Router (assessment react_medium_2)
+  ...([
+    {
+      id: "react_medium_2_q1",
+      assessment_id: "react_medium_2",
+      question: "What is the primary purpose of React Router in a React application?",
+      option_a: "Manage a component's internal state",
+      option_b: "Enable client-side navigation between views without triggering full page reloads",
+      option_c: "Fetch data from remote APIs",
+      option_d: "Apply styles to components",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_2_q2",
+      assessment_id: "react_medium_2",
+      question: "Which component defines a single route that maps a URL path to a rendered element?",
+      option_a: "<Route>",
+      option_b: "<Router>",
+      option_c: "<Link>",
+      option_d: "<Switch> (only)",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_2_q3",
+      assessment_id: "react_medium_2",
+      question: "Which top-level component should wrap your application's routes to enable browser-based routing (React Router v6)?",
+      option_a: "<BrowserRouter>",
+      option_b: "<Route>",
+      option_c: "<Link>",
+      option_d: "<Outlet>",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_2_q4",
+      assessment_id: "react_medium_2",
+      question: "What is the recommended way to navigate between pages client-side, instead of using a plain <a href> tag?",
+      option_a: "A plain <a href> tag",
+      option_b: "<Link to=\"/path\">",
+      option_c: "Setting window.location.href directly",
+      option_d: "A <redirect> element",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_2_q5",
+      assessment_id: "react_medium_2",
+      question: "Which React Router v6 hook enables programmatic navigation from within a component?",
+      option_a: "useHistory (a React Router v5 hook)",
+      option_b: "useNavigate",
+      option_c: "useRoute",
+      option_d: "useRedirect",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_2_q6",
+      assessment_id: "react_medium_2",
+      question: "What does the useParams hook return?",
+      option_a: "Only the URL's query string values",
+      option_b: "An object containing the URL parameters matched by the current route, such as :id",
+      option_c: "The current pathname alone",
+      option_d: "The entire router history stack",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_2_q7",
+      assessment_id: "react_medium_2",
+      question: "Which component renders a matched child route's element within its parent route's layout in React Router v6?",
+      option_a: "<Outlet>",
+      option_b: "<Switch>",
+      option_c: "<Redirect>",
+      option_d: "<Link>",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_2_q8",
+      assessment_id: "react_medium_2",
+      question: "What is a \"protected route\" pattern typically used to accomplish?",
+      option_a: "Restrict access to certain routes unless a condition, such as authentication, is met",
+      option_b: "Encrypt data contained in the URL",
+      option_c: "Reduce the JavaScript bundle size",
+      option_d: "Prevent all 404 errors from ever occurring",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_2_q9",
+      assessment_id: "react_medium_2",
+      question: "Which hook lets a component read query string parameters from the current URL in React Router v6?",
+      option_a: "useSearchParams",
+      option_b: "useParams",
+      option_c: "useLocation (used alone)",
+      option_d: "useQuery",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_2_q10",
+      assessment_id: "react_medium_2",
+      question: "What does nested routing in React Router allow you to achieve?",
+      option_a: "Rendering a component inside a parent route's layout based on the URL's hierarchical structure",
+      option_b: "Preventing navigation from occurring at all",
+      option_c: "Disabling routing entirely for part of the app",
+      option_d: "Merging two completely separate applications",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_2_q11",
+      assessment_id: "react_medium_2",
+      question: "What happens when the current URL matches no defined route and there is no catch-all route configured?",
+      option_a: "The application always crashes immediately",
+      option_b: "Nothing renders for that section of the UI (unless a fallback path=\"*\" route is defined)",
+      option_c: "The browser automatically redirects to the home page",
+      option_d: "A network error is thrown",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_2_q12",
+      assessment_id: "react_medium_2",
+      question: "What is the purpose of a route commonly defined with path=\"*\" placed at the end of the route list?",
+      option_a: "Match any otherwise-unmatched path, often used to render a 404 page",
+      option_b: "Match only the home page route",
+      option_c: "Disable client-side routing entirely",
+      option_d: "Force a redirect to the login page always",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_2_q13",
+      assessment_id: "react_medium_2",
+      question: "What data does the useLocation hook provide to a component?",
+      option_a: "The current location object, including pathname, search string, and any state",
+      option_b: "A way to programmatically change the current route",
+      option_c: "Only the matched URL parameters",
+      option_d: "The user's physical geolocation",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_2_q14",
+      assessment_id: "react_medium_2",
+      question: "How would you programmatically redirect a user after a successful form submission using React Router v6?",
+      option_a: "Call window.reload()",
+      option_b: "Call navigate(\"/target-path\") obtained from useNavigate",
+      option_c: "Rely solely on an <a href> tag",
+      option_d: "Modify document.title",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "react_medium_2_q15",
+      assessment_id: "react_medium_2",
+      question: "What is the benefit of code-splitting routes using React.lazy combined with Suspense?",
+      option_a: "Route components load on demand, reducing the app's initial bundle size",
+      option_b: "It prevents all client-side navigation",
+      option_c: "It removes the need for a router altogether",
+      option_d: "It disables server-side rendering entirely",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+  ] as AssessmentQuestion[]),
+
+  // React — React Performance & Optimization (assessment react_hard_1)
+  ...([
+    {
+      id: "react_hard_1_q1",
+      assessment_id: "react_hard_1",
+      question: "What does React.memo do when wrapping a component?",
+      option_a: "Memoizes the component, skipping re-renders when its props are shallowly unchanged",
+      option_b: "Memoizes CSS class names",
+      option_c: "Caches responses from API calls",
+      option_d: "Fully replaces the useState hook",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "react_hard_1_q2",
+      assessment_id: "react_hard_1",
+      question: "What is the purpose of the key prop when rendering a list of elements?",
+      option_a: "Purely to style individual list items",
+      option_b: "Help React identify which items changed, were added, or were removed during reconciliation",
+      option_c: "Permanently fix the list's display order",
+      option_d: "Define the TypeScript types of the list items",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "react_hard_1_q3",
+      assessment_id: "react_hard_1",
+      question: "Why is using an array index as a key in a dynamic list often discouraged?",
+      option_a: "It is always a hard syntax error",
+      option_b: "It can cause incorrect UI/state association bugs when the list's order or contents change",
+      option_c: "It always improves rendering performance",
+      option_d: "React silently ignores the key prop anyway",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "react_hard_1_q4",
+      assessment_id: "react_hard_1",
+      question: "What does code-splitting with React.lazy help achieve?",
+      option_a: "Splits the JavaScript bundle so components load only when actually needed, reducing initial load time",
+      option_b: "Splits a single component's state across multiple files",
+      option_c: "Merges multiple components into one",
+      option_d: "Increases the overall bundle size",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "react_hard_1_q5",
+      assessment_id: "react_hard_1",
+      question: "In a performance context, what is the main purpose of useMemo?",
+      option_a: "Avoid expensive recalculations on every render by caching a computed result until its dependencies change",
+      option_b: "Avoid using local state entirely",
+      option_c: "Fully replace useEffect",
+      option_d: "Prevent every re-render unconditionally",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "react_hard_1_q6",
+      assessment_id: "react_hard_1",
+      question: "What commonly causes unnecessary re-renders of a memoized child component?",
+      option_a: "Passing a newly created inline function or object as a prop on every parent render",
+      option_b: "Wrapping the child in React.memo",
+      option_c: "Removing all props from the child",
+      option_d: "Using useState in the parent",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "react_hard_1_q7",
+      assessment_id: "react_hard_1",
+      question: "What role does React's Virtual DOM play in the rendering process?",
+      option_a: "Directly manipulates the browser's real DOM for every single change",
+      option_b: "An in-memory representation used to diff changes and minimize real DOM updates",
+      option_c: "Fully replaces the need for CSS",
+      option_d: "Stores the application's business logic state",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "react_hard_1_q8",
+      assessment_id: "react_hard_1",
+      question: "What does windowing or virtualization, such as with react-window, help optimize?",
+      option_a: "Rendering only the currently visible portion of a very large list, improving performance",
+      option_b: "Styling browser window chrome",
+      option_c: "Managing client-side routes",
+      option_d: "Handling form validation",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "react_hard_1_q9",
+      assessment_id: "react_hard_1",
+      question: "How does useCallback help optimize re-renders of child components?",
+      option_a: "It memoizes a function so its reference stays stable across renders unless its dependencies change, avoiding needless child re-renders",
+      option_b: "It permanently deletes unused functions",
+      option_c: "It fetches remote data faster",
+      option_d: "It replaces all event handlers automatically",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "react_hard_1_q10",
+      assessment_id: "react_hard_1",
+      question: "Which tool is commonly used to profile and pinpoint performance bottlenecks in a React application?",
+      option_a: "React DevTools Profiler",
+      option_b: "npm audit",
+      option_c: "ESLint",
+      option_d: "Babel",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "react_hard_1_q11",
+      assessment_id: "react_hard_1",
+      question: "What commonly causes \"unnecessary re-rendering\" throughout a large component tree?",
+      option_a: "A state update in a parent causing all of its descendants to re-render even when their own props/data are unchanged",
+      option_b: "Using TypeScript in the project",
+      option_c: "Using functional components instead of classes",
+      option_d: "Using CSS modules for styling",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "react_hard_1_q12",
+      assessment_id: "react_hard_1",
+      question: "What does lazily loading images or components primarily optimize for?",
+      option_a: "Only the amount of server memory used",
+      option_b: "Initial page load time and bandwidth usage, by deferring loading of off-screen resources",
+      option_c: "Database query performance",
+      option_d: "The output of the bundle minifier",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "react_hard_1_q13",
+      assessment_id: "react_hard_1",
+      question: "What is a potential downside of overusing useMemo and useCallback for every value and function?",
+      option_a: "There is no downside; it is always strictly beneficial",
+      option_b: "Added code complexity and memory overhead that can outweigh the benefit for cheap computations",
+      option_c: "It completely breaks how React works",
+      option_d: "It disables all hooks in the component",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "react_hard_1_q14",
+      assessment_id: "react_hard_1",
+      question: "What does React.PureComponent do differently from a plain React.Component?",
+      option_a: "Automatically implements shouldComponentUpdate using a shallow comparison of props and state",
+      option_b: "Prevents the component from ever rendering",
+      option_c: "Enables the use of hooks inside a class component",
+      option_d: "Removes all lifecycle methods from the component",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "react_hard_1_q15",
+      assessment_id: "react_hard_1",
+      question: "What is a common strategy to reduce prop-drilling-induced re-renders in a deeply nested component tree?",
+      option_a: "Use Context together with memoization, or a dedicated state management library, to avoid unnecessary intermediate re-renders",
+      option_b: "Always pass every prop through every intermediate level manually",
+      option_c: "Avoid using components altogether",
+      option_d: "Rely exclusively on inline styles",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+  ] as AssessmentQuestion[]),
+
+  // DevOps — Git & Version Control (assessment devops_easy_2)
+  ...([
+    {
+      id: "devops_easy_2_q1",
+      assessment_id: "devops_easy_2",
+      question: "Which command initializes a new Git repository in the current directory?",
+      option_a: "git init",
+      option_b: "git start",
+      option_c: "git create",
+      option_d: "git new",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "devops_easy_2_q2",
+      assessment_id: "devops_easy_2",
+      question: "What does git clone do?",
+      option_a: "Creates a local copy of a remote repository",
+      option_b: "Permanently deletes a repository",
+      option_c: "Merges two branches together",
+      option_d: "Reverts the most recent commit",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "devops_easy_2_q3",
+      assessment_id: "devops_easy_2",
+      question: "Which command stages changes so they will be included in the next commit?",
+      option_a: "git add",
+      option_b: "git commit",
+      option_c: "git push",
+      option_d: "git stage-only",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "devops_easy_2_q4",
+      assessment_id: "devops_easy_2",
+      question: "What does git commit -m \"message\" do?",
+      option_a: "Pushes local changes to a remote repository",
+      option_b: "Records currently staged changes into the local repository history with a message",
+      option_c: "Deletes all currently staged changes",
+      option_d: "Creates a brand-new branch",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "devops_easy_2_q5",
+      assessment_id: "devops_easy_2",
+      question: "What is the purpose of creating a branch in Git?",
+      option_a: "Allow independent lines of development without affecting the main codebase",
+      option_b: "Store binary files exclusively",
+      option_c: "Compress the repository's size",
+      option_d: "Permanently delete commit history",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "devops_easy_2_q6",
+      assessment_id: "devops_easy_2",
+      question: "Which command creates a new branch and switches to it in a single step?",
+      option_a: "git checkout -b branchname",
+      option_b: "git branch switch branchname",
+      option_c: "git new branchname",
+      option_d: "git merge -b branchname",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "devops_easy_2_q7",
+      assessment_id: "devops_easy_2",
+      question: "What does git merge do?",
+      option_a: "Combines changes from one branch into another",
+      option_b: "Permanently deletes a branch",
+      option_c: "Uploads code directly to GitHub's servers",
+      option_d: "Reverts a specific commit",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "devops_easy_2_q8",
+      assessment_id: "devops_easy_2",
+      question: "What is a merge conflict?",
+      option_a: "A state where Git automatically resolves every difference on its own",
+      option_b: "A situation where changes in two branches overlap and Git cannot reconcile them automatically",
+      option_c: "A network connectivity error",
+      option_d: "A JavaScript syntax error",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "devops_easy_2_q9",
+      assessment_id: "devops_easy_2",
+      question: "Which command uploads local commits to a remote repository?",
+      option_a: "git push",
+      option_b: "git pull",
+      option_c: "git fetch",
+      option_d: "git clone",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "devops_easy_2_q10",
+      assessment_id: "devops_easy_2",
+      question: "Which command downloads changes from a remote repository and merges them into the current local branch?",
+      option_a: "git pull",
+      option_b: "git push",
+      option_c: "git commit",
+      option_d: "git branch",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "devops_easy_2_q11",
+      assessment_id: "devops_easy_2",
+      question: "What information does git status display?",
+      option_a: "The full commit history",
+      option_b: "The state of the working directory and staging area, including changed, staged, and untracked files",
+      option_c: "Only remote branch names",
+      option_d: "Only the currently logged-in Git user",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "devops_easy_2_q12",
+      assessment_id: "devops_easy_2",
+      question: "What is the purpose of a .gitignore file?",
+      option_a: "Specify files and directories that Git should not track",
+      option_b: "Store commit messages for later reuse",
+      option_c: "Configure remote repository URLs",
+      option_d: "List all branch names in the repository",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "devops_easy_2_q13",
+      assessment_id: "devops_easy_2",
+      question: "What does git log display?",
+      option_a: "A list of configured remote repositories",
+      option_b: "The commit history of the current branch",
+      option_c: "Only currently staged files",
+      option_d: "Only local branch names",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "devops_easy_2_q14",
+      assessment_id: "devops_easy_2",
+      question: "How does git fetch differ from git pull?",
+      option_a: "They behave identically in every case",
+      option_b: "git fetch downloads remote changes without merging them; git pull fetches and then merges automatically",
+      option_c: "git pull only ever works on local repositories",
+      option_d: "git fetch permanently deletes remote branches",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "devops_easy_2_q15",
+      assessment_id: "devops_easy_2",
+      question: "How does git revert differ from git reset?",
+      option_a: "git revert creates a new commit that undoes changes while preserving history; git reset moves the branch pointer and can rewrite history",
+      option_b: "They are functionally identical commands",
+      option_c: "git reset is always the safer choice for shared branches",
+      option_d: "git revert permanently deletes commits from history",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+  ] as AssessmentQuestion[]),
+
+  // DevOps — CI/CD Pipelines (assessment devops_medium_1)
+  ...([
+    {
+      id: "devops_medium_1_q1",
+      assessment_id: "devops_medium_1",
+      question: "What does Continuous Integration (CI) primarily focus on?",
+      option_a: "Automatically deploying every change straight to production",
+      option_b: "Frequently merging code changes and automatically building and testing them",
+      option_c: "Managing cloud infrastructure directly",
+      option_d: "Monitoring production servers",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_1_q2",
+      assessment_id: "devops_medium_1",
+      question: "In the context of automated deployment, what does the \"CD\" in CI/CD typically stand for?",
+      option_a: "Code Development",
+      option_b: "Continuous Delivery/Deployment",
+      option_c: "Central Database",
+      option_d: "Container Deployment",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_1_q3",
+      assessment_id: "devops_medium_1",
+      question: "In Jenkins, where is a build/deploy pipeline typically defined as code?",
+      option_a: "In a Jenkinsfile",
+      option_b: "In a .gitignore file",
+      option_c: "In a Dockerfile",
+      option_d: "In a package.json file",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_1_q4",
+      assessment_id: "devops_medium_1",
+      question: "What is the role of a Jenkins \"agent\" (or node)?",
+      option_a: "A machine or environment where the pipeline's stages and steps are actually executed",
+      option_b: "A type of Jenkins plugin only",
+      option_c: "A source code repository",
+      option_d: "A monitoring dashboard",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_1_q5",
+      assessment_id: "devops_medium_1",
+      question: "Where are GitHub Actions workflow files conventionally stored in a repository?",
+      option_a: ".github/workflows/*.yml",
+      option_b: ".circleci/config.yml",
+      option_c: "Jenkinsfile",
+      option_d: ".gitlab-ci.yml",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_1_q6",
+      assessment_id: "devops_medium_1",
+      question: "What commonly triggers a GitHub Actions workflow to run?",
+      option_a: "Only a manual button click, with no automation possible",
+      option_b: "Events such as push, pull_request, or a defined schedule",
+      option_c: "Only a server reboot",
+      option_d: "Only a DNS record change",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_1_q7",
+      assessment_id: "devops_medium_1",
+      question: "What is a \"runner\" in the context of GitHub Actions?",
+      option_a: "A server that executes the jobs defined in a workflow",
+      option_b: "A special kind of encrypted secret",
+      option_c: "A branch protection rule",
+      option_d: "A specific base Docker image only",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_1_q8",
+      assessment_id: "devops_medium_1",
+      question: "Why do CI/CD pipelines commonly organize work into named \"stages\" such as build, test, and deploy?",
+      option_a: "To group related steps together, making pipeline execution easier to organize and visualize",
+      option_b: "To store application secrets",
+      option_c: "To define branch naming conventions",
+      option_d: "To configure DNS records",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_1_q9",
+      assessment_id: "devops_medium_1",
+      question: "What is the main benefit of running automated tests as part of a CI pipeline?",
+      option_a: "Catch bugs and regressions early, before code is merged or deployed",
+      option_b: "Deliberately slow down the development process",
+      option_c: "Fully replace the need for code review",
+      option_d: "Eliminate the need for version control entirely",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_1_q10",
+      assessment_id: "devops_medium_1",
+      question: "What is a blue-green deployment strategy primarily used for?",
+      option_a: "Reduce downtime and deployment risk by running two identical production environments and switching traffic between them",
+      option_b: "Color-code servers for organizational purposes only",
+      option_c: "Test different UI color themes",
+      option_d: "Manage DNS records exclusively",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_1_q11",
+      assessment_id: "devops_medium_1",
+      question: "What does a canary deployment involve?",
+      option_a: "Releasing a change to a small subset of users or servers before rolling it out fully",
+      option_b: "Deploying a change to every server simultaneously",
+      option_c: "Automatically rolling back every deployment",
+      option_d: "Testing changes only in a local development environment",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_1_q12",
+      assessment_id: "devops_medium_1",
+      question: "Why should secrets such as API keys be stored in a CI/CD platform's secret manager instead of directly in code?",
+      option_a: "Prevent sensitive credentials from being exposed in version control",
+      option_b: "Make builds run measurably faster",
+      option_c: "Improve the pipeline dashboard's visual appearance",
+      option_d: "Reduce cloud storage costs",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_1_q13",
+      assessment_id: "devops_medium_1",
+      question: "What does the phrase \"pipeline as code\" mean?",
+      option_a: "Defining a build/deploy pipeline's configuration in version-controlled files rather than through manual UI configuration",
+      option_b: "Writing pipeline logic exclusively in Python",
+      option_c: "Deliberately avoiding all automation",
+      option_d: "Configuring pipelines only through a graphical interface",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_1_q14",
+      assessment_id: "devops_medium_1",
+      question: "What is the purpose of artifact storage in a CI/CD pipeline?",
+      option_a: "Persist build outputs, such as binaries or packages, between pipeline stages or for later deployment",
+      option_b: "Store only the project's source code",
+      option_c: "Manage user account permissions",
+      option_d: "Configure network routing rules",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_1_q15",
+      assessment_id: "devops_medium_1",
+      question: "What is the common purpose of a \"rollback\" step in a deployment pipeline?",
+      option_a: "Automatically or manually revert to a previous stable version if a deployment fails",
+      option_b: "Permanently delete the project's commit history",
+      option_c: "Merge unrelated feature branches",
+      option_d: "Build entirely new, unrelated features",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+  ] as AssessmentQuestion[]),
+
+  // DevOps — Infrastructure as Code (assessment devops_medium_2)
+  ...([
+    {
+      id: "devops_medium_2_q1",
+      assessment_id: "devops_medium_2",
+      question: "What does the term Infrastructure as Code (IaC) refer to?",
+      option_a: "Managing and provisioning infrastructure through machine-readable configuration files rather than manual processes",
+      option_b: "Writing only application-level code",
+      option_c: "A specific type of relational database",
+      option_d: "A dedicated monitoring dashboard tool",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_2_q2",
+      assessment_id: "devops_medium_2",
+      question: "Which language does Terraform primarily use to define infrastructure configurations?",
+      option_a: "YAML",
+      option_b: "HCL (HashiCorp Configuration Language)",
+      option_c: "JSON exclusively",
+      option_d: "Python",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_2_q3",
+      assessment_id: "devops_medium_2",
+      question: "What does the terraform plan command do?",
+      option_a: "Immediately applies changes to real infrastructure",
+      option_b: "Shows a preview of the changes Terraform intends to make, without applying them",
+      option_c: "Destroys every managed resource",
+      option_d: "Only initializes the working directory",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_2_q4",
+      assessment_id: "devops_medium_2",
+      question: "What does the terraform apply command do?",
+      option_a: "Creates or updates real infrastructure so it matches the configuration",
+      option_b: "Only validates the configuration's syntax",
+      option_c: "Deletes the Terraform state file",
+      option_d: "Only downloads required providers",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_2_q5",
+      assessment_id: "devops_medium_2",
+      question: "What is the purpose of Terraform's state file?",
+      option_a: "Track the current state of managed infrastructure so Terraform can determine what changes are needed",
+      option_b: "Store the project's application source code",
+      option_c: "Store secrets safely in plaintext by design",
+      option_d: "Fully replace the need for version control",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_2_q6",
+      assessment_id: "devops_medium_2",
+      question: "What does terraform destroy do?",
+      option_a: "Removes all resources currently managed by the configuration",
+      option_b: "Only formats the HCL source files",
+      option_c: "Only initializes providers",
+      option_d: "Only validates the configuration's syntax",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_2_q7",
+      assessment_id: "devops_medium_2",
+      question: "What is a Terraform \"provider\"?",
+      option_a: "A plugin that lets Terraform interact with a specific platform or API, such as AWS or Azure",
+      option_b: "A special kind of Terraform variable",
+      option_c: "Only a remote state backend",
+      option_d: "A public module registry",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_2_q8",
+      assessment_id: "devops_medium_2",
+      question: "What is the purpose of Terraform modules?",
+      option_a: "Package and reuse configuration for common infrastructure patterns",
+      option_b: "Store application secrets",
+      option_c: "Fully replace the need for providers",
+      option_d: "Manage DNS records exclusively",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_2_q9",
+      assessment_id: "devops_medium_2",
+      question: "Why is remote state storage (e.g., in S3 with state locking) recommended for teams using Terraform?",
+      option_a: "It prevents conflicts and enables safe collaboration by centralizing and locking the state",
+      option_b: "It is required by every Terraform provider",
+      option_c: "It exclusively speeds up terraform apply",
+      option_d: "It automatically encrypts the source code",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_2_q10",
+      assessment_id: "devops_medium_2",
+      question: "What does idempotency mean for an IaC tool like Terraform or Ansible?",
+      option_a: "Applying the same configuration repeatedly produces the same result without unintended side effects",
+      option_b: "Configuration can only ever be applied a single time",
+      option_c: "Every apply always creates brand-new resources",
+      option_d: "The current infrastructure state is ignored entirely",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_2_q11",
+      assessment_id: "devops_medium_2",
+      question: "What is \"configuration drift\"?",
+      option_a: "When the actual infrastructure state diverges from what is defined in the IaC configuration",
+      option_b: "A network latency issue between regions",
+      option_c: "A Git merge conflict",
+      option_d: "A specific encryption algorithm",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_2_q12",
+      assessment_id: "devops_medium_2",
+      question: "What is an Ansible \"playbook\"?",
+      option_a: "A YAML file that defines a set of tasks/configuration to apply to managed hosts",
+      option_b: "A Terraform state file",
+      option_c: "A prebuilt Docker image",
+      option_d: "A CI pipeline trigger event",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_2_q13",
+      assessment_id: "devops_medium_2",
+      question: "How does a declarative IaC approach differ from an imperative one?",
+      option_a: "Declarative specifies the desired end state; imperative specifies the exact steps needed to reach that state",
+      option_b: "They are functionally identical approaches",
+      option_c: "Imperative approaches are always inherently safer",
+      option_d: "Declarative approaches cannot be automated",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_2_q14",
+      assessment_id: "devops_medium_2",
+      question: "What does terraform init do?",
+      option_a: "Initializes a working directory, downloading the required providers and modules",
+      option_b: "Directly deploys infrastructure changes",
+      option_c: "Permanently deletes existing resources",
+      option_d: "Only formats HCL configuration files",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "devops_medium_2_q15",
+      assessment_id: "devops_medium_2",
+      question: "What is a key benefit of storing IaC configuration files in version control?",
+      option_a: "Track changes, enable code review, and support rolling back infrastructure changes",
+      option_b: "Automatically encrypt all data at rest",
+      option_c: "Eliminate the need for any testing",
+      option_d: "Remove the need for a Terraform state file entirely",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+  ] as AssessmentQuestion[]),
+
+  // DevOps — DevOps Advanced Practices (assessment devops_hard_1)
+  ...([
+    {
+      id: "devops_hard_1_q1",
+      assessment_id: "devops_hard_1",
+      question: "What is a defining characteristic of a microservices architecture?",
+      option_a: "A single monolithic codebase deployed as one unit",
+      option_b: "Independently deployable services, each responsible for a specific business capability",
+      option_c: "No network communication occurring between components",
+      option_d: "All services mandatorily sharing one exclusive database schema",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "devops_hard_1_q2",
+      assessment_id: "devops_hard_1",
+      question: "What is the purpose of a service mesh, such as Istio or Linkerd?",
+      option_a: "Manage service-to-service communication, including traffic control, security, and observability",
+      option_b: "Fully replace container orchestration",
+      option_c: "Build container images",
+      option_d: "Manage DNS records exclusively",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "devops_hard_1_q3",
+      assessment_id: "devops_hard_1",
+      question: "What does the \"circuit breaker\" pattern accomplish in distributed systems?",
+      option_a: "Prevent cascading failures by temporarily stopping requests to a failing downstream service",
+      option_b: "Encrypt network traffic between services",
+      option_c: "Load balance requests across instances",
+      option_d: "Store application secrets securely",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "devops_hard_1_q4",
+      assessment_id: "devops_hard_1",
+      question: "What are the \"three pillars of observability\" commonly said to be?",
+      option_a: "Logs, metrics, and traces",
+      option_b: "CPU, memory, and disk",
+      option_c: "Build, test, and deploy",
+      option_d: "Users, servers, and networks",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "devops_hard_1_q5",
+      assessment_id: "devops_hard_1",
+      question: "What is the purpose of distributed tracing tools, such as Jaeger or Zipkin, in a microservices architecture?",
+      option_a: "Track a single request's path and latency as it flows across multiple services, to help diagnose issues",
+      option_b: "Store application secrets",
+      option_c: "Manage container images",
+      option_d: "Configure DNS records",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "devops_hard_1_q6",
+      assessment_id: "devops_hard_1",
+      question: "What problem does the \"saga pattern\" address in a microservices architecture?",
+      option_a: "Managing distributed transactions and data consistency across multiple services without a single ACID transaction",
+      option_b: "Load balancing traffic across services",
+      option_c: "Building container images",
+      option_d: "Managing DNS records",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "devops_hard_1_q7",
+      assessment_id: "devops_hard_1",
+      question: "What is horizontal scaling?",
+      option_a: "Increasing the resources, such as CPU or RAM, of a single existing server",
+      option_b: "Adding more instances or servers to distribute load across them",
+      option_c: "Reducing the overall number of servers in use",
+      option_d: "Only upgrading a server's storage capacity",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "devops_hard_1_q8",
+      assessment_id: "devops_hard_1",
+      question: "What is the purpose of a metrics and monitoring system such as Prometheus in a DevOps environment?",
+      option_a: "Collect and store time-series metrics for alerting and later analysis",
+      option_b: "Manage the project's source code",
+      option_c: "Build container images",
+      option_d: "Manage DNS records",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "devops_hard_1_q9",
+      assessment_id: "devops_hard_1",
+      question: "What is \"chaos engineering,\" as practiced with tools like Chaos Monkey?",
+      option_a: "Deliberately injecting controlled failures into a system to test and improve its resilience",
+      option_b: "Randomly deleting production data with no testing plan",
+      option_c: "A specific code review technique",
+      option_d: "A narrow type of unit testing only",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "devops_hard_1_q10",
+      assessment_id: "devops_hard_1",
+      question: "What is the \"API Gateway\" pattern used for in a microservices architecture?",
+      option_a: "Provide a single entry point that routes incoming requests to the appropriate backend services",
+      option_b: "Persist application data long-term",
+      option_c: "Build container images",
+      option_d: "Manage version control history",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "devops_hard_1_q11",
+      assessment_id: "devops_hard_1",
+      question: "Why are health checks and readiness/liveness probes important for services running in an orchestrated environment?",
+      option_a: "They allow the orchestrator to detect and restart unhealthy instances and route traffic only to instances that are ready",
+      option_b: "They encrypt data in transit",
+      option_c: "They reduce container image size",
+      option_d: "They manage DNS records",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "devops_hard_1_q12",
+      assessment_id: "devops_hard_1",
+      question: "What is a key tradeoff between \"blue-green\" and \"canary\" deployment strategies?",
+      option_a: "Blue-green switches all traffic at once with a fast rollback path, while canary gradually shifts traffic, reducing blast radius but detecting issues more slowly",
+      option_b: "They are functionally identical deployment strategies",
+      option_c: "Canary deployments always require two complete duplicate environments",
+      option_d: "Blue-green deployments can never be rolled back",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "devops_hard_1_q13",
+      assessment_id: "devops_hard_1",
+      question: "Why is centralized logging, such as with an ELK or EFK stack, important in a microservices architecture?",
+      option_a: "Aggregating logs from many distributed services makes debugging and analysis practically feasible",
+      option_b: "It fully replaces the need for monitoring",
+      option_c: "It is strictly required for code compilation",
+      option_d: "It eliminates the need for distributed tracing entirely",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "devops_hard_1_q14",
+      assessment_id: "devops_hard_1",
+      question: "What does \"eventual consistency\" describe in a distributed system?",
+      option_a: "All nodes are always immediately and perfectly consistent",
+      option_b: "Given no new updates, all replicas will eventually converge to the same value, though not instantly",
+      option_c: "Data in the system is never consistent at all",
+      option_d: "Consistency is always guaranteed synchronously across all nodes",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "devops_hard_1_q15",
+      assessment_id: "devops_hard_1",
+      question: "What is the purpose of configuring auto-scaling policies based on metrics like CPU usage or request count?",
+      option_a: "Automatically adjust the number of running instances to match current demand, improving both cost-efficiency and reliability",
+      option_b: "Permanently fix the number of servers in use",
+      option_c: "Disable monitoring for the affected service",
+      option_d: "Fully replace the need for load balancers",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Security — Network Security Basics (assessment security_easy_2)
+  ...([
+    {
+      id: "security_easy_2_q1",
+      assessment_id: "security_easy_2",
+      question: "What is the primary function of a firewall?",
+      option_a: "Encrypt all network traffic passing through it",
+      option_b: "Monitor and control incoming/outgoing network traffic based on defined security rules",
+      option_c: "Store user passwords",
+      option_d: "Scan files for viruses exclusively",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "security_easy_2_q2",
+      assessment_id: "security_easy_2",
+      question: "What does a VPN (Virtual Private Network) primarily provide?",
+      option_a: "An encrypted tunnel for secure communication over a public network",
+      option_b: "A guaranteed faster internet connection",
+      option_c: "A type of firewall rule only",
+      option_d: "A physical network cable",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "security_easy_2_q3",
+      assessment_id: "security_easy_2",
+      question: "What is the purpose of a DMZ (Demilitarized Zone) in network architecture?",
+      option_a: "Isolate public-facing servers from the trusted internal network",
+      option_b: "Encrypt all internal network traffic",
+      option_c: "Fully replace the need for firewalls",
+      option_d: "Store system backups",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "security_easy_2_q4",
+      assessment_id: "security_easy_2",
+      question: "Which type of firewall inspects traffic based on the state of active network connections?",
+      option_a: "Simple packet-filtering firewall",
+      option_b: "Stateful inspection firewall",
+      option_c: "Proxy firewall exclusively",
+      option_d: "None of these track connection state",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "security_easy_2_q5",
+      assessment_id: "security_easy_2",
+      question: "What does the acronym IDS stand for in network security?",
+      option_a: "Internet Data Service",
+      option_b: "Intrusion Detection System",
+      option_c: "Internal Defense System",
+      option_d: "Integrated DNS Server",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "security_easy_2_q6",
+      assessment_id: "security_easy_2",
+      question: "How does an IPS generally differ from an IDS?",
+      option_a: "An IPS only passively monitors while an IDS actively blocks traffic",
+      option_b: "An IPS (Intrusion Prevention System) can actively block detected threats, while an IDS typically only generates alerts",
+      option_c: "They are functionally identical systems",
+      option_d: "An IDS requires no configuration whatsoever",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "security_easy_2_q7",
+      assessment_id: "security_easy_2",
+      question: "What is port scanning typically used for?",
+      option_a: "Identify open ports and running services on a target system",
+      option_b: "Encrypt data in transit",
+      option_c: "Send bulk phishing emails",
+      option_d: "Apply software patches",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "security_easy_2_q8",
+      assessment_id: "security_easy_2",
+      question: "What is the purpose of Network Address Translation (NAT)?",
+      option_a: "Translate private IP addresses to a shared public IP for internet access, adding a layer of obscurity",
+      option_b: "Encrypt network traffic",
+      option_c: "Block malware automatically",
+      option_d: "Authenticate individual users",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "security_easy_2_q9",
+      assessment_id: "security_easy_2",
+      question: "What is a common security benefit of segmenting a network into VLANs?",
+      option_a: "It limits the spread of an attack by isolating traffic between network segments",
+      option_b: "It only increases available bandwidth",
+      option_c: "It eliminates the need for firewalls entirely",
+      option_d: "It automatically encrypts all traffic",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "security_easy_2_q10",
+      assessment_id: "security_easy_2",
+      question: "What does a site-to-site VPN typically connect?",
+      option_a: "Two individual end-user devices",
+      option_b: "Two entire networks, such as two office locations, securely over the internet",
+      option_c: "A single device to a network printer",
+      option_d: "A firewall directly to a switch",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "security_easy_2_q11",
+      assessment_id: "security_easy_2",
+      question: "Which protocols are commonly used to establish secure VPN tunnels?",
+      option_a: "IPsec and SSL/TLS-based VPN protocols",
+      option_b: "FTP",
+      option_c: "Telnet",
+      option_d: "SMTP",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "security_easy_2_q12",
+      assessment_id: "security_easy_2",
+      question: "What is the purpose of an Access Control List (ACL) configured on a router or firewall?",
+      option_a: "Define rules that permit or deny traffic based on criteria like source IP address and port",
+      option_b: "Store user account passwords",
+      option_c: "Encrypt data stored on disk",
+      option_d: "Manage internal DNS records",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "security_easy_2_q13",
+      assessment_id: "security_easy_2",
+      question: "What security risk does an open, unauthenticated public Wi-Fi network primarily pose?",
+      option_a: "None; it is always inherently safe to use",
+      option_b: "Traffic can potentially be intercepted or the network abused by unauthorized users",
+      option_c: "It automatically encrypts all user traffic",
+      option_d: "It completely prevents every kind of attack",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "security_easy_2_q14",
+      assessment_id: "security_easy_2",
+      question: "What does the security principle of \"defense in depth\" mean?",
+      option_a: "Relying on a single, very strong security control",
+      option_b: "Layering multiple independent security controls so that if one fails, others still provide protection",
+      option_c: "Only defending the outermost network perimeter",
+      option_d: "Deliberately ignoring internal, insider threats",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "security_easy_2_q15",
+      assessment_id: "security_easy_2",
+      question: "What is the purpose of a honeypot in network security?",
+      option_a: "A decoy system deliberately designed to attract and detect attackers, allowing their behavior to be studied",
+      option_b: "A dedicated backup server",
+      option_c: "A specific type of firewall rule",
+      option_d: "A particular encryption algorithm",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Security — Ethical Hacking (assessment security_medium_1)
+  ...([
+    {
+      id: "security_medium_1_q1",
+      assessment_id: "security_medium_1",
+      question: "What is typically the first phase performed during a penetration test?",
+      option_a: "Exploitation",
+      option_b: "Reconnaissance / information gathering",
+      option_c: "Final reporting",
+      option_d: "Cleanup",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_1_q2",
+      assessment_id: "security_medium_1",
+      question: "Why is obtaining written authorization essential before conducting a penetration test?",
+      option_a: "It is entirely optional and legally unimportant",
+      option_b: "It grants legal permission and defines the engagement's scope, protecting the tester from liability",
+      option_c: "It only serves to unnecessarily slow the test down",
+      option_d: "It is only ever needed for purely internal tests",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_1_q3",
+      assessment_id: "security_medium_1",
+      question: "What does the term \"footprinting\" refer to in ethical hacking?",
+      option_a: "Deleting log files after completing an attack",
+      option_b: "Gathering information about a target system or organization before launching an attack",
+      option_c: "Installing malware on a compromised system",
+      option_d: "Patching discovered vulnerabilities",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_1_q4",
+      assessment_id: "security_medium_1",
+      question: "Which tool is commonly used for network scanning and open port discovery?",
+      option_a: "Nmap",
+      option_b: "Photoshop",
+      option_c: "Excel",
+      option_d: "Git",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_1_q5",
+      assessment_id: "security_medium_1",
+      question: "How does a vulnerability assessment differ from a penetration test?",
+      option_a: "They are essentially identical processes",
+      option_b: "A vulnerability assessment identifies and catalogs weaknesses; a penetration test actively attempts to exploit them to demonstrate real impact",
+      option_c: "A vulnerability assessment always involves active exploitation",
+      option_d: "Penetration tests never involve any scanning",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_1_q6",
+      assessment_id: "security_medium_1",
+      question: "What is a \"zero-day\" vulnerability?",
+      option_a: "A vulnerability that has already existed for zero days and is fully patched",
+      option_b: "A previously unknown vulnerability with no available patch at the time of its discovery or exploitation",
+      option_c: "A vulnerability that only affects legacy, unsupported systems",
+      option_d: "A vulnerability considered to have no real-world impact",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_1_q7",
+      assessment_id: "security_medium_1",
+      question: "What can SQL injection allow an attacker to do?",
+      option_a: "Gain physical access to a server",
+      option_b: "Manipulate database queries by injecting malicious input, potentially exposing or altering data",
+      option_c: "Intercept nearby Wi-Fi traffic",
+      option_d: "Bypass a building's physical locks",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_1_q8",
+      assessment_id: "security_medium_1",
+      question: "What is the purpose of social engineering techniques within a penetration test?",
+      option_a: "Test only technical firewall configurations",
+      option_b: "Assess human vulnerabilities, such as susceptibility to phishing or pretexting",
+      option_c: "Scan for open network ports",
+      option_d: "Apply software security patches",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_1_q9",
+      assessment_id: "security_medium_1",
+      question: "What does \"privilege escalation\" refer to?",
+      option_a: "Reducing a user account's level of access",
+      option_b: "Gaining a higher level of access or permissions than originally granted, often by exploiting a flaw",
+      option_c: "Encrypting a set of files",
+      option_d: "Logging a user out of their session",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_1_q10",
+      assessment_id: "security_medium_1",
+      question: "What is the purpose of the \"reporting\" phase at the conclusion of a penetration test?",
+      option_a: "Delete all evidence that testing occurred",
+      option_b: "Document findings, associated risks, and remediation recommendations for the client",
+      option_c: "Launch additional, unauthorized attacks",
+      option_d: "Install permanent backdoors into the target",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_1_q11",
+      assessment_id: "security_medium_1",
+      question: "Which certification is widely recognized for validating penetration testing skills?",
+      option_a: "CEH (Certified Ethical Hacker)",
+      option_b: "CPA",
+      option_c: "PMP",
+      option_d: "CFA",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_1_q12",
+      assessment_id: "security_medium_1",
+      question: "What does \"black box testing\" mean in the context of penetration testing?",
+      option_a: "The tester has full internal knowledge and source code access beforehand",
+      option_b: "The tester has no prior knowledge of the target's internal systems, simulating an external attacker's perspective",
+      option_c: "The tester only tests the user interface",
+      option_d: "Testing is skipped entirely for this engagement",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_1_q13",
+      assessment_id: "security_medium_1",
+      question: "What is the key difference between white box and black box penetration testing?",
+      option_a: "White box testing is performed with full knowledge of the system's internals, while black box testing is performed with none",
+      option_b: "They are identical testing approaches",
+      option_c: "Black box testing always takes far less time to complete",
+      option_d: "White box testing never makes use of any tools",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_1_q14",
+      assessment_id: "security_medium_1",
+      question: "What is a buffer overflow vulnerability?",
+      option_a: "When a program writes more data into a buffer than it can hold, potentially overwriting adjacent memory and enabling code execution",
+      option_b: "A general network congestion issue",
+      option_c: "A specific type of phishing email",
+      option_d: "A DNS server misconfiguration",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_1_q15",
+      assessment_id: "security_medium_1",
+      question: "What is the purpose of using an exploitation framework like Metasploit during a penetration test?",
+      option_a: "Provide a curated framework of exploits and payloads to test and demonstrate real vulnerabilities",
+      option_b: "Manage employee payroll records",
+      option_c: "Design marketing websites",
+      option_d: "Compress and archive files",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Security — Cryptography (assessment security_medium_2)
+  ...([
+    {
+      id: "security_medium_2_q1",
+      assessment_id: "security_medium_2",
+      question: "What is the key difference between symmetric and asymmetric encryption?",
+      option_a: "Symmetric encryption uses the same key for both encryption and decryption; asymmetric encryption uses a public/private key pair",
+      option_b: "They are functionally identical approaches",
+      option_c: "Asymmetric encryption is always faster than symmetric encryption",
+      option_d: "Symmetric encryption requires no key at all",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_2_q2",
+      assessment_id: "security_medium_2",
+      question: "What is a cryptographic hash function primarily used for?",
+      option_a: "Encrypting data to keep it confidential",
+      option_b: "Producing a fixed-size, one-way digest used to verify data integrity",
+      option_c: "Compressing files to save disk space",
+      option_d: "Generating random network traffic for testing",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_2_q3",
+      assessment_id: "security_medium_2",
+      question: "Which of the following is a widely used symmetric encryption algorithm?",
+      option_a: "AES",
+      option_b: "RSA",
+      option_c: "ECDSA",
+      option_d: "SHA-256",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_2_q4",
+      assessment_id: "security_medium_2",
+      question: "Which of the following is an asymmetric encryption and digital signature algorithm?",
+      option_a: "AES",
+      option_b: "RSA",
+      option_c: "DES",
+      option_d: "3DES",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_2_q5",
+      assessment_id: "security_medium_2",
+      question: "What is the purpose of a digital signature?",
+      option_a: "Encrypt an entire file purely for confidentiality",
+      option_b: "Verify the authenticity and integrity of a message using the sender's private key",
+      option_c: "Compress data before transmission",
+      option_d: "Generate temporary session keys only",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_2_q6",
+      assessment_id: "security_medium_2",
+      question: "What does \"salting\" a password hash help prevent?",
+      option_a: "Brute-force attacks entirely, with no exceptions",
+      option_b: "Precomputed rainbow table attacks, by adding unique random data before hashing",
+      option_c: "Network sniffing attacks",
+      option_d: "SQL injection attacks",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_2_q7",
+      assessment_id: "security_medium_2",
+      question: "What is a key exchange protocol like Diffie-Hellman used for?",
+      option_a: "Securely establishing a shared secret key over an otherwise insecure communication channel",
+      option_b: "Hashing stored passwords",
+      option_c: "Compressing transmitted data",
+      option_d: "Signing documents exclusively",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_2_q8",
+      assessment_id: "security_medium_2",
+      question: "Why is a fast, general-purpose hash function like plain SHA-256 considered weak for storing passwords?",
+      option_a: "It is actually far too slow for practical use",
+      option_b: "It is designed to be fast, which makes brute-force/GPU cracking feasible without a purpose-built slow key-derivation function such as bcrypt",
+      option_c: "It cannot produce a fixed-length output",
+      option_d: "Its output is fully reversible back to the original password",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_2_q9",
+      assessment_id: "security_medium_2",
+      question: "What does TLS (Transport Layer Security) primarily provide for web traffic?",
+      option_a: "Encryption, integrity, and authentication for data in transit",
+      option_b: "Physical security for the server hardware",
+      option_c: "Automated backup services",
+      option_d: "DNS name resolution",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_2_q10",
+      assessment_id: "security_medium_2",
+      question: "What is a Certificate Authority (CA) responsible for within a Public Key Infrastructure (PKI)?",
+      option_a: "Issuing and verifying digital certificates that bind public keys to verified identities",
+      option_b: "Storing user passwords",
+      option_c: "Encrypting hard drives directly",
+      option_d: "Managing network firewalls",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_2_q11",
+      assessment_id: "security_medium_2",
+      question: "What is the purpose of a Message Authentication Code (MAC), such as HMAC?",
+      option_a: "Verify both the integrity and authenticity of a message using a shared secret key",
+      option_b: "Encrypt data purely for confidentiality",
+      option_c: "Generate new public/private key pairs",
+      option_d: "Compress messages before sending",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_2_q12",
+      assessment_id: "security_medium_2",
+      question: "What does \"perfect forward secrecy\" provide in the context of TLS?",
+      option_a: "Ensures past session keys remain secure even if a server's long-term private key is later compromised",
+      option_b: "Guarantees that messages are never intercepted in transit",
+      option_c: "Eliminates the need for digital certificates entirely",
+      option_d: "Makes encryption unnecessary for future sessions",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_2_q13",
+      assessment_id: "security_medium_2",
+      question: "What does it mean for a hash function to have a \"collision\"?",
+      option_a: "Two different inputs produce the exact same hash output",
+      option_b: "The hash function fails to execute at all",
+      option_c: "The input data was encrypted twice in sequence",
+      option_d: "The output length of the hash varies between runs",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_2_q14",
+      assessment_id: "security_medium_2",
+      question: "Why does RSA generally require larger key sizes than elliptic curve cryptography (ECC) for equivalent security?",
+      option_a: "RSA needs substantially larger keys than ECC to achieve comparable cryptographic strength",
+      option_b: "RSA keys are always smaller than the equivalent ECC keys",
+      option_c: "RSA and ECC always require identical key sizes",
+      option_d: "ECC cannot be used to create digital signatures",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "security_medium_2_q15",
+      assessment_id: "security_medium_2",
+      question: "What is the purpose of an Initialization Vector (IV) in block cipher modes such as CBC?",
+      option_a: "Ensure that encrypting the same plaintext multiple times produces different ciphertext each time",
+      option_b: "Serve directly as the encryption key itself",
+      option_c: "Completely eliminate the need for a key",
+      option_d: "Compress the plaintext before encryption",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Security — Advanced Cybersecurity (assessment security_hard_1)
+  ...([
+    {
+      id: "security_hard_1_q1",
+      assessment_id: "security_hard_1",
+      question: "What are the typical phases of the incident response lifecycle, per the NIST framework?",
+      option_a: "Preparation, Detection & Analysis, Containment/Eradication/Recovery, and Post-Incident Activity",
+      option_b: "Only Detection and Recovery",
+      option_c: "Only Prevention",
+      option_d: "Planning and Billing",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "security_hard_1_q2",
+      assessment_id: "security_hard_1",
+      question: "What is the purpose of a SIEM (Security Information and Event Management) system?",
+      option_a: "Aggregate and correlate security logs and events from across an organization to support detection and analysis",
+      option_b: "Encrypt every disk in the organization",
+      option_c: "Manage employee accounts exclusively",
+      option_d: "Build software applications",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "security_hard_1_q3",
+      assessment_id: "security_hard_1",
+      question: "What does the \"containment\" phase of incident response aim to achieve?",
+      option_a: "Immediately delete all available evidence",
+      option_b: "Limit the scope and impact of an ongoing incident while preserving evidence",
+      option_c: "Notify the media immediately",
+      option_d: "Restart every server at random",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "security_hard_1_q4",
+      assessment_id: "security_hard_1",
+      question: "What is the core principle behind \"zero trust\" security architecture?",
+      option_a: "Trust all traffic inside the corporate network perimeter by default",
+      option_b: "Never implicitly trust any user or device; verify every access request regardless of network location",
+      option_c: "Trust is granted permanently after a single successful login",
+      option_d: "Firewalls become entirely unnecessary",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "security_hard_1_q5",
+      assessment_id: "security_hard_1",
+      question: "What is a Security Operations Center (SOC) primarily responsible for?",
+      option_a: "Continuous monitoring, detection, and response to security incidents",
+      option_b: "Product marketing campaigns",
+      option_c: "General software development",
+      option_d: "Payroll processing",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "security_hard_1_q6",
+      assessment_id: "security_hard_1",
+      question: "What is threat intelligence used for in a mature security program?",
+      option_a: "Collecting and analyzing information about current and emerging threats to inform defensive strategy",
+      option_b: "Designing user interfaces",
+      option_c: "Managing HR records",
+      option_d: "Compressing backup files",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "security_hard_1_q7",
+      assessment_id: "security_hard_1",
+      question: "What does the MITRE ATT&CK framework provide?",
+      option_a: "A knowledge base of adversary tactics and techniques based on real-world observed attacks",
+      option_b: "A general-purpose programming language",
+      option_c: "A specific commercial firewall product",
+      option_d: "A formal password policy standard",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "security_hard_1_q8",
+      assessment_id: "security_hard_1",
+      question: "What is the purpose of digital forensics during a security investigation?",
+      option_a: "Collect, preserve, and analyze evidence in a legally sound, defensible manner to determine what happened",
+      option_b: "Immediately delete every compromised system",
+      option_c: "Restore from backups without any analysis",
+      option_d: "Deliberately ignore chain of custody requirements",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "security_hard_1_q9",
+      assessment_id: "security_hard_1",
+      question: "Why is \"chain of custody\" important in a forensic investigation?",
+      option_a: "It ensures evidence integrity and admissibility by documenting exactly who handled it and when",
+      option_b: "It primarily speeds up system recovery",
+      option_c: "It is used to encrypt log files",
+      option_d: "It reduces long-term storage costs",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "security_hard_1_q10",
+      assessment_id: "security_hard_1",
+      question: "What is the \"defense in depth\" security concept primarily meant to mitigate?",
+      option_a: "The risk of a single point of failure or a single control being bypassed by attackers",
+      option_b: "Only the risk of physical theft",
+      option_c: "Software licensing costs",
+      option_d: "General network latency",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "security_hard_1_q11",
+      assessment_id: "security_hard_1",
+      question: "What is the purpose of running tabletop exercises as part of incident response preparation?",
+      option_a: "Simulate an incident scenario to test and improve the response plan and team coordination",
+      option_b: "Physically stress-test server hardware",
+      option_c: "Fully replace the need for real monitoring tools",
+      option_d: "Train the sales team on product features",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "security_hard_1_q12",
+      assessment_id: "security_hard_1",
+      question: "What does \"lateral movement\" refer to in the context of an advanced persistent threat (APT)?",
+      option_a: "Only an attacker's very first entry point into a network",
+      option_b: "An attacker moving through a network from an initial foothold to reach additional systems or data",
+      option_c: "A specific data compression technique",
+      option_d: "Encrypting a single isolated file",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "security_hard_1_q13",
+      assessment_id: "security_hard_1",
+      question: "What is the purpose of network segmentation as a defense-in-depth architectural control?",
+      option_a: "Limit an attacker's ability to move laterally by isolating critical systems into separate network zones",
+      option_b: "Only increase overall network bandwidth",
+      option_c: "Simplify DNS configuration",
+      option_d: "Eliminate the need for authentication altogether",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "security_hard_1_q14",
+      assessment_id: "security_hard_1",
+      question: "What is a key goal of the \"least privilege\" principle in a well-designed security architecture?",
+      option_a: "Grant broad access to every system to simplify day-to-day operations",
+      option_b: "Ensure users and systems have only the minimum access necessary to perform their function",
+      option_c: "Disable all access controls to reduce friction",
+      option_d: "Grant administrative rights to every employee by default",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "security_hard_1_q15",
+      assessment_id: "security_hard_1",
+      question: "What does Recovery Time Objective (RTO) measure in a disaster recovery / business continuity plan?",
+      option_a: "The maximum acceptable amount of data loss, measured in time",
+      option_b: "The maximum acceptable time to restore a system or process after a disruption",
+      option_c: "The total monetary cost of recovery",
+      option_d: "The exact number of backups required",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Node.js — Node.js Fundamentals (assessment node_easy_1)
+  ...([
+    {
+      id: "node_easy_1_q1",
+      assessment_id: "node_easy_1",
+      question: "What is Node.js?",
+      option_a: "A front-end UI framework",
+      option_b: "A JavaScript runtime built on Chrome's V8 engine for server-side execution",
+      option_c: "A relational database",
+      option_d: "A CSS preprocessor",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "node_easy_1_q2",
+      assessment_id: "node_easy_1",
+      question: "Which module system does Node.js traditionally use by default (CommonJS)?",
+      option_a: "import/export exclusively",
+      option_b: "require() and module.exports",
+      option_c: "include()",
+      option_d: "using",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "node_easy_1_q3",
+      assessment_id: "node_easy_1",
+      question: "What does npm stand for?",
+      option_a: "Node Package Manager",
+      option_b: "New Programming Method",
+      option_c: "Node Process Monitor",
+      option_d: "Network Package Module",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "node_easy_1_q4",
+      assessment_id: "node_easy_1",
+      question: "Which file defines a Node.js project's dependencies and metadata?",
+      option_a: "package.json",
+      option_b: "node.config",
+      option_c: "index.html",
+      option_d: "server.yaml",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "node_easy_1_q5",
+      assessment_id: "node_easy_1",
+      question: "What is the purpose of the require() function in Node.js?",
+      option_a: "Import a module into the current file",
+      option_b: "Start the HTTP server",
+      option_c: "Install an npm package",
+      option_d: "Compile TypeScript source",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "node_easy_1_q6",
+      assessment_id: "node_easy_1",
+      question: "Which built-in Node.js module is used to create an HTTP server?",
+      option_a: "fs",
+      option_b: "http",
+      option_c: "path",
+      option_d: "os",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "node_easy_1_q7",
+      assessment_id: "node_easy_1",
+      question: "What does running npm install do?",
+      option_a: "Removes installed packages",
+      option_b: "Downloads and installs the dependencies listed in package.json (or a specified package)",
+      option_c: "Runs the project's unit tests",
+      option_d: "Starts the application server",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "node_easy_1_q8",
+      assessment_id: "node_easy_1",
+      question: "What is the Node.js Event Loop responsible for?",
+      option_a: "Compiling JavaScript source code",
+      option_b: "Handling asynchronous operations, enabling non-blocking I/O on a single thread",
+      option_c: "Managing CSS stylesheets",
+      option_d: "Rendering HTML markup",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "node_easy_1_q9",
+      assessment_id: "node_easy_1",
+      question: "Which global object provides information about the currently running Node.js process, such as environment variables?",
+      option_a: "window",
+      option_b: "process",
+      option_c: "document",
+      option_d: "global.env",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "node_easy_1_q10",
+      assessment_id: "node_easy_1",
+      question: "What does the built-in fs module in Node.js provide?",
+      option_a: "File system operations such as reading and writing files",
+      option_b: "HTTP server creation",
+      option_c: "Path string manipulation",
+      option_d: "Process management utilities",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "node_easy_1_q11",
+      assessment_id: "node_easy_1",
+      question: "What is the purpose of the package-lock.json file?",
+      option_a: "Lock the exact versions of installed dependencies for consistent, repeatable installs",
+      option_b: "Store environment variables",
+      option_c: "Configure the HTTP server",
+      option_d: "Store the project's source code",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "node_easy_1_q12",
+      assessment_id: "node_easy_1",
+      question: "Is Node.js single-threaded or multi-threaded for executing JavaScript by default?",
+      option_a: "Always fully multi-threaded",
+      option_b: "Single-threaded, using an event loop plus libuv/worker threads for async I/O under the hood",
+      option_c: "It has no threading model at all",
+      option_d: "It requires the developer to manually spawn threads for every task",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "node_easy_1_q13",
+      assessment_id: "node_easy_1",
+      question: "What does module.exports allow you to do in a CommonJS file?",
+      option_a: "Import code from another file",
+      option_b: "Expose functions or values from the current file so they can be required elsewhere",
+      option_c: "Start the HTTP server",
+      option_d: "Install a new package",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "node_easy_1_q14",
+      assessment_id: "node_easy_1",
+      question: "Which command starts a Node.js script named app.js from the terminal?",
+      option_a: "node app.js",
+      option_b: "npm run app.js",
+      option_c: "run app.js",
+      option_d: "start app.js",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "node_easy_1_q15",
+      assessment_id: "node_easy_1",
+      question: "What is npx primarily used for?",
+      option_a: "Execute a package's binary without needing to install it globally first",
+      option_b: "Delete the node_modules directory",
+      option_c: "Compile TypeScript exclusively",
+      option_d: "Manage Git branches",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Node.js — Express.js Framework (assessment node_medium_1)
+  ...([
+    {
+      id: "node_medium_1_q1",
+      assessment_id: "node_medium_1",
+      question: "What is Express.js?",
+      option_a: "A relational database",
+      option_b: "A minimal, flexible Node.js web application framework for building APIs and web apps",
+      option_c: "A front-end UI library",
+      option_d: "A dedicated testing framework",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "node_medium_1_q2",
+      assessment_id: "node_medium_1",
+      question: "How do you define a basic GET route in Express?",
+      option_a: "app.get('/path', (req, res) => { ... })",
+      option_b: "app.route.get() used on its own",
+      option_c: "express.get('/path')",
+      option_d: "app.request('/path')",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "node_medium_1_q3",
+      assessment_id: "node_medium_1",
+      question: "What is Express middleware?",
+      option_a: "A function with access to the request, response, and next() that can execute code, modify req/res, or end the request-response cycle",
+      option_b: "A database connector library only",
+      option_c: "A templating engine exclusively",
+      option_d: "A CSS framework",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "node_medium_1_q4",
+      assessment_id: "node_medium_1",
+      question: "What does calling next() inside a middleware function do?",
+      option_a: "Ends the response immediately",
+      option_b: "Passes control to the next middleware function in the stack",
+      option_c: "Restarts the entire server",
+      option_d: "Deletes the current request object",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "node_medium_1_q5",
+      assessment_id: "node_medium_1",
+      question: "Which built-in Express method parses incoming JSON request bodies (available since Express 4.16+)?",
+      option_a: "express.json()",
+      option_b: "express.parse()",
+      option_c: "bodyParser used on its own",
+      option_d: "express.body()",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "node_medium_1_q6",
+      assessment_id: "node_medium_1",
+      question: "How do you define a route parameter to capture a value like an ID in an Express route path?",
+      option_a: "app.get('/users/:id', ...)",
+      option_b: "app.get('/users/{id}', ...)",
+      option_c: "app.get('/users/[id]', ...)",
+      option_d: "app.get('/users/$id', ...)",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "node_medium_1_q7",
+      assessment_id: "node_medium_1",
+      question: "What does res.status(404).send(...) do in an Express route handler?",
+      option_a: "Sets a custom HTTP status code on the response and sends a body",
+      option_b: "Only logs an error message to the console",
+      option_c: "Immediately closes the server",
+      option_d: "Restarts the current route",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "node_medium_1_q8",
+      assessment_id: "node_medium_1",
+      question: "What is a common way to organize routes in a larger Express application?",
+      option_a: "Use express.Router() to modularize related groups of routes",
+      option_b: "Write every route in one long, unindented file",
+      option_c: "Express provides no mechanism for organizing routes",
+      option_d: "Define routes using CSS files",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "node_medium_1_q9",
+      assessment_id: "node_medium_1",
+      question: "How do you register error-handling middleware in Express?",
+      option_a: "Define a middleware function that takes four arguments: (err, req, res, next)",
+      option_b: "A regular middleware function with only two arguments",
+      option_c: "Express does not support error-handling middleware",
+      option_d: "Only by wrapping every route in try/catch manually",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "node_medium_1_q10",
+      assessment_id: "node_medium_1",
+      question: "What does app.use() do in an Express application?",
+      option_a: "Mounts a middleware function at a specified path, or globally if no path is given",
+      option_b: "Starts the HTTP server listening",
+      option_c: "Defines a database schema",
+      option_d: "Deletes an existing route",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "node_medium_1_q11",
+      assessment_id: "node_medium_1",
+      question: "Which Express method is commonly used to serve static files such as images or CSS?",
+      option_a: "express.static()",
+      option_b: "express.file()",
+      option_c: "express.public()",
+      option_d: "express.assets()",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "node_medium_1_q12",
+      assessment_id: "node_medium_1",
+      question: "What is CORS middleware (such as the cors npm package) used for in an Express app?",
+      option_a: "Enable and configure Cross-Origin Resource Sharing so browsers can make requests from different origins",
+      option_b: "Compress HTTP responses",
+      option_c: "Parse cookies from incoming requests",
+      option_d: "Log incoming requests to the console",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "node_medium_1_q13",
+      assessment_id: "node_medium_1",
+      question: "Which HTTP method is conventionally used in a RESTful Express route to fully update an existing resource?",
+      option_a: "GET",
+      option_b: "PUT",
+      option_c: "POST used exclusively",
+      option_d: "DELETE",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "node_medium_1_q14",
+      assessment_id: "node_medium_1",
+      question: "What does app.listen(port, callback) do?",
+      option_a: "Defines a new route",
+      option_b: "Starts the Express server listening for incoming connections on the specified port",
+      option_c: "Parses incoming request bodies",
+      option_d: "Registers a piece of middleware only",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "node_medium_1_q15",
+      assessment_id: "node_medium_1",
+      question: "What is the purpose of environment-specific configuration, such as using the dotenv package, in an Express app?",
+      option_a: "Manage different settings, like database URLs and secrets, across development, staging, and production without hardcoding them",
+      option_b: "Style the application's HTML output",
+      option_c: "Define the application's routes",
+      option_d: "Handle CORS configuration directly",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Node.js — Node.js Advanced (assessment node_hard_1)
+  ...([
+    {
+      id: "node_hard_1_q1",
+      assessment_id: "node_hard_1",
+      question: "What is a Node.js Stream primarily used for?",
+      option_a: "Processing data incrementally in chunks, rather than loading it all into memory at once",
+      option_b: "Managing HTTP route definitions",
+      option_c: "Compiling TypeScript source code",
+      option_d: "Managing installed npm packages",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "node_hard_1_q2",
+      assessment_id: "node_hard_1",
+      question: "Which of these is NOT one of the four fundamental Node.js stream types?",
+      option_a: "Readable",
+      option_b: "Writable",
+      option_c: "Duplex",
+      option_d: "Static",
+      correct_answer: "D",
+      difficulty: "hard"
+    },
+    {
+      id: "node_hard_1_q3",
+      assessment_id: "node_hard_1",
+      question: "What does the pipe() method do when used between two streams?",
+      option_a: "Connects a readable stream's output directly to a writable stream's input, automatically handling backpressure",
+      option_b: "Deletes an existing stream",
+      option_c: "Converts asynchronous code into synchronous code",
+      option_d: "Compiles the surrounding source code",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "node_hard_1_q4",
+      assessment_id: "node_hard_1",
+      question: "What is the Node.js cluster module used for?",
+      option_a: "Taking advantage of multi-core systems by forking multiple worker processes that can share the same server port",
+      option_b: "Managing CSS build clusters",
+      option_c: "Handling database clustering exclusively",
+      option_d: "Compressing files on disk",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "node_hard_1_q5",
+      assessment_id: "node_hard_1",
+      question: "Why is long-running, CPU-intensive synchronous code problematic in a single Node.js process?",
+      option_a: "It blocks the event loop, preventing other requests from being handled until it finishes",
+      option_b: "It has no measurable effect on performance",
+      option_c: "Node.js automatically parallelizes it across cores",
+      option_d: "It only ever affects disk I/O operations",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "node_hard_1_q6",
+      assessment_id: "node_hard_1",
+      question: "What is the purpose of Worker Threads in Node.js?",
+      option_a: "Run JavaScript in parallel across multiple threads for CPU-intensive tasks, separate from the main event loop",
+      option_b: "Completely replace the event loop",
+      option_c: "Handle network requests exclusively",
+      option_d: "Manage npm package installs",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "node_hard_1_q7",
+      assessment_id: "node_hard_1",
+      question: "What does \"backpressure\" refer to in the context of Node.js streams?",
+      option_a: "A mechanism signaling that a writable stream cannot process data as fast as it is being written, so the readable side should slow down",
+      option_b: "A network security feature",
+      option_c: "A CPU throttling technique",
+      option_d: "A specific type of memory leak",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "node_hard_1_q8",
+      assessment_id: "node_hard_1",
+      question: "What is a key benefit of using a process manager like PM2 in production?",
+      option_a: "Managing clustering, automatic restarts, and monitoring of Node.js processes",
+      option_b: "Completely replacing npm",
+      option_c: "Compiling TypeScript source",
+      option_d: "Handling database schema migrations",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "node_hard_1_q9",
+      assessment_id: "node_hard_1",
+      question: "What commonly causes a memory leak in a long-running Node.js application?",
+      option_a: "Properly closing all opened connections",
+      option_b: "Accumulating references, such as in caches, global arrays, or event listeners, that are never released",
+      option_c: "Using const for variable declarations",
+      option_d: "Using streams to process data",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "node_hard_1_q10",
+      assessment_id: "node_hard_1",
+      question: "What is the V8 garbage collector responsible for?",
+      option_a: "Automatically reclaiming memory occupied by objects that are no longer reachable or referenced",
+      option_b: "Managing defined HTTP routes",
+      option_c: "Compiling TypeScript source files",
+      option_d: "Handling incoming file uploads",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "node_hard_1_q11",
+      assessment_id: "node_hard_1",
+      question: "How does process.nextTick() differ from setImmediate() in terms of execution order?",
+      option_a: "process.nextTick() queues a callback to run before the event loop proceeds to its next phase (higher priority); setImmediate() runs during the check phase of the next loop iteration",
+      option_b: "They behave identically in every situation",
+      option_c: "setImmediate() always executes strictly before process.nextTick()",
+      option_d: "Neither one affects the order of execution at all",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "node_hard_1_q12",
+      assessment_id: "node_hard_1",
+      question: "Why might you place a load balancer in front of multiple Node.js cluster workers or instances?",
+      option_a: "Distribute incoming requests across multiple processes/instances to improve throughput and reliability",
+      option_b: "Reduce the overall code complexity of the application",
+      option_c: "Eliminate the need for automated testing",
+      option_d: "Fully replace the use of streams",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "node_hard_1_q13",
+      assessment_id: "node_hard_1",
+      question: "What commonly causes an \"unhandled promise rejection\" in Node.js?",
+      option_a: "A rejected Promise with no .catch() handler, or no surrounding try/catch around an awaited call",
+      option_b: "Correctly using async/await throughout the codebase",
+      option_c: "Using Node.js streams",
+      option_d: "Using the cluster module",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "node_hard_1_q14",
+      assessment_id: "node_hard_1",
+      question: "What do profiling tools, such as the --prof flag or the built-in inspector, help identify during Node.js performance tuning?",
+      option_a: "CPU-intensive functions and bottlenecks within the application",
+      option_b: "Only network latency issues",
+      option_c: "Only raw disk usage statistics",
+      option_d: "Only browser-side memory usage",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "node_hard_1_q15",
+      assessment_id: "node_hard_1",
+      question: "Why is it generally recommended to avoid blocking synchronous file system calls, like fs.readFileSync, inside a request handler on a high-throughput server?",
+      option_a: "They block the single-threaded event loop, stalling all other concurrent requests until the operation finishes",
+      option_b: "They are always inherently faster than their asynchronous equivalents",
+      option_c: "They automatically run inside a separate worker thread",
+      option_d: "They have no impact whatsoever on other concurrent requests",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Go — Go Programming Basics (assessment go_easy_1)
+  ...([
+    {
+      id: "go_easy_1_q1",
+      assessment_id: "go_easy_1",
+      question: "Which syntax declares a variable in Go using type inference?",
+      option_a: "x := 5 (or var x = 5)",
+      option_b: "let x = 5",
+      option_c: "dim x = 5",
+      option_d: "def x = 5",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "go_easy_1_q2",
+      assessment_id: "go_easy_1",
+      question: "What is the name of the entry-point function in a Go executable program?",
+      option_a: "start()",
+      option_b: "main()",
+      option_c: "init() used alone",
+      option_d: "run()",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "go_easy_1_q3",
+      assessment_id: "go_easy_1",
+      question: "Which keyword declares a package at the top of a Go source file?",
+      option_a: "package",
+      option_b: "module",
+      option_c: "namespace",
+      option_d: "import",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "go_easy_1_q4",
+      assessment_id: "go_easy_1",
+      question: "What does running go run file.go do?",
+      option_a: "Compiles and immediately runs the Go program",
+      option_b: "Only compiles the program without running it",
+      option_c: "Only formats the source code",
+      option_d: "Only installs a Go package",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "go_easy_1_q5",
+      assessment_id: "go_easy_1",
+      question: "What is the zero value of an uninitialized int variable in Go?",
+      option_a: "0",
+      option_b: "nil",
+      option_c: "undefined",
+      option_d: "-1",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "go_easy_1_q6",
+      assessment_id: "go_easy_1",
+      question: "Which fmt package function prints output to the console followed by a newline?",
+      option_a: "fmt.Println",
+      option_b: "print() used alone",
+      option_c: "console.log()",
+      option_d: "System.out.println()",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "go_easy_1_q7",
+      assessment_id: "go_easy_1",
+      question: "Which of these correctly declares a slice of integers in Go?",
+      option_a: "var s []int",
+      option_b: "var s = new int[]",
+      option_c: "var s = Slice<int>",
+      option_d: "int[] s",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "go_easy_1_q8",
+      assessment_id: "go_easy_1",
+      question: "What is the correct way to declare and initialize a constant named Pi in Go?",
+      option_a: "const Pi = 3.14",
+      option_b: "let Pi = 3.14",
+      option_c: "var const Pi = 3.14",
+      option_d: "final Pi = 3.14",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "go_easy_1_q9",
+      assessment_id: "go_easy_1",
+      question: "Which keyword is used to define a new struct type in Go, e.g. \"type Person struct { ... }\"?",
+      option_a: "struct",
+      option_b: "class",
+      option_c: "interface",
+      option_d: "record",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "go_easy_1_q10",
+      assessment_id: "go_easy_1",
+      question: "What does the := operator do in Go?",
+      option_a: "Declares and initializes a new variable with type inference (short variable declaration)",
+      option_b: "Compares two values for equality",
+      option_c: "Performs integer division",
+      option_d: "Imports a package",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "go_easy_1_q11",
+      assessment_id: "go_easy_1",
+      question: "Which standard library package is commonly imported to format and print strings in Go?",
+      option_a: "fmt",
+      option_b: "strings used alone",
+      option_c: "os",
+      option_d: "io",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "go_easy_1_q12",
+      assessment_id: "go_easy_1",
+      question: "What is the general syntax for declaring a function in Go?",
+      option_a: "func functionName(params) returnType { ... }",
+      option_b: "function functionName() { ... }",
+      option_c: "def functionName():",
+      option_d: "void functionName() { ... }",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "go_easy_1_q13",
+      assessment_id: "go_easy_1",
+      question: "What is Go's naming convention for exporting a function or variable from a package (making it public)?",
+      option_a: "Prefix the name with an underscore",
+      option_b: "Capitalize the first letter of the identifier's name",
+      option_c: "Use an explicit export keyword",
+      option_d: "Use an explicit public keyword",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "go_easy_1_q14",
+      assessment_id: "go_easy_1",
+      question: "Which built-in Go type represents a boolean value?",
+      option_a: "bool",
+      option_b: "boolean",
+      option_c: "Bool",
+      option_d: "int1",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "go_easy_1_q15",
+      assessment_id: "go_easy_1",
+      question: "What does the import statement do at the top of a Go file?",
+      option_a: "Includes code from another package for use in the current file",
+      option_b: "Declares a brand-new package",
+      option_c: "Compiles the entire program",
+      option_d: "Formats the source code",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Go — Go Concurrency (assessment go_medium_1)
+  ...([
+    {
+      id: "go_medium_1_q1",
+      assessment_id: "go_medium_1",
+      question: "What is a goroutine?",
+      option_a: "A lightweight thread of execution managed by the Go runtime",
+      option_b: "A special kind of struct",
+      option_c: "A Go package manager",
+      option_d: "A compiler directive",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "go_medium_1_q2",
+      assessment_id: "go_medium_1",
+      question: "How do you start a new goroutine in Go?",
+      option_a: "Prefix a function call with the go keyword",
+      option_b: "Call thread.start()",
+      option_c: "Wrap the call in async func()",
+      option_d: "Wrap the call in parallel func()",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "go_medium_1_q3",
+      assessment_id: "go_medium_1",
+      question: "What is a channel used for in Go?",
+      option_a: "Communicating and synchronizing data between goroutines",
+      option_b: "Storing files on disk",
+      option_c: "Managing HTTP routes",
+      option_d: "Defining struct types",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "go_medium_1_q4",
+      assessment_id: "go_medium_1",
+      question: "How do you declare a channel of type int in Go?",
+      option_a: "ch := make(chan int)",
+      option_b: "ch := new(channel int)",
+      option_c: "ch := chan[int]{}",
+      option_d: "ch := Channel<int>()",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "go_medium_1_q5",
+      assessment_id: "go_medium_1",
+      question: "What happens when a value is sent on an unbuffered channel?",
+      option_a: "The send returns immediately regardless of whether a receiver exists",
+      option_b: "The send blocks until a receiver is ready to receive that value",
+      option_c: "The channel stores an unlimited number of values",
+      option_d: "The value is silently discarded",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "go_medium_1_q6",
+      assessment_id: "go_medium_1",
+      question: "What is the purpose of the sync.WaitGroup type?",
+      option_a: "Wait for a collection of goroutines to finish executing before continuing",
+      option_b: "Create new channels",
+      option_c: "Format strings for output",
+      option_d: "Handle incoming HTTP requests",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "go_medium_1_q7",
+      assessment_id: "go_medium_1",
+      question: "What does a select statement do when used with multiple channels?",
+      option_a: "Chooses among several ready channel operations, blocking until at least one can proceed",
+      option_b: "Declares a brand-new channel",
+      option_c: "Permanently deletes a channel",
+      option_d: "Formats a channel's output",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "go_medium_1_q8",
+      assessment_id: "go_medium_1",
+      question: "What is a common cause of a deadlock in Go concurrent code?",
+      option_a: "All active goroutines end up blocked waiting on channel operations that will never complete",
+      option_b: "Declaring too many local variables",
+      option_c: "Importing too many packages",
+      option_d: "Declaring too many constants",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "go_medium_1_q9",
+      assessment_id: "go_medium_1",
+      question: "What does sync.Mutex provide in Go?",
+      option_a: "Mutual exclusion locking to protect shared data from concurrent access",
+      option_b: "A special kind of channel",
+      option_c: "A built-in goroutine scheduler",
+      option_d: "A package import mechanism",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "go_medium_1_q10",
+      assessment_id: "go_medium_1",
+      question: "What does the Go proverb \"Don't communicate by sharing memory; share memory by communicating\" recommend?",
+      option_a: "Prefer using channels to pass data between goroutines instead of directly sharing variables protected by locks",
+      option_b: "Avoid using channels entirely",
+      option_c: "Always rely on global variables for shared state",
+      option_d: "Avoid using goroutines altogether",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "go_medium_1_q11",
+      assessment_id: "go_medium_1",
+      question: "What does closing a channel with close(ch) signal to its receivers?",
+      option_a: "That no further values will ever be sent on that channel",
+      option_b: "That the channel has been deleted immediately",
+      option_c: "That an error has occurred",
+      option_d: "That the whole program will exit",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "go_medium_1_q12",
+      assessment_id: "go_medium_1",
+      question: "What happens when you receive from a closed channel with no remaining buffered values?",
+      option_a: "It always panics",
+      option_b: "It immediately returns the zero value, and in the two-value form the \"ok\" flag is false",
+      option_c: "It blocks forever waiting for a value",
+      option_d: "It automatically reopens the channel",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "go_medium_1_q13",
+      assessment_id: "go_medium_1",
+      question: "What is a buffered channel in Go?",
+      option_a: "A channel with a set capacity that lets sends succeed without blocking until that buffer is full",
+      option_b: "A channel that never blocks under any circumstance",
+      option_c: "A channel restricted to a single goroutine",
+      option_d: "A channel used only for propagating errors",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "go_medium_1_q14",
+      assessment_id: "go_medium_1",
+      question: "What does Go's race detector (enabled via go run -race) help identify?",
+      option_a: "Data races where multiple goroutines access shared memory concurrently without proper synchronization",
+      option_b: "Plain syntax errors in the source code",
+      option_c: "Only memory leaks",
+      option_d: "Only network latency issues",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "go_medium_1_q15",
+      assessment_id: "go_medium_1",
+      question: "Why might you use context.Context in a concurrent Go program?",
+      option_a: "To carry deadlines, cancellation signals, and request-scoped values across API boundaries and goroutines",
+      option_b: "To declare ordinary local variables",
+      option_c: "To format output strings",
+      option_d: "To manage package imports",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Go — Go Advanced Topics (assessment go_hard_1)
+  ...([
+    {
+      id: "go_hard_1_q1",
+      assessment_id: "go_hard_1",
+      question: "What is the purpose of interfaces in Go?",
+      option_a: "Define a set of method signatures that a type must implement, enabling polymorphism",
+      option_b: "Store data fields like a struct does",
+      option_c: "Manage memory allocation manually",
+      option_d: "Import external packages",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "go_hard_1_q2",
+      assessment_id: "go_hard_1",
+      question: "What does Go's implicit interface satisfaction mean?",
+      option_a: "A type must explicitly declare every interface it implements",
+      option_b: "A type automatically satisfies an interface simply by implementing all of its methods, with no explicit declaration required",
+      option_c: "Interfaces in Go can never actually be satisfied",
+      option_d: "Only struct types are allowed to implement interfaces",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "go_hard_1_q3",
+      assessment_id: "go_hard_1",
+      question: "What is the \"empty interface\" (interface{}, or any in modern Go) used for?",
+      option_a: "Representing a value of any type whatsoever",
+      option_b: "Representing the complete absence of a value",
+      option_c: "Defining an empty struct with no fields",
+      option_d: "Deliberately forcing a compile-time error",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "go_hard_1_q4",
+      assessment_id: "go_hard_1",
+      question: "How does Go idiomatically handle error conditions, as opposed to using exceptions?",
+      option_a: "Functions return an explicit error value that the caller is expected to check",
+      option_b: "Go relies exclusively on try/catch blocks",
+      option_c: "Errors are silently ignored by default",
+      option_d: "Go has no error-handling mechanism at all",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "go_hard_1_q5",
+      assessment_id: "go_hard_1",
+      question: "What is a Go defer statement used for?",
+      option_a: "Scheduling a function call to run just before its surrounding function returns",
+      option_b: "Delaying the entire program's startup",
+      option_c: "Declaring a new variable",
+      option_d: "Importing a package at a later point",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "go_hard_1_q6",
+      assessment_id: "go_hard_1",
+      question: "What is the purpose of Go's panic and recover mechanism?",
+      option_a: "Handle genuinely exceptional situations, with recover letting a deferred function regain control after a panic",
+      option_b: "Fully replace all conventional error returns",
+      option_c: "Manage goroutine scheduling directly",
+      option_d: "Format output strings",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "go_hard_1_q7",
+      assessment_id: "go_hard_1",
+      question: "What does a type assertion such as v, ok := i.(string) do in Go?",
+      option_a: "Extracts the underlying concrete value from an interface, checking whether it matches the given type",
+      option_b: "Converts an int value directly into a string",
+      option_c: "Declares a brand-new interface type",
+      option_d: "Creates a new goroutine",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "go_hard_1_q8",
+      assessment_id: "go_hard_1",
+      question: "What does Go's garbage collector primarily manage?",
+      option_a: "Automatically reclaiming memory for objects that are no longer referenced",
+      option_b: "Compiling the program's source code",
+      option_c: "Only goroutine scheduling",
+      option_d: "Formatting source code files",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "go_hard_1_q9",
+      assessment_id: "go_hard_1",
+      question: "What is a common use case for Go generics (type parameters, introduced in Go 1.18)?",
+      option_a: "Writing functions or types that work across multiple types while still retaining type safety",
+      option_b: "Completely replacing the need for interfaces",
+      option_c: "Removing the need for structs altogether",
+      option_d: "Disabling the compiler's type checks",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "go_hard_1_q10",
+      assessment_id: "go_hard_1",
+      question: "What is the purpose of Go modules, defined via a go.mod file?",
+      option_a: "Manage a project's dependencies and their versioning",
+      option_b: "Define HTTP route handlers",
+      option_c: "Manage goroutine scheduling",
+      option_d: "Format the project's source code",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "go_hard_1_q11",
+      assessment_id: "go_hard_1",
+      question: "What does embedding one struct within another achieve in Go?",
+      option_a: "Composition, giving the outer struct direct access to the embedded struct's fields and methods, as a Go alternative to classical inheritance",
+      option_b: "Deletes the inner (embedded) struct entirely",
+      option_c: "Creates a circular import between packages",
+      option_d: "Automatically encrypts the struct's data",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "go_hard_1_q12",
+      assessment_id: "go_hard_1",
+      question: "Why does Go generally favor composition over classical inheritance?",
+      option_a: "Go has no concept of classes; struct embedding combined with interfaces provides flexible code reuse without a rigid class hierarchy",
+      option_b: "Go actually supports full multiple inheritance natively",
+      option_c: "Go strictly requires inheritance in order to define interfaces",
+      option_d: "Composition is simply not supported in the Go language",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "go_hard_1_q13",
+      assessment_id: "go_hard_1",
+      question: "What does escape analysis in the Go compiler determine?",
+      option_a: "Whether a given variable can be safely allocated on the stack, or must instead be allocated on the heap",
+      option_b: "Which package should be imported next",
+      option_c: "Which goroutine the scheduler should run first",
+      option_d: "How network packets should be routed",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "go_hard_1_q14",
+      assessment_id: "go_hard_1",
+      question: "What does the go vet tool do?",
+      option_a: "Formats Go source code files",
+      option_b: "Examines Go source code for suspicious constructs, such as incorrect Printf-style format strings or unreachable code",
+      option_c: "Executes the project's unit tests",
+      option_d: "Manages the project's dependencies",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "go_hard_1_q15",
+      assessment_id: "go_hard_1",
+      question: "What is a common pattern for limiting the number of goroutines that run concurrently, forming a worker pool?",
+      option_a: "Using a buffered channel as a semaphore to cap the level of concurrency",
+      option_b: "Spawning an unlimited number of goroutines with no restriction",
+      option_c: "Relying solely on global variables to track concurrency",
+      option_d: "Disabling the Go scheduler entirely",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Kubernetes — Kubernetes Basics (assessment kubernetes_easy_1)
+  ...([
+    {
+      id: "kubernetes_easy_1_q1",
+      assessment_id: "kubernetes_easy_1",
+      question: "What is the smallest deployable unit in Kubernetes?",
+      option_a: "Container",
+      option_b: "Pod",
+      option_c: "Node",
+      option_d: "Cluster",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "kubernetes_easy_1_q2",
+      assessment_id: "kubernetes_easy_1",
+      question: "What does a Kubernetes Deployment manage?",
+      option_a: "Physical server hardware",
+      option_b: "Declarative updates and the desired state for Pods and ReplicaSets",
+      option_c: "DNS records exclusively",
+      option_d: "Storage volumes exclusively",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "kubernetes_easy_1_q3",
+      assessment_id: "kubernetes_easy_1",
+      question: "What is the purpose of a Kubernetes Service?",
+      option_a: "Provide a stable network endpoint for accessing a dynamic set of Pods",
+      option_b: "Store configuration files",
+      option_c: "Schedule Pods onto specific nodes",
+      option_d: "Build container images",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "kubernetes_easy_1_q4",
+      assessment_id: "kubernetes_easy_1",
+      question: "What is a Kubernetes Node?",
+      option_a: "A worker machine, virtual or physical, that runs Pods",
+      option_b: "A single standalone container",
+      option_c: "A YAML configuration file",
+      option_d: "A network policy definition",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "kubernetes_easy_1_q5",
+      assessment_id: "kubernetes_easy_1",
+      question: "Which control plane component is responsible for scheduling Pods onto nodes?",
+      option_a: "kube-scheduler",
+      option_b: "kubelet",
+      option_c: "etcd",
+      option_d: "kube-proxy",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "kubernetes_easy_1_q6",
+      assessment_id: "kubernetes_easy_1",
+      question: "What is kubectl used for?",
+      option_a: "The command-line tool for interacting with a Kubernetes cluster",
+      option_b: "A container runtime engine",
+      option_c: "A networking plugin",
+      option_d: "A monitoring dashboard",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "kubernetes_easy_1_q7",
+      assessment_id: "kubernetes_easy_1",
+      question: "What does a ReplicaSet ensure?",
+      option_a: "That a specified number of identical Pod replicas are running at all times",
+      option_b: "That only a single Pod is ever allowed to run",
+      option_c: "That Pods are automatically deleted after a fixed time",
+      option_d: "That new nodes are added automatically",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "kubernetes_easy_1_q8",
+      assessment_id: "kubernetes_easy_1",
+      question: "What is a Kubernetes Namespace used for?",
+      option_a: "Provide a mechanism to isolate groups of resources within a single cluster",
+      option_b: "Store container images",
+      option_c: "Define network routing rules",
+      option_d: "Schedule Pods onto nodes",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "kubernetes_easy_1_q9",
+      assessment_id: "kubernetes_easy_1",
+      question: "What is stored in etcd within a Kubernetes cluster?",
+      option_a: "The cluster's consistent, distributed key-value store holding all cluster state and configuration data",
+      option_b: "Only container log output",
+      option_c: "Application source code",
+      option_d: "Only user account passwords",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "kubernetes_easy_1_q10",
+      assessment_id: "kubernetes_easy_1",
+      question: "What does the kubelet do on each Kubernetes node?",
+      option_a: "Ensures the containers described in that node's PodSpecs are running and healthy",
+      option_b: "Schedules Pods across the entire cluster",
+      option_c: "Stores the cluster's persistent state",
+      option_d: "Manages DNS for the public internet",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "kubernetes_easy_1_q11",
+      assessment_id: "kubernetes_easy_1",
+      question: "What is a ConfigMap used for in Kubernetes?",
+      option_a: "Store non-sensitive configuration data as key-value pairs for Pods to consume",
+      option_b: "Securely store secrets by design",
+      option_c: "Schedule Pods onto nodes",
+      option_d: "Define network policies",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "kubernetes_easy_1_q12",
+      assessment_id: "kubernetes_easy_1",
+      question: "What is a Kubernetes Secret used for?",
+      option_a: "Store sensitive information, such as passwords or API keys, base64-encoded",
+      option_b: "Store only non-sensitive configuration data",
+      option_c: "Define Pod scheduling rules",
+      option_d: "Manage DNS records",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "kubernetes_easy_1_q13",
+      assessment_id: "kubernetes_easy_1",
+      question: "What does running kubectl apply -f deployment.yaml do?",
+      option_a: "Deletes the resources defined in that file",
+      option_b: "Creates or updates resources in the cluster to match the desired state described in the file",
+      option_c: "Only validates the file's YAML syntax",
+      option_d: "Lists every deployment in the cluster",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "kubernetes_easy_1_q14",
+      assessment_id: "kubernetes_easy_1",
+      question: "How does Kubernetes typically help a Pod recover automatically after a container crash?",
+      option_a: "It automatically restarts the failed container according to the Pod's configured restart policy",
+      option_b: "Nothing happens automatically without manual intervention",
+      option_c: "The entire node is rebooted",
+      option_d: "The entire cluster shuts down",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "kubernetes_easy_1_q15",
+      assessment_id: "kubernetes_easy_1",
+      question: "Which YAML field specifies the type of Kubernetes resource being defined, such as Pod, Deployment, or Service?",
+      option_a: "kind",
+      option_b: "apiVersion alone",
+      option_c: "metadata",
+      option_d: "spec.type",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Kubernetes — Kubernetes Networking (assessment kubernetes_medium_1)
+  ...([
+    {
+      id: "kubernetes_medium_1_q1",
+      assessment_id: "kubernetes_medium_1",
+      question: "What does a ClusterIP Service type expose?",
+      option_a: "The service externally via a cloud load balancer",
+      option_b: "The service on an internal IP address reachable only within the cluster",
+      option_c: "The service on every node's IP at a static port",
+      option_d: "A mapping to an external DNS name",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "kubernetes_medium_1_q2",
+      assessment_id: "kubernetes_medium_1",
+      question: "What does a NodePort Service type do?",
+      option_a: "Exposes the service on a static port on every node's IP, making it reachable externally",
+      option_b: "Exposes the service internally only",
+      option_c: "Automatically creates a cloud load balancer in every environment",
+      option_d: "Deletes the underlying service",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "kubernetes_medium_1_q3",
+      assessment_id: "kubernetes_medium_1",
+      question: "What is the purpose of a Kubernetes Ingress resource?",
+      option_a: "Manage external HTTP/HTTPS access into services within a cluster, often including routing rules",
+      option_b: "Completely replace the need for Services",
+      option_c: "Manage internal-only DNS",
+      option_d: "Store application secrets",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "kubernetes_medium_1_q4",
+      assessment_id: "kubernetes_medium_1",
+      question: "What does the Kubernetes networking model require regarding Pod-to-Pod communication?",
+      option_a: "Pods can only communicate with each other through NAT",
+      option_b: "Every Pod gets its own IP address and can communicate with every other Pod without NAT",
+      option_c: "Pods cannot communicate with one another by default",
+      option_d: "All Pods share a single IP address cluster-wide",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "kubernetes_medium_1_q5",
+      assessment_id: "kubernetes_medium_1",
+      question: "What does kube-proxy do?",
+      option_a: "Maintains network rules on each node to implement the Service abstraction and load-balance traffic to Pods",
+      option_b: "Schedules Pods onto nodes",
+      option_c: "Stores the cluster's overall state",
+      option_d: "Builds container images",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "kubernetes_medium_1_q6",
+      assessment_id: "kubernetes_medium_1",
+      question: "What is the purpose of a NetworkPolicy resource in Kubernetes?",
+      option_a: "Control traffic flow at the IP and port level between Pods and other network endpoints",
+      option_b: "Define container image contents",
+      option_c: "Schedule Pods onto specific nodes",
+      option_d: "Store application secrets",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "kubernetes_medium_1_q7",
+      assessment_id: "kubernetes_medium_1",
+      question: "What is a headless Service (with ClusterIP set to None) used for?",
+      option_a: "Enabling DNS resolution directly to individual Pod IPs instead of a single virtual IP, useful for stateful applications",
+      option_b: "Disabling networking entirely for a Service",
+      option_c: "Exposing a Service publicly to the internet",
+      option_d: "Fully replacing Ingress",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "kubernetes_medium_1_q8",
+      assessment_id: "kubernetes_medium_1",
+      question: "What role does a service mesh sidecar proxy, such as Envoy in Istio, play?",
+      option_a: "Intercepts and manages network traffic to/from a Pod, enabling features like retries, mTLS, and observability",
+      option_b: "Stores the application's persistent data",
+      option_c: "Schedules Pods onto nodes",
+      option_d: "Builds container images",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "kubernetes_medium_1_q9",
+      assessment_id: "kubernetes_medium_1",
+      question: "What does DNS-based service discovery typically allow within a Kubernetes cluster?",
+      option_a: "Pods to resolve other Services by name, such as myservice.namespace.svc.cluster.local",
+      option_b: "Only external DNS resolution, with no internal names",
+      option_c: "No internal name resolution whatsoever",
+      option_d: "Only manual IP-based configuration",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "kubernetes_medium_1_q10",
+      assessment_id: "kubernetes_medium_1",
+      question: "What is the purpose of a LoadBalancer Service type in a cloud environment?",
+      option_a: "Provisions an external cloud load balancer that routes traffic into the Service",
+      option_b: "Only ever works in on-premises environments",
+      option_c: "Disables external access to the Service",
+      option_d: "Completely replaces the need for an Ingress controller",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "kubernetes_medium_1_q11",
+      assessment_id: "kubernetes_medium_1",
+      question: "What does mTLS (mutual TLS) provide in a service mesh?",
+      option_a: "Both the client and server authenticate each other and their traffic is encrypted",
+      option_b: "Only the server authenticates to the client",
+      option_c: "No encryption at all, only additional logging",
+      option_d: "DNS resolution services only",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "kubernetes_medium_1_q12",
+      assessment_id: "kubernetes_medium_1",
+      question: "What is the CNI (Container Network Interface) responsible for in Kubernetes?",
+      option_a: "Providing the plugin-based networking implementation that assigns IPs and configures networking for Pods",
+      option_b: "Managing container images",
+      option_c: "Scheduling Pods onto nodes",
+      option_d: "Storing application secrets",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "kubernetes_medium_1_q13",
+      assessment_id: "kubernetes_medium_1",
+      question: "What is the role of an Ingress Controller in a Kubernetes cluster?",
+      option_a: "Implements the rules defined in Ingress resources, actually handling and routing incoming traffic",
+      option_b: "Fully replaces the kubelet",
+      option_c: "Stores the cluster's persistent state",
+      option_d: "Manages DNS for the entire public internet",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "kubernetes_medium_1_q14",
+      assessment_id: "kubernetes_medium_1",
+      question: "What does \"traffic splitting\" enable in a service mesh, such as for canary deployments?",
+      option_a: "Distributing requests between different versions of a service based on defined weights",
+      option_b: "Completely disabling all traffic",
+      option_c: "Encrypting traffic only, with no routing logic",
+      option_d: "Merging two separate services into one",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "kubernetes_medium_1_q15",
+      assessment_id: "kubernetes_medium_1",
+      question: "Which Kubernetes object type is best suited for exposing a stateful application that requires stable, unique network identifiers per Pod?",
+      option_a: "A Deployment paired with a ClusterIP Service",
+      option_b: "A StatefulSet paired with a headless Service",
+      option_c: "A DaemonSet on its own",
+      option_d: "A Job on its own",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Kubernetes — Kubernetes Advanced (assessment kubernetes_hard_1)
+  ...([
+    {
+      id: "kubernetes_hard_1_q1",
+      assessment_id: "kubernetes_hard_1",
+      question: "What is a Custom Resource Definition (CRD) in Kubernetes?",
+      option_a: "A way to extend the Kubernetes API by defining entirely new custom resource types",
+      option_b: "A built-in resource type like Pod or Service",
+      option_c: "A specific kind of network policy",
+      option_d: "A logging configuration format",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "kubernetes_hard_1_q2",
+      assessment_id: "kubernetes_hard_1",
+      question: "What is a Kubernetes Operator?",
+      option_a: "A person who manages the cluster entirely by hand",
+      option_b: "A software pattern using custom controllers and CRDs to automate management of complex, stateful applications",
+      option_c: "A type of Pod restart policy",
+      option_d: "A built-in scheduler plugin",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "kubernetes_hard_1_q3",
+      assessment_id: "kubernetes_hard_1",
+      question: "What is the core reconciliation loop pattern used by Kubernetes controllers?",
+      option_a: "Continuously comparing the actual cluster state against the desired state and acting to converge them",
+      option_b: "Running once at startup and never running again afterward",
+      option_c: "Only responding to manually issued kubectl commands",
+      option_d: "Polling external APIs that are unrelated to cluster state",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "kubernetes_hard_1_q4",
+      assessment_id: "kubernetes_hard_1",
+      question: "What is the purpose of admission controllers in the Kubernetes API server's request pipeline?",
+      option_a: "Intercept requests to the API server in order to validate or mutate objects before they are persisted",
+      option_b: "Schedule Pods onto specific nodes",
+      option_c: "Store application secrets",
+      option_d: "Manage DNS records",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "kubernetes_hard_1_q5",
+      assessment_id: "kubernetes_hard_1",
+      question: "What is a MutatingAdmissionWebhook used for?",
+      option_a: "Modify (mutate) incoming API objects before they are persisted, such as automatically injecting sidecars",
+      option_b: "Only validate objects, with no ability to change them",
+      option_c: "Delete existing resources",
+      option_d: "Schedule Pods onto nodes",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "kubernetes_hard_1_q6",
+      assessment_id: "kubernetes_hard_1",
+      question: "What does a PodDisruptionBudget (PDB) help ensure?",
+      option_a: "A minimum number or percentage of Pods remain available during voluntary disruptions, such as node drains",
+      option_b: "Pods are never restarted under any circumstance",
+      option_c: "Nodes can never be added to the cluster",
+      option_d: "Pods always run on the exact same node",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "kubernetes_hard_1_q7",
+      assessment_id: "kubernetes_hard_1",
+      question: "What is the purpose of a Horizontal Pod Autoscaler (HPA)?",
+      option_a: "Automatically scale the number of Pod replicas based on observed metrics like CPU usage or custom metrics",
+      option_b: "Scale the resources allocated to a single Pod",
+      option_c: "Only ever add more nodes to the cluster",
+      option_d: "Completely replace the scheduler",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "kubernetes_hard_1_q8",
+      assessment_id: "kubernetes_hard_1",
+      question: "How does the Vertical Pod Autoscaler (VPA) differ in behavior from the HPA?",
+      option_a: "VPA adjusts a container's CPU/memory requests and limits rather than the number of replicas",
+      option_b: "VPA only ever scales the number of nodes",
+      option_c: "VPA and HPA behave identically",
+      option_d: "VPA manages cluster networking instead",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "kubernetes_hard_1_q9",
+      assessment_id: "kubernetes_hard_1",
+      question: "What is the purpose of taints and tolerations in Kubernetes scheduling?",
+      option_a: "Allow nodes to repel Pods unless those Pods explicitly tolerate the taint, controlling Pod placement",
+      option_b: "Define network policies for a namespace",
+      option_c: "Store application secrets",
+      option_d: "Manage which container images can be pulled",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "kubernetes_hard_1_q10",
+      assessment_id: "kubernetes_hard_1",
+      question: "What do Pod affinity and anti-affinity rules let you configure?",
+      option_a: "Rules that influence Pod scheduling based on the presence, or absence, of other Pods on a node or topology",
+      option_b: "Network-level traffic encryption",
+      option_c: "Storage class definitions",
+      option_d: "Container image pulling behavior",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "kubernetes_hard_1_q11",
+      assessment_id: "kubernetes_hard_1",
+      question: "How does a StatefulSet differ from a Deployment?",
+      option_a: "A StatefulSet provides stable, unique network identities and persistent storage for its Pods, which is useful for stateful applications",
+      option_b: "A StatefulSet behaves identically to a Deployment in every respect",
+      option_c: "A StatefulSet can only be used for entirely stateless apps",
+      option_d: "A StatefulSet cannot make use of persistent volumes",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "kubernetes_hard_1_q12",
+      assessment_id: "kubernetes_hard_1",
+      question: "What is the function of a Kubernetes Finalizer set on a resource?",
+      option_a: "Prevents deletion of that resource until cleanup logic run by a controller has fully completed",
+      option_b: "Immediately force-deletes the resource with no further checks",
+      option_c: "Schedules the resource onto a node",
+      option_d: "Encrypts the resource's stored data",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "kubernetes_hard_1_q13",
+      assessment_id: "kubernetes_hard_1",
+      question: "What does the \"GitOps\" approach typically apply to Kubernetes cluster management?",
+      option_a: "Using Git as the single source of truth for declarative infrastructure/application state, with automated reconciliation via tools like ArgoCD or Flux",
+      option_b: "Manually applying kubectl commands with no version control",
+      option_c: "Storing secrets in Git unencrypted as a recommended best practice",
+      option_d: "Deliberately avoiding version control for cluster configuration",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "kubernetes_hard_1_q14",
+      assessment_id: "kubernetes_hard_1",
+      question: "What is the role of the kube-controller-manager in a Kubernetes control plane?",
+      option_a: "Runs core control loops, such as node, replication, and endpoint controllers, that regulate overall cluster state",
+      option_b: "Stores the cluster's persistent data directly",
+      option_c: "Proxies network traffic to Pods",
+      option_d: "Builds container images",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "kubernetes_hard_1_q15",
+      assessment_id: "kubernetes_hard_1",
+      question: "Why might you use a CustomResourceDefinition combined with an Operator, rather than a Helm chart alone, to manage a complex stateful application like a database?",
+      option_a: "An Operator can encode ongoing operational knowledge, such as backups, failover, and upgrades, as active automation, whereas Helm primarily templates and installs static manifests",
+      option_b: "They are functionally identical approaches with no real difference",
+      option_c: "Helm charts automatically provide full day-2 operational automation on their own",
+      option_d: "CRDs cannot be used together with controllers",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Azure — Azure Cloud Fundamentals (assessment azure_easy_1)
+  ...([
+    {
+      id: "azure_easy_1_q1",
+      assessment_id: "azure_easy_1",
+      question: "What is Azure Resource Manager (ARM)?",
+      option_a: "The deployment and management service for Azure that organizes resources into resource groups",
+      option_b: "A specific virtual machine type",
+      option_c: "A storage account type",
+      option_d: "A networking service",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "azure_easy_1_q2",
+      assessment_id: "azure_easy_1",
+      question: "What is an Azure Resource Group?",
+      option_a: "A logical container that holds related resources for an Azure solution",
+      option_b: "A single standalone virtual machine",
+      option_c: "Only a billing invoice",
+      option_d: "A network security group",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "azure_easy_1_q3",
+      assessment_id: "azure_easy_1",
+      question: "Which Azure service provides scalable virtual machines?",
+      option_a: "Azure Blob Storage",
+      option_b: "Azure Virtual Machines (Compute)",
+      option_c: "Azure SQL Database",
+      option_d: "Azure Functions",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "azure_easy_1_q4",
+      assessment_id: "azure_easy_1",
+      question: "What is Azure Blob Storage primarily used for?",
+      option_a: "Running virtual machines",
+      option_b: "Storing large amounts of unstructured object data, such as files and images",
+      option_c: "Managing DNS records",
+      option_d: "Running serverless functions",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "azure_easy_1_q5",
+      assessment_id: "azure_easy_1",
+      question: "What is Azure Active Directory (Microsoft Entra ID) primarily used for?",
+      option_a: "Identity and access management for users and applications",
+      option_b: "Storing blob data",
+      option_c: "Hosting virtual machines",
+      option_d: "Managing DNS zones",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "azure_easy_1_q6",
+      assessment_id: "azure_easy_1",
+      question: "What is Azure Functions?",
+      option_a: "A serverless compute service that runs code in response to events without managing servers",
+      option_b: "A dedicated virtual machine service",
+      option_c: "A specific storage account tier",
+      option_d: "A network firewall service",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "azure_easy_1_q7",
+      assessment_id: "azure_easy_1",
+      question: "What does an Azure region refer to?",
+      option_a: "A set of datacenters deployed within a latency-defined perimeter, connected via a low-latency network",
+      option_b: "A single physical server",
+      option_c: "A billing plan",
+      option_d: "A resource group",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "azure_easy_1_q8",
+      assessment_id: "azure_easy_1",
+      question: "What is an Azure Availability Zone?",
+      option_a: "A physically separate location within an Azure region with independent power, cooling, and networking",
+      option_b: "A specific type of virtual machine",
+      option_c: "A storage pricing tier",
+      option_d: "A DNS record type",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "azure_easy_1_q9",
+      assessment_id: "azure_easy_1",
+      question: "Which Azure service offers a fully managed relational database?",
+      option_a: "Azure SQL Database",
+      option_b: "Azure Blob Storage",
+      option_c: "Azure Functions",
+      option_d: "Azure DNS",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "azure_easy_1_q10",
+      assessment_id: "azure_easy_1",
+      question: "What is the Azure Portal?",
+      option_a: "A web-based, graphical user interface for managing Azure resources",
+      option_b: "A command-line tool exclusively",
+      option_c: "A general-purpose programming language",
+      option_d: "A specific network protocol",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "azure_easy_1_q11",
+      assessment_id: "azure_easy_1",
+      question: "What is the Azure CLI used for?",
+      option_a: "A cross-platform command-line tool for managing Azure resources",
+      option_b: "A graphical dashboard only",
+      option_c: "A billing report tool only",
+      option_d: "A monitoring dashboard exclusively",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "azure_easy_1_q12",
+      assessment_id: "azure_easy_1",
+      question: "What is the purpose of an Azure Virtual Network (VNet)?",
+      option_a: "Provide an isolated, private network environment for Azure resources to communicate securely",
+      option_b: "Store files persistently",
+      option_c: "Run serverless code",
+      option_d: "Manage user identities",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "azure_easy_1_q13",
+      assessment_id: "azure_easy_1",
+      question: "Which Azure pricing model lets you pay only for what you actually use, with no upfront commitment?",
+      option_a: "Reserved Instances",
+      option_b: "Pay-As-You-Go",
+      option_c: "Spot pricing exclusively",
+      option_d: "An Enterprise Agreement exclusively",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "azure_easy_1_q14",
+      assessment_id: "azure_easy_1",
+      question: "What does Azure Monitor provide?",
+      option_a: "Collection and analysis of telemetry, such as metrics and logs, to monitor Azure resources and applications",
+      option_b: "Identity management services",
+      option_c: "Blob storage capacity",
+      option_d: "Only virtual networking configuration",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "azure_easy_1_q15",
+      assessment_id: "azure_easy_1",
+      question: "What is the purpose of Role-Based Access Control (RBAC) in Azure?",
+      option_a: "Grant fine-grained access permissions to Azure resources based on assigned user roles",
+      option_b: "Encrypt data at rest",
+      option_c: "Manage DNS zones",
+      option_d: "Provision virtual machines",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Azure — Azure DevOps (assessment azure_medium_1)
+  ...([
+    {
+      id: "azure_medium_1_q1",
+      assessment_id: "azure_medium_1",
+      question: "What is Azure DevOps primarily used for?",
+      option_a: "Only hosting virtual machines",
+      option_b: "A suite of development tools for planning, developing, testing, and delivering software, including CI/CD pipelines",
+      option_c: "A dedicated storage service",
+      option_d: "A relational database service",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "azure_medium_1_q2",
+      assessment_id: "azure_medium_1",
+      question: "What does Azure Pipelines provide?",
+      option_a: "CI/CD automation for building, testing, and deploying code",
+      option_b: "Only source control hosting",
+      option_c: "Only work item tracking",
+      option_d: "Only artifact storage",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "azure_medium_1_q3",
+      assessment_id: "azure_medium_1",
+      question: "What is Azure Repos?",
+      option_a: "A CI/CD pipeline automation tool",
+      option_b: "Git or TFVC-based source control repositories hosted within Azure DevOps",
+      option_c: "A monitoring dashboard",
+      option_d: "An identity management service",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "azure_medium_1_q4",
+      assessment_id: "azure_medium_1",
+      question: "What is Azure Boards used for?",
+      option_a: "Work item tracking, backlogs, and agile planning, such as Kanban boards and sprints",
+      option_b: "Hosting containers",
+      option_c: "Managing DNS records",
+      option_d: "Compute resource scaling",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "azure_medium_1_q5",
+      assessment_id: "azure_medium_1",
+      question: "What is Azure Artifacts used for?",
+      option_a: "Hosting and sharing packages, such as npm, NuGet, and Maven, within an organization",
+      option_b: "Hosting virtual machines",
+      option_c: "Managing user identities",
+      option_d: "Monitoring and alerting",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "azure_medium_1_q6",
+      assessment_id: "azure_medium_1",
+      question: "What is a YAML pipeline in Azure Pipelines?",
+      option_a: "A pipeline defined as code in a version-controlled YAML file, as opposed to the classic UI-based editor",
+      option_b: "A specific type of virtual machine",
+      option_c: "A storage format used for blobs",
+      option_d: "A network configuration file",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "azure_medium_1_q7",
+      assessment_id: "azure_medium_1",
+      question: "What is the purpose of a \"release\" or deployment stage in Azure Pipelines?",
+      option_a: "Automate the deployment of build artifacts to one or more target environments",
+      option_b: "Store the project's source code only",
+      option_c: "Track work items",
+      option_d: "Manage user identities",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "azure_medium_1_q8",
+      assessment_id: "azure_medium_1",
+      question: "What does an Azure Pipelines \"agent\" actually do?",
+      option_a: "Executes the jobs and tasks defined within a pipeline",
+      option_b: "Stores the project's source code",
+      option_c: "Tracks work items and bugs",
+      option_d: "Manages billing details",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "azure_medium_1_q9",
+      assessment_id: "azure_medium_1",
+      question: "What is the purpose of approval gates in a multi-stage Azure DevOps release pipeline?",
+      option_a: "Require manual or automated validation before promoting a deployment to the next stage, such as production",
+      option_b: "Automatically bypass every configured check",
+      option_c: "Delete the entire pipeline",
+      option_d: "Disable all notifications",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "azure_medium_1_q10",
+      assessment_id: "azure_medium_1",
+      question: "What is Azure Test Plans used for?",
+      option_a: "Manual and exploratory testing, along with test case management",
+      option_b: "Hosting virtual machines",
+      option_c: "Managing DNS records",
+      option_d: "Building container images",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "azure_medium_1_q11",
+      assessment_id: "azure_medium_1",
+      question: "What is the purpose of a service connection in Azure DevOps?",
+      option_a: "Securely authenticate and connect Azure Pipelines to external services, such as an Azure subscription or a Docker registry",
+      option_b: "Store work items",
+      option_c: "Track reported bugs",
+      option_d: "Host source code repositories",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "azure_medium_1_q12",
+      assessment_id: "azure_medium_1",
+      question: "What does variable group functionality in Azure Pipelines allow?",
+      option_a: "Sharing common variable values, including secrets, securely across multiple pipelines",
+      option_b: "Storing test case definitions",
+      option_c: "Tracking sprint planning",
+      option_d: "Hosting source repositories",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "azure_medium_1_q13",
+      assessment_id: "azure_medium_1",
+      question: "What is the benefit of using templates in Azure YAML pipelines?",
+      option_a: "Reusing common pipeline logic and steps across multiple pipeline definitions",
+      option_b: "Storing source code only",
+      option_c: "Completely replacing the need for agents",
+      option_d: "Disabling CI/CD entirely",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "azure_medium_1_q14",
+      assessment_id: "azure_medium_1",
+      question: "What typically triggers a CI build in Azure Pipelines when a CI trigger is configured?",
+      option_a: "A push to the configured branch of the connected repository",
+      option_b: "Only a manual click, with no automation possible",
+      option_c: "A billing-related event",
+      option_d: "A change to DNS records",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "azure_medium_1_q15",
+      assessment_id: "azure_medium_1",
+      question: "What is the purpose of integrating Infrastructure as Code, such as ARM templates or Terraform, into an Azure DevOps pipeline?",
+      option_a: "Automate and version-control the provisioning of Azure infrastructure as part of the deployment process",
+      option_b: "Replace the need for source control",
+      option_c: "Manage work items only",
+      option_d: "Host packages only",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+  ] as AssessmentQuestion[]),
+
+  // Azure — Azure Architecture (assessment azure_hard_1)
+  ...([
+    {
+      id: "azure_hard_1_q1",
+      assessment_id: "azure_hard_1",
+      question: "What is the purpose of Azure Availability Sets?",
+      option_a: "Ensure VMs are distributed across multiple fault and update domains within a single datacenter for higher availability",
+      option_b: "Provide global cross-region load balancing",
+      option_c: "Manage DNS records",
+      option_d: "Store blob data",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "azure_hard_1_q2",
+      assessment_id: "azure_hard_1",
+      question: "How do Azure Availability Zones differ from Availability Sets?",
+      option_a: "They are essentially identical concepts",
+      option_b: "Availability Zones span physically separate datacenters within a region; Availability Sets distribute VMs within a single datacenter across fault/update domains",
+      option_c: "Availability Sets span multiple Azure regions",
+      option_d: "Availability Zones apply only to storage accounts",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "azure_hard_1_q3",
+      assessment_id: "azure_hard_1",
+      question: "What is Azure Traffic Manager primarily used for?",
+      option_a: "DNS-based global traffic load balancing and routing across regions",
+      option_b: "Local-only VM load balancing",
+      option_c: "Storing blob data",
+      option_d: "Managing user identities",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "azure_hard_1_q4",
+      assessment_id: "azure_hard_1",
+      question: "What does Azure Front Door provide?",
+      option_a: "A global, scalable entry point with load balancing, SSL offloading, and WAF protection for web applications",
+      option_b: "A local-only load balancer",
+      option_c: "A managed database service",
+      option_d: "Only a DNS zone",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "azure_hard_1_q5",
+      assessment_id: "azure_hard_1",
+      question: "Why would a critical workload be designed to be Availability Zone-redundant?",
+      option_a: "To tolerate the failure of an entire datacenter/zone within a region while maintaining availability",
+      option_b: "Purely to reduce cost",
+      option_c: "To simplify DNS management",
+      option_d: "To eliminate the need for monitoring",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "azure_hard_1_q6",
+      assessment_id: "azure_hard_1",
+      question: "What is the primary use case for Azure Cosmos DB?",
+      option_a: "A globally distributed, multi-model NoSQL database designed for low-latency, highly available applications",
+      option_b: "A purely relational-only database",
+      option_c: "A blob storage replacement",
+      option_d: "A message queuing service",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "azure_hard_1_q7",
+      assessment_id: "azure_hard_1",
+      question: "What is the purpose of Azure Key Vault in a secure architecture?",
+      option_a: "Securely store and manage secrets, encryption keys, and certificates",
+      option_b: "Store blob data",
+      option_c: "Manage DNS zones",
+      option_d: "Host virtual machines",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "azure_hard_1_q8",
+      assessment_id: "azure_hard_1",
+      question: "Which design pattern does Azure Service Bus commonly support for decoupling application components?",
+      option_a: "Only synchronous, direct calls between services",
+      option_b: "Asynchronous messaging using queues and topics/subscriptions (publish-subscribe)",
+      option_c: "File-based communication only",
+      option_d: "Shared in-memory state only",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "azure_hard_1_q9",
+      assessment_id: "azure_hard_1",
+      question: "What is the purpose of Azure Site Recovery?",
+      option_a: "Orchestrate disaster recovery by replicating workloads to a secondary region",
+      option_b: "Manage user identities",
+      option_c: "Store blob data",
+      option_d: "Host containerized applications",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "azure_hard_1_q10",
+      assessment_id: "azure_hard_1",
+      question: "What is a hub-and-spoke network topology used for in Azure architecture?",
+      option_a: "Centralizing shared services, such as firewalls and VPN gateways, in a hub VNet peered with multiple spoke VNets",
+      option_b: "Eliminating the need for VNets entirely",
+      option_c: "Replacing load balancers",
+      option_d: "Storing application data",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "azure_hard_1_q11",
+      assessment_id: "azure_hard_1",
+      question: "What is Azure Private Link primarily used for?",
+      option_a: "Providing private connectivity to Azure PaaS services over a private endpoint inside your VNet, avoiding public internet exposure",
+      option_b: "Exposing every service to the public internet",
+      option_c: "Only managing DNS zones",
+      option_d: "Increasing available public bandwidth",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "azure_hard_1_q12",
+      assessment_id: "azure_hard_1",
+      question: "What is a key benefit of Azure Kubernetes Service (AKS) over self-managing Kubernetes directly on IaaS VMs?",
+      option_a: "Azure manages the Kubernetes control plane, simplifying cluster operations, upgrades, and scaling",
+      option_b: "AKS removes the need for containers entirely",
+      option_c: "AKS provides unlimited free compute resources",
+      option_d: "AKS removes any need for network configuration",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "azure_hard_1_q13",
+      assessment_id: "azure_hard_1",
+      question: "What is the role of Azure Policy in enterprise governance?",
+      option_a: "Enforce organizational standards and continuously assess resource compliance at scale",
+      option_b: "Provision virtual machines",
+      option_c: "Manage DNS records",
+      option_d: "Store application secrets",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "azure_hard_1_q14",
+      assessment_id: "azure_hard_1",
+      question: "How does Azure Application Gateway differ from Azure Load Balancer?",
+      option_a: "Application Gateway operates at Layer 7 with features like SSL termination and a WAF, while Load Balancer operates at Layer 4",
+      option_b: "They are functionally identical services",
+      option_c: "Load Balancer only ever works at a global scale",
+      option_d: "Application Gateway only ever works with virtual machines",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "azure_hard_1_q15",
+      assessment_id: "azure_hard_1",
+      question: "What is a benefit of using Azure Reserved Instances or Azure Savings Plans for large-scale cost optimization?",
+      option_a: "Significant discounts compared to pay-as-you-go pricing, in exchange for a committed usage term",
+      option_b: "They eliminate the need for any monitoring",
+      option_c: "They provide unlimited free compute resources",
+      option_d: "They fully replace the need for autoscaling",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+  ] as AssessmentQuestion[]),
+
+  // GCP — Google Cloud Basics (assessment gcp_easy_1)
+  ...([
+    {
+      id: "gcp_easy_1_q1",
+      assessment_id: "gcp_easy_1",
+      question: "What is Google Compute Engine used for?",
+      option_a: "Provisioning scalable virtual machines within GCP",
+      option_b: "Storing unstructured object data",
+      option_c: "Running serverless functions exclusively",
+      option_d: "Managing DNS records exclusively",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "gcp_easy_1_q2",
+      assessment_id: "gcp_easy_1",
+      question: "What is Google Cloud Storage primarily used for?",
+      option_a: "Running virtual machines",
+      option_b: "Storing and retrieving unstructured object data, such as files, at scale",
+      option_c: "Managing IAM roles",
+      option_d: "Running Kubernetes clusters",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "gcp_easy_1_q3",
+      assessment_id: "gcp_easy_1",
+      question: "What is a GCP Project?",
+      option_a: "The base-level organizing entity for creating and managing GCP resources, billing, and permissions",
+      option_b: "A single standalone virtual machine",
+      option_c: "A specific storage bucket",
+      option_d: "A network route definition",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "gcp_easy_1_q4",
+      assessment_id: "gcp_easy_1",
+      question: "What is Google Kubernetes Engine (GKE)?",
+      option_a: "A managed Kubernetes service for deploying and managing containerized applications",
+      option_b: "A relational database service",
+      option_c: "A billing management tool",
+      option_d: "A DNS management service",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "gcp_easy_1_q5",
+      assessment_id: "gcp_easy_1",
+      question: "What is Cloud IAM in GCP used for?",
+      option_a: "Managing which identities have what access (roles) to which resources",
+      option_b: "Storing blob data",
+      option_c: "Running virtual machines",
+      option_d: "Configuring VPC networks",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "gcp_easy_1_q6",
+      assessment_id: "gcp_easy_1",
+      question: "What is Google Cloud Functions?",
+      option_a: "A serverless, event-driven compute service that runs code without managing servers",
+      option_b: "A managed virtual machine service",
+      option_c: "A relational database service",
+      option_d: "A DNS zone service",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "gcp_easy_1_q7",
+      assessment_id: "gcp_easy_1",
+      question: "How do a GCP region and a zone relate to each other?",
+      option_a: "A zone is a smaller deployment area located within a broader geographic region",
+      option_b: "They refer to exactly the same thing",
+      option_c: "A zone spans multiple continents",
+      option_d: "A region is always smaller than a zone",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "gcp_easy_1_q8",
+      assessment_id: "gcp_easy_1",
+      question: "Which GCP service provides a fully managed relational database compatible with MySQL/PostgreSQL?",
+      option_a: "Cloud SQL",
+      option_b: "Cloud Storage",
+      option_c: "BigQuery",
+      option_d: "Pub/Sub",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "gcp_easy_1_q9",
+      assessment_id: "gcp_easy_1",
+      question: "What is the gcloud CLI used for?",
+      option_a: "The command-line tool for managing GCP resources",
+      option_b: "Only a graphical dashboard",
+      option_c: "Only a billing report generator",
+      option_d: "Only a monitoring dashboard",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "gcp_easy_1_q10",
+      assessment_id: "gcp_easy_1",
+      question: "What is BigQuery primarily designed for?",
+      option_a: "Serverless, highly scalable data warehousing and analytics using SQL",
+      option_b: "Running virtual machines",
+      option_c: "Hosting static websites",
+      option_d: "Managing DNS zones",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "gcp_easy_1_q11",
+      assessment_id: "gcp_easy_1",
+      question: "What is a VPC in GCP?",
+      option_a: "A virtual private network providing isolated networking for your GCP resources",
+      option_b: "A billing account",
+      option_c: "A storage class",
+      option_d: "An IAM role definition",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "gcp_easy_1_q12",
+      assessment_id: "gcp_easy_1",
+      question: "What is the purpose of Cloud Pub/Sub?",
+      option_a: "A fully managed, real-time messaging service for event-driven, asynchronous communication between services",
+      option_b: "A relational database service",
+      option_c: "A DNS zone service",
+      option_d: "A monitoring dashboard",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "gcp_easy_1_q13",
+      assessment_id: "gcp_easy_1",
+      question: "What does the term \"preemptible VM\" (or Spot VM) refer to in GCP?",
+      option_a: "A short-lived, lower-cost VM instance that Google can terminate with little notice",
+      option_b: "A permanently running, dedicated VM instance",
+      option_c: "A completely free VM with no limitations",
+      option_d: "A VM reserved exclusively for one full year",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+    {
+      id: "gcp_easy_1_q14",
+      assessment_id: "gcp_easy_1",
+      question: "What access does the built-in Owner IAM role typically grant in a GCP project?",
+      option_a: "Read-only access only",
+      option_b: "Full access to all resources, including managing roles and permissions",
+      option_c: "No access whatsoever",
+      option_d: "Only access to billing information",
+      correct_answer: "B",
+      difficulty: "easy"
+    },
+    {
+      id: "gcp_easy_1_q15",
+      assessment_id: "gcp_easy_1",
+      question: "What is a Cloud Storage \"bucket\" conceptually analogous to?",
+      option_a: "A container that holds objects, such as files, within Cloud Storage",
+      option_b: "A virtual machine instance",
+      option_c: "A network subnet",
+      option_d: "A relational database table",
+      correct_answer: "A",
+      difficulty: "easy"
+    },
+  ] as AssessmentQuestion[]),
+
+  // GCP — GCP Compute Engine (assessment gcp_medium_1)
+  ...([
+    {
+      id: "gcp_medium_1_q1",
+      assessment_id: "gcp_medium_1",
+      question: "What is a Compute Engine Instance Template used for?",
+      option_a: "Defining a reusable configuration, such as machine type, image, and disk, for creating VM instances or managed instance groups",
+      option_b: "Storing blob data",
+      option_c: "Defining IAM roles",
+      option_d: "Configuring DNS",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "gcp_medium_1_q2",
+      assessment_id: "gcp_medium_1",
+      question: "What is a Managed Instance Group (MIG) in Compute Engine?",
+      option_a: "A single standalone VM instance",
+      option_b: "A group of identical VM instances managed as a single entity, supporting autoscaling and auto-healing",
+      option_c: "A storage bucket",
+      option_d: "A DNS zone",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "gcp_medium_1_q3",
+      assessment_id: "gcp_medium_1",
+      question: "What does Compute Engine autoscaling primarily use to decide when to add or remove instances?",
+      option_a: "Metrics such as CPU utilization or custom/load-balancing metrics",
+      option_b: "Purely random selection",
+      option_c: "Manual approval for every scaling event",
+      option_d: "Billing thresholds alone",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "gcp_medium_1_q4",
+      assessment_id: "gcp_medium_1",
+      question: "What is the purpose of a persistent disk in Compute Engine?",
+      option_a: "Durable, network-attached block storage for VM instances that persists independently of the VM's own lifecycle",
+      option_b: "Purely ephemeral local-only storage",
+      option_c: "A type of firewall rule",
+      option_d: "A DNS record type",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "gcp_medium_1_q5",
+      assessment_id: "gcp_medium_1",
+      question: "What is a custom machine type in Compute Engine?",
+      option_a: "A VM available only in the free tier",
+      option_b: "A managed Kubernetes node type",
+      option_c: "A VM configuration with a custom number of vCPUs and amount of memory, rather than using a predefined type",
+      option_d: "A specific storage class",
+      correct_answer: "C",
+      difficulty: "medium"
+    },
+    {
+      id: "gcp_medium_1_q6",
+      assessment_id: "gcp_medium_1",
+      question: "What is the purpose of Google Cloud Load Balancing for Compute Engine instances?",
+      option_a: "Distribute incoming traffic across multiple VM instances for scalability and reliability",
+      option_b: "Store persistent data",
+      option_c: "Manage billing accounts",
+      option_d: "Provision IAM roles",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "gcp_medium_1_q7",
+      assessment_id: "gcp_medium_1",
+      question: "What does a health check verify in a load-balanced or managed instance group setup?",
+      option_a: "Whether an instance is responding correctly and should continue receiving traffic",
+      option_b: "The VM's current billing status",
+      option_c: "The VM's disk encryption settings",
+      option_d: "Only the VM's assigned region",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "gcp_medium_1_q8",
+      assessment_id: "gcp_medium_1",
+      question: "What is the purpose of live migration in Compute Engine?",
+      option_a: "Delete VM instances that are no longer in use",
+      option_b: "Encrypt a VM's attached disks",
+      option_c: "Change a VM's assigned IAM role",
+      option_d: "Automatically move a running VM to another physical host during maintenance events, without downtime",
+      correct_answer: "D",
+      difficulty: "medium"
+    },
+    {
+      id: "gcp_medium_1_q9",
+      assessment_id: "gcp_medium_1",
+      question: "What is a snapshot used for in Compute Engine?",
+      option_a: "A point-in-time backup copy of a persistent disk",
+      option_b: "A record of a live migration event",
+      option_c: "A type of IAM policy",
+      option_d: "A network route definition",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "gcp_medium_1_q10",
+      assessment_id: "gcp_medium_1",
+      question: "What is the purpose of startup scripts on a Compute Engine instance?",
+      option_a: "Automatically run commands or configuration steps whenever the instance boots",
+      option_b: "Delete the instance immediately after it is used",
+      option_c: "Encrypt the instance's attached disk",
+      option_d: "Change the instance's assigned zone",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "gcp_medium_1_q11",
+      assessment_id: "gcp_medium_1",
+      question: "How does an ephemeral external IP address differ from a static one in Compute Engine?",
+      option_a: "They behave identically in every respect",
+      option_b: "An ephemeral IP can change when the instance is stopped and started; a static IP stays reserved to your project",
+      option_c: "Static IP addresses are always provided free of charge",
+      option_d: "Ephemeral IP addresses never change",
+      correct_answer: "B",
+      difficulty: "medium"
+    },
+    {
+      id: "gcp_medium_1_q12",
+      assessment_id: "gcp_medium_1",
+      question: "What is the purpose of Committed Use Discounts in Compute Engine?",
+      option_a: "Reduced pricing in exchange for committing to a certain amount of compute usage over a 1- or 3-year term",
+      option_b: "Free compute resources for brand-new users",
+      option_c: "Discounts based solely on region",
+      option_d: "Discounts available only for preemptible VMs",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "gcp_medium_1_q13",
+      assessment_id: "gcp_medium_1",
+      question: "What is a Google Cloud Sole-Tenant Node used for?",
+      option_a: "Running VMs on physical machines dedicated exclusively to a single customer, often for compliance or licensing needs",
+      option_b: "Running shared, multi-tenant compute workloads",
+      option_c: "Storage-only workloads exclusively",
+      option_d: "DNS management exclusively",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+    {
+      id: "gcp_medium_1_q14",
+      assessment_id: "gcp_medium_1",
+      question: "What does an instance group's \"auto-healing\" policy do?",
+      option_a: "Prevents any changes from ever being made to instances",
+      option_b: "Deletes the entire instance group upon any single failure",
+      option_c: "Automatically recreates instances that fail a specified health check",
+      option_d: "Disables all monitoring for the group",
+      correct_answer: "C",
+      difficulty: "medium"
+    },
+    {
+      id: "gcp_medium_1_q15",
+      assessment_id: "gcp_medium_1",
+      question: "Why might you choose a regional, rather than a zonal, Managed Instance Group?",
+      option_a: "To increase availability by distributing instances across multiple zones within a region",
+      option_b: "To intentionally restrict instances to a single zone",
+      option_c: "To reduce the number of granted IAM permissions",
+      option_d: "To disable autoscaling for the group",
+      correct_answer: "A",
+      difficulty: "medium"
+    },
+  ] as AssessmentQuestion[]),
+
+  // GCP — GCP Advanced (assessment gcp_hard_1)
+  ...([
+    {
+      id: "gcp_hard_1_q1",
+      assessment_id: "gcp_hard_1",
+      question: "What is the purpose of GCP's global load balancing architecture, such as the Global HTTP(S) Load Balancer?",
+      option_a: "Route traffic to the closest healthy backend across multiple regions using a single anycast IP address",
+      option_b: "Only balance traffic within a single zone",
+      option_c: "Completely replace the need for Cloud DNS",
+      option_d: "Manage billing alerts",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "gcp_hard_1_q2",
+      assessment_id: "gcp_hard_1",
+      question: "What is the primary benefit of using Cloud Spanner for globally distributed applications?",
+      option_a: "A horizontally scalable relational database that offers strong consistency and high availability across regions",
+      option_b: "A NoSQL-only key-value store with no relational features",
+      option_c: "A service that only supports operating within a single zone",
+      option_d: "A database requiring manual sharding logic written by the developer",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "gcp_hard_1_q3",
+      assessment_id: "gcp_hard_1",
+      question: "What is the purpose of VPC Service Controls in GCP?",
+      option_a: "Provision virtual machines",
+      option_b: "Create a security perimeter around GCP resources to help mitigate the risk of data exfiltration",
+      option_c: "Manage billing alerts",
+      option_d: "Configure DNS zones",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "gcp_hard_1_q4",
+      assessment_id: "gcp_hard_1",
+      question: "What architecture pattern does Cloud Pub/Sub, combined with Cloud Functions or Dataflow, commonly enable?",
+      option_a: "Event-driven, asynchronous processing pipelines that scale automatically",
+      option_b: "Purely synchronous request-response communication",
+      option_c: "Manual polling architectures exclusively",
+      option_d: "Static website hosting only",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "gcp_hard_1_q5",
+      assessment_id: "gcp_hard_1",
+      question: "What is the purpose of Cloud CDN within a GCP architecture?",
+      option_a: "Cache and serve content from edge locations near users to reduce latency and origin server load",
+      option_b: "Encrypt data at rest",
+      option_c: "Manage IAM roles",
+      option_d: "Provision virtual machines",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "gcp_hard_1_q6",
+      assessment_id: "gcp_hard_1",
+      question: "What is a key architectural benefit of using Cloud Run compared to managing VMs directly?",
+      option_a: "It requires fully manual server provisioning",
+      option_b: "It cannot run containerized workloads",
+      option_c: "Fully managed, serverless container execution that automatically scales to zero and scales up on demand",
+      option_d: "It always requires a fixed number of running instances",
+      correct_answer: "C",
+      difficulty: "hard"
+    },
+    {
+      id: "gcp_hard_1_q7",
+      assessment_id: "gcp_hard_1",
+      question: "What is the purpose of Anthos within GCP's broader ecosystem?",
+      option_a: "A hybrid and multi-cloud application management platform built on top of Kubernetes",
+      option_b: "A billing management tool only",
+      option_c: "A DNS-only service",
+      option_d: "A specific storage class",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "gcp_hard_1_q8",
+      assessment_id: "gcp_hard_1",
+      question: "What is a recommended approach for minimizing cost while maintaining availability when using Preemptible/Spot VMs in a large batch-processing architecture?",
+      option_a: "Combine spot instances with checkpointing/retry logic, falling back to standard instances for critical work",
+      option_b: "Rely solely on spot instances with no fault tolerance whatsoever",
+      option_c: "Avoid autoscaling entirely",
+      option_d: "Rely on a single VM for the entire workload",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "gcp_hard_1_q9",
+      assessment_id: "gcp_hard_1",
+      question: "What is the purpose of Cloud Armor within a GCP architecture?",
+      option_a: "Manage billing accounts",
+      option_b: "Provision databases",
+      option_c: "Configure DNS zones only",
+      option_d: "Provide DDoS protection and web application firewall (WAF) capabilities at the network edge",
+      correct_answer: "D",
+      difficulty: "hard"
+    },
+    {
+      id: "gcp_hard_1_q10",
+      assessment_id: "gcp_hard_1",
+      question: "What is a benefit of using Terraform (or Deployment Manager) for GCP infrastructure instead of manual console configuration?",
+      option_a: "Enables repeatable, version-controlled, and auditable infrastructure provisioning",
+      option_b: "Removes the need for IAM entirely",
+      option_c: "Automatically reduces cloud billing costs",
+      option_d: "Eliminates any need for monitoring",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "gcp_hard_1_q11",
+      assessment_id: "gcp_hard_1",
+      question: "What does BigQuery's separation of storage and compute enable architecturally?",
+      option_a: "Independently scaling storage and query compute resources, paying only for what each actually uses",
+      option_b: "Requiring a pre-provisioned, fixed-size cluster at all times",
+      option_c: "Preventing any concurrent queries from running",
+      option_d: "Removing the need for IAM entirely",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "gcp_hard_1_q12",
+      assessment_id: "gcp_hard_1",
+      question: "What is the purpose of organization policies within GCP's resource hierarchy (Organization > Folders > Projects)?",
+      option_a: "Apply only to a single virtual machine",
+      option_b: "Centrally enforce constraints and governance rules across all resources in the hierarchy",
+      option_c: "Completely replace IAM",
+      option_d: "Manage billing invoices only",
+      correct_answer: "B",
+      difficulty: "hard"
+    },
+    {
+      id: "gcp_hard_1_q13",
+      assessment_id: "gcp_hard_1",
+      question: "What is a key consideration when designing multi-region architectures on GCP for disaster recovery?",
+      option_a: "Balancing RTO/RPO requirements against the added cost and complexity of cross-region replication",
+      option_b: "Multi-region architectures always cost less than single-region ones",
+      option_c: "RTO/RPO targets are irrelevant to cloud architecture design",
+      option_d: "GCP handles all disaster recovery automatically at no cost",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "gcp_hard_1_q14",
+      assessment_id: "gcp_hard_1",
+      question: "What is the purpose of Cloud Monitoring and Cloud Trace when optimizing a distributed GCP application?",
+      option_a: "Provide observability into performance metrics and distributed request latency to help identify bottlenecks",
+      option_b: "Manage IAM roles",
+      option_c: "Provision storage buckets",
+      option_d: "Configure DNS",
+      correct_answer: "A",
+      difficulty: "hard"
+    },
+    {
+      id: "gcp_hard_1_q15",
+      assessment_id: "gcp_hard_1",
+      question: "What is a benefit of using Workload Identity Federation in GCP for external workloads, such as CI/CD pipelines running outside GCP?",
+      option_a: "It requires storing service account keys directly in source control",
+      option_b: "It disables IAM entirely for the project",
+      option_c: "It lets external identities securely access GCP resources without needing long-lived service account keys",
+      option_d: "It only works for workloads that are already native to GCP",
+      correct_answer: "C",
+      difficulty: "hard"
+    },
+  ] as AssessmentQuestion[]),
 ];
 
 export const getQuestionsForAssessment = (assessmentId: string): AssessmentQuestion[] => {

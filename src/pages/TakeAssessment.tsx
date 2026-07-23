@@ -356,21 +356,12 @@ export default function TakeAssessment() {
               </div>
 
               {/* Navigation */}
-              <div className="flex items-center justify-between pt-6 border-t">
-                <Button
-                  variant="outline"
-                  onClick={handlePrevious}
-                  disabled={currentQuestionIndex === 0}
-                >
-                  <ChevronLeft className="w-4 h-4 mr-2" />
-                  Previous
-                </Button>
-
-                <div className="flex gap-2">
+              <div className="pt-6 border-t space-y-4">
+                <div className="flex flex-wrap justify-center gap-2">
                   {questions.map((_, index) => (
                     <button
                       key={index}
-                      className={`w-8 h-8 rounded-full text-xs font-medium ${
+                      className={`w-8 h-8 flex-shrink-0 rounded-full text-xs font-medium ${
                         index === currentQuestionIndex
                           ? 'bg-primary text-primary-foreground'
                           : answers[questions[index].id]
@@ -384,19 +375,30 @@ export default function TakeAssessment() {
                   ))}
                 </div>
 
-                {currentQuestionIndex === questions.length - 1 ? (
+                <div className="flex items-center justify-between">
                   <Button
-                    onClick={handleSubmit}
-                    disabled={answeredQuestions === 0}
+                    variant="outline"
+                    onClick={handlePrevious}
+                    disabled={currentQuestionIndex === 0}
                   >
-                    Submit Assessment
+                    <ChevronLeft className="w-4 h-4 mr-2" />
+                    Previous
                   </Button>
-                ) : (
-                  <Button onClick={handleNext}>
-                    Next
-                    <ChevronRight className="w-4 h-4 ml-2" />
-                  </Button>
-                )}
+
+                  {currentQuestionIndex === questions.length - 1 ? (
+                    <Button
+                      onClick={handleSubmit}
+                      disabled={answeredQuestions === 0}
+                    >
+                      Submit Assessment
+                    </Button>
+                  ) : (
+                    <Button onClick={handleNext}>
+                      Next
+                      <ChevronRight className="w-4 h-4 ml-2" />
+                    </Button>
+                  )}
+                </div>
               </div>
             </div>
           </CardContent>

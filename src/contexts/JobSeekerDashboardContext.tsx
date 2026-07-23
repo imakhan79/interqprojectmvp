@@ -317,8 +317,10 @@ export function JobSeekerDashboardProvider({ children }: { children: ReactNode }
     queryFn: async () => {
       if (!user?.id) return [];
       const supabaseClient = getSupabaseClient();
+      // Applications are tracked as rows in `candidates` (job_id + user_id),
+      // not a separate applications table.
       const { data, error } = await supabaseClient
-        .from("job_applications")
+        .from("candidates")
         .select("*, jobs(title, company_id)")
         .eq("user_id", user.id)
         .order("created_at", { ascending: false });

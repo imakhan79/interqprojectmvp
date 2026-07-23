@@ -9,14 +9,14 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-interface Step {
+export interface Step {
   id: number;
   title: string;
   subtitle: string;
   icon: React.ElementType;
 }
 
-const STEPS: Step[] = [
+const DEFAULT_STEPS: Step[] = [
   { id: 1, title: "Select", subtitle: "Choose an assessment", icon: Search },
   { id: 2, title: "Instructions", subtitle: "Read guidelines", icon: FileText },
   { id: 3, title: "Start", subtitle: "Begin immediately", icon: Play },
@@ -28,6 +28,7 @@ interface WorkflowStepperProps {
   currentStep: number;
   onStepClick: (step: number) => void;
   canProceedToStep: (step: number) => boolean;
+  steps?: Step[];
 }
 
 type StepState = "completed" | "active" | "disabled";
@@ -38,7 +39,8 @@ function getStepState(stepId: number, currentStep: number): StepState {
   return "disabled";
 }
 
-export function WorkflowStepper({ currentStep, onStepClick, canProceedToStep }: WorkflowStepperProps) {
+export function WorkflowStepper({ currentStep, onStepClick, canProceedToStep, steps = DEFAULT_STEPS }: WorkflowStepperProps) {
+  const STEPS = steps;
   return (
     <TooltipProvider delayDuration={200}>
       {/* Desktop (≥768px) */}

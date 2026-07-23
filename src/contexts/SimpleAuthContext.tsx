@@ -116,7 +116,7 @@ const isDemoEmail = (email: string): boolean => {
 };
 
 // Helper to get dashboard path by role
-const getDashboardPath = (role: AccountRole): string => {
+export const getDashboardPath = (role: AccountRole): string => {
   switch (role) {
     case "admin": return "/admin";
     case "company": return "/company";

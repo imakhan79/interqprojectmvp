@@ -6,7 +6,7 @@ import {
   LayoutDashboard, Building2, Users, Shield, Briefcase, UserCheck,
   Calendar, FileText, BarChart3, Settings, CreditCard, Plug,
   ScrollText, LogOut, Menu, X, Search, Bell, ChevronRight,
-  Moon, Sun, HelpCircle, Keyboard, Activity, UserCog, Flag, Award
+  Moon, Sun, HelpCircle, Keyboard, Activity, UserCog, Flag, Award, CheckSquare
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -30,13 +30,14 @@ import {
 } from '@/components/ui/tooltip';
 import { useAuth } from '@/contexts/SimpleAuthContext';
 import { useTheme } from '@/components/theme-provider';
-import { mockNotifications } from '@/data/adminModuleData';
+import { NotificationBell } from '@/components/NotificationBell';
 
 const navSections = [
   {
     label: "Main",
     items: [
       { to: "/admin", icon: LayoutDashboard, label: "Dashboard", exact: true },
+      { to: "/admin/approvals", icon: CheckSquare, label: "Approvals Queue" },
       { to: "/admin/companies", icon: Building2, label: "Companies" },
       { to: "/admin/users", icon: Users, label: "Users & Teams" },
       { to: "/admin/role-management", icon: Shield, label: "Roles & Permissions" },
@@ -88,8 +89,6 @@ export function AdminLayout() {
   const [searchQuery, setSearchQuery] = useState('');
   const { theme, setTheme } = useTheme();
 
-  const unreadNotifications = mockNotifications.filter(n => !n.read).length;
-
   const isActive = (item: typeof navSections[0]['items'][0]) => {
     if (item.exact) {
       return location.pathname === item.to;
@@ -109,35 +108,6 @@ export function AdminLayout() {
             <h2 className="text-lg font-bold tracking-tight">Admin Portal</h2>
           </div>
           <div className="flex items-center gap-2">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="relative">
-                  <Bell className="h-5 w-5" />
-                  {unreadNotifications > 0 && (
-                    <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-red-500 text-[10px] font-medium text-white flex items-center justify-center">
-                      {unreadNotifications}
-                    </span>
-                  )}
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-80">
-                <DropdownMenuLabel>Notifications</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                {mockNotifications.slice(0, 5).map(notif => (
-                  <DropdownMenuItem key={notif.id} className="flex flex-col items-start gap-1 py-3 cursor-pointer">
-                    <div className="flex items-center gap-2 w-full">
-                      {!notif.read && <div className="h-2 w-2 rounded-full bg-primary" />}
-                      <span className="font-medium text-sm">{notif.title}</span>
-                    </div>
-                    <span className="text-xs text-muted-foreground line-clamp-2">{notif.message}</span>
-                  </DropdownMenuItem>
-                ))}
-                <DropdownMenuSeparator />
-                <DropdownMenuItem className="text-center text-primary justify-center">
-                  View all notifications
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
             <Avatar className="h-8 w-8">
               <AvatarImage src="" />
               <AvatarFallback className="bg-primary/10 text-primary text-xs">{userInitials}</AvatarFallback>
@@ -300,36 +270,7 @@ export function AdminLayout() {
                 <span className="font-medium">Dashboard</span>
               </div>
               <div className="flex items-center gap-2">
-                {/* Notifications Desktop */}
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon" className="relative hidden md:flex">
-                      <Bell className="h-4 w-4" />
-                      {unreadNotifications > 0 && (
-                        <span className="absolute -top-0.5 -right-0.5 h-4 w-4 rounded-full bg-red-500 text-[10px] font-medium text-white flex items-center justify-center">
-                          {unreadNotifications}
-                        </span>
-                      )}
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-80">
-                    <DropdownMenuLabel>Notifications</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    {mockNotifications.slice(0, 5).map(notif => (
-                      <DropdownMenuItem key={notif.id} className="flex flex-col items-start gap-1 py-3 cursor-pointer">
-                        <div className="flex items-center gap-2 w-full">
-                          {!notif.read && <div className="h-2 w-2 rounded-full bg-primary" />}
-                          <span className="font-medium text-sm">{notif.title}</span>
-                        </div>
-                        <span className="text-xs text-muted-foreground line-clamp-2">{notif.message}</span>
-                      </DropdownMenuItem>
-                    ))}
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem className="text-center text-primary justify-center">
-                      View all notifications
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                <NotificationBell />
 
                 {/* Help */}
                 <Button variant="ghost" size="icon" className="hidden md:flex">

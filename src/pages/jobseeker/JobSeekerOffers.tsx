@@ -9,6 +9,7 @@ import { Briefcase, Building2, Calendar, DollarSign, Loader2, CheckCircle, XCirc
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/SimpleAuthContext";
 import { useRealtimeTable } from "@/hooks/useRealtimeTable";
+import { notifyCompany } from "@/lib/notifications";
 
 interface OfferRow {
   id: string;
@@ -99,6 +100,14 @@ export default function JobSeekerOffers() {
       toast({ title: "Failed to accept offer", description: error.message, variant: "destructive" });
       return;
     }
+    if (offer.company_id) {
+      await notifyCompany(offer.company_id, {
+        type: "offer.accepted",
+        title: "Offer accepted!",
+        message: `${offer.position || "A candidate"} accepted the offer — time to mark them hired.`,
+        link: "/company/candidates",
+      });
+    }
     toast({ title: "Offer accepted", description: "Congratulations! The company has been notified." });
     load();
   };
@@ -117,6 +126,14 @@ export default function JobSeekerOffers() {
     if (error) {
       toast({ title: "Failed to decline offer", description: error.message, variant: "destructive" });
       return;
+    }
+    if (declineTarget.company_id) {
+      await notifyCompany(declineTarget.company_id, {
+        type: "offer.declined",
+        title: "Offer declined",
+        message: `${declineTarget.position || "A candidate"} declined the offer.`,
+        link: "/company/candidates",
+      });
     }
     toast({ title: "Offer declined" });
     setDeclineTarget(null);

@@ -1,17 +1,15 @@
 import { useState, useCallback, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate, useLocation, Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Badge } from "@/components/ui/badge";
-import { useAuth, DEMO_USERS, AccountRole } from "@/contexts/SimpleAuthContext";
-import { 
-  Mail, Lock, User, Eye, EyeOff, Shield, Building2, Users, Briefcase, 
-  CheckCircle, Loader2, ArrowRight, Sparkles, Zap, Clock, FileText, Star,
-  ArrowLeft, MessageSquare, Calendar, TrendingUp, UserCheck, AlertCircle, Home
+import { useAuth, AccountRole } from "@/contexts/SimpleAuthContext";
+import {
+  Mail, Lock, User, Eye, EyeOff, Shield, Building2, Users, Briefcase,
+  Loader2, ArrowRight, ArrowLeft, AlertCircle, Home
 } from "lucide-react";
 
 const roleConfig = {
@@ -22,7 +20,7 @@ const roleConfig = {
 };
 
 const Auth = () => {
-  const { login, signup, loginWithDemo, isLoading } = useAuth();
+  const { login, signup, isLoading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   
@@ -36,7 +34,6 @@ const Auth = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showDemoSection, setShowDemoSection] = useState(false);
 
   const [history, setHistory] = useState<string[]>([]);
 
@@ -70,20 +67,6 @@ const Auth = () => {
       // Navigation is handled by useEffect in SimpleAuthProvider
     } else {
       setError(result.error || "Login failed");
-    }
-    setIsSubmitting(false);
-  };
-
-  const handleDemoLogin = async (role: AccountRole) => {
-    setError("");
-    setIsSubmitting(true);
-    
-    const result = await loginWithDemo(role);
-    
-    if (result.success) {
-      // Navigation is handled by useEffect in SimpleAuthProvider
-    } else {
-      setError(result.error || "Demo login failed");
     }
     setIsSubmitting(false);
   };
@@ -195,91 +178,13 @@ const Auth = () => {
             <span className="text-2xl font-bold text-gray-900">InterQ</span>
           </div>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={showDemoSection ? "demo" : "form"}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.2 }}
-            >
-              {showDemoSection ? (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2 }}
+          >
                 <Card className="border-0 shadow-2xl">
                   <CardHeader className="space-y-1 pb-4">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Sparkles className="w-5 h-5 text-amber-500" />
-                      <Badge variant="outline" className="bg-amber-50 text-amber-700 border-amber-200">
-                        Demo Mode Available
-                      </Badge>
-                    </div>
-                    <CardTitle className="text-2xl font-bold">Try InterQ Free</CardTitle>
-                    <CardDescription>
-                      Explore InterQ instantly with pre-configured demo accounts
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <div className="grid gap-3">
-                      {(["jobseeker", "company", "recruiter", "admin"] as AccountRole[]).map((role) => {
-                        const config = roleConfig[role];
-                        const Icon = config.icon;
-                        const demoUser = DEMO_USERS.find(u => u.role === role);
-                        
-                        return (
-                          <button
-                            key={role}
-                            onClick={() => handleDemoLogin(role)}
-                            disabled={isSubmitting}
-                            className="flex items-center gap-4 p-4 rounded-xl border-2 border-gray-100 hover:border-gray-200 hover:bg-gray-50 transition-all text-left group disabled:opacity-50 disabled:cursor-not-allowed"
-                          >
-                            <div className={`w-12 h-12 ${config.color} rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform`}>
-                              <Icon className="w-6 h-6 text-white" />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-2">
-                                <span className="font-semibold text-gray-900 capitalize">{config.label} Demo</span>
-                                <Badge variant="outline" className="text-xs bg-red-50 text-red-600 border-red-200">
-                                  Demo Account
-                                </Badge>
-                              </div>
-                              <p className="text-sm text-gray-500 truncate">{demoUser?.description}</p>
-                            </div>
-                            <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-gray-600 group-hover:translate-x-1 transition-all" />
-                          </button>
-                        );
-                      })}
-                    </div>
-
-                    {error && (
-                      <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
-                        <AlertCircle className="w-4 h-4" />
-                        {error}
-                      </div>
-                    )}
-
-                    <div className="pt-4 border-t">
-                      <Button 
-                        variant="ghost" 
-                        className="w-full" 
-                        onClick={() => setShowDemoSection(false)}
-                      >
-                        <Mail className="w-4 h-4 mr-2" />
-                        Create New Account or Sign In
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ) : (
-                <Card className="border-0 shadow-2xl">
-                  <CardHeader className="space-y-1 pb-4">
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
-                      className="w-fit -ml-2 mb-2" 
-                      onClick={() => setShowDemoSection(true)}
-                    >
-                      <ArrowLeft className="w-4 h-4 mr-1" />
-                      Back to Demo
-                    </Button>
                     <CardTitle className="text-2xl font-bold">
                       {activeTab === "signin" ? "Welcome Back" : "Create Account"}
                     </CardTitle>
@@ -508,9 +413,14 @@ const Auth = () => {
                     </Tabs>
                   </CardContent>
                 </Card>
-              )}
-            </motion.div>
-          </AnimatePresence>
+
+                <p className="text-center text-sm text-gray-500 mt-6">
+                  Just exploring?{" "}
+                  <Link to="/demo-access" className="text-blue-600 hover:text-blue-700 font-medium">
+                    View demo access →
+                  </Link>
+                </p>
+          </motion.div>
         </div>
       </div>
     </div>

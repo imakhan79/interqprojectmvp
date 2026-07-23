@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/SimpleAuthContext";
 import { useAssessments } from "@/hooks/useAssessments";
 import { useCertificate } from "@/hooks/useCertificate";
+import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
 
 const categories = ["All", "Python", "AWS", "SQL", "JavaScript", "Linux", "Docker", "React", "DevOps", "Security", "Node.js", "Go", "Kubernetes", "Azure", "GCP"];
@@ -71,7 +72,7 @@ const JobSeekerAssessments = () => {
     const fetchCompletedAssessments = async () => {
       if (!user) return;
       try {
-        const { data: results } = await supabase.from('assessment_results')
+        const { data: results } = await supabase
           .from('assessment_results')
           .select('assessment_id')
           .eq('user_id', user.id);
@@ -235,7 +236,7 @@ const JobSeekerAssessments = () => {
                       {a.difficulty}
                     </span>
                     <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                      <Clock className="w-3 h-3" /> {a.duration_minutes} min
+                      <Clock className="w-3 h-3" /> {a.duration} min
                     </span>
                   </div>
                     <div className="space-y-2">

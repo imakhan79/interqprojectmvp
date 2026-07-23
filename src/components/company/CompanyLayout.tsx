@@ -11,6 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
+import { NotificationBell } from "@/components/NotificationBell";
 
 const navItems = [
   { label: "Dashboard", icon: LayoutDashboard, path: "/company" },
@@ -29,6 +30,7 @@ interface Company {
   id: string;
   name: string;
   logo_url: string | null;
+  status?: string | null;
 }
 
 export function CompanyLayout() {
@@ -67,7 +69,7 @@ export function CompanyLayout() {
       try {
         const { data } = await supabase
           .from("companies")
-          .select("id, name, logo_url")
+          .select("id, name, logo_url, status")
           .eq("id", companyId)
           .maybeSingle();
 
@@ -200,10 +202,22 @@ export function CompanyLayout() {
 <div className="flex items-center gap-2">
             </div>
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon"><Bell className="h-4 w-4" /></Button>
+            <NotificationBell />
           </div>
         </header>
         <main className="flex-1 overflow-y-auto p-4 lg:p-6">
+          {company.status === "pending_approval" && (
+            <div className="mb-4 p-3 rounded-lg bg-amber-50 border border-amber-200 flex items-center gap-2 text-sm text-amber-800 dark:bg-amber-900/10 dark:border-amber-900/30 dark:text-amber-400">
+              <AlertCircle className="h-4 w-4 flex-shrink-0" />
+              Your company is pending admin approval. You can still set up jobs and your team — they'll go live once approved.
+            </div>
+          )}
+          {company.status === "rejected" && (
+            <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 flex items-center gap-2 text-sm text-red-800 dark:bg-red-900/10 dark:border-red-900/30 dark:text-red-400">
+              <AlertCircle className="h-4 w-4 flex-shrink-0" />
+              Your company application was rejected. Contact support for details.
+            </div>
+          )}
           <Outlet context={{ company, user }} />
         </main>
       </div>

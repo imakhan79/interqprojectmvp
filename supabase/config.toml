@@ -1,11 +1,10 @@
 project_id = "lenltzlsnlbzwlizmijc"
 
-[functions.create-demo-users]
-verify_jwt = false
-
-[functions.create-user]
-verify_jwt = false
-
+# create-demo-users and create-user hold the service-role key and now do
+# their own admin-only authorization check in code (see each function's
+# index.ts) -- verify_jwt is intentionally left at its secure default
+# (true) here so the platform gateway also rejects requests that aren't
+# even carrying a valid Supabase JWT before the function code ever runs.
 
 [functions.evaluate-code]
 verify_jwt = false

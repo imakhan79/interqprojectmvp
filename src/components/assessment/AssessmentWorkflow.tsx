@@ -113,9 +113,8 @@ export function AssessmentWorkflow({ userId, onComplete, onCancel }: AssessmentW
           points: q.points || 5,
           order_index: index,
         }));
-      } else if (assessment.id === 'cloud-security-engineer-mock-id' || (masterDomain && !(masterDomain as any).sampleTest)) {
-        const source = masterDomain?.id === 'cloud-security' ? cloudSecurityAssessment : cloudSecurityAssessment;
-        mappedQuestions = source.questions.map((q: any, index: number) => ({
+      } else if (assessment.id === 'cloud-security-engineer-mock-id') {
+        mappedQuestions = cloudSecurityAssessment.questions.map((q: any, index: number) => ({
           id: q.id,
           question_text: q.question_text || q.question,
           question_type: q.type === 'mcq' ? 'mcq' : (q.type === 'scenario' ? 'mcq' : 'coding'),
@@ -124,6 +123,10 @@ export function AssessmentWorkflow({ userId, onComplete, onCancel }: AssessmentW
           points: 5,
           order_index: index,
         }));
+      } else if (masterDomain && !(masterDomain as any).sampleTest) {
+        setError(`No sample questions available yet for ${assessment.title}.`);
+        setLoading(false);
+        return false;
       } else {
         const { data: questionData, error: qError } = await supabase
           .from('assessment_questions')

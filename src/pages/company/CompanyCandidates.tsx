@@ -48,16 +48,21 @@ import {
   Mail,
   Trash2,
   Loader2,
+  Send,
+  Award,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/SimpleAuthContext";
 import { useCompanyId } from "@/hooks/useCompanyId";
 import { useRealtimeTable } from "@/hooks/useRealtimeTable";
+import { notifyUser } from "@/lib/notifications";
+import { getAvailableActions, type CandidateStage } from "@/lib/pipelineStages";
 
 interface CandidateRow {
   id: string;
   company_id: string;
   job_id: string | null;
+  user_id: string | null;
   full_name: string;
   email: string | null;
   phone: string | null;
@@ -97,6 +102,7 @@ export default function CompanyCandidates() {
 
   const [candidates, setCandidates] = useState<CandidateRow[]>([]);
   const [jobs, setJobs] = useState<JobOption[]>([]);
+  const [pipelineContext, setPipelineContext] = useState<Record<string, { hasInterview: boolean; interviewCompleted: boolean; hasAcceptedOffer: boolean }>>({});
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [stageFilter, setStageFilter] = useState<string>("all");
@@ -124,8 +130,32 @@ export default function CompanyCandidates() {
       supabase.from("candidates").select("*").eq("company_id", companyId).order("created_at", { ascending: false }),
       supabase.from("jobs").select("id, title").eq("company_id", companyId),
     ]);
-    setCandidates((candidateRows as CandidateRow[]) || []);
+    const candidateList = (candidateRows as CandidateRow[]) || [];
+    setCandidates(candidateList);
     setJobs((jobRows as JobOption[]) || []);
+
+    const candidateIds = candidateList.map((c) => c.id);
+    if (candidateIds.length > 0) {
+      const [{ data: interviewRows }, { data: offerRows }] = await Promise.all([
+        supabase.from("interviews").select("candidate_id, status, score").in("candidate_id", candidateIds),
+        supabase.from("job_offers").select("candidate_id, status").in("candidate_id", candidateIds),
+      ]);
+      const ctx: Record<string, { hasInterview: boolean; interviewCompleted: boolean; hasAcceptedOffer: boolean }> = {};
+      candidateIds.forEach((id) => { ctx[id] = { hasInterview: false, interviewCompleted: false, hasAcceptedOffer: false }; });
+      (interviewRows || []).forEach((i: { candidate_id: string | null; status: string; score: number | null }) => {
+        if (!i.candidate_id || !ctx[i.candidate_id]) return;
+        ctx[i.candidate_id].hasInterview = true;
+        if (i.status === "completed" && i.score != null) ctx[i.candidate_id].interviewCompleted = true;
+      });
+      (offerRows || []).forEach((o: { candidate_id: string | null; status: string }) => {
+        if (!o.candidate_id || !ctx[o.candidate_id]) return;
+        if (o.status === "accepted") ctx[o.candidate_id].hasAcceptedOffer = true;
+      });
+      setPipelineContext(ctx);
+    } else {
+      setPipelineContext({});
+    }
+
     setLoading(false);
   }, [companyId]);
 
@@ -166,6 +196,14 @@ export default function CompanyCandidates() {
     if (error) {
       toast({ title: "Failed to update status", description: error.message, variant: "destructive" });
       return;
+    }
+    if (candidate.user_id) {
+      await notifyUser(candidate.user_id, {
+        type: `candidate.${status}`,
+        title: status === "rejected" ? "Application update" : "Your application moved forward",
+        message: `${jobTitleById.get(candidate.job_id || "") || "Your application"} is now: ${status}`,
+        link: "/jobseeker/applications",
+      });
     }
     toast({ title: status === "rejected" ? "Candidate rejected" : "Status updated" });
     load();
@@ -216,6 +254,14 @@ export default function CompanyCandidates() {
       return;
     }
     await updateStatus(interviewCandidate, "interview");
+    if (interviewCandidate.user_id) {
+      await notifyUser(interviewCandidate.user_id, {
+        type: "interview.scheduled",
+        title: "Interview scheduled",
+        message: `You have an interview scheduled for ${new Date(interviewForm.scheduled_at).toLocaleString()}.`,
+        link: "/jobseeker/interviews",
+      });
+    }
     toast({ title: "Interview scheduled" });
     setInterviewCandidate(null);
   };
@@ -445,20 +491,37 @@ export default function CompanyCandidates() {
                             Send Email
                           </DropdownMenuItem>
                         )}
-                        <DropdownMenuItem onClick={() => openInterviewDialog(candidate)}>
-                          <Calendar className="w-4 h-4 mr-2" />
-                          Schedule Interview
-                        </DropdownMenuItem>
                         <DropdownMenuItem onClick={() => openMoveDialog(candidate)}>
                           <Briefcase className="w-4 h-4 mr-2" />
                           Move to Job
                         </DropdownMenuItem>
-                        {candidate.status !== "rejected" && (
-                          <DropdownMenuItem className="text-red-600" onClick={() => updateStatus(candidate, "rejected")}>
-                            <Trash2 className="w-4 h-4 mr-2" />
-                            Reject
-                          </DropdownMenuItem>
-                        )}
+                        {getAvailableActions(
+                          candidate.status,
+                          pipelineContext[candidate.id] || { hasInterview: false, interviewCompleted: false, hasAcceptedOffer: false }
+                        ).map((action) => {
+                          const icon =
+                            action.targetStatus === "interview" ? <Calendar className="w-4 h-4 mr-2" /> :
+                            action.targetStatus === "offer" ? <Send className="w-4 h-4 mr-2" /> :
+                            action.targetStatus === "hired" ? <Award className="w-4 h-4 mr-2" /> :
+                            action.targetStatus === "rejected" ? <Trash2 className="w-4 h-4 mr-2" /> :
+                            <Calendar className="w-4 h-4 mr-2" />;
+                          return (
+                            <DropdownMenuItem
+                              key={action.targetStatus}
+                              disabled={!!action.disabledReason}
+                              title={action.disabledReason}
+                              className={action.targetStatus === "rejected" ? "text-red-600" : undefined}
+                              onClick={() => {
+                                if (action.disabledReason) return;
+                                if (action.targetStatus === "interview") openInterviewDialog(candidate);
+                                else updateStatus(candidate, action.targetStatus as CandidateStage);
+                              }}
+                            >
+                              {icon}
+                              {action.label}
+                            </DropdownMenuItem>
+                          );
+                        })}
                       </DropdownMenuContent>
                     </DropdownMenu>
                   </TableCell>

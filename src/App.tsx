@@ -9,34 +9,13 @@ import { SimpleAuthProvider } from "@/contexts/SimpleAuthContext";
 import { JobSeekerDashboardProvider } from "@/contexts/JobSeekerDashboardContext";
 import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
 import { ChatbotWidget } from "@/components/chatbot/ChatbotWidget";
-import UnifiedLayout from "@/components/layouts/UnifiedLayout";
-import UnifiedDashboard from "@/pages/UnifiedDashboard";
-import OffersManagement from "@/pages/admin/OffersManagement";
-
-// Unified feature pages
-const JobsPage = lazy(() => import("./pages/unified/JobsPage"));
-const CandidatesPage = lazy(() => import("./pages/unified/CandidatesPage"));
-const InterviewsPage = lazy(() => import("./pages/unified/InterviewsPage"));
-const MessagingPage = lazy(() => import("./pages/unified/MessagingPage"));
-const ReportsPage = lazy(() => import("./pages/unified/ReportsPage"));
-const BillingPage = lazy(() => import("./pages/unified/BillingPage"));
-const TeamPage = lazy(() => import("./pages/unified/TeamPage"));
-const ProfilePage = lazy(() => import("./pages/unified/ProfilePage"));
-const SavedJobsPage = lazy(() => import("./pages/unified/SavedJobsPage"));
-const TalentPoolPage = lazy(() => import("./pages/unified/TalentPoolPage"));
-const PipelinePage = lazy(() => import("./pages/unified/PipelinePage"));
-const CompaniesPage = lazy(() => import("./pages/unified/CompaniesPage"));
-const UsersPage = lazy(() => import("./pages/unified/UsersPage"));
-const SecurityPage = lazy(() => import("./pages/unified/SecurityPage"));
-const IntegrationsPageUnified = lazy(() => import("./pages/unified/IntegrationsPageUnified"));
-const AuditLogsPage = lazy(() => import("./pages/unified/AuditLogsPage"));
-const SettingsPage = lazy(() => import("./pages/unified/SettingsPage"));
 
 const Index = lazy(() => import("./pages/Index"));
 const Auth = lazy(() => import("./pages/Auth"));
 const VerifyEmail = lazy(() => import("./pages/VerifyEmail"));
 const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 const GetStarted = lazy(() => import("./pages/GetStarted"));
+const DemoAccess = lazy(() => import("./pages/DemoAccess"));
 const Product = lazy(() => import("./pages/Product"));
 const Features = lazy(() => import("./pages/Features"));
 const Integrations = lazy(() => import("./pages/Integrations"));
@@ -74,6 +53,7 @@ const TestManagement = lazy(() => import("./pages/admin/TestManagement"));
 const QuestionBank = lazy(() => import("./pages/admin/QuestionBank"));
 const InterviewManagement = lazy(() => import("./pages/admin/InterviewManagement"));
 const CompanyManagement = lazy(() => import("./pages/admin/CompanyManagement"));
+const ApprovalsQueue = lazy(() => import("./pages/admin/ApprovalsQueue"));
 const JobSeekerManagement = lazy(() => import("./pages/admin/JobSeekerManagement"));
 const CertificateManagement = lazy(() => import("./pages/admin/CertificateManagement"));
 const ActivityLogs = lazy(() => import("./pages/admin/ActivityLogs"));
@@ -140,6 +120,8 @@ const RecruiterSettings = lazy(() => import("./pages/recruiter/Settings"));
 const EvaluationReports = lazy(() => import("./pages/recruiter/DynamicEvaluationReports"));
 const JobSeekerLayout = lazy(() => import("./components/jobseeker/JobSeekerLayout").then(m => ({ default: m.JobSeekerLayout })));
 const JobSeekerDashboard = lazy(() => import("./pages/jobseeker/JobSeekerDashboard"));
+const JobBoard = lazy(() => import("./pages/jobseeker/JobBoard"));
+const JobDetail = lazy(() => import("./pages/jobseeker/JobDetail"));
 const JobSeekerAssessments = lazy(() => import("./pages/jobseeker/JobSeekerAssessments"));
 const JobSeekerInterviews = lazy(() => import("./pages/jobseeker/Interviews"));
 const InterviewSession = lazy(() => import("./pages/jobseeker/InterviewSession"));
@@ -185,31 +167,7 @@ const App = () => (
               <Route path="/verify-email" element={<VerifyEmail />} />
               <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/get-started" element={<GetStarted />} />
-              <Route path="/unified-dashboard" element={<UnifiedLayout><UnifiedDashboard /></UnifiedLayout>} />
-              <Route path="/dashboard" element={<UnifiedLayout><UnifiedDashboard /></UnifiedLayout>} />
-              <Route path="/offers" element={<UnifiedLayout><OffersManagement /></UnifiedLayout>} />
-              <Route path="/jobs" element={<UnifiedLayout><JobsPage /></UnifiedLayout>} />
-              <Route path="/jobs/new" element={<UnifiedLayout><JobsPage /></UnifiedLayout>} />
-              <Route path="/candidates" element={<UnifiedLayout><CandidatesPage /></UnifiedLayout>} />
-              <Route path="/candidates/new" element={<UnifiedLayout><CandidatesPage /></UnifiedLayout>} />
-              <Route path="/interviews" element={<UnifiedLayout><InterviewsPage /></UnifiedLayout>} />
-              <Route path="/interviews/new" element={<UnifiedLayout><InterviewsPage /></UnifiedLayout>} />
-              <Route path="/applications" element={<UnifiedLayout><CandidatesPage /></UnifiedLayout>} />
-              <Route path="/pipeline" element={<UnifiedLayout><PipelinePage /></UnifiedLayout>} />
-              <Route path="/talent-pool" element={<UnifiedLayout><TalentPoolPage /></UnifiedLayout>} />
-              <Route path="/my-jobs" element={<UnifiedLayout><JobsPage /></UnifiedLayout>} />
-              <Route path="/saved-jobs" element={<UnifiedLayout><SavedJobsPage /></UnifiedLayout>} />
-              <Route path="/profile" element={<UnifiedLayout><ProfilePage /></UnifiedLayout>} />
-              <Route path="/team" element={<UnifiedLayout><TeamPage /></UnifiedLayout>} />
-              <Route path="/messages" element={<UnifiedLayout><MessagingPage /></UnifiedLayout>} />
-              <Route path="/reports" element={<UnifiedLayout><ReportsPage /></UnifiedLayout>} />
-              <Route path="/billing" element={<UnifiedLayout><BillingPage /></UnifiedLayout>} />
-              <Route path="/integrations" element={<UnifiedLayout><IntegrationsPageUnified /></UnifiedLayout>} />
-              <Route path="/audit-logs" element={<UnifiedLayout><AuditLogsPage /></UnifiedLayout>} />
-              <Route path="/security" element={<UnifiedLayout><SecurityPage /></UnifiedLayout>} />
-              <Route path="/settings" element={<UnifiedLayout><SettingsPage /></UnifiedLayout>} />
-              <Route path="/companies" element={<UnifiedLayout><CompaniesPage /></UnifiedLayout>} />
-              <Route path="/users" element={<UnifiedLayout><UsersPage /></UnifiedLayout>} />
+              <Route path="/demo-access" element={<DemoAccess />} />
               <Route path="/product" element={<Product />} />
               <Route path="/features" element={<Features />} />
               <Route path="/assessments" element={<Assessments />} />
@@ -261,6 +219,8 @@ const App = () => (
               </Route>
               <Route path="/jobseeker" element={<ProtectedRoute allowedRoles={["jobseeker"]}><JobSeekerLayout /></ProtectedRoute>}>
                 <Route index element={<JobSeekerDashboard />} />
+                <Route path="jobs" element={<JobBoard />} />
+                <Route path="jobs/:id" element={<JobDetail />} />
                 <Route path="applications" element={<JobSeekerApplications />} />
                 <Route path="assessments" element={<JobSeekerAssessments />} />
                 <Route path="interviews" element={<JobSeekerInterviews />} />
@@ -291,6 +251,7 @@ const App = () => (
                 <Route path="interviews" element={<InterviewManagement />} />
                 <Route path="certificates" element={<CertificateManagement />} />
                 <Route path="companies" element={<CompanyManagement />} />
+                <Route path="approvals" element={<ApprovalsQueue />} />
                 <Route path="job-seekers" element={<JobSeekerManagement />} />
                 <Route path="logs" element={<ActivityLogs />} />
                 <Route path="role-management" element={<RoleManagement />} />

@@ -40,6 +40,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/SimpleAuthContext";
 import { useCompanyId } from "@/hooks/useCompanyId";
 import { useRealtimeTable } from "@/hooks/useRealtimeTable";
+import { notifyUser } from "@/lib/notifications";
 
 interface InterviewRow {
   id: string;
@@ -60,6 +61,7 @@ interface CandidateOption {
   id: string;
   full_name: string;
   job_id: string | null;
+  user_id: string | null;
 }
 
 const statusColors: Record<string, string> = {
@@ -100,7 +102,7 @@ export default function CompanyInterviews() {
     setLoading(true);
 
     const [{ data: candidateRows }, { data: jobRows }] = await Promise.all([
-      supabase.from("candidates").select("id, full_name, job_id").eq("company_id", companyId),
+      supabase.from("candidates").select("id, full_name, job_id, user_id").eq("company_id", companyId),
       supabase.from("jobs").select("id, title").eq("company_id", companyId),
     ]);
 
@@ -188,6 +190,14 @@ export default function CompanyInterviews() {
     }
     if (candidate) {
       await supabase.from("candidates").update({ status: "interview" }).eq("id", candidate.id);
+      if (candidate.user_id) {
+        await notifyUser(candidate.user_id, {
+          type: "interview.scheduled",
+          title: "Interview scheduled",
+          message: `You have an interview scheduled for ${new Date(scheduleForm.scheduled_at).toLocaleString()}.`,
+          link: "/jobseeker/interviews",
+        });
+      }
     }
     toast({ title: "Interview scheduled", description: "The candidate has been added to the schedule." });
     setScheduleOpen(false);
@@ -230,15 +240,33 @@ export default function CompanyInterviews() {
   const handleSubmitFeedback = async () => {
     if (!feedbackTarget) return;
     setSaving(true);
+    const score = Number(feedbackForm.score);
     const { error } = await supabase
       .from("interviews")
-      .update({ status: "completed", score: Number(feedbackForm.score), feedback: feedbackForm.feedback.trim() || null })
+      .update({ status: "completed", score, feedback: feedbackForm.feedback.trim() || null })
       .eq("id", feedbackTarget.id);
-    setSaving(false);
     if (error) {
+      setSaving(false);
       toast({ title: "Failed to save feedback", description: error.message, variant: "destructive" });
       return;
     }
+
+    if (feedbackTarget.candidate_id) {
+      // Score out of 5 in this form -> percentage, so it's comparable to
+      // candidates.assessment_score elsewhere in the pipeline.
+      await supabase.from("candidates").update({ interview_score: (score / 5) * 100 }).eq("id", feedbackTarget.candidate_id);
+      const candidate = candidates.find((c) => c.id === feedbackTarget.candidate_id);
+      if (candidate?.user_id) {
+        await notifyUser(candidate.user_id, {
+          type: "interview.completed",
+          title: "Interview feedback submitted",
+          message: "Your interview has been scored — check your application status for next steps.",
+          link: "/jobseeker/applications",
+        });
+      }
+    }
+
+    setSaving(false);
     toast({ title: "Feedback saved" });
     setFeedbackTarget(null);
     load();

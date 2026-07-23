@@ -14,6 +14,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/SimpleAuthContext";
 import { useCompanyId } from "@/hooks/useCompanyId";
 import { useRealtimeTable } from "@/hooks/useRealtimeTable";
+import { notifyUser } from "@/lib/notifications";
 
 interface OfferRow {
   id: string;
@@ -29,7 +30,7 @@ interface OfferRow {
   created_at: string;
 }
 
-interface CandidateOption { id: string; full_name: string; job_id: string | null }
+interface CandidateOption { id: string; full_name: string; job_id: string | null; user_id: string | null }
 interface JobOption { id: string; title: string }
 
 const statusColors: Record<string, string> = {
@@ -66,7 +67,7 @@ export default function RecruiterOffers() {
     setLoading(true);
     const [{ data: offerRows }, { data: candidateRows }, { data: jobRows }] = await Promise.all([
       supabase.from("job_offers").select("*").eq("company_id", companyId).order("created_at", { ascending: false }),
-      supabase.from("candidates").select("id, full_name, job_id").eq("company_id", companyId),
+      supabase.from("candidates").select("id, full_name, job_id, user_id").eq("company_id", companyId),
       supabase.from("jobs").select("id, title").eq("company_id", companyId),
     ]);
     setOffers((offerRows as OfferRow[]) || []);
@@ -128,6 +129,18 @@ export default function RecruiterOffers() {
     if (error) {
       toast({ title: "Failed to send offer", description: error.message, variant: "destructive" });
       return;
+    }
+    if (offer.candidate_id) {
+      await supabase.from("candidates").update({ status: "offer" }).eq("id", offer.candidate_id);
+      const candidate = candidates.find((c) => c.id === offer.candidate_id);
+      if (candidate?.user_id) {
+        await notifyUser(candidate.user_id, {
+          type: "offer.sent",
+          title: "You have a new offer!",
+          message: offer.position ? `An offer for ${offer.position} is waiting for your response.` : "An offer is waiting for your response.",
+          link: "/jobseeker/offers",
+        });
+      }
     }
     toast({ title: "Offer sent to candidate" });
     load();

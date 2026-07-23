@@ -20,7 +20,7 @@ export function RecommendedJobs({ isLoading }: RecommendedJobsProps) {
       const { data } = await supabase
         .from("jobs")
         .select("id, title, location, department, employment_type, company_id, companies(name)")
-        .eq("status", "active")
+        .eq("status", "open")
         .order("created_at", { ascending: false })
         .limit(4);
       return data || [];
@@ -60,7 +60,7 @@ export function RecommendedJobs({ isLoading }: RecommendedJobsProps) {
             Recommended Jobs
           </span>
           {jobs.length > 0 && (
-            <Button variant="ghost" size="sm" className="text-xs h-8" onClick={() => navigate("/jobseeker/assessments")}>
+            <Button variant="ghost" size="sm" className="text-xs h-8" onClick={() => navigate("/jobseeker/jobs")}>
               Browse All
             </Button>
           )}
@@ -117,7 +117,7 @@ export function RecommendedJobs({ isLoading }: RecommendedJobsProps) {
                   size="sm"
                   variant="outline"
                   className="h-7 text-xs rounded-full px-4"
-                  onClick={() => navigate(`/jobseeker/assessments`)}
+                  onClick={() => navigate(`/jobseeker/jobs/${job.id}`)}
                 >
                   Apply <ArrowRight className="w-3 h-3 ml-1" />
                 </Button>

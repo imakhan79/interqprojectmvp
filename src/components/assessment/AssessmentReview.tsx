@@ -91,7 +91,7 @@ export function AssessmentReview({
     switch (status) {
       case 'answered': return 'bg-green-100 text-green-800 border-green-200';
       case 'review': return 'bg-orange-100 text-orange-800 border-orange-200';
-      default: return 'bg-gray-100 text-gray-800 border-gray-200';
+      default: return 'bg-muted text-foreground border-border';
     }
   };
 
@@ -120,7 +120,7 @@ export function AssessmentReview({
   const renderAnswerPreview = (question: Question, answer: string | number | boolean) => {
     if (!answer) {
       return (
-        <div className="text-gray-500 italic">
+        <div className="text-muted-foreground italic">
           No answer provided
         </div>
       );
@@ -140,12 +140,12 @@ export function AssessmentReview({
 
     if (question.question_type === 'coding') {
       return (
-        <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
+        <div className="bg-muted border border-border rounded-lg p-3">
           <div className="flex items-center space-x-2 mb-2">
-            <BookOpen className="w-4 h-4 text-gray-600" />
-            <span className="font-medium text-gray-900">Your Code:</span>
+            <BookOpen className="w-4 h-4 text-muted-foreground" />
+            <span className="font-medium text-foreground">Your Code:</span>
           </div>
-          <pre className="text-sm text-gray-700 bg-white p-3 rounded border overflow-x-auto max-h-32">
+          <pre className="text-sm text-foreground bg-card p-3 rounded border overflow-x-auto max-h-32">
             <code>{answer}</code>
           </pre>
         </div>
@@ -153,7 +153,7 @@ export function AssessmentReview({
     }
 
     return (
-      <div className="text-gray-800">
+      <div className="text-foreground">
         {answer}
       </div>
     );
@@ -163,8 +163,8 @@ export function AssessmentReview({
     <div className="space-y-6">
       {/* Header */}
       <div className="text-center">
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">Review Your Answers</h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">
+        <h2 className="text-3xl font-bold text-foreground mb-2">Review Your Answers</h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto">
           Please review your answers before submitting. You can navigate through questions and make changes if needed.
         </p>
       </div>
@@ -202,8 +202,8 @@ export function AssessmentReview({
 
       {/* Question Navigator */}
       <Card className="p-4">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">Question Navigator</h3>
-        <div className="grid grid-cols-8 sm:grid-cols-12 md:grid-cols-16 gap-2 mb-4">
+        <h3 className="text-lg font-semibold text-foreground mb-4">Question Navigator</h3>
+        <div className="grid grid-cols-8 sm:grid-cols-12 md:grid-cols-[repeat(16,minmax(0,1fr))] gap-2 mb-4">
           {questions.map((question, index) => {
             const status = getQuestionStatus(index);
             return (
@@ -212,7 +212,7 @@ export function AssessmentReview({
                 variant="ghost"
                 size="sm"
                 onClick={() => setCurrentQuestionIndex(index)}
-                className={`w-10 h-10 p-0 text-xs ${
+                className={`relative w-10 h-10 p-0 text-xs ${
                   index === currentQuestionIndex
                     ? 'bg-blue-600 text-white'
                     : getStatusColor(status)
@@ -228,19 +228,19 @@ export function AssessmentReview({
         <div className="flex items-center space-x-4 text-sm">
           <div className="flex items-center space-x-2">
             <div className="w-3 h-3 bg-green-100 border border-green-300 rounded"></div>
-            <span className="text-gray-600">Answered</span>
+            <span className="text-muted-foreground">Answered</span>
           </div>
           <div className="flex items-center space-x-2">
             <div className="w-3 h-3 bg-orange-100 border border-orange-300 rounded"></div>
-            <span className="text-gray-600">Marked for Review</span>
+            <span className="text-muted-foreground">Marked for Review</span>
           </div>
           <div className="flex items-center space-x-2">
-            <div className="w-3 h-3 bg-gray-100 border border-gray-300 rounded"></div>
-            <span className="text-gray-600">Unanswered</span>
+            <div className="w-3 h-3 bg-muted border border-border rounded"></div>
+            <span className="text-muted-foreground">Unanswered</span>
           </div>
           <div className="flex items-center space-x-2">
             <div className="w-3 h-3 bg-blue-600 rounded"></div>
-            <span className="text-gray-600">Current</span>
+            <span className="text-muted-foreground">Current</span>
           </div>
         </div>
       </Card>
@@ -293,27 +293,27 @@ export function AssessmentReview({
           </div>
 
           <div>
-            <h4 className="text-lg font-medium text-gray-900 mb-4">
+            <h4 className="text-lg font-medium text-foreground mb-4">
               {currentQuestion.question_text}
             </h4>
             
             {currentQuestion.question_type === 'mcq' && currentQuestion.options && (
-              <div className="bg-gray-50 rounded-lg p-4">
-                <p className="text-sm font-medium text-gray-700 mb-2">Available Options:</p>
+              <div className="bg-muted rounded-lg p-4">
+                <p className="text-sm font-medium text-foreground mb-2">Available Options:</p>
                 <div className="space-y-2">
                   {currentQuestion.options.map((option, index) => (
                     <div key={index} className={`p-2 rounded border ${
                       answers[currentQuestion.id] === option
                         ? 'bg-blue-50 border-blue-300'
-                        : 'bg-white border-gray-200'
+                        : 'bg-card border-border'
                     }`}>
                       <div className="flex items-center space-x-2">
                         <div className={`w-4 h-4 rounded-full border-2 ${
                           answers[currentQuestion.id] === option
                             ? 'bg-blue-600 border-blue-600'
-                            : 'border-gray-300'
+                            : 'border-border'
                         }`}></div>
-                        <span className="text-gray-800">{option}</span>
+                        <span className="text-foreground">{option}</span>
                       </div>
                     </div>
                   ))}
@@ -322,7 +322,7 @@ export function AssessmentReview({
             )}
 
             <div className="mt-4">
-              <p className="text-sm font-medium text-gray-700 mb-2">Your Answer:</p>
+              <p className="text-sm font-medium text-foreground mb-2">Your Answer:</p>
               {renderAnswerPreview(currentQuestion, answers[currentQuestion.id])}
             </div>
           </div>
@@ -336,9 +336,9 @@ export function AssessmentReview({
             <div className="p-6">
               <div className="flex items-center space-x-3 mb-4">
                 <AlertTriangle className="w-6 h-6 text-orange-600" />
-                <h3 className="text-lg font-semibold text-gray-900">Unanswered Questions</h3>
+                <h3 className="text-lg font-semibold text-foreground">Unanswered Questions</h3>
               </div>
-              <p className="text-gray-600 mb-6">
+              <p className="text-muted-foreground mb-6">
                 You have {unansweredQuestions} unanswered questions. Are you sure you want to submit?
               </p>
               <div className="flex justify-end space-x-3">

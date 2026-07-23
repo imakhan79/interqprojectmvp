@@ -43,10 +43,19 @@ import {
   Loader2,
   Ban,
   CheckCircle2,
+  Send,
+  FileEdit,
+  ClipboardList,
+  ClipboardCheck,
+  ArrowLeft,
+  ArrowRight,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useCompanyId } from "@/hooks/useCompanyId";
 import { useRealtimeTable } from "@/hooks/useRealtimeTable";
+import { useAssessments } from "@/hooks/useAssessments";
+import { notifyRole } from "@/lib/notifications";
+import { WorkflowStepper, type Step } from "@/components/assessment/WorkflowStepper";
 
 interface JobRow {
   id: string;
@@ -59,6 +68,8 @@ interface JobRow {
   salary_max: number | null;
   description: string | null;
   status: string;
+  assessment_id: string | null;
+  rejection_reason: string | null;
   created_at: string;
 }
 
@@ -72,10 +83,29 @@ const emptyForm = {
   description: "",
 };
 
+const emptyWizardForm = { ...emptyForm, assessment_id: "" };
+
+const POST_JOB_STEPS: Step[] = [
+  { id: 1, title: "Details", subtitle: "Role & location", icon: FileEdit },
+  { id: 2, title: "Requirements", subtitle: "Salary & type", icon: ClipboardList },
+  { id: 3, title: "Assessment", subtitle: "Link a skills test", icon: ClipboardCheck },
+  { id: 4, title: "Review", subtitle: "Submit for approval", icon: Send },
+];
+
 const statusColors: Record<string, string> = {
   open: "bg-green-100 text-green-700",
   closed: "bg-red-100 text-red-700",
-  draft: "bg-gray-100 text-gray-700",
+  draft: "bg-muted text-foreground",
+  pending_approval: "bg-amber-100 text-amber-700",
+  rejected: "bg-red-100 text-red-700",
+};
+
+const statusLabels: Record<string, string> = {
+  open: "Open",
+  closed: "Closed",
+  draft: "Draft",
+  pending_approval: "Pending Approval",
+  rejected: "Rejected",
 };
 
 export default function CompanyJobs() {
@@ -93,6 +123,11 @@ export default function CompanyJobs() {
   const [editingJob, setEditingJob] = useState<JobRow | null>(null);
   const [form, setForm] = useState(emptyForm);
   const [saving, setSaving] = useState(false);
+
+  const [wizardOpen, setWizardOpen] = useState(false);
+  const [wizardStep, setWizardStep] = useState(1);
+  const [wizardForm, setWizardForm] = useState(emptyWizardForm);
+  const { data: assessmentOptions = [] } = useAssessments();
 
   const loadJobs = useCallback(async () => {
     if (!companyId) {
@@ -144,10 +179,74 @@ export default function CompanyJobs() {
     avgPerJob: jobs.length > 0 ? Math.round(totalApplicants / jobs.length) : 0,
   };
 
-  const openCreateDialog = () => {
-    setEditingJob(null);
-    setForm(emptyForm);
-    setDialogOpen(true);
+  const openPostWizard = () => {
+    setWizardForm(emptyWizardForm);
+    setWizardStep(1);
+    setWizardOpen(true);
+  };
+
+  const submitJob = async (status: "draft" | "pending_approval") => {
+    if (!wizardForm.title.trim()) {
+      toast({ title: "Job title is required", variant: "destructive" });
+      setWizardStep(1);
+      return;
+    }
+    if (!companyId) return;
+
+    setSaving(true);
+    const { data: inserted, error } = await supabase
+      .from("jobs")
+      .insert({
+        title: wizardForm.title.trim(),
+        department: wizardForm.department.trim() || null,
+        location: wizardForm.location.trim() || null,
+        employment_type: wizardForm.employment_type,
+        salary_min: wizardForm.salary_min ? Number(wizardForm.salary_min) : null,
+        salary_max: wizardForm.salary_max ? Number(wizardForm.salary_max) : null,
+        description: wizardForm.description.trim() || null,
+        assessment_id: wizardForm.assessment_id || null,
+        company_id: companyId,
+        status,
+      })
+      .select("id")
+      .single();
+
+    setSaving(false);
+    if (error) {
+      toast({ title: "Failed to save job", description: error.message, variant: "destructive" });
+      return;
+    }
+
+    if (status === "pending_approval") {
+      await notifyRole("admin", {
+        type: "job.pending_approval",
+        title: "New job awaiting approval",
+        message: `${wizardForm.title.trim()} needs review before it can go live.`,
+        link: "/admin/approvals",
+      });
+      toast({ title: "Submitted for approval", description: "An admin will review it shortly." });
+    } else {
+      toast({ title: "Saved as draft" });
+    }
+
+    setWizardOpen(false);
+    loadJobs();
+  };
+
+  const handleResubmit = async (job: JobRow) => {
+    const { error } = await supabase.from("jobs").update({ status: "pending_approval", rejection_reason: null }).eq("id", job.id);
+    if (error) {
+      toast({ title: "Failed to resubmit", description: error.message, variant: "destructive" });
+      return;
+    }
+    await notifyRole("admin", {
+      type: "job.pending_approval",
+      title: "Job resubmitted for approval",
+      message: `${job.title} was updated and resubmitted.`,
+      link: "/admin/approvals",
+    });
+    toast({ title: "Resubmitted for approval" });
+    loadJobs();
   };
 
   const openEditDialog = (job: JobRow) => {
@@ -165,11 +264,10 @@ export default function CompanyJobs() {
   };
 
   const handleSave = async () => {
-    if (!form.title.trim()) {
+    if (!form.title.trim() || !editingJob) {
       toast({ title: "Job title is required", variant: "destructive" });
       return;
     }
-    if (!companyId) return;
 
     setSaving(true);
     const payload = {
@@ -182,9 +280,7 @@ export default function CompanyJobs() {
       description: form.description.trim() || null,
     };
 
-    const { error } = editingJob
-      ? await supabase.from("jobs").update(payload).eq("id", editingJob.id)
-      : await supabase.from("jobs").insert({ ...payload, company_id: companyId, status: "draft" });
+    const { error } = await supabase.from("jobs").update(payload).eq("id", editingJob.id);
 
     setSaving(false);
     if (error) {
@@ -192,7 +288,7 @@ export default function CompanyJobs() {
       return;
     }
 
-    toast({ title: editingJob ? "Job updated" : "Job created" });
+    toast({ title: "Job updated" });
     setDialogOpen(false);
     loadJobs();
   };
@@ -262,7 +358,7 @@ export default function CompanyJobs() {
           <h1 className="text-2xl font-bold text-gray-900">Job Management</h1>
           <p className="text-gray-500">Post and manage your job listings</p>
         </div>
-        <Button onClick={openCreateDialog}>
+        <Button onClick={openPostWizard}>
           <Plus className="w-4 h-4 mr-2" />
           Post New Job
         </Button>
@@ -344,8 +440,10 @@ export default function CompanyJobs() {
               >
                 <option value="all">All Status</option>
                 <option value="open">Open</option>
+                <option value="pending_approval">Pending Approval</option>
                 <option value="closed">Closed</option>
                 <option value="draft">Draft</option>
+                <option value="rejected">Rejected</option>
               </select>
             </div>
           </div>
@@ -408,8 +506,8 @@ export default function CompanyJobs() {
                     <span className="text-sm">{job.employment_type || "—"}</span>
                   </TableCell>
                   <TableCell>
-                    <Badge className={statusColors[job.status] || "bg-gray-100 text-gray-700"}>
-                      {job.status.charAt(0).toUpperCase() + job.status.slice(1)}
+                    <Badge className={statusColors[job.status] || "bg-muted text-foreground"} title={job.rejection_reason || undefined}>
+                      {statusLabels[job.status] || job.status}
                     </Badge>
                   </TableCell>
                   <TableCell className="text-right">
@@ -432,10 +530,32 @@ export default function CompanyJobs() {
                           <Copy className="w-4 h-4 mr-2" />
                           Duplicate
                         </DropdownMenuItem>
-                        {job.status !== "open" && (
+                        {job.status === "draft" && (
+                          <DropdownMenuItem
+                            onClick={async () => {
+                              await notifyRole("admin", {
+                                type: "job.pending_approval",
+                                title: "New job awaiting approval",
+                                message: `${job.title} needs review before it can go live.`,
+                                link: "/admin/approvals",
+                              });
+                              handleStatusChange(job, "pending_approval");
+                            }}
+                          >
+                            <Send className="w-4 h-4 mr-2" />
+                            Submit for Approval
+                          </DropdownMenuItem>
+                        )}
+                        {job.status === "rejected" && (
+                          <DropdownMenuItem onClick={() => handleResubmit(job)}>
+                            <Send className="w-4 h-4 mr-2" />
+                            Resubmit for Approval
+                          </DropdownMenuItem>
+                        )}
+                        {job.status === "closed" && (
                           <DropdownMenuItem onClick={() => handleStatusChange(job, "open")}>
                             <CheckCircle2 className="w-4 h-4 mr-2" />
-                            {job.status === "draft" ? "Publish" : "Reopen"}
+                            Reopen
                           </DropdownMenuItem>
                         )}
                         {job.status === "open" && (
@@ -461,10 +581,8 @@ export default function CompanyJobs() {
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent className="max-w-lg">
           <DialogHeader>
-            <DialogTitle>{editingJob ? "Edit Job" : "Post New Job"}</DialogTitle>
-            <DialogDescription>
-              {editingJob ? "Update this job posting." : "New jobs are created as drafts — publish when ready."}
-            </DialogDescription>
+            <DialogTitle>Edit Job</DialogTitle>
+            <DialogDescription>Update this job posting.</DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-2">
             <div className="space-y-2">
@@ -514,8 +632,138 @@ export default function CompanyJobs() {
             <Button variant="outline" onClick={() => setDialogOpen(false)}>Cancel</Button>
             <Button onClick={handleSave} disabled={saving}>
               {saving && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
-              {editingJob ? "Save Changes" : "Create Job"}
+              Save Changes
             </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Post New Job — guided wizard */}
+      <Dialog open={wizardOpen} onOpenChange={setWizardOpen}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>Post New Job</DialogTitle>
+            <DialogDescription>New jobs go live once an admin approves them.</DialogDescription>
+          </DialogHeader>
+
+          <WorkflowStepper
+            currentStep={wizardStep}
+            onStepClick={setWizardStep}
+            canProceedToStep={(step) => step <= wizardStep + 1}
+            steps={POST_JOB_STEPS}
+          />
+
+          <div className="py-2">
+            {wizardStep === 1 && (
+              <div className="grid gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="wiz-title">Job Title</Label>
+                  <Input id="wiz-title" value={wizardForm.title} onChange={(e) => setWizardForm({ ...wizardForm, title: e.target.value })} placeholder="Senior Backend Engineer" />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="wiz-department">Department</Label>
+                    <Input id="wiz-department" value={wizardForm.department} onChange={(e) => setWizardForm({ ...wizardForm, department: e.target.value })} placeholder="Engineering" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="wiz-location">Location</Label>
+                    <Input id="wiz-location" value={wizardForm.location} onChange={(e) => setWizardForm({ ...wizardForm, location: e.target.value })} placeholder="Remote" />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="wiz-description">Description</Label>
+                  <Textarea id="wiz-description" rows={4} value={wizardForm.description} onChange={(e) => setWizardForm({ ...wizardForm, description: e.target.value })} />
+                </div>
+              </div>
+            )}
+
+            {wizardStep === 2 && (
+              <div className="grid gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="wiz-type">Employment Type</Label>
+                  <select
+                    id="wiz-type"
+                    className="w-full h-10 px-3 border border-input rounded-md bg-background text-sm"
+                    value={wizardForm.employment_type}
+                    onChange={(e) => setWizardForm({ ...wizardForm, employment_type: e.target.value })}
+                  >
+                    <option>Full-time</option>
+                    <option>Part-time</option>
+                    <option>Contract</option>
+                    <option>Internship</option>
+                  </select>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="wiz-salary-min">Salary Min</Label>
+                    <Input id="wiz-salary-min" type="number" value={wizardForm.salary_min} onChange={(e) => setWizardForm({ ...wizardForm, salary_min: e.target.value })} />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="wiz-salary-max">Salary Max</Label>
+                    <Input id="wiz-salary-max" type="number" value={wizardForm.salary_max} onChange={(e) => setWizardForm({ ...wizardForm, salary_max: e.target.value })} />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {wizardStep === 3 && (
+              <div className="space-y-3">
+                <Label>Link a Skills Assessment (optional)</Label>
+                <p className="text-sm text-muted-foreground">Candidates who apply will be prompted to take this assessment.</p>
+                <select
+                  className="w-full h-10 px-3 border border-input rounded-md bg-background text-sm"
+                  value={wizardForm.assessment_id}
+                  onChange={(e) => setWizardForm({ ...wizardForm, assessment_id: e.target.value })}
+                >
+                  <option value="">No assessment linked</option>
+                  {assessmentOptions.map((a: any) => (
+                    <option key={a.id} value={a.id}>{a.title}</option>
+                  ))}
+                </select>
+              </div>
+            )}
+
+            {wizardStep === 4 && (
+              <div className="space-y-4">
+                <div className="rounded-lg border p-4 space-y-2 text-sm">
+                  <div className="flex justify-between"><span className="text-muted-foreground">Title</span><span>{wizardForm.title || "—"}</span></div>
+                  <div className="flex justify-between"><span className="text-muted-foreground">Department</span><span>{wizardForm.department || "—"}</span></div>
+                  <div className="flex justify-between"><span className="text-muted-foreground">Location</span><span>{wizardForm.location || "—"}</span></div>
+                  <div className="flex justify-between"><span className="text-muted-foreground">Type</span><span>{wizardForm.employment_type}</span></div>
+                  <div className="flex justify-between">
+                    <span className="text-muted-foreground">Assessment</span>
+                    <span>{assessmentOptions.find((a: any) => a.id === wizardForm.assessment_id)?.title || "None"}</span>
+                  </div>
+                </div>
+                <p className="text-xs text-muted-foreground">
+                  Submitting sends this job to InterQ admins for approval. You can save it as a draft instead and submit later.
+                </p>
+              </div>
+            )}
+          </div>
+
+          <DialogFooter className="flex items-center justify-between sm:justify-between">
+            <Button variant="ghost" onClick={() => (wizardStep > 1 ? setWizardStep(wizardStep - 1) : setWizardOpen(false))} disabled={saving}>
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              {wizardStep > 1 ? "Back" : "Cancel"}
+            </Button>
+            <div className="flex gap-2">
+              {wizardStep === 4 && (
+                <Button variant="outline" onClick={() => submitJob("draft")} disabled={saving}>
+                  Save as Draft
+                </Button>
+              )}
+              {wizardStep < 4 ? (
+                <Button onClick={() => setWizardStep(wizardStep + 1)}>
+                  Continue <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              ) : (
+                <Button onClick={() => submitJob("pending_approval")} disabled={saving}>
+                  {saving && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
+                  Submit for Approval
+                </Button>
+              )}
+            </div>
           </DialogFooter>
         </DialogContent>
       </Dialog>

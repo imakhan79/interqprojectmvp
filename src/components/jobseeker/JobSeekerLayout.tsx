@@ -3,7 +3,6 @@ import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/SimpleAuthContext";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import {
   LayoutDashboard, FileText, Video, Award, User, Bell, Settings,
@@ -11,9 +10,11 @@ import {
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
+import { NotificationBell } from "@/components/NotificationBell";
 
 const navItems = [
   { icon: LayoutDashboard, label: "Dashboard", path: "/jobseeker" },
+  { icon: Briefcase, label: "Job Board", path: "/jobseeker/jobs" },
   { icon: FileText, label: "Assessments", path: "/jobseeker/assessments" },
   { icon: Video, label: "Interviews", path: "/jobseeker/interviews" },
   { icon: TrendingUp, label: "Results", path: "/jobseeker/results" },
@@ -41,21 +42,6 @@ export function JobSeekerLayout() {
       return data;
     },
     enabled: !!user?.id,
-  });
-
-  const { data: unreadCount = 0 } = useQuery({
-    queryKey: ["unread-notifications", user?.id],
-    queryFn: async () => {
-      if (!user?.id) return 0;
-      const { count } = await (supabase as any)
-        .from("job_seeker_notifications")
-        .select("*", { count: "exact", head: true })
-        .eq("user_id", user.id)
-        .eq("is_read", false);
-      return count || 0;
-    },
-    enabled: !!user?.id,
-    refetchInterval: 30000,
   });
 
   const userName = profile?.full_name || user?.name || user?.email?.split("@")[0] || "Job Seeker";
@@ -90,9 +76,6 @@ export function JobSeekerLayout() {
           >
             <item.icon className="w-5 h-5 flex-shrink-0" />
             {!collapsed && <span>{item.label}</span>}
-            {item.label === "Notifications" && unreadCount > 0 && (
-              <Badge className="ml-auto text-[10px] h-5 min-w-5 flex items-center justify-center">{unreadCount}</Badge>
-            )}
           </button>
         ))}
       </nav>
@@ -160,14 +143,7 @@ export function JobSeekerLayout() {
           </div>
           </div>
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="relative" onClick={() => navigate("/jobseeker/notifications")}>
-              <Bell className="w-5 h-5" />
-              {unreadCount > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-destructive text-destructive-foreground text-[10px] rounded-full flex items-center justify-center">
-                  {unreadCount}
-                </span>
-              )}
-            </Button>
+            <NotificationBell />
             <Avatar className="w-8 h-8 border border-border cursor-pointer" onClick={() => navigate("/jobseeker/profile")}>
               <AvatarFallback className="bg-primary/10 text-primary font-bold text-xs">
                 {userName[0]?.toUpperCase()}

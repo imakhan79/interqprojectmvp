@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useAuth } from '@/contexts/SimpleAuthContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -164,6 +165,7 @@ export default function CompanyDashboard() {
     status: 'open' as const
   });
 
+  const { user } = useAuth();
   const { companyId: resolvedCompanyId, loading: companyIdLoading } = useCompanyId();
   const [companyId, setCompanyId] = useState<string | null>(null);
   const [noCompany, setNoCompany] = useState(false);
@@ -181,6 +183,31 @@ export default function CompanyDashboard() {
       }
       setNoCompany(false);
       setCompanyId(resolvedCompanyId);
+
+      // Demo accounts have no real Supabase session (anon role), so the
+      // companies/jobs/candidates RLS policies (scoped to `authenticated`)
+      // reject these reads. Show the same zero-state a real new company
+      // would see instead of a background fetch that's guaranteed to fail.
+      if (user?.isDemo) {
+        setCompany({
+          id: resolvedCompanyId,
+          name: user.companyName || 'TechCorp Solutions',
+          created_at: new Date().toISOString(),
+        });
+        setJobs([]);
+        setCandidates([]);
+        setStats({
+          totalJobs: 0,
+          openJobs: 0,
+          closedJobs: 0,
+          totalCandidates: 0,
+          pendingReview: 0,
+          interviewsScheduled: 0,
+          offersSent: 0,
+          hiresCompleted: 0,
+        });
+        return;
+      }
 
       // Fetch company
       const { data: companyData, error: companyError } = await supabase

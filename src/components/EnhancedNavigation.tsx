@@ -124,8 +124,8 @@ const EnhancedNavigation = () => {
         animate={{ y: 0 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "nav-header-light"
-            : "nav-header-dark"
+            ? "bg-slate-900/95 backdrop-blur-md shadow-lg shadow-slate-900/10"
+            : "bg-transparent"
         }`}
       >
         <div className="container mx-auto px-4 lg:px-8">
@@ -133,10 +133,10 @@ const EnhancedNavigation = () => {
           <div className="flex items-center justify-between h-16 lg:h-[70px]">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group transition-all duration-200" onClick={() => setIsMobileMenuOpen(false)}>
-              <div className={`rounded-xl p-1.5 transition-all duration-300 nav-logo`}>
+              <div className="rounded-xl p-1.5 transition-all duration-300 group-hover:bg-white/10 group-hover:scale-105">
                 <img src="/interq-logo.png" alt="InterQ" className="h-9 lg:h-10 w-auto" loading="lazy" decoding="async" />
               </div>
-              <span className={`text-xl lg:text-2xl font-bold tracking-tight nav-brand-text transition-colors duration-300 text-white`}>
+              <span className="text-xl lg:text-2xl font-bold tracking-tight transition-colors duration-300 text-white group-hover:text-cyan-300">
                 InterQ
               </span>
             </Link>
@@ -147,10 +147,10 @@ const EnhancedNavigation = () => {
                 <div key={item.label} className="relative">
                   <button
                     onClick={() => handleNavItemClick(item)}
-className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 nav-link text-white/90 hover:text-white ${
+                    className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
                       isActive(item.href) || item.children?.some(child => isActive(child.href))
-                        ? "active"
-                        : ""
+                        ? "bg-white/10 text-white"
+                        : "text-white/90 hover:text-white hover:bg-white/5"
                     }`}
                     aria-expanded={activeDropdown === item.label}
                     aria-haspopup={item.children ? "true" : "false"}
@@ -214,8 +214,8 @@ className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-sm font-semibo
               {isAdmin && (
                 <Link
                   to="/admin"
-className={`ml-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 nav-link text-white/90 hover:text-white ${
-                    isActive("/admin") ? "active" : ""
+                  className={`ml-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
+                    isActive("/admin") ? "bg-white/10 text-white" : "text-white/90 hover:text-white hover:bg-white/5"
                   }`}
                 >
                   Admin

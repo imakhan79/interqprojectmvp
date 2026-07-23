@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
 import { Bell, CheckCheck, Briefcase, UserCheck, Calendar, FileText, AlertCircle } from "lucide-react";
-import { formatDistanceToNow } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -9,79 +8,14 @@ import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/SimpleAuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { useRealtimeTable } from "@/hooks/useRealtimeTable";
+import {
+  type DisplayNotification,
+  type NotificationRow,
+  mapDbNotification,
+  getDemoNotifications,
+} from "@/lib/notifications";
 
-interface Notification {
-  id: string;
-  message: string;
-  time: string;
-  read: boolean;
-  type: "info" | "success" | "warning" | "error";
-  icon: "job" | "candidate" | "interview" | "offer" | "alert";
-}
-
-interface NotificationRow {
-  id: string;
-  user_id: string | null;
-  company_id: string | null;
-  role: string | null;
-  type: string;
-  title: string;
-  message: string | null;
-  link: string | null;
-  is_read: boolean;
-  created_at: string;
-}
-
-// Role-based notifications generated from activity feed
-function getRoleNotifications(role: string): Notification[] {
-  const base: Notification[] = [
-    { id: "n1", message: "Alex Thompson advanced to Interview Round 2", time: "5 min ago", read: false, type: "info", icon: "candidate" },
-    { id: "n2", message: "New application received for Senior Engineer role", time: "23 min ago", read: false, type: "info", icon: "job" },
-    { id: "n3", message: "Interview with Sophie Chen at 3:00 PM today", time: "1 hour ago", read: false, type: "info", icon: "interview" },
-    { id: "n4", message: "Offer accepted by Michael Brown", time: "2 hours ago", read: true, type: "success", icon: "offer" },
-    { id: "n5", message: "Resume screening complete — 12 shortlisted", time: "4 hours ago", read: true, type: "success", icon: "candidate" },
-  ];
-
-  const adminExtra: Notification[] = [
-    { id: "n6", message: "EduLearn Platform completed onboarding", time: "1 day ago", read: true, type: "success", icon: "alert" },
-    { id: "n7", message: "MedHealth Inc subscription expires in 7 days", time: "1 day ago", read: false, type: "warning", icon: "alert" },
-  ];
-
-  const jobseekerOnly: Notification[] = [
-    { id: "n1", message: "Your application for Senior Engineer was reviewed", time: "1 hour ago", read: false, type: "info", icon: "job" },
-    { id: "n2", message: "Interview invitation from TechCorp Solutions", time: "3 hours ago", read: false, type: "success", icon: "interview" },
-    { id: "n3", message: "Your profile was viewed by 3 recruiters", time: "Today", read: true, type: "info", icon: "candidate" },
-  ];
-
-  if (role === "jobseeker") return jobseekerOnly;
-  if (role === "admin") return [...base, ...adminExtra];
-  return base;
-}
-
-// The notifications table's `type` column is free-text (set by whatever inserted
-// the row), so map it onto our icon/severity vocabulary with simple keyword rules.
-function mapDbNotification(row: NotificationRow): Notification {
-  const t = row.type.toLowerCase();
-  let icon: Notification["icon"] = "alert";
-  if (t.includes("offer")) icon = "offer";
-  else if (t.includes("interview")) icon = "interview";
-  else if (t.includes("candidate") || t.includes("application")) icon = "candidate";
-  else if (t.includes("job")) icon = "job";
-
-  let type: Notification["type"] = "info";
-  if (t.includes("success") || t.includes("accepted") || t.includes("hired")) type = "success";
-  else if (t.includes("warn")) type = "warning";
-  else if (t.includes("error") || t.includes("declined") || t.includes("reject")) type = "error";
-
-  return {
-    id: row.id,
-    message: row.title + (row.message ? ` — ${row.message}` : ""),
-    time: formatDistanceToNow(new Date(row.created_at), { addSuffix: true }),
-    read: row.is_read,
-    type,
-    icon,
-  };
-}
+type Notification = DisplayNotification;
 
 const IconMap: Record<string, any> = {
   job: Briefcase,
@@ -104,7 +38,7 @@ export function NotificationBell() {
   const isRealUser = !!user && !user.isDemo;
 
   const [notifications, setNotifications] = useState<Notification[]>(() =>
-    isRealUser ? [] : getRoleNotifications(role)
+    isRealUser ? [] : getDemoNotifications(role)
   );
   const [open, setOpen] = useState(false);
 
@@ -204,7 +138,8 @@ export function NotificationBell() {
                     <Icon className="h-3.5 w-3.5 text-white" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm leading-snug">{n.message}</p>
+                    <p className="text-sm font-medium leading-snug">{n.title}</p>
+                    {n.message && <p className="text-xs text-muted-foreground leading-snug">{n.message}</p>}
                     <p className="text-xs text-muted-foreground mt-0.5">{n.time}</p>
                   </div>
                   {!n.read && <div className="w-2 h-2 rounded-full bg-blue-500 flex-shrink-0 mt-1.5" />}

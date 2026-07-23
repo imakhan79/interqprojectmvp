@@ -10,6 +10,7 @@ import { Progress } from "@/components/ui/progress";
 import { useToast } from "@/hooks/use-toast";
 import { useAuth } from "@/contexts/SimpleAuthContext";
 import { supabase } from "@/integrations/supabase/client";
+import { notifyRole } from "@/lib/notifications";
 import { Building2, ArrowRight, ArrowLeft, Shield, CheckCircle, Loader2, AlertCircle, Briefcase, Users, Globe, MapPin } from "lucide-react";
 import interqLogo from "/interq-logo.png";
 
@@ -247,7 +248,7 @@ export default function CompanySignup() {
         await new Promise(resolve => setTimeout(resolve, 800));
       }
 
-      // Create company
+      // Create company — starts pending admin approval, not immediately live
       const { data: company, error: companyError } = await supabase
         .from("companies")
         .insert({
@@ -259,6 +260,7 @@ export default function CompanySignup() {
           location: form.location || null,
           description: form.description || null,
           created_by: userId,
+          status: "pending_approval",
         })
         .select("id")
         .single();
@@ -333,11 +335,18 @@ export default function CompanySignup() {
         details: { company_name: form.companyName },
       });
 
+      await notifyRole("admin", {
+        type: "company.pending_approval",
+        title: "New company awaiting approval",
+        message: `${form.companyName.trim()} signed up and needs review.`,
+        link: "/admin/approvals",
+      });
+
       toast({
         title: "Company created!",
-        description: "Your company workspace is ready. Redirecting to dashboard...",
+        description: "Your workspace is ready — an admin will review and approve it shortly.",
       });
-      
+
       // Redirect to company dashboard
       navigate("/company", { replace: true });
     } catch (err: any) {

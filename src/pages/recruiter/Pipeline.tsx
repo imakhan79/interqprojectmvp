@@ -9,10 +9,13 @@ import { Search, Star, User, Briefcase, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useCompanyId } from "@/hooks/useCompanyId";
 import { useRealtimeTable } from "@/hooks/useRealtimeTable";
+import { notifyUser } from "@/lib/notifications";
+import { getAvailableActions, type CandidateStage } from "@/lib/pipelineStages";
 
 interface CandidateRow {
   id: string;
   job_id: string | null;
+  user_id: string | null;
   full_name: string;
   status: string;
   rating: number | null;
@@ -39,6 +42,7 @@ export default function Pipeline() {
 
   const [candidates, setCandidates] = useState<CandidateRow[]>([]);
   const [jobs, setJobs] = useState<JobOption[]>([]);
+  const [pipelineContext, setPipelineContext] = useState<Record<string, { hasInterview: boolean; interviewCompleted: boolean; hasAcceptedOffer: boolean }>>({});
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedJob, setSelectedJob] = useState("all");
@@ -53,11 +57,35 @@ export default function Pipeline() {
     }
     setLoading(true);
     const [{ data: candidateRows }, { data: jobRows }] = await Promise.all([
-      supabase.from("candidates").select("id, job_id, full_name, status, rating, created_at").eq("company_id", companyId).order("created_at", { ascending: false }),
+      supabase.from("candidates").select("id, job_id, user_id, full_name, status, rating, created_at").eq("company_id", companyId).order("created_at", { ascending: false }),
       supabase.from("jobs").select("id, title").eq("company_id", companyId),
     ]);
-    setCandidates((candidateRows as CandidateRow[]) || []);
+    const candidateList = (candidateRows as CandidateRow[]) || [];
+    setCandidates(candidateList);
     setJobs((jobRows as JobOption[]) || []);
+
+    const candidateIds = candidateList.map((c) => c.id);
+    if (candidateIds.length > 0) {
+      const [{ data: interviewRows }, { data: offerRows }] = await Promise.all([
+        supabase.from("interviews").select("candidate_id, status, score").in("candidate_id", candidateIds),
+        supabase.from("job_offers").select("candidate_id, status").in("candidate_id", candidateIds),
+      ]);
+      const ctx: Record<string, { hasInterview: boolean; interviewCompleted: boolean; hasAcceptedOffer: boolean }> = {};
+      candidateIds.forEach((id) => { ctx[id] = { hasInterview: false, interviewCompleted: false, hasAcceptedOffer: false }; });
+      (interviewRows || []).forEach((i: { candidate_id: string | null; status: string; score: number | null }) => {
+        if (!i.candidate_id || !ctx[i.candidate_id]) return;
+        ctx[i.candidate_id].hasInterview = true;
+        if (i.status === "completed" && i.score != null) ctx[i.candidate_id].interviewCompleted = true;
+      });
+      (offerRows || []).forEach((o: { candidate_id: string | null; status: string }) => {
+        if (!o.candidate_id || !ctx[o.candidate_id]) return;
+        if (o.status === "accepted") ctx[o.candidate_id].hasAcceptedOffer = true;
+      });
+      setPipelineContext(ctx);
+    } else {
+      setPipelineContext({});
+    }
+
     setLoading(false);
   }, [companyId]);
 
@@ -85,6 +113,14 @@ export default function Pipeline() {
     if (error) {
       toast({ title: "Failed to update stage", description: error.message, variant: "destructive" });
       return;
+    }
+    if (candidate.user_id) {
+      await notifyUser(candidate.user_id, {
+        type: `candidate.${newStatus}`,
+        title: newStatus === "rejected" ? "Application update" : "Your application moved forward",
+        message: `Your application status is now: ${newStatus}`,
+        link: "/jobseeker/applications",
+      });
     }
     load();
   };
@@ -160,12 +196,23 @@ export default function Pipeline() {
                           </div>
                         )}
                       </div>
-                      <Select value={c.status} onValueChange={(v) => moveStage(c, v)}>
+                      <Select
+                        value={c.status}
+                        onValueChange={(v) => moveStage(c, v as CandidateStage)}
+                      >
                         <SelectTrigger className={`h-7 text-xs ${stage.badge}`}>
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
-                          {stages.map(s => <SelectItem key={s.id} value={s.id}>{s.name}</SelectItem>)}
+                          <SelectItem value={c.status}>{stages.find(s => s.id === c.status)?.name || c.status}</SelectItem>
+                          {getAvailableActions(
+                            c.status,
+                            pipelineContext[c.id] || { hasInterview: false, interviewCompleted: false, hasAcceptedOffer: false }
+                          )
+                            .filter((a) => !a.disabledReason)
+                            .map((a) => (
+                              <SelectItem key={a.targetStatus} value={a.targetStatus}>{a.label}</SelectItem>
+                            ))}
                         </SelectContent>
                       </Select>
                     </div>

@@ -25,6 +25,42 @@ Deno.serve(async (req) => {
       { auth: { autoRefreshToken: false, persistSession: false } }
     );
 
+    // Require the caller to be an authenticated admin. This function holds
+    // the service-role key, which bypasses RLS entirely, so it must do its
+    // own authorization check rather than relying on the database. Without
+    // this, anyone with the function URL could (re-)create the demo
+    // accounts -- including the demo admin login -- on demand.
+    const authHeader = req.headers.get('Authorization') ?? '';
+    const callerToken = authHeader.replace(/^Bearer\s+/i, '');
+
+    if (!callerToken) {
+      return new Response(
+        JSON.stringify({ error: 'Missing Authorization header' }),
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 401 }
+      );
+    }
+
+    const { data: callerData, error: callerError } = await supabaseAdmin.auth.getUser(callerToken);
+    if (callerError || !callerData.user) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid or expired token' }),
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 401 }
+      );
+    }
+
+    const { data: callerRole } = await supabaseAdmin
+      .from('user_roles')
+      .select('role')
+      .eq('user_id', callerData.user.id)
+      .maybeSingle();
+
+    if (callerRole?.role !== 'admin') {
+      return new Response(
+        JSON.stringify({ error: 'Admin privileges required' }),
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 403 }
+      );
+    }
+
     const results = [];
 
     for (const user of demoUsers) {

@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { useQuery } from "@tanstack/react-query";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { 
+import {
   Table,
   TableBody,
   TableCell,
@@ -24,16 +25,41 @@ import {
   Star,
   Users,
   Plus,
+  ExternalLink,
+  Briefcase,
 } from "lucide-react";
 import { useJobSeekerDashboard } from "@/contexts/JobSeekerDashboardContext";
+import { useAuth } from "@/contexts/SimpleAuthContext";
+import { supabase } from "@/integrations/supabase/client";
 
 export default function JobSeekerInterviews() {
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { user } = useAuth();
   const { data, generateInterviews } = useJobSeekerDashboard();
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [generating, setGenerating] = useState(false);
+
+  // Interviews a recruiter scheduled with this person, found via their own
+  // `candidates` rows — a different table than the AI self-practice sessions
+  // below, so it's fetched separately and shown in its own section.
+  const { data: invitedInterviews = [] } = useQuery({
+    queryKey: ["js-invited-interviews", user?.id],
+    queryFn: async () => {
+      if (!user?.id) return [];
+      const { data: myCandidateRows } = await supabase.from("candidates").select("id").eq("user_id", user.id);
+      const candidateIds = (myCandidateRows || []).map((c: { id: string }) => c.id);
+      if (candidateIds.length === 0) return [];
+      const { data: interviewRows } = await supabase
+        .from("interviews")
+        .select("*")
+        .in("candidate_id", candidateIds)
+        .order("scheduled_at", { ascending: false });
+      return interviewRows || [];
+    },
+    enabled: !!user?.id,
+  });
 
   const interviews = data?.interviews || [];
   
@@ -100,6 +126,38 @@ export default function JobSeekerInterviews() {
           </Button>
         )}
       </div>
+
+      {/* Recruiter-scheduled interviews from real job applications — a
+          separate table/flow than the AI self-practice interviews below. */}
+      {invitedInterviews.length > 0 && (
+        <Card className="border-primary/20">
+          <CardHeader><CardTitle className="text-lg flex items-center gap-2"><Briefcase className="w-5 h-5 text-primary" /> Interview Invitations</CardTitle></CardHeader>
+          <CardContent className="space-y-3">
+            {invitedInterviews.map((interview: any) => (
+              <div key={interview.id} className="flex items-center gap-4 p-4 rounded-xl bg-primary/5 border border-primary/10">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Calendar className="w-5 h-5 text-primary" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="font-medium text-sm">{interview.title || "Interview"}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {interview.job_role ? `${interview.job_role} · ` : ""}
+                    {new Date(interview.scheduled_at).toLocaleString()} · {interview.duration_minutes || 45} min
+                  </p>
+                </div>
+                <Badge className={interview.status === "completed" ? "bg-green-100 text-green-700" : interview.status === "cancelled" ? "bg-red-100 text-red-700" : "bg-blue-100 text-blue-700"}>
+                  {interview.status}
+                </Badge>
+                {interview.meeting_link && interview.status === "scheduled" && (
+                  <Button size="sm" variant="outline" onClick={() => window.open(interview.meeting_link, "_blank", "noopener")}>
+                    Join <ExternalLink className="w-3.5 h-3.5 ml-1.5" />
+                  </Button>
+                )}
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+      )}
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <Card>
