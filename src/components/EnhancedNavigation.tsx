@@ -53,6 +53,10 @@ const EnhancedNavigation = () => {
       label: "Pricing",
       href: "/pricing",
     },
+    {
+      label: "Blogs",
+      href: "/blogs",
+    },
   ];
 
   const [isAdmin, setIsAdmin] = useState(false);

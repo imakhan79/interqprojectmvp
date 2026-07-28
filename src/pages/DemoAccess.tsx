@@ -48,7 +48,7 @@ export default function DemoAccess() {
     }
   };
 
-  const canonicalUrl = "https://interq.com/demo-access";
+  const canonicalUrl = "https://www.interq.online/demo-access";
 
   return (
     <div className="min-h-screen bg-background">

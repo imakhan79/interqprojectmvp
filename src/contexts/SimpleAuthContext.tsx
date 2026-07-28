@@ -44,18 +44,12 @@ export interface DemoUser {
 }
 
 // Demo users - only accessible via specific demo login mechanism
+// NOTE: There is no demo Admin account. Admin is a real, permanent Supabase Auth
+// account (admin.demo@interq.com) promoted to role='admin' in user_roles/profiles —
+// it signs in through the normal Supabase-backed path below, never this local bypass.
 export const DEMO_USERS: DemoUser[] = [
   {
-    // Intentionally excluded from the public /demo-access grid (see DemoAccess.tsx) —
-    // still usable via direct sign-in for internal/QA use.
-    email: "admin.demo@interq.com",
-    password: "InterQ#Admin2026!",
-    role: "admin",
-    name: "Sarah Admin",
-    description: "Full platform access with analytics, billing, and user management"
-  },
-  { 
-    email: "company.demo@interq.com", 
+    email: "company.demo@interq.com",
     password: "Company@123", 
     role: "company", 
     name: "Alex Manager",
@@ -594,7 +588,12 @@ export function SimpleAuthProvider({ children }: { children: ReactNode }) {
   // Logout handler - clears everything
   const logout = useCallback(async () => {
     if (SUPABASE_AUTH_ENABLED) {
-      await supabase.auth.signOut().catch(() => {});
+      // Never let a hung/stuck client-side auth call block sign-out — local
+      // storage must always be cleared even if the network call stalls.
+      await Promise.race([
+        supabase.auth.signOut().catch(() => {}),
+        new Promise((resolve) => setTimeout(resolve, 2000)),
+      ]);
     }
 
     clearAllStorage();

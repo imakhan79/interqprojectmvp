@@ -29,7 +29,7 @@ const EnhancedFooter = () => {
     Resources: {
       title: "Resources",
       links: [
-        { label: "Blog", href: "/blog" },
+        { label: "Blog", href: "/blogs" },
         { label: "Documentation", href: "/docs" },
         { label: "Case Studies", href: "/case-studies" },
         { label: "Help Center", href: "/help-center" },

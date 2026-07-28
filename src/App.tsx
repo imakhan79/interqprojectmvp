@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
 import React from "react";
 import { Suspense, lazy } from "react";
 import { SimpleAuthProvider } from "@/contexts/SimpleAuthContext";
@@ -58,6 +58,8 @@ const JobSeekerManagement = lazy(() => import("./pages/admin/JobSeekerManagement
 const CertificateManagement = lazy(() => import("./pages/admin/CertificateManagement"));
 const ActivityLogs = lazy(() => import("./pages/admin/ActivityLogs"));
 const RoleManagement = lazy(() => import("./pages/admin/RoleManagement"));
+const BlogManagement = lazy(() => import("./pages/admin/BlogManagement"));
+const BlogDetails = lazy(() => import("./pages/BlogDetails"));
 const AdminOffersManagement = lazy(() => import("./pages/admin/OffersManagement"));
 const AdminBillingPage = lazy(() => import("./pages/admin/AdminBilling"));
 const AdminIntegrationsPage = lazy(() => import("./pages/admin/AdminIntegrations"));
@@ -148,6 +150,11 @@ const LegalPage = ({ title, content }: { title: string; content: string }) => (
   </div>
 );
 
+const BlogSlugRedirect = () => {
+  const { slug } = useParams();
+  return <Navigate to={`/blogs/${slug}`} replace />;
+};
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -191,7 +198,10 @@ const App = () => (
               <Route path="/contact" element={<Contact />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="/landing" element={<LandingPage />} />
-              <Route path="/blog" element={<Blog />} />
+              <Route path="/blogs" element={<Blog />} />
+              <Route path="/blogs/:slug" element={<BlogDetails />} />
+              <Route path="/blog" element={<Navigate to="/blogs" replace />} />
+              <Route path="/blog/:slug" element={<BlogSlugRedirect />} />
               <Route path="/docs" element={<Documentation />} />
               <Route path="/case-studies" element={<CaseStudies />} />
               <Route path="/help-center" element={<HelpCenter />} />
@@ -255,6 +265,7 @@ const App = () => (
                 <Route path="job-seekers" element={<JobSeekerManagement />} />
                 <Route path="logs" element={<ActivityLogs />} />
                 <Route path="role-management" element={<RoleManagement />} />
+                <Route path="blogs" element={<BlogManagement />} />
                 <Route path="pipeline" element={<PipelineDashboard />} />
                 <Route path="jobs" element={<AdminJobs />} />
                 <Route path="ats-screening" element={<ATSScreening />} />

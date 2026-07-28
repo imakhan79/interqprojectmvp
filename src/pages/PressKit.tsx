@@ -218,7 +218,7 @@ const PressKit = () => {
             <Button
               variant="outline"
               size="lg"
-              onClick={() => navigate('/blog')}
+              onClick={() => navigate('/blogs')}
             >
               View All News
             </Button>

@@ -6,7 +6,7 @@ import {
   LayoutDashboard, Building2, Users, Shield, Briefcase, UserCheck,
   Calendar, FileText, BarChart3, Settings, CreditCard, Plug,
   ScrollText, LogOut, Menu, X, Search, Bell, ChevronRight,
-  Moon, Sun, HelpCircle, Keyboard, Activity, UserCog, Flag, Award, CheckSquare
+  Moon, Sun, HelpCircle, Activity, UserCog, Flag, Award, CheckSquare, Newspaper
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,14 +14,6 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 import {
   Tooltip,
   TooltipContent,
@@ -41,6 +33,7 @@ const navSections = [
       { to: "/admin/companies", icon: Building2, label: "Companies" },
       { to: "/admin/users", icon: Users, label: "Users & Teams" },
       { to: "/admin/role-management", icon: Shield, label: "Roles & Permissions" },
+      { to: "/admin/blogs", icon: Newspaper, label: "Blog Management" },
     ],
   },
   {
@@ -226,35 +219,15 @@ export function AdminLayout() {
                 </TooltipContent>
               </Tooltip>
               
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-<Button variant="ghost" size="sm" className="w-full justify-start h-9 text-sm text-muted-foreground hover:text-destructive" onClick={logout}>
-                    <LogOut className="h-4 w-4 mr-2.5" />
-                    Logout
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-48">
-                  <DropdownMenuLabel>Account</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <UserCog className="h-4 w-4 mr-2" />
-                    Profile Settings
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <HelpCircle className="h-4 w-4 mr-2" />
-                    Help & Support
-                  </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Keyboard className="h-4 w-4 mr-2" />
-                    Keyboard Shortcuts
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem className="text-destructive" onClick={logout}>
-                    <LogOut className="h-4 w-4 mr-2" />
-                    Logout
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="w-full justify-start h-9 text-sm text-muted-foreground hover:text-destructive"
+                onClick={logout}
+              >
+                <LogOut className="h-4 w-4 mr-2.5" />
+                Logout
+              </Button>
             </div>
           </div>
         </aside>
