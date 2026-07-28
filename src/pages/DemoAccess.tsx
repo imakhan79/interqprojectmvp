@@ -57,7 +57,7 @@ export default function DemoAccess() {
         <title>Demo Access — Explore InterQ with Sample Accounts | InterQ</title>
         <meta
           name="description"
-          content="Explore InterQ instantly. Sign in with approved demo accounts for Admin, Company, Recruiter, and Job Seeker roles — no signup required."
+          content="Explore InterQ instantly. Sign in with approved demo accounts for Company, Recruiter, Job Seeker, and TAP Partner roles — no signup required."
         />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={canonicalUrl} />
@@ -65,7 +65,7 @@ export default function DemoAccess() {
         <meta property="og:title" content="Demo Access — Explore InterQ with Sample Accounts" />
         <meta
           property="og:description"
-          content="Sign in with approved demo accounts for Admin, Company, Recruiter, and Job Seeker roles — no signup required."
+          content="Sign in with approved demo accounts for Company, Recruiter, Job Seeker, and TAP Partner roles — no signup required."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
@@ -74,7 +74,7 @@ export default function DemoAccess() {
         <meta name="twitter:title" content="Demo Access — Explore InterQ with Sample Accounts" />
         <meta
           name="twitter:description"
-          content="Sign in with approved demo accounts for Admin, Company, Recruiter, and Job Seeker roles — no signup required."
+          content="Sign in with approved demo accounts for Company, Recruiter, Job Seeker, and TAP Partner roles — no signup required."
         />
 
         <script type="application/ld+json">
@@ -83,7 +83,7 @@ export default function DemoAccess() {
             "@type": "WebPage",
             name: "Demo Access — InterQ",
             description:
-              "Explore InterQ instantly with approved demo accounts for Admin, Company, Recruiter, and Job Seeker roles.",
+              "Explore InterQ instantly with approved demo accounts for Company, Recruiter, Job Seeker, and TAP Partner roles.",
             url: canonicalUrl,
           })}
         </script>
@@ -113,7 +113,9 @@ export default function DemoAccess() {
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {(Object.keys(roleConfig) as AccountRole[]).map((role, i) => {
+            {(Object.keys(roleConfig) as AccountRole[])
+              .filter((role) => role !== "admin") // admin demo credentials are intentionally not publicly listed
+              .map((role, i) => {
               const demoUser = DEMO_USERS.find((u) => u.role === role);
               const config = roleConfig[role];
               const Icon = config.icon;

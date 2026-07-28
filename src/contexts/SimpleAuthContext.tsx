@@ -49,10 +49,12 @@ export interface DemoUser {
 
 // Demo users - only accessible via specific demo login mechanism
 export const DEMO_USERS: DemoUser[] = [
-  { 
-    email: "admin.demo@interq.com", 
-    password: "Admin@123", 
-    role: "admin", 
+  {
+    // Intentionally excluded from the public /demo-access grid (see DemoAccess.tsx) —
+    // still usable via direct sign-in for internal/QA use.
+    email: "admin.demo@interq.com",
+    password: "InterQ#Admin2026!",
+    role: "admin",
     name: "Sarah Admin",
     description: "Full platform access with analytics, billing, and user management"
   },
