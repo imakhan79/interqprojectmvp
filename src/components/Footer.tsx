@@ -9,7 +9,7 @@ const Footer = () => {
 
   const footerLinks = {
     Product: ["Features", "Assessments", "AI Interviewing", "Pricing", "Integrations"],
-    Solutions: ["For Recruiters", "For Organizational hiring", "For SMEs", "Industry Solutions"],
+    Solutions: ["For TAPs", "For Organizational hiring", "For SMEs", "Industry Solutions"],
     Resources: ["Blog", "Documentation", "Case Studies", "Help Center", "API"],
     Company: ["About Us", "Careers", "Press Kit", "Partners", "Contact"],
   };
@@ -22,7 +22,7 @@ const Footer = () => {
     "Pricing": "/pricing",
     "Integrations": "/integrations",
     // Solutions
-    "For Recruiters": "/solutions/recruiters",
+    "For TAPs": "/solutions/recruiters",
     "For Organizational hiring": "/solutions/enterprise",
     "For SMEs": "/solutions/sme",
     "Industry Solutions": "/solutions/industry",

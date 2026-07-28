@@ -127,7 +127,7 @@ export default function JobSeekerInterviews() {
         )}
       </div>
 
-      {/* Recruiter-scheduled interviews from real job applications — a
+      {/* TAP-scheduled interviews from real job applications — a
           separate table/flow than the AI self-practice interviews below. */}
       {invitedInterviews.length > 0 && (
         <Card className="border-primary/20">

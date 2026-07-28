@@ -47,7 +47,7 @@ interface InviteRow {
 }
 
 const roleOptions = [
-  { value: "recruiter", label: "Recruiter" },
+  { value: "recruiter", label: "TAP" },
   { value: "hiring_manager", label: "Hiring Manager" },
   { value: "interviewer", label: "Interviewer" },
 ];

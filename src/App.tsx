@@ -85,8 +85,6 @@ const CompanyAuditLogs = lazy(() => import("./pages/company/CompanyAuditLogs"));
 const CompanySettings = lazy(() => import("./pages/company/CompanySettings"));
 import { RecruiterLayout } from "./components/recruiter/RecruiterLayout";
 import UserTeamsDashboard from "./components/admin/UserTeamsDashboard";
-const TAPLayout = lazy(() => import("./components/tap/TAPLayout").then(m => ({ default: m.TAPLayout })));
-const TAPDashboard = lazy(() => import("./pages/tap/TAPDashboard"));
 
 class ErrorBoundary extends React.Component<{children: React.ReactNode}, {hasError: boolean, error: string}> {
   constructor(props: any) {
@@ -281,9 +279,6 @@ const App = () => (
                 <Route path="offers" element={<RecruiterOffers />} />
                 <Route path="reports" element={<RecruiterReports />} />
                 <Route path="settings" element={<RecruiterSettings />} />
-              </Route>
-              <Route path="/tap" element={<ProtectedRoute allowedRoles={["tap"]}><ErrorBoundary><TAPLayout /></ErrorBoundary></ProtectedRoute>}>
-                <Route index element={<TAPDashboard />} />
               </Route>
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />

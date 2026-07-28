@@ -510,7 +510,7 @@ export const mockActivityLogs: ActivityLog[] = [
   {
     id: "log_002",
     userId: "rec_001",
-    userName: "John Recruiter",
+    userName: "John TAP",
     userRole: "recruiter",
     action: "Stage Changed",
     module: "Pipeline",
@@ -614,7 +614,7 @@ export const mockCompanyStats: CompanyDashboardStats = {
   recentApplications: mockApplications.slice(0, 5),
 };
 
-// Recruiter Dashboard Stats
+// TAP Dashboard Stats
 export const mockRecruiterStats: RecruiterDashboardStats = {
   assignedJobs: 8,
   candidatesInPipeline: 156,

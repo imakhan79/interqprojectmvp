@@ -670,7 +670,7 @@ const DynamicEvaluationReports = () => {
       {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div>
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">Evaluation Reports</h1>
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight">TAP Candidate Evaluation</h1>
           <p className="text-muted-foreground text-sm md:text-base">
             Manage candidate assessments ({filteredReports.length})
           </p>

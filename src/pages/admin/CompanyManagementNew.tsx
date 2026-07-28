@@ -955,7 +955,7 @@ export default function CompanyManagementNew() {
                       </Card>
                       <Card>
                         <CardHeader className="pb-2">
-                          <CardTitle className="text-sm font-medium text-muted-foreground">Recruiters</CardTitle>
+                          <CardTitle className="text-sm font-medium text-muted-foreground">TAPs</CardTitle>
                         </CardHeader>
                         <CardContent>
                           <div className="text-2xl font-bold flex items-center gap-2">
@@ -1082,7 +1082,7 @@ export default function CompanyManagementNew() {
   </div>
   <div className="flex items-center gap-3 p-2 rounded bg-muted/50">
     <span className="text-muted-foreground text-xs w-24">Mar 21 14:30</span>
-    <span>Recruiter added: Emily Davis</span>
+    <span>TAP added: Emily Davis</span>
   </div>
 </div>
                     </div>

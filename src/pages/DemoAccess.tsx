@@ -11,15 +11,14 @@ import { useAuth, DEMO_USERS, getDashboardPath, type AccountRole } from "@/conte
 import { useToast } from "@/hooks/use-toast";
 import {
   Shield, Building2, Users, Briefcase, Copy, LogIn, Loader2,
-  ShieldCheck, Sparkles, Video,
+  ShieldCheck, Sparkles,
 } from "lucide-react";
 
 const roleConfig: Record<AccountRole, { icon: typeof Shield; label: string; accent: string }> = {
   admin: { icon: Shield, label: "Admin", accent: "text-red-600 bg-red-50 dark:bg-red-950/30" },
   company: { icon: Building2, label: "Company", accent: "text-blue-600 bg-blue-50 dark:bg-blue-950/30" },
-  recruiter: { icon: Users, label: "Recruiter", accent: "text-emerald-600 bg-emerald-50 dark:bg-emerald-950/30" },
+  recruiter: { icon: Users, label: "TAP", accent: "text-emerald-600 bg-emerald-50 dark:bg-emerald-950/30" },
   jobseeker: { icon: Briefcase, label: "Job Seeker", accent: "text-violet-600 bg-violet-50 dark:bg-violet-950/30" },
-  tap: { icon: Video, label: "TAP Partner", accent: "text-teal-600 bg-teal-50 dark:bg-teal-950/30" },
 };
 
 export default function DemoAccess() {
@@ -57,7 +56,7 @@ export default function DemoAccess() {
         <title>Demo Access — Explore InterQ with Sample Accounts | InterQ</title>
         <meta
           name="description"
-          content="Explore InterQ instantly. Sign in with approved demo accounts for Company, Recruiter, Job Seeker, and TAP Partner roles — no signup required."
+          content="Explore InterQ instantly. Sign in with approved demo accounts for Company, TAP, and Job Seeker roles — no signup required."
         />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={canonicalUrl} />
@@ -65,7 +64,7 @@ export default function DemoAccess() {
         <meta property="og:title" content="Demo Access — Explore InterQ with Sample Accounts" />
         <meta
           property="og:description"
-          content="Sign in with approved demo accounts for Company, Recruiter, Job Seeker, and TAP Partner roles — no signup required."
+          content="Sign in with approved demo accounts for Company, TAP, and Job Seeker roles — no signup required."
         />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
@@ -74,7 +73,7 @@ export default function DemoAccess() {
         <meta name="twitter:title" content="Demo Access — Explore InterQ with Sample Accounts" />
         <meta
           name="twitter:description"
-          content="Sign in with approved demo accounts for Company, Recruiter, Job Seeker, and TAP Partner roles — no signup required."
+          content="Sign in with approved demo accounts for Company, TAP, and Job Seeker roles — no signup required."
         />
 
         <script type="application/ld+json">
@@ -83,7 +82,7 @@ export default function DemoAccess() {
             "@type": "WebPage",
             name: "Demo Access — InterQ",
             description:
-              "Explore InterQ instantly with approved demo accounts for Company, Recruiter, Job Seeker, and TAP Partner roles.",
+              "Explore InterQ instantly with approved demo accounts for Company, TAP, and Job Seeker roles.",
             url: canonicalUrl,
           })}
         </script>

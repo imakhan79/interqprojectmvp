@@ -102,7 +102,7 @@ const GetStarted = () => {
               {/* Trust Indicators */}
               <div className="pt-8">
                 <h4 className="text-foreground font-semibold mb-6">
-                  Trusted by 5,000+ Recruiters Worldwide
+                  Trusted by 5,000+ TAPs Worldwide
                 </h4>
                 <div className="grid grid-cols-3 gap-6 items-stretch">
                   {companyLogos.map((logo, index) => (

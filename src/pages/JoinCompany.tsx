@@ -22,7 +22,7 @@ interface InviteInfo {
 const roleLabel = (role: string) => {
   if (role === "hiring_manager") return "Hiring Manager";
   if (role === "interviewer") return "Interviewer";
-  if (role === "recruiter") return "Recruiter";
+  if (role === "recruiter") return "TAP";
   return role;
 };
 

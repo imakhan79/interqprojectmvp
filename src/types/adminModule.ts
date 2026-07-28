@@ -283,8 +283,8 @@ export const MODULES: { key: ModuleType; label: string; icon: string }[] = [
 ];
 
 export const SUBSCRIPTION_PLANS = {
-  basic: { name: 'Basic', price: 99, features: ['5 Active Jobs', '3 Recruiter Seats', '500 Candidates/mo', 'Email Support'] },
-  professional: { name: 'Professional', price: 299, features: ['25 Active Jobs', '15 Recruiter Seats', '2000 Candidates/mo', 'Priority Support'] },
+  basic: { name: 'Basic', price: 99, features: ['5 Active Jobs', '3 TAP Seats', '500 Candidates/mo', 'Email Support'] },
+  professional: { name: 'Professional', price: 299, features: ['25 Active Jobs', '15 TAP Seats', '2000 Candidates/mo', 'Priority Support'] },
   enterprise: { name: 'Enterprise', price: 799, features: ['Unlimited Jobs', 'Unlimited Seats', 'Unlimited Candidates', '24/7 Support', 'Custom Integrations'] },
 };
 

@@ -25,7 +25,7 @@ export default function AdminDashboard() {
   const { toast } = useToast();
   const [approvals, setApprovals] = useState([
     { id: "1", name: "TechStart Inc", type: "Company verification", icon: "building" },
-    { id: "2", name: "Sarah Johnson", type: "Recruiter certification", icon: "user" },
+    { id: "2", name: "Sarah Johnson", type: "TAP certification", icon: "user" },
     { id: "3", name: "MediCare Solutions", type: "Company verification", icon: "building" },
   ]);
 
@@ -98,7 +98,7 @@ export default function AdminDashboard() {
         <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-purple-100">Expert Recruiters</p>
+              <p className="text-purple-100">Expert TAPs</p>
               <p className="text-3xl font-bold mt-1">{stats.totalRecruiters}</p>
             </div>
             <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">

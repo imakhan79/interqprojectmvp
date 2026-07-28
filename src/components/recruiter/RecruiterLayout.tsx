@@ -46,8 +46,8 @@ const navSections = [
       { to: "/recruiter", icon: LayoutDashboard, label: "Dashboard" },
       { to: "/recruiter/jobs", icon: Briefcase, label: "Job Openings" },
       { to: "/recruiter/candidates", icon: Users, label: "Candidates" },
-      { to: "/recruiter/evaluation-reports", icon: FileText, label: "Evaluation Reports" },
-      { to: "/recruiter/interviews", icon: Calendar, label: "Interviews" },
+      { to: "/recruiter/evaluation-reports", icon: FileText, label: "TAP Candidate Evaluation" },
+      { to: "/recruiter/interviews", icon: Calendar, label: "TAP Interviews" },
       { to: "/recruiter/offers", icon: FileText, label: "Offers" },
     ],
   },
@@ -244,7 +244,7 @@ export function RecruiterLayout() {
           <div className="flex items-center justify-between">
             <div>
               <img src="/interq-logo.png" alt="InterQ" className="h-10 w-auto" />
-              <p className="text-xs text-muted-foreground mt-1">Recruiter Portal</p>
+              <p className="text-xs text-muted-foreground mt-1">TAP Portal</p>
             </div>
           </div>
         </div>
@@ -404,13 +404,13 @@ export function RecruiterLayout() {
                       <AvatarImage src="" />
                       <AvatarFallback className="bg-primary text-primary-foreground">{recruiterInitials}</AvatarFallback>
                     </Avatar>
-                    <span className="hidden md:inline text-sm font-medium">{user?.name || 'Recruiter'}</span>
+                    <span className="hidden md:inline text-sm font-medium">{user?.name || 'TAP'}</span>
                     <ChevronDown className="h-4 w-4" />
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent align="end" className="w-56">
                   <div className="px-2 py-1.5">
-                    <p className="font-medium">{user?.name || 'Recruiter'}</p>
+                    <p className="font-medium">{user?.name || 'TAP'}</p>
                     <p className="text-xs text-muted-foreground">{user?.email || ''}</p>
                   </div>
                   <Separator className="my-2" />

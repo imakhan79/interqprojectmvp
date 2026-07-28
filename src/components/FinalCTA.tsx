@@ -53,7 +53,7 @@ const FinalCTA = () => {
               className="h-14 px-8 text-base bg-white text-cyan-600 hover:bg-white/90 shadow-xl w-full sm:w-auto hover:-translate-y-1 transition-all duration-300 rounded-xl font-semibold"
             >
               <Briefcase className="mr-2 w-5 h-5" />
-              Recruiters: Start Hiring Smarter
+              TAPs: Start Hiring Smarter
             </Button>
 
             <Button

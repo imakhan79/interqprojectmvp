@@ -20,7 +20,7 @@ const EnhancedFooter = () => {
     Solutions: {
       title: "Solutions",
       links: [
-        { label: "For Recruiters", href: "/solutions/recruiters" },
+        { label: "For TAPs", href: "/solutions/recruiters" },
         { label: "For Organizational Hiring", href: "/solutions/enterprise" },
         { label: "For SMEs", href: "/solutions/sme" },
         { label: "Industry Solutions", href: "/solutions/industry" },

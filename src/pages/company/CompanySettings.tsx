@@ -115,7 +115,7 @@ export default function CompanySettings() {
                 </div>
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
-                    <span>Recruiter Seats</span>
+                    <span>TAP Seats</span>
                     <span className="font-semibold">25 / Unlimited</span>
                   </div>
                   <Progress value={25} className="h-1.5" />

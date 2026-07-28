@@ -464,12 +464,12 @@ export default function CandidatesManagement() {
                   <DropdownMenuTrigger asChild>
                     <Button variant="outline" size="sm" className="gap-1">
                       <UserPlus className="h-4 w-4" />
-                      Assign Recruiter
+                      Assign TAP
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
                     {mockUsers
-                      .filter((u) => u.role === "Recruiter")
+                      .filter((u) => u.role === "TAP")
                       .map((user) => (
                         <DropdownMenuItem
                           key={user.id}
@@ -519,7 +519,7 @@ export default function CandidatesManagement() {
                 <TableHead>Source</TableHead>
                 <TableHead>Stage</TableHead>
                 <TableHead>Rating</TableHead>
-                <TableHead>Recruiter</TableHead>
+                <TableHead>TAP</TableHead>
                 <TableHead>Applied Date</TableHead>
                 <TableHead className="text-right">Actions</TableHead>
               </TableRow>
@@ -609,11 +609,11 @@ export default function CandidatesManagement() {
                           <DropdownMenuSub>
                             <DropdownMenuSubTrigger>
                               <UserPlus className="h-4 w-4 mr-2" />
-                              Assign Recruiter
+                              Assign TAP
                             </DropdownMenuSubTrigger>
                             <DropdownMenuSubContent>
                               {mockUsers
-                                .filter((u) => u.role === "Recruiter")
+                                .filter((u) => u.role === "TAP")
                                 .map((user) => (
                                   <DropdownMenuItem
                                     key={user.id}

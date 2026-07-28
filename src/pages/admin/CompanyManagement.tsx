@@ -163,7 +163,7 @@ export default function CompanyManagement() {
                 <TableHead>Industry</TableHead>
                 <TableHead>Plan</TableHead>
                 <TableHead>Status</TableHead>
-                <TableHead>Recruiters</TableHead>
+                <TableHead>TAPs</TableHead>
                 <TableHead>Jobs</TableHead>
                 <TableHead>Joined</TableHead>
                 <TableHead className="w-[50px]"></TableHead>
@@ -286,7 +286,7 @@ export default function CompanyManagement() {
                 <div><p className="text-muted-foreground text-xs">Phone</p><p className="font-medium">{viewCompany.phone}</p></div>
                 <div><p className="text-muted-foreground text-xs">Country</p><p className="font-medium">{viewCompany.country}</p></div>
                 <div><p className="text-muted-foreground text-xs">Plan</p><p className="font-medium capitalize">{viewCompany.subscriptionPlan}</p></div>
-                <div><p className="text-muted-foreground text-xs">Recruiters</p><p className="font-medium">{viewCompany.recruiterCount}</p></div>
+                <div><p className="text-muted-foreground text-xs">TAPs</p><p className="font-medium">{viewCompany.recruiterCount}</p></div>
                 <div><p className="text-muted-foreground text-xs">Active Jobs</p><p className="font-medium">{viewCompany.jobCount}</p></div>
                 <div><p className="text-muted-foreground text-xs">Candidates</p><p className="font-medium">{viewCompany.candidateCount}</p></div>
               </div>

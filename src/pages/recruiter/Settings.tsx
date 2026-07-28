@@ -14,7 +14,7 @@ import { Settings } from '@/types/recruiter';
 const mockUserData = {
   name: "John Smith",
   email: "john.smith@company.com",
-  role: "Senior Recruiter",
+  role: "Senior TAP",
   department: "Talent Acquisition",
   teamSize: "5",
 };

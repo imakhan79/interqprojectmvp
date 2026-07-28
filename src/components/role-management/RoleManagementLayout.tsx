@@ -219,7 +219,7 @@ export function RoleManagementLayout() {
                     </DropdownMenuItem>
                     <DropdownMenuItem className="flex flex-col items-start gap-1 py-3">
                       <span className="font-medium">Permission updated</span>
-                      <span className="text-xs text-muted-foreground">Recruiter permissions were modified</span>
+                      <span className="text-xs text-muted-foreground">TAP permissions were modified</span>
                     </DropdownMenuItem>
                     <DropdownMenuItem className="flex flex-col items-start gap-1 py-3">
                       <span className="font-medium">User deactivated</span>

@@ -8,10 +8,10 @@ import { ScrollText, Search, Download, Filter, User, Settings, Shield, Building2
 
 const auditLogs = [
   { id: 1, user: "Sarah Admin", action: "Created company", resource: "TechCorp Solutions", type: "company", timestamp: "2026-05-17 10:32:15", ip: "192.168.1.1", severity: "info" },
-  { id: 2, user: "Sarah Admin", action: "Updated role permissions", resource: "Recruiter Role", type: "role", timestamp: "2026-05-17 10:15:00", ip: "192.168.1.1", severity: "warning" },
+  { id: 2, user: "Sarah Admin", action: "Updated role permissions", resource: "TAP Role", type: "role", timestamp: "2026-05-17 10:15:00", ip: "192.168.1.1", severity: "warning" },
   { id: 3, user: "Alex Manager", action: "Deactivated user", resource: "john.doe@example.com", type: "user", timestamp: "2026-05-17 09:45:22", ip: "10.0.0.5", severity: "warning" },
   { id: 4, user: "Sarah Admin", action: "Updated system settings", resource: "Email Configuration", type: "settings", timestamp: "2026-05-17 09:30:00", ip: "192.168.1.1", severity: "info" },
-  { id: 5, user: "John Recruiter", action: "Exported candidate data", resource: "Candidates Report", type: "data", timestamp: "2026-05-17 09:00:00", ip: "10.0.0.8", severity: "info" },
+  { id: 5, user: "John TAP", action: "Exported candidate data", resource: "Candidates Report", type: "data", timestamp: "2026-05-17 09:00:00", ip: "10.0.0.8", severity: "info" },
   { id: 6, user: "Sarah Admin", action: "Deleted job posting", resource: "Senior Developer", type: "job", timestamp: "2026-05-16 18:20:00", ip: "192.168.1.1", severity: "critical" },
   { id: 7, user: "Alex Manager", action: "Invited new recruiter", resource: "recruiter@company.com", type: "user", timestamp: "2026-05-16 17:10:00", ip: "10.0.0.5", severity: "info" },
   { id: 8, user: "Sarah Admin", action: "Changed billing plan", resource: "Professional → Enterprise", type: "billing", timestamp: "2026-05-16 15:00:00", ip: "192.168.1.1", severity: "warning" },

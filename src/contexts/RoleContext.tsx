@@ -17,7 +17,7 @@ export const RoleProvider = ({ children }: { children: ReactNode }) => {
   const roleConfig = {
     admin: { label: "Admin", color: "bg-red-500" },
     company: { label: "Company", color: "bg-blue-500" },
-    recruiter: { label: "Recruiter", color: "bg-green-500" },
+    recruiter: { label: "TAP", color: "bg-green-500" },
     jobseeker: { label: "Job Seeker", color: "bg-purple-500" },
   };
 

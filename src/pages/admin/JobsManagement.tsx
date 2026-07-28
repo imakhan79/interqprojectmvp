@@ -339,10 +339,10 @@ export default function JobsManagement() {
               }}
             >
               <SelectTrigger className="w-[160px]">
-                <SelectValue placeholder="All Recruiters" />
+                <SelectValue placeholder="All TAPs" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Recruiters</SelectItem>
+                <SelectItem value="">All TAPs</SelectItem>
                 {getUniqueRecruiters().map((recruiter) => (
                   <SelectItem key={recruiter.id} value={recruiter.id}>
                     {recruiter.name}
@@ -417,7 +417,7 @@ export default function JobsManagement() {
                     <TableHead>Salary Range</TableHead>
                     <TableHead>Applications</TableHead>
                     <TableHead>Status</TableHead>
-                    <TableHead>Recruiter</TableHead>
+                    <TableHead>TAP</TableHead>
                     <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -783,7 +783,7 @@ export default function JobsManagement() {
               </div>
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="recruiter">Recruiter</Label>
+              <Label htmlFor="recruiter">TAP</Label>
               <Select
                 value={formData.recruiterId}
                 onValueChange={(value) =>
@@ -795,7 +795,7 @@ export default function JobsManagement() {
                 </SelectTrigger>
                 <SelectContent>
                   {mockUsers
-                    .filter((u) => u.role === "Recruiter")
+                    .filter((u) => u.role === "TAP")
                     .map((user) => (
                       <SelectItem key={user.id} value={user.id}>
                         {user.name}
@@ -1024,7 +1024,7 @@ export default function JobsManagement() {
               </div>
             </div>
             <div className="grid gap-2">
-              <Label htmlFor="edit-recruiter">Recruiter</Label>
+              <Label htmlFor="edit-recruiter">TAP</Label>
               <Select
                 value={formData.recruiterId}
                 onValueChange={(value) =>
@@ -1036,7 +1036,7 @@ export default function JobsManagement() {
                 </SelectTrigger>
                 <SelectContent>
                   {mockUsers
-                    .filter((u) => u.role === "Recruiter")
+                    .filter((u) => u.role === "TAP")
                     .map((user) => (
                       <SelectItem key={user.id} value={user.id}>
                         {user.name}

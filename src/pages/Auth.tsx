@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import { useNavigate, useLocation, useSearchParams, Link } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,41 +9,27 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuth, AccountRole } from "@/contexts/SimpleAuthContext";
 import {
   Mail, Lock, User, Eye, EyeOff, Shield, Building2, Users, Briefcase,
-  Loader2, ArrowRight, ArrowLeft, AlertCircle, Home, Video, ShieldCheck,
-  UserPlus, ClipboardList, Send,
+  Loader2, ArrowRight, ArrowLeft, AlertCircle, Home,
 } from "lucide-react";
 
 const roleConfig = {
   admin: { icon: Shield, color: "bg-red-500", label: "Admin", gradient: "from-red-500 to-rose-600" },
   company: { icon: Building2, color: "bg-blue-500", label: "Company", gradient: "from-blue-500 to-indigo-600" },
-  recruiter: { icon: Users, color: "bg-green-500", label: "Recruiter", gradient: "from-green-500 to-emerald-600" },
+  recruiter: { icon: Users, color: "bg-green-500", label: "TAP", gradient: "from-green-500 to-emerald-600" },
   jobseeker: { icon: Briefcase, color: "bg-purple-500", label: "Job Seeker", gradient: "from-purple-500 to-violet-600" },
-  tap: { icon: Video, color: "bg-teal-500", label: "TAP Partner", gradient: "from-teal-500 to-cyan-600" },
 };
-
-const tapFeatures = [
-  { icon: UserPlus, text: "Sign Up as a TAP" },
-  { icon: ShieldCheck, text: "InterQ Team Approval & Verification" },
-  { icon: Video, text: "Conduct Video Interviews" },
-  { icon: ClipboardList, text: "Access Interview Questions & Evaluation Tools" },
-];
 
 const Auth = () => {
   const { login, signup, isLoading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const [searchParams] = useSearchParams();
 
-  const initialTapMode = searchParams.get("portal") === "tap";
-  const initialTabParam = searchParams.get("tab");
-
-  const [activeTab, setActiveTab] = useState(initialTabParam === "signup" ? "signup" : "signin");
-  const [tapMode, setTapMode] = useState(initialTapMode);
+  const [activeTab, setActiveTab] = useState("signin");
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [selectedRole, setSelectedRole] = useState<AccountRole>(initialTapMode ? "tap" : "jobseeker");
+  const [selectedRole, setSelectedRole] = useState<AccountRole>("jobseeker");
   const [companyName, setCompanyName] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState("");
@@ -66,19 +52,6 @@ const Auth = () => {
       navigate("/");
     }
   }, [history, navigate]);
-
-  const enterTapMode = () => {
-    setTapMode(true);
-    setSelectedRole("tap");
-    setActiveTab("signup");
-    setError("");
-  };
-
-  const exitTapMode = () => {
-    setTapMode(false);
-    setSelectedRole("jobseeker");
-    setError("");
-  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -138,81 +111,41 @@ const Auth = () => {
             <span className="text-3xl font-bold text-white">InterQ</span>
           </div>
 
-          {tapMode ? (
-            <>
-              <h1 className="text-4xl xl:text-5xl font-bold text-white mb-6 leading-tight">
-                Talent Acquisition<br />
-                Partner <span className="text-teal-400">(TAP)</span> Platform
-              </h1>
+          <h1 className="text-5xl font-bold text-white mb-6 leading-tight">
+            The Complete<br />
+            Recruitment Platform
+          </h1>
 
-              <p className="text-xl text-slate-300 mb-12 max-w-lg">
-                Join InterQ as an approved TAP and conduct structured video interviews.
-              </p>
+          <p className="text-xl text-slate-300 mb-12 max-w-lg">
+            Connect top talent with great opportunities. Streamline your hiring process with our modern, integrated recruitment solution.
+          </p>
 
-              <div className="space-y-6">
-                {tapFeatures.map((feature, i) => (
-                  <div key={i} className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-white/10 backdrop-blur rounded-lg flex items-center justify-center ring-1 ring-white/10">
-                      <feature.icon className="w-6 h-6 text-teal-400" />
-                    </div>
-                    <span className="text-lg text-white font-medium">{feature.text}</span>
-                  </div>
-                ))}
+          <div className="space-y-6">
+            {[
+              { icon: Users, text: "50,000+ Active Candidates" },
+              { icon: Building2, text: "1,200+ Companies Hiring" },
+              { icon: Briefcase, text: "10,000+ Interviews Conducted" },
+            ].map((stat, i) => (
+              <div key={i} className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-white/10 backdrop-blur rounded-lg flex items-center justify-center ring-1 ring-white/10">
+                  <stat.icon className="w-6 h-6 text-teal-400" />
+                </div>
+                <span className="text-lg text-white font-medium">{stat.text}</span>
               </div>
-            </>
-          ) : (
-            <>
-              <h1 className="text-5xl font-bold text-white mb-6 leading-tight">
-                The Complete<br />
-                Recruitment Platform
-              </h1>
-
-              <p className="text-xl text-slate-300 mb-12 max-w-lg">
-                Connect top talent with great opportunities. Streamline your hiring process with our modern, integrated recruitment solution.
-              </p>
-
-              <div className="space-y-6">
-                {[
-                  { icon: Users, text: "50,000+ Active Candidates" },
-                  { icon: Building2, text: "1,200+ Companies Hiring" },
-                  { icon: Briefcase, text: "10,000+ Interviews Conducted" },
-                ].map((stat, i) => (
-                  <div key={i} className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-white/10 backdrop-blur rounded-lg flex items-center justify-center ring-1 ring-white/10">
-                      <stat.icon className="w-6 h-6 text-teal-400" />
-                    </div>
-                    <span className="text-lg text-white font-medium">{stat.text}</span>
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
+            ))}
+          </div>
         </div>
 
         <div className="relative z-10">
-          {tapMode ? (
-            <div className="bg-white/5 backdrop-blur rounded-xl p-6 ring-1 ring-white/10">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center flex-shrink-0">
-                  <ShieldCheck className="w-6 h-6 text-teal-400" />
-                </div>
-                <div>
-                  <p className="text-white font-medium">"As an approved TAP, I run structured interviews on my own schedule while staying fully aligned with InterQ's evaluation standards."</p>
-                  <p className="text-slate-400 text-sm mt-1">— Priya Menon, Talent Acquisition Partner</p>
-                </div>
+          <div className="bg-white/5 backdrop-blur rounded-xl p-6 ring-1 ring-white/10">
+            <div className="flex items-start gap-4">
+              <img src="/api/placeholder/48/48" alt="User" className="w-12 h-12 rounded-full bg-white/10" />
+              <div>
+                <p className="text-white font-medium">"InterQ transformed our hiring process. We hired 50% faster!"</p>
+                <p className="text-slate-400 text-sm mt-1">- Sarah Chen, HR Director at TechCorp</p>
               </div>
             </div>
-          ) : (
-            <div className="bg-white/5 backdrop-blur rounded-xl p-6 ring-1 ring-white/10">
-              <div className="flex items-start gap-4">
-                <img src="/api/placeholder/48/48" alt="User" className="w-12 h-12 rounded-full bg-white/10" />
-                <div>
-                  <p className="text-white font-medium">"InterQ transformed our hiring process. We hired 50% faster!"</p>
-                  <p className="text-slate-400 text-sm mt-1">- Sarah Chen, HR Director at TechCorp</p>
-                </div>
-              </div>
-            </div>
-          )}
+          </div>
         </div>
       </div>
 
@@ -256,40 +189,13 @@ const Auth = () => {
           >
                 <Card className="border-0 shadow-2xl ring-1 ring-teal-500/20">
                   <CardHeader className="space-y-1 pb-4">
-                    {!tapMode ? (
-                      <button
-                        type="button"
-                        onClick={enterTapMode}
-                        className="w-fit mb-2 inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-teal-50 text-teal-700 hover:bg-teal-100 ring-1 ring-teal-200 transition-colors"
-                      >
-                        <Video className="w-3.5 h-3.5" />
-                        Apply as a TAP / TAP Sign Up
-                      </button>
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={exitTapMode}
-                        className="w-fit mb-2 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 ring-1 ring-gray-200 transition-colors"
-                      >
-                        <ArrowLeft className="w-3.5 h-3.5" />
-                        Not a TAP? General sign in / sign up
-                      </button>
-                    )}
-
                     <CardTitle className="text-2xl font-bold text-gray-900">
-                      {tapMode
-                        ? (activeTab === "signin" ? "Welcome, Talent Acquisition Partner" : "Apply to Become a TAP")
-                        : (activeTab === "signin" ? "Welcome Back" : "Create Account")
-                      }
+                      {activeTab === "signin" ? "Welcome Back" : "Create Account"}
                     </CardTitle>
                     <CardDescription className="text-gray-600">
-                      {tapMode
-                        ? (activeTab === "signin"
-                            ? "Sign in to access your approved TAP workspace."
-                            : "Complete your application to join InterQ's approved TAP network.")
-                        : (activeTab === "signin"
-                            ? "Sign in to access your InterQ account"
-                            : "Join thousands of professionals using InterQ")
+                      {activeTab === "signin"
+                        ? "Sign in to access your InterQ account"
+                        : "Join thousands of professionals using InterQ"
                       }
                     </CardDescription>
                   </CardHeader>
@@ -297,7 +203,7 @@ const Auth = () => {
                     <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
                       <TabsList className="grid w-full grid-cols-2">
                         <TabsTrigger value="signin">Sign In</TabsTrigger>
-                        <TabsTrigger value="signup">{tapMode ? "TAP Sign Up" : "Sign Up"}</TabsTrigger>
+                        <TabsTrigger value="signup">Sign Up</TabsTrigger>
                       </TabsList>
 
                       <TabsContent value="signin" className="space-y-4">
@@ -385,7 +291,7 @@ const Auth = () => {
                           <div className="space-y-2">
                             <Label>I am a...</Label>
                             <div className="grid grid-cols-2 gap-2">
-                              {(["jobseeker", "company", "recruiter", "tap"] as AccountRole[]).map((role) => {
+                              {(["jobseeker", "company", "recruiter"] as AccountRole[]).map((role) => {
                                 const config = roleConfig[role];
                                 const Icon = config.icon;
 
@@ -393,10 +299,7 @@ const Auth = () => {
                                   <button
                                     key={role}
                                     type="button"
-                                    onClick={() => {
-                                      setSelectedRole(role);
-                                      setTapMode(role === "tap");
-                                    }}
+                                    onClick={() => setSelectedRole(role)}
                                     className={`flex items-center gap-2 p-3 rounded-lg border-2 transition-all ${
                                       selectedRole === role
                                         ? "border-teal-500 bg-teal-50"
@@ -483,13 +386,6 @@ const Auth = () => {
                             </div>
                           </div>
 
-                          {selectedRole === "tap" && (
-                            <div className="flex items-start gap-2 p-3 bg-teal-50 border border-teal-200 rounded-lg text-teal-800 text-xs">
-                              <ShieldCheck className="w-4 h-4 flex-shrink-0 mt-0.5" />
-                              <span>Your application will be reviewed by the InterQ Team. You'll get access to your TAP workspace once approved.</span>
-                            </div>
-                          )}
-
                           {error && (
                             <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
                               <AlertCircle className="w-4 h-4" />
@@ -500,12 +396,10 @@ const Auth = () => {
                           <Button type="submit" className={`w-full ${primaryButtonClass}`} disabled={isSubmitting}>
                             {isSubmitting ? (
                               <Loader2 className="w-4 h-4 animate-spin mr-2" />
-                            ) : selectedRole === "tap" ? (
-                              <Send className="w-4 h-4 mr-2" />
                             ) : (
                               <ArrowRight className="w-4 h-4 mr-2" />
                             )}
-                            {selectedRole === "tap" ? "Submit TAP Application" : "Create Account"}
+                            Create Account
                           </Button>
 
                           <p className="text-xs text-center text-gray-500">

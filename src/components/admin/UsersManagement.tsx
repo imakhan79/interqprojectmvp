@@ -64,7 +64,7 @@ const UsersManagement = () => {
               </div>
               <div className="text-right">
                 <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                  Recruiter
+                  TAP
                 </span>
               </div>
             </div>
@@ -98,7 +98,7 @@ const UsersManagement = () => {
               <div className="space-y-2">
                 <div className="flex items-center gap-3">
                   <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                  <span className="text-sm">Recruiters (24)</span>
+                  <span className="text-sm">TAPs (24)</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-3 h-3 bg-green-500 rounded-full"></div>

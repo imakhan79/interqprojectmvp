@@ -8,7 +8,7 @@ import type { User as SupabaseAuthUser } from "@supabase/supabase-js";
 // flag is set. Demo accounts (DEMO_USERS below) always stay local-only.
 const SUPABASE_AUTH_ENABLED = import.meta.env.VITE_USE_SUPABASE_AUTH === "true";
 
-export type AccountRole = "admin" | "company" | "recruiter" | "jobseeker" | "tap";
+export type AccountRole = "admin" | "company" | "recruiter" | "jobseeker";
 
 export interface User {
   id: string;
@@ -21,9 +21,6 @@ export interface User {
   companyName?: string;
   createdAt: string;
   isDemo?: boolean;
-  // TAP (Talent Acquisition Partner) accounts require InterQ Team approval
-  // before their dashboard unlocks.
-  tapStatus?: "pending" | "approved";
 }
 
 interface LocalUser {
@@ -36,7 +33,6 @@ interface LocalUser {
   companyName?: string;
   createdAt: string;
   isVerified?: boolean;
-  tapStatus?: "pending" | "approved";
 }
 
 export interface DemoUser {
@@ -65,11 +61,11 @@ export const DEMO_USERS: DemoUser[] = [
     name: "Alex Manager",
     description: "Manage jobs, candidates, interviews, and team"
   },
-  { 
-    email: "recruiter.demo@interq.com", 
-    password: "Recruiter@123", 
-    role: "recruiter", 
-    name: "John Recruiter",
+  {
+    email: "tap.demo@interq.com",
+    password: "TAP@123",
+    role: "recruiter",
+    name: "John TAP",
     description: "Track candidates, manage pipeline, and schedule interviews"
   },
   {
@@ -78,13 +74,6 @@ export const DEMO_USERS: DemoUser[] = [
     role: "jobseeker",
     name: "Emily Jobseeker",
     description: "Browse jobs, track applications, and manage profile"
-  },
-  {
-    email: "tap.demo@interq.com",
-    password: "TapPartner@123",
-    role: "tap",
-    name: "Priya TAP Partner",
-    description: "Conduct assigned video interviews and submit candidate evaluations"
   },
 ];
 
@@ -135,7 +124,6 @@ export const getDashboardPath = (role: AccountRole): string => {
     case "company": return "/company";
     case "recruiter": return "/recruiter";
     case "jobseeker": return "/jobseeker";
-    case "tap": return "/tap";
     default: return "/dashboard";
   }
 };
@@ -355,7 +343,6 @@ export function SimpleAuthProvider({ children }: { children: ReactNode }) {
           companyName: demoUser.role === "company" ? "TechCorp Solutions" : undefined,
           createdAt: new Date().toISOString(),
           isDemo: true,
-          tapStatus: demoUser.role === "tap" ? "approved" : undefined,
         };
 
         setUser(newUser);
@@ -416,7 +403,6 @@ export function SimpleAuthProvider({ children }: { children: ReactNode }) {
           companyName: localUser.companyName,
           createdAt: localUser.createdAt,
           isDemo: false,
-          tapStatus: localUser.tapStatus,
         };
 
         setUser(newUser);
@@ -459,7 +445,6 @@ export function SimpleAuthProvider({ children }: { children: ReactNode }) {
         companyName: demoUser.role === "company" ? "TechCorp Solutions" : undefined,
         createdAt: new Date().toISOString(),
         isDemo: true,
-        tapStatus: demoUser.role === "tap" ? "approved" : undefined,
       };
 
       setUser(newUser);
@@ -549,7 +534,6 @@ export function SimpleAuthProvider({ children }: { children: ReactNode }) {
 
     try {
       // Generate user ID and create local user
-      const tapStatus = data.role === "tap" ? "pending" : undefined;
       const newUser: User = {
         id: generateUserId(),
         email: data.email,
@@ -559,7 +543,6 @@ export function SimpleAuthProvider({ children }: { children: ReactNode }) {
         companyName: data.companyName,
         createdAt: new Date().toISOString(),
         isDemo: false,
-        tapStatus,
       };
 
       setUser(newUser);
@@ -573,7 +556,6 @@ export function SimpleAuthProvider({ children }: { children: ReactNode }) {
         existing.name = data.name;
         existing.role = data.role;
         existing.companyName = data.companyName;
-        existing.tapStatus = tapStatus;
       } else {
         localUsers.push({
           id: newUser.id,
@@ -584,7 +566,6 @@ export function SimpleAuthProvider({ children }: { children: ReactNode }) {
           companyName: data.companyName,
           createdAt: newUser.createdAt,
           isVerified: true,
-          tapStatus,
         });
       }
       setLocalUsers(localUsers);
@@ -597,17 +578,10 @@ export function SimpleAuthProvider({ children }: { children: ReactNode }) {
       }));
 
       setIsLoading(false);
-      toast(
-        tapStatus === "pending"
-          ? {
-              title: "Application submitted!",
-              description: "Your TAP application is now under review by the InterQ Team.",
-            }
-          : {
-              title: "Welcome!",
-              description: "Account created successfully!",
-            }
-      );
+      toast({
+        title: "Welcome!",
+        description: "Account created successfully!",
+      });
       return { success: true };
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : "An unexpected sign up error occurred";
@@ -736,10 +710,9 @@ export const useRole = () => {
     isCompany: user?.role === "company",
     isRecruiter: user?.role === "recruiter",
     isJobseeker: user?.role === "jobseeker",
-    isTap: user?.role === "tap",
     isDemo: user?.isDemo || false,
-    roleLabel: user?.role === "admin" ? "Admin" : user?.role === "company" ? "Company" : user?.role === "recruiter" ? "Recruiter" : user?.role === "tap" ? "TAP Partner" : "Job Seeker",
-    roleColor: user?.role === "admin" ? "bg-red-500" : user?.role === "company" ? "bg-blue-500" : user?.role === "recruiter" ? "bg-green-500" : user?.role === "tap" ? "bg-teal-500" : "bg-purple-500",
+    roleLabel: user?.role === "admin" ? "Admin" : user?.role === "company" ? "Company" : user?.role === "recruiter" ? "TAP" : "Job Seeker",
+    roleColor: user?.role === "admin" ? "bg-red-500" : user?.role === "company" ? "bg-blue-500" : user?.role === "recruiter" ? "bg-green-500" : "bg-purple-500",
   };
 };
 

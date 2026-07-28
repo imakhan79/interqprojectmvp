@@ -21,7 +21,7 @@ export const mockRoles: Role[] = [
   },
   {
     id: '2',
-    name: 'Recruiter',
+    name: 'TAP',
     description: 'Manages job postings, candidates, and interview scheduling',
     color: 'bg-blue-500',
     status: 'active',
@@ -113,13 +113,13 @@ export const mockRoles: Role[] = [
 
 export const mockUsers: User[] = [
   { id: '1', name: 'Sarah Johnson', email: 'sarah.johnson@company.com', department: 'Human Resources', roles: ['Administrator'], status: 'active', lastActive: '2024-03-18T09:30:00Z' },
-  { id: '2', name: 'Michael Chen', email: 'michael.chen@company.com', department: 'Engineering', roles: ['Recruiter'], status: 'active', lastActive: '2024-03-18T08:45:00Z' },
+  { id: '2', name: 'Michael Chen', email: 'michael.chen@company.com', department: 'Engineering', roles: ['TAP'], status: 'active', lastActive: '2024-03-18T08:45:00Z' },
   { id: '3', name: 'Emily Davis', email: 'emily.davis@company.com', department: 'Product', roles: ['Hiring Manager'], status: 'active', lastActive: '2024-03-17T16:20:00Z' },
   { id: '4', name: 'James Wilson', email: 'james.wilson@company.com', department: 'Sales', roles: ['Hiring Manager', 'Interviewer'], status: 'active', lastActive: '2024-03-18T10:15:00Z' },
   { id: '5', name: 'Lisa Martinez', email: 'lisa.martinez@company.com', department: 'Human Resources', roles: ['HR Assistant'], status: 'active', lastActive: '2024-03-18T11:00:00Z' },
   { id: '6', name: 'David Kim', email: 'david.kim@company.com', department: 'Engineering', roles: ['Interviewer'], status: 'active', lastActive: '2024-03-17T14:30:00Z' },
-  { id: '7', name: 'Anna Brown', email: 'anna.brown@company.com', department: 'Marketing', roles: ['Recruiter'], status: 'inactive', lastActive: '2024-03-10T09:00:00Z' },
-  { id: '8', name: 'Robert Taylor', email: 'robert.taylor@company.com', department: 'Finance', roles: ['Recruiter'], status: 'pending', lastActive: '2024-03-18T07:00:00Z' },
+  { id: '7', name: 'Anna Brown', email: 'anna.brown@company.com', department: 'Marketing', roles: ['TAP'], status: 'inactive', lastActive: '2024-03-10T09:00:00Z' },
+  { id: '8', name: 'Robert Taylor', email: 'robert.taylor@company.com', department: 'Finance', roles: ['TAP'], status: 'pending', lastActive: '2024-03-18T07:00:00Z' },
   { id: '9', name: 'Jennifer Lee', email: 'jennifer.lee@company.com', department: 'Human Resources', roles: ['Administrator'], status: 'active', lastActive: '2024-03-18T12:00:00Z' },
   { id: '10', name: 'Chris Anderson', email: 'chris.anderson@company.com', department: 'Operations', roles: ['Interviewer'], status: 'active', lastActive: '2024-03-17T15:45:00Z' },
   { id: '11', name: 'Michelle Wang', email: 'michelle.wang@company.com', department: 'Engineering', roles: ['Hiring Manager', 'Interviewer'], status: 'active', lastActive: '2024-03-18T13:30:00Z' },
@@ -128,8 +128,8 @@ export const mockUsers: User[] = [
 
 export const mockAuditLogs: AuditLog[] = [
   { id: '1', action: 'CREATE', entityType: 'role', entityId: '7', entityName: 'Team Lead', userId: '1', userName: 'Sarah Johnson', changes: [], timestamp: '2024-03-18T10:00:00Z' },
-  { id: '2', action: 'UPDATE', entityType: 'permission', entityId: '2', entityName: 'Recruiter', userId: '1', userName: 'Sarah Johnson', changes: [{ field: 'candidates.delete', oldValue: 'false', newValue: 'true' }], timestamp: '2024-03-17T14:30:00Z' },
-  { id: '3', action: 'ASSIGN_ROLE', entityType: 'user', entityId: '8', entityName: 'Robert Taylor', userId: '5', userName: 'Lisa Martinez', changes: [{ field: 'role', oldValue: 'HR Assistant', newValue: 'Recruiter' }], timestamp: '2024-03-17T11:15:00Z' },
+  { id: '2', action: 'UPDATE', entityType: 'permission', entityId: '2', entityName: 'TAP', userId: '1', userName: 'Sarah Johnson', changes: [{ field: 'candidates.delete', oldValue: 'false', newValue: 'true' }], timestamp: '2024-03-17T14:30:00Z' },
+  { id: '3', action: 'ASSIGN_ROLE', entityType: 'user', entityId: '8', entityName: 'Robert Taylor', userId: '5', userName: 'Lisa Martinez', changes: [{ field: 'role', oldValue: 'HR Assistant', newValue: 'TAP' }], timestamp: '2024-03-17T11:15:00Z' },
   { id: '4', action: 'DEACTIVATE', entityType: 'role', entityId: '6', entityName: 'Department Head', userId: '1', userName: 'Sarah Johnson', changes: [{ field: 'status', oldValue: 'active', newValue: 'inactive' }], timestamp: '2024-03-15T09:00:00Z' },
   { id: '5', action: 'UPDATE', entityType: 'user', entityId: '7', entityName: 'Anna Brown', userId: '9', userName: 'Jennifer Lee', changes: [{ field: 'status', oldValue: 'active', newValue: 'inactive' }], timestamp: '2024-03-10T16:00:00Z' },
   { id: '6', action: 'DELETE', entityType: 'role', entityId: '8', entityName: 'Intern', userId: '1', userName: 'Sarah Johnson', changes: [], timestamp: '2024-03-08T13:45:00Z' },
@@ -154,7 +154,7 @@ export const mockMetrics: RoleMetrics = {
 
 export const roleHierarchyData = [
   { id: '1', name: 'Administrator', parentId: null, level: 0 },
-  { id: '2', name: 'Recruiter', parentId: '1', level: 1 },
+  { id: '2', name: 'TAP', parentId: '1', level: 1 },
   { id: '3', name: 'Hiring Manager', parentId: '1', level: 1 },
   { id: '4', name: 'HR Assistant', parentId: '1', level: 1 },
   { id: '5', name: 'Interviewer', parentId: '2', level: 2 },
@@ -164,7 +164,7 @@ export const roleHierarchyData = [
 
 export const chartData = [
   { name: 'Admin', users: 3, fill: '#ef4444' },
-  { name: 'Recruiter', users: 12, fill: '#3b82f6' },
+  { name: 'TAP', users: 12, fill: '#3b82f6' },
   { name: 'Hiring Manager', users: 8, fill: '#22c55e' },
   { name: 'HR Assistant', users: 5, fill: '#eab308' },
   { name: 'Interviewer', users: 15, fill: '#a855f7' },

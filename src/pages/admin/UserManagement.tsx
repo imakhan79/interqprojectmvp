@@ -36,7 +36,7 @@ import { cn } from '@/lib/utils';
 const ROLE_COLORS: Record<string, { bg: string; text: string; border: string }> = {
   'Admin': { bg: 'bg-red-500/10', text: 'text-red-600', border: 'border-red-500/30' },
   'Company Admin': { bg: 'bg-blue-500/10', text: 'text-blue-600', border: 'border-blue-500/30' },
-  'Recruiter': { bg: 'bg-green-500/10', text: 'text-green-600', border: 'border-green-500/30' },
+  'TAP': { bg: 'bg-green-500/10', text: 'text-green-600', border: 'border-green-500/30' },
   'Hiring Manager': { bg: 'bg-yellow-500/10', text: 'text-yellow-600', border: 'border-yellow-500/30' },
   'Interviewer': { bg: 'bg-purple-500/10', text: 'text-purple-600', border: 'border-purple-500/30' },
   'HR Executive': { bg: 'bg-indigo-500/10', text: 'text-indigo-600', border: 'border-indigo-500/30' },
@@ -50,7 +50,7 @@ const STATUS_CONFIG: Record<UserStatus, { label: string; color: string; icon: Re
   suspended: { label: 'Suspended', color: 'bg-red-500/10 text-red-600 border-red-500/30', icon: <UserX className="h-3 w-3" /> },
 };
 
-const ROLES = ['Admin', 'Company Admin', 'Recruiter', 'Hiring Manager', 'Interviewer', 'HR Executive', 'Department Head'];
+const ROLES = ['Admin', 'Company Admin', 'TAP', 'Hiring Manager', 'Interviewer', 'HR Executive', 'Department Head'];
 const DEPARTMENTS = ['IT', 'HR', 'Engineering', 'Finance', 'Admin', 'Sales', 'Marketing', 'Operations', 'Product', 'Design'];
 const ITEMS_PER_PAGE = 10;
 
@@ -461,7 +461,7 @@ export default function UserManagement() {
                 </TableRow>
               ) : (
                 paginatedUsers.map((user) => {
-                  const roleStyle = ROLE_COLORS[user.role] || ROLE_COLORS['Recruiter'];
+                  const roleStyle = ROLE_COLORS[user.role] || ROLE_COLORS['TAP'];
                   const statusConfig = STATUS_CONFIG[user.status];
                   return (
                     <TableRow 
