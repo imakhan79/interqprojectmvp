@@ -5,7 +5,7 @@ import { Loader2 } from "lucide-react";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
-  allowedRoles?: ("admin" | "company" | "recruiter" | "jobseeker")[];
+  allowedRoles?: ("admin" | "company" | "recruiter" | "jobseeker" | "tap")[];
 }
 
 export function ProtectedRoute({ children, allowedRoles }: ProtectedRouteProps) {
@@ -26,6 +26,7 @@ export function ProtectedRoute({ children, allowedRoles }: ProtectedRouteProps) 
           company: "/company",
           recruiter: "/recruiter",
           jobseeker: "/jobseeker",
+          tap: "/tap",
         };
         navigate(roleRedirect[user.role] || "/dashboard", { replace: true });
         return;
@@ -62,6 +63,7 @@ export function PublicRoute({ children }: { children: React.ReactNode }) {
         company: "/company",
         recruiter: "/recruiter",
         jobseeker: "/jobseeker",
+        tap: "/tap",
       }[user.role] || "/dashboard";
       navigate(dashboardPath, { replace: true });
     }

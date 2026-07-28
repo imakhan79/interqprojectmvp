@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, useLocation, useSearchParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,7 +9,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuth, AccountRole } from "@/contexts/SimpleAuthContext";
 import {
   Mail, Lock, User, Eye, EyeOff, Shield, Building2, Users, Briefcase,
-  Loader2, ArrowRight, ArrowLeft, AlertCircle, Home
+  Loader2, ArrowRight, ArrowLeft, AlertCircle, Home, Video, ShieldCheck,
+  UserPlus, ClipboardList, Send,
 } from "lucide-react";
 
 const roleConfig = {
@@ -17,19 +18,32 @@ const roleConfig = {
   company: { icon: Building2, color: "bg-blue-500", label: "Company", gradient: "from-blue-500 to-indigo-600" },
   recruiter: { icon: Users, color: "bg-green-500", label: "Recruiter", gradient: "from-green-500 to-emerald-600" },
   jobseeker: { icon: Briefcase, color: "bg-purple-500", label: "Job Seeker", gradient: "from-purple-500 to-violet-600" },
+  tap: { icon: Video, color: "bg-teal-500", label: "TAP Partner", gradient: "from-teal-500 to-cyan-600" },
 };
+
+const tapFeatures = [
+  { icon: UserPlus, text: "Sign Up as a TAP" },
+  { icon: ShieldCheck, text: "InterQ Team Approval & Verification" },
+  { icon: Video, text: "Conduct Video Interviews" },
+  { icon: ClipboardList, text: "Access Interview Questions & Evaluation Tools" },
+];
 
 const Auth = () => {
   const { login, signup, isLoading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  
-  const [activeTab, setActiveTab] = useState("signin");
+  const [searchParams] = useSearchParams();
+
+  const initialTapMode = searchParams.get("portal") === "tap";
+  const initialTabParam = searchParams.get("tab");
+
+  const [activeTab, setActiveTab] = useState(initialTabParam === "signup" ? "signup" : "signin");
+  const [tapMode, setTapMode] = useState(initialTapMode);
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [selectedRole, setSelectedRole] = useState<AccountRole>("jobseeker");
+  const [selectedRole, setSelectedRole] = useState<AccountRole>(initialTapMode ? "tap" : "jobseeker");
   const [companyName, setCompanyName] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState("");
@@ -53,13 +67,26 @@ const Auth = () => {
     }
   }, [history, navigate]);
 
+  const enterTapMode = () => {
+    setTapMode(true);
+    setSelectedRole("tap");
+    setActiveTab("signup");
+    setError("");
+  };
+
+  const exitTapMode = () => {
+    setTapMode(false);
+    setSelectedRole("jobseeker");
+    setError("");
+  };
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setIsSubmitting(true);
-    
+
     const result = await login(email, password);
-    
+
     if (result.success) {
       if (result.needsVerification) {
         navigate("/verify-email");
@@ -75,7 +102,7 @@ const Auth = () => {
     e.preventDefault();
     setError("");
     setIsSubmitting(true);
-    
+
     const result = await signup({
       email,
       password,
@@ -83,7 +110,7 @@ const Auth = () => {
       role: selectedRole,
       companyName: selectedRole === "company" ? companyName : undefined,
     });
-    
+
     if (result.success) {
       if (result.needsVerification) {
         navigate("/verify-email");
@@ -95,53 +122,97 @@ const Auth = () => {
     setIsSubmitting(false);
   };
 
+  const primaryButtonClass = "bg-gradient-to-r from-teal-500 to-purple-600 hover:from-teal-600 hover:to-purple-700 text-white";
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex">
+    <div className="min-h-screen flex bg-gradient-to-br from-slate-50 via-teal-50/40 to-purple-50/30">
       {/* Left Panel - Branding */}
-      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 p-12 flex-col justify-between relative overflow-hidden">
+      <div className="hidden lg:flex lg:w-1/2 p-12 flex-col justify-between relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-teal-950">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA2MCAwIEwgMCAwIDAgNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-30" />
-        
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl" />
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-teal-500/20 rounded-full blur-3xl" />
+
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-8">
             <img src="/interq-logo.png" alt="InterQ Logo" className="w-12 h-12 object-contain" />
             <span className="text-3xl font-bold text-white">InterQ</span>
           </div>
-          
-          <h1 className="text-5xl font-bold text-white mb-6 leading-tight">
-            The Complete<br />
-            Recruitment Platform
-          </h1>
-          
-          <p className="text-xl text-white/80 mb-12 max-w-lg">
-            Connect top talent with great opportunities. Streamline your hiring process with our modern, integrated recruitment solution.
-          </p>
 
-          <div className="space-y-6">
-            {[
-              { icon: Users, text: "50,000+ Active Candidates" },
-              { icon: Building2, text: "1,200+ Companies Hiring" },
-              { icon: Briefcase, text: "10,000+ Interviews Conducted" },
-            ].map((stat, i) => (
-              <div key={i} className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-white/20 backdrop-blur rounded-lg flex items-center justify-center">
-                  <stat.icon className="w-6 h-6 text-white" />
-                </div>
-                <span className="text-lg text-white font-medium">{stat.text}</span>
+          {tapMode ? (
+            <>
+              <h1 className="text-4xl xl:text-5xl font-bold text-white mb-6 leading-tight">
+                Talent Acquisition<br />
+                Partner <span className="text-teal-400">(TAP)</span> Platform
+              </h1>
+
+              <p className="text-xl text-slate-300 mb-12 max-w-lg">
+                Join InterQ as an approved TAP and conduct structured video interviews.
+              </p>
+
+              <div className="space-y-6">
+                {tapFeatures.map((feature, i) => (
+                  <div key={i} className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-white/10 backdrop-blur rounded-lg flex items-center justify-center ring-1 ring-white/10">
+                      <feature.icon className="w-6 h-6 text-teal-400" />
+                    </div>
+                    <span className="text-lg text-white font-medium">{feature.text}</span>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </>
+          ) : (
+            <>
+              <h1 className="text-5xl font-bold text-white mb-6 leading-tight">
+                The Complete<br />
+                Recruitment Platform
+              </h1>
+
+              <p className="text-xl text-slate-300 mb-12 max-w-lg">
+                Connect top talent with great opportunities. Streamline your hiring process with our modern, integrated recruitment solution.
+              </p>
+
+              <div className="space-y-6">
+                {[
+                  { icon: Users, text: "50,000+ Active Candidates" },
+                  { icon: Building2, text: "1,200+ Companies Hiring" },
+                  { icon: Briefcase, text: "10,000+ Interviews Conducted" },
+                ].map((stat, i) => (
+                  <div key={i} className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-white/10 backdrop-blur rounded-lg flex items-center justify-center ring-1 ring-white/10">
+                      <stat.icon className="w-6 h-6 text-teal-400" />
+                    </div>
+                    <span className="text-lg text-white font-medium">{stat.text}</span>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
         </div>
 
         <div className="relative z-10">
-          <div className="bg-white/10 backdrop-blur rounded-xl p-6">
-            <div className="flex items-start gap-4">
-              <img src="/api/placeholder/48/48" alt="User" className="w-12 h-12 rounded-full bg-white/20" />
-              <div>
-                <p className="text-white font-medium">"InterQ transformed our hiring process. We hired 50% faster!"</p>
-                <p className="text-white/70 text-sm mt-1">- Sarah Chen, HR Director at TechCorp</p>
+          {tapMode ? (
+            <div className="bg-white/5 backdrop-blur rounded-xl p-6 ring-1 ring-white/10">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-teal-500/20 flex items-center justify-center flex-shrink-0">
+                  <ShieldCheck className="w-6 h-6 text-teal-400" />
+                </div>
+                <div>
+                  <p className="text-white font-medium">"As an approved TAP, I run structured interviews on my own schedule while staying fully aligned with InterQ's evaluation standards."</p>
+                  <p className="text-slate-400 text-sm mt-1">— Priya Menon, Talent Acquisition Partner</p>
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="bg-white/5 backdrop-blur rounded-xl p-6 ring-1 ring-white/10">
+              <div className="flex items-start gap-4">
+                <img src="/api/placeholder/48/48" alt="User" className="w-12 h-12 rounded-full bg-white/10" />
+                <div>
+                  <p className="text-white font-medium">"InterQ transformed our hiring process. We hired 50% faster!"</p>
+                  <p className="text-slate-400 text-sm mt-1">- Sarah Chen, HR Director at TechCorp</p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -152,19 +223,19 @@ const Auth = () => {
           <div className="flex items-center gap-2 mb-6">
             <button
               onClick={handleBack}
-              className="group inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-600 rounded-lg hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200"
+              className="group inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 transition-all duration-200"
             >
               <div className="p-1 rounded-md bg-gray-100 group-hover:bg-gray-200 transition-colors">
                 <ArrowLeft className="w-4 h-4" />
               </div>
               <span>Back</span>
             </button>
-            
+
             <div className="h-4 w-px bg-gray-200" />
-            
+
             <a
               href="/"
-              className="group inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-600 rounded-lg hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all duration-200"
+              className="group inline-flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 transition-all duration-200"
             >
               <div className="p-1 rounded-md bg-gray-100 group-hover:bg-gray-200 transition-colors">
                 <Home className="w-4 h-4" />
@@ -183,15 +254,42 @@ const Auth = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.2 }}
           >
-                <Card className="border-0 shadow-2xl">
+                <Card className="border-0 shadow-2xl ring-1 ring-teal-500/20">
                   <CardHeader className="space-y-1 pb-4">
-                    <CardTitle className="text-2xl font-bold">
-                      {activeTab === "signin" ? "Welcome Back" : "Create Account"}
+                    {!tapMode ? (
+                      <button
+                        type="button"
+                        onClick={enterTapMode}
+                        className="w-fit mb-2 inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-teal-50 text-teal-700 hover:bg-teal-100 ring-1 ring-teal-200 transition-colors"
+                      >
+                        <Video className="w-3.5 h-3.5" />
+                        Apply as a TAP / TAP Sign Up
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={exitTapMode}
+                        className="w-fit mb-2 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 ring-1 ring-gray-200 transition-colors"
+                      >
+                        <ArrowLeft className="w-3.5 h-3.5" />
+                        Not a TAP? General sign in / sign up
+                      </button>
+                    )}
+
+                    <CardTitle className="text-2xl font-bold text-gray-900">
+                      {tapMode
+                        ? (activeTab === "signin" ? "Welcome, Talent Acquisition Partner" : "Apply to Become a TAP")
+                        : (activeTab === "signin" ? "Welcome Back" : "Create Account")
+                      }
                     </CardTitle>
-                    <CardDescription>
-                      {activeTab === "signin" 
-                        ? "Sign in to access your InterQ account" 
-                        : "Join thousands of professionals using InterQ"
+                    <CardDescription className="text-gray-600">
+                      {tapMode
+                        ? (activeTab === "signin"
+                            ? "Sign in to access your approved TAP workspace."
+                            : "Complete your application to join InterQ's approved TAP network.")
+                        : (activeTab === "signin"
+                            ? "Sign in to access your InterQ account"
+                            : "Join thousands of professionals using InterQ")
                       }
                     </CardDescription>
                   </CardHeader>
@@ -199,7 +297,7 @@ const Auth = () => {
                     <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
                       <TabsList className="grid w-full grid-cols-2">
                         <TabsTrigger value="signin">Sign In</TabsTrigger>
-                        <TabsTrigger value="signup">Sign Up</TabsTrigger>
+                        <TabsTrigger value="signup">{tapMode ? "TAP Sign Up" : "Sign Up"}</TabsTrigger>
                       </TabsList>
 
                       <TabsContent value="signin" className="space-y-4">
@@ -208,7 +306,7 @@ const Auth = () => {
                             <Label htmlFor="email">Email</Label>
                             <div className="relative">
                               <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                              <Input 
+                              <Input
                                 id="email"
                                 type="email"
                                 placeholder="you@example.com"
@@ -226,7 +324,7 @@ const Auth = () => {
                               <Button
                                 variant="ghost"
                                 size="sm"
-                                className="h-auto p-0 text-xs text-blue-600 hover:text-blue-700"
+                                className="h-auto p-0 text-xs text-teal-700 hover:text-teal-800"
                                 onClick={() => navigate("/reset-password")}
                               >
                                 Forgot password?
@@ -234,7 +332,7 @@ const Auth = () => {
                             </div>
                             <div className="relative">
                               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                              <Input 
+                              <Input
                                 id="password"
                                 type={showPassword ? "text" : "password"}
                                 placeholder="Enter your password"
@@ -259,9 +357,9 @@ const Auth = () => {
                               id="remember"
                               checked={rememberMe}
                               onChange={(e) => setRememberMe(e.target.checked)}
-                              className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                              className="w-4 h-4 rounded border-gray-300 text-teal-600 focus:ring-teal-500"
                             />
-                            <Label htmlFor="remember" className="text-sm text-gray-600">Remember me</Label>
+                            <Label htmlFor="remember" className="text-sm text-gray-700">Remember me</Label>
                           </div>
 
                           {error && (
@@ -271,7 +369,7 @@ const Auth = () => {
                             </div>
                           )}
 
-                          <Button type="submit" className="w-full" disabled={isSubmitting}>
+                          <Button type="submit" className={`w-full ${primaryButtonClass}`} disabled={isSubmitting}>
                             {isSubmitting ? (
                               <Loader2 className="w-4 h-4 animate-spin mr-2" />
                             ) : (
@@ -287,7 +385,7 @@ const Auth = () => {
                           <div className="space-y-2">
                             <Label>I am a...</Label>
                             <div className="grid grid-cols-2 gap-2">
-                              {(["jobseeker", "company", "recruiter"] as AccountRole[]).map((role) => {
+                              {(["jobseeker", "company", "recruiter", "tap"] as AccountRole[]).map((role) => {
                                 const config = roleConfig[role];
                                 const Icon = config.icon;
 
@@ -295,17 +393,20 @@ const Auth = () => {
                                   <button
                                     key={role}
                                     type="button"
-                                    onClick={() => setSelectedRole(role)}
+                                    onClick={() => {
+                                      setSelectedRole(role);
+                                      setTapMode(role === "tap");
+                                    }}
                                     className={`flex items-center gap-2 p-3 rounded-lg border-2 transition-all ${
                                       selectedRole === role
-                                        ? "border-blue-500 bg-blue-50"
+                                        ? "border-teal-500 bg-teal-50"
                                         : "border-gray-100 hover:border-gray-200"
                                     }`}
                                   >
                                     <div className={`w-8 h-8 ${config.color} rounded-lg flex items-center justify-center`}>
                                       <Icon className="w-4 h-4 text-white" />
                                     </div>
-                                    <span className="text-sm font-medium capitalize">{role === "jobseeker" ? "Job Seeker" : role === "recruiter" ? "Recruiter" : "Company"}</span>
+                                    <span className="text-sm font-medium">{config.label}</span>
                                   </button>
                                 );
                               })}
@@ -317,7 +418,7 @@ const Auth = () => {
                               <Label htmlFor="companyName">Company Name</Label>
                               <div className="relative">
                                 <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                                <Input 
+                                <Input
                                   id="companyName"
                                   placeholder="Your company name"
                                   value={companyName}
@@ -332,7 +433,7 @@ const Auth = () => {
                             <Label htmlFor="signupName">Full Name</Label>
                             <div className="relative">
                               <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                              <Input 
+                              <Input
                                 id="signupName"
                                 placeholder="John Smith"
                                 value={name}
@@ -347,7 +448,7 @@ const Auth = () => {
                             <Label htmlFor="signupEmail">Email</Label>
                             <div className="relative">
                               <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                              <Input 
+                              <Input
                                 id="signupEmail"
                                 type="email"
                                 placeholder="you@example.com"
@@ -363,7 +464,7 @@ const Auth = () => {
                             <Label htmlFor="signupPassword">Password</Label>
                             <div className="relative">
                               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                              <Input 
+                              <Input
                                 id="signupPassword"
                                 type={showPassword ? "text" : "password"}
                                 placeholder="At least 6 characters"
@@ -382,6 +483,13 @@ const Auth = () => {
                             </div>
                           </div>
 
+                          {selectedRole === "tap" && (
+                            <div className="flex items-start gap-2 p-3 bg-teal-50 border border-teal-200 rounded-lg text-teal-800 text-xs">
+                              <ShieldCheck className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                              <span>Your application will be reviewed by the InterQ Team. You'll get access to your TAP workspace once approved.</span>
+                            </div>
+                          )}
+
                           {error && (
                             <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
                               <AlertCircle className="w-4 h-4" />
@@ -389,22 +497,24 @@ const Auth = () => {
                             </div>
                           )}
 
-                          <Button type="submit" className="w-full" disabled={isSubmitting}>
+                          <Button type="submit" className={`w-full ${primaryButtonClass}`} disabled={isSubmitting}>
                             {isSubmitting ? (
                               <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                            ) : selectedRole === "tap" ? (
+                              <Send className="w-4 h-4 mr-2" />
                             ) : (
                               <ArrowRight className="w-4 h-4 mr-2" />
                             )}
-                            Create Account
+                            {selectedRole === "tap" ? "Submit TAP Application" : "Create Account"}
                           </Button>
 
                           <p className="text-xs text-center text-gray-500">
                             By signing up, you agree to our{" "}
-                            <Button variant="link" className="h-auto p-0 text-xs text-blue-600">
+                            <Button variant="link" className="h-auto p-0 text-xs text-teal-700">
                               Terms of Service
                             </Button>{" "}
                             and{" "}
-                            <Button variant="link" className="h-auto p-0 text-xs text-blue-600">
+                            <Button variant="link" className="h-auto p-0 text-xs text-teal-700">
                               Privacy Policy
                             </Button>
                           </p>
@@ -414,9 +524,9 @@ const Auth = () => {
                   </CardContent>
                 </Card>
 
-                <p className="text-center text-sm text-gray-500 mt-6">
+                <p className="text-center text-sm text-gray-600 mt-6">
                   Just exploring?{" "}
-                  <Link to="/demo-access" className="text-blue-600 hover:text-blue-700 font-medium">
+                  <Link to="/demo-access" className="text-teal-700 hover:text-teal-800 font-medium">
                     View demo access →
                   </Link>
                 </p>

@@ -11,7 +11,7 @@ import { useAuth, DEMO_USERS, getDashboardPath, type AccountRole } from "@/conte
 import { useToast } from "@/hooks/use-toast";
 import {
   Shield, Building2, Users, Briefcase, Copy, LogIn, Loader2,
-  ShieldCheck, Sparkles,
+  ShieldCheck, Sparkles, Video,
 } from "lucide-react";
 
 const roleConfig: Record<AccountRole, { icon: typeof Shield; label: string; accent: string }> = {
@@ -19,6 +19,7 @@ const roleConfig: Record<AccountRole, { icon: typeof Shield; label: string; acce
   company: { icon: Building2, label: "Company", accent: "text-blue-600 bg-blue-50 dark:bg-blue-950/30" },
   recruiter: { icon: Users, label: "Recruiter", accent: "text-emerald-600 bg-emerald-50 dark:bg-emerald-950/30" },
   jobseeker: { icon: Briefcase, label: "Job Seeker", accent: "text-violet-600 bg-violet-50 dark:bg-violet-950/30" },
+  tap: { icon: Video, label: "TAP Partner", accent: "text-teal-600 bg-teal-50 dark:bg-teal-950/30" },
 };
 
 export default function DemoAccess() {
