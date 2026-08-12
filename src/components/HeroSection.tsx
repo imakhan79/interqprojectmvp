@@ -95,7 +95,7 @@ const HeroSection = () => {
             {/* Benefits List */}
             <motion.ul
               variants={itemVariants}
-className="flex flex-col gap-3 text-sm sm:text-base text-glow-white w-full max-w-xl mx-auto lg:mx-0"
+className="flex flex-col gap-3 text-sm sm:text-base w-full max-w-xl mx-auto lg:mx-0"
             >
               {[
                 { text: "Reduce engineering time spent on unqualified candidates", highlight: false },
@@ -103,10 +103,10 @@ className="flex flex-col gap-3 text-sm sm:text-base text-glow-white w-full max-w
                 { text: "Get detailed evaluation reports within 24 hours", highlight: false },
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-gradient-to-br from-cyan-500 to-cyan-400 flex items-center justify-center mt-0.5 shrink-0 shadow-lg shadow-cyan-500/30 icon-glow-cyan">
+                  <div className="w-5 h-5 rounded-full bg-gradient-to-br from-cyan-500 to-cyan-400 flex items-center justify-center mt-0.5 shrink-0">
                     <CheckCircle2 className="h-3 w-3 text-white" />
                   </div>
-                  <span className="font-medium text-white text-glow-white">{item.text}</span>
+                  <span className="font-medium text-white">{item.text}</span>
                 </li>
               ))}
             </motion.ul>

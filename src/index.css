@@ -7,16 +7,6 @@
   Clean corporate palette with proper contrast
 */
 
-@layer utilities {
-  .text-glow-white {
-    text-shadow: 0 0 12px rgba(255,255,255,0.8), 0 0 24px rgba(255,255,255,0.4);
-  }
-  
-  .icon-glow-cyan {
-    filter: drop-shadow(0 0 8px rgba(34,211,238,0.6));
-  }
-}
-
 @layer base {
   :root {
     color-scheme: light;
