@@ -51,14 +51,14 @@ const HeroSection = () => {
             animate="visible"
             className="flex flex-col space-y-7 text-center lg:text-left items-center lg:items-start max-w-2xl mx-auto lg:mx-0"
           >
-            {/* Premium Badge */}
+            {/* Eyebrow */}
             <motion.div variants={itemVariants}>
               <span className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 backdrop-blur-sm">
                 <span className="relative flex h-2.5 w-2.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-500" />
                 </span>
-                <span className="text-sm font-bold text-cyan-400 tracking-wide">Expert-Led Technical Hiring Platform</span>
+                <span className="text-sm font-bold text-cyan-400 tracking-[0.15em]">AI-POWERED TECHNICAL HIRING</span>
               </span>
             </motion.div>
 
@@ -67,10 +67,10 @@ const HeroSection = () => {
               variants={itemVariants}
               className="text-4xl sm:text-5xl md:text-5xl lg:text-[3.75rem] xl:text-[4.25rem] font-black leading-[1.08] tracking-tight text-white"
             >
-              Technical Interviews{" "}
+              Hire technical talent{" "}
               <span className="relative">
                 <span className="bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">
-                  Powered by Experts
+                  with confidence.
                 </span>
                 <svg className="absolute -bottom-1 left-0 w-full h-3 opacity-30" viewBox="0 0 200 12" preserveAspectRatio="none">
                   <path d="M0,8 Q50,0 100,8 T200,8" stroke="url(#gradient)" strokeWidth="4" fill="none" strokeLinecap="round"/>
@@ -89,9 +89,7 @@ const HeroSection = () => {
               variants={itemVariants}
               className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-xl mx-auto lg:mx-0"
             >
-              Transform your hiring with{" "}
-              <strong className="text-white font-semibold">structured assessments</strong>{" "}
-              led by vetted domain experts. Hire faster, reduce bias, and make confident decisions with detailed evaluation reports.
+              Evaluate candidates through AI-powered assessments and expert-led technical interviews, so your hiring team can identify genuine technical ability before making a hiring decision.
             </motion.p>
 
             {/* Benefits List */}
@@ -100,9 +98,9 @@ const HeroSection = () => {
 className="flex flex-col gap-3 text-sm sm:text-base text-glow-white w-full max-w-xl mx-auto lg:mx-0"
             >
               {[
-                { text: "Structured technical interviews — not gut-feel decisions", highlight: false },
-                { text: "Vetted Experts assess candidates across 50+ domains", highlight: false },
-                { text: "Detailed evaluation reports delivered within 24 hours", highlight: false },
+                { text: "Reduce engineering time spent on unqualified candidates", highlight: false },
+                { text: "Assess real technical ability across 50+ domains", highlight: false },
+                { text: "Get detailed evaluation reports within 24 hours", highlight: false },
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <div className="w-5 h-5 rounded-full bg-gradient-to-br from-cyan-500 to-cyan-400 flex items-center justify-center mt-0.5 shrink-0 shadow-lg shadow-cyan-500/30 icon-glow-cyan">
@@ -123,7 +121,7 @@ className="flex flex-col gap-3 text-sm sm:text-base text-glow-white w-full max-w
                 size="lg"
                 className="w-full sm:w-auto h-13 px-8 text-base font-bold rounded-xl shadow-xl shadow-cyan-500/25 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white hover:shadow-cyan-500/40 hover:-translate-y-0.5 transition-all duration-200"
               >
-                Request a Demo
+                Book a Demo
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
 

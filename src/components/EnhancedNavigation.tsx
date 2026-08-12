@@ -140,8 +140,8 @@ const EnhancedNavigation = () => {
               <div className="rounded-xl p-1.5 transition-all duration-300 group-hover:bg-white/10 group-hover:scale-105">
                 <img src="/interq-logo.png" alt="InterQ" className="h-9 lg:h-10 w-auto" loading="lazy" decoding="async" />
               </div>
-              <span className="text-xl lg:text-2xl font-bold tracking-tight transition-colors duration-300 text-white group-hover:text-cyan-300">
-                InterQ
+              <span className="text-sm sm:text-lg lg:text-2xl font-bold tracking-tight transition-colors duration-300 text-white group-hover:text-cyan-300 whitespace-nowrap">
+                InterQ Technologies Inc.
               </span>
             </Link>
 

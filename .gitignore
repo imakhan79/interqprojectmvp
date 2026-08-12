@@ -30,3 +30,4 @@ dist-ssr
 .env*.local
 InterQ-Certificate-John-Doe.pdf
 .env*
+.aider*
