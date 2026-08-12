@@ -151,7 +151,7 @@ const EnhancedFooter = () => {
                   <li key={link.label}>
                     <Link
                       to={link.href}
-                      className="flex items-center gap-2.5 text-slate-400 hover:text-cyan-400 transition-colors text-sm"
+                      className="flex items-center gap-2.5 text-slate-300 hover:text-cyan-400 transition-colors text-sm"
                     >
                       <span>{link.label}</span>
                     </Link>
