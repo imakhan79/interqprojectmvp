@@ -112,7 +112,7 @@ const Pricing = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -8 }}
-                className={`relative flex flex-col bg-card border rounded-3xl p-10 transition-all duration-300 shadow-lg hover:shadow-2xl overflow-hidden glass-morphism ${plan.popular ? "border-primary/50 ring-2 ring-primary/10" : "border-border/40"
+                className={`relative flex flex-col bg-card border rounded-3xl p-10 transition-all duration-300 shadow-lg hover:shadow-2xl overflow-hidden ${plan.popular ? "border-primary/50 ring-2 ring-primary/10" : "border-border/40"
                   }`}
               >
                 {plan.popular && (
@@ -154,7 +154,7 @@ const Pricing = () => {
                   onClick={() => window.location.href = '/get-started'}
                   variant={plan.popular ? "premium" : "outline"}
                   className={`w-full h-14 text-sm font-black uppercase tracking-widest shadow-sm rounded-2xl ${plan.popular
-                      ? "border-0 hover:shadow-glow-sm transition-all"
+                      ? "border-0 hover:shadow-lg transition-all"
                       : "border-primary/20 hover:bg-primary/5 text-primary"
                     }`}
                 >
@@ -172,10 +172,10 @@ const Pricing = () => {
             viewport={{ once: true }}
             className="hidden lg:block mb-24"
           >
-            <h2 className="text-4xl font-black tracking-tight text-center mb-12">Tier Architecture Comparison</h2>
-            <div className="bg-card/50 backdrop-blur-xl border border-border/40 rounded-[2.5rem] overflow-hidden shadow-elegant">
+            <h2 className="text-4xl font-black tracking-tight text-center mb-12 text-white">Tier Architecture Comparison</h2>
+            <div className="bg-card border border-border/40 rounded-[2.5rem] overflow-hidden shadow-elegant">
               <Table>
-                <TableHeader className="bg-secondary/30">
+                <TableHeader className="bg-secondary">
                   <TableRow className="border-border/40">
                     <TableHead className="w-[300px] text-xs font-black uppercase tracking-widest py-8 pl-10 text-muted-foreground">Functional Specifications</TableHead>
                     <TableHead className="text-center text-xs font-black uppercase tracking-widest text-foreground">Starter</TableHead>
@@ -217,7 +217,7 @@ const Pricing = () => {
 
           {/* FAQ Section */}
           <div className="max-w-4xl mx-auto pb-20 text-left">
-            <h2 className="text-4xl font-black tracking-tight text-center mb-12">Procurement Inquiries</h2>
+            <h2 className="text-4xl font-black tracking-tight text-center mb-12 text-white">Procurement Inquiries</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {[
                 {
@@ -243,7 +243,7 @@ const Pricing = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="bg-card/40 backdrop-blur-md border border-border/40 rounded-3xl p-8 hover:border-primary/30 transition-all shadow-sm group"
+                  className="bg-card border border-border/40 rounded-3xl p-8 hover:border-primary/30 transition-all shadow-sm group"
                 >
                   <h3 className="text-sm font-black mb-3 flex items-center gap-3 tracking-tight">
                     <div className="w-2 h-2 bg-primary rounded-full group-hover:animate-pulse" />
