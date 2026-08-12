@@ -96,7 +96,7 @@ const Pricing = () => {
             className="mb-16"
           >
             <h1 className="text-5xl md:text-7xl fancy-heading mb-6 tracking-tight text-white">
-              Scale Your <span className="gradient-text-brand">Potential</span>
+              Scale Your <span className="bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">Potential</span>
             </h1>
             <p className="text-xl text-white/90 max-w-2xl mx-auto mb-10 font-medium">
               Enterprise-grade hiring solutions tailored to your unique organizational structure. Compare our tiers below and connect with our team.

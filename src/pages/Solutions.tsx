@@ -130,7 +130,7 @@ const Solutions = () => {
                 Institutional Solution
               </Badge>
               <h1 className="text-4xl md:text-6xl fancy-heading tracking-tighter mb-6 text-white">
-                Solutions for <span className="gradient-text-brand">Every</span> Archetype
+                Solutions for <span className="bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">Every</span> Archetype
               </h1>
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
                 Strategic Global Hiring

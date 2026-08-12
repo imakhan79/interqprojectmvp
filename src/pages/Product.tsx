@@ -47,7 +47,7 @@ const Product = () => {
             className="text-center mb-16"
           >
             <h1 className="text-5xl md:text-6xl fancy-heading mb-6 text-white">
-              The Complete <span className="gradient-text-brand">AI Recruitment</span> Platform
+              The Complete <span className="bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">AI Recruitment</span> Platform
             </h1>
             <p className="text-xl text-white/90 max-w-3xl mx-auto">
               From assessments to interviews to analytics - everything you need to hire the best talent, powered by AI

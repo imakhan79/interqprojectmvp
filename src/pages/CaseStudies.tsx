@@ -100,10 +100,10 @@ const CaseStudies = () => {
             <div className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-6">
               Success Stories
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Empowering <span className="text-gradient">Better Hiring</span>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
+              Empowering <span className="bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">Better Hiring</span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
               Real outcomes from organizations that transformed their recruitment process using InterQ's AI-driven platform.
             </p>
           </motion.div>

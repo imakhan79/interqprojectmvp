@@ -138,10 +138,10 @@ const Integrations = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
               Integration Benefits
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-white/90 max-w-2xl mx-auto">
               Experience the power of connected systems working together seamlessly.
             </p>
           </motion.div>
@@ -181,10 +181,10 @@ const Integrations = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
               Supported Integrations
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-white/90 max-w-2xl mx-auto">
               We integrate with the tools you already use and love.
             </p>
           </motion.div>
@@ -197,7 +197,7 @@ const Integrations = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 + categoryIndex * 0.1 }}
               >
-                <h3 className="text-2xl font-semibold mb-6 text-center">{category.category}</h3>
+                <h3 className="text-2xl font-semibold mb-6 text-center text-white">{category.category}</h3>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {category.tools.map((tool, toolIndex) => (
                     <motion.div
@@ -245,11 +245,11 @@ const Integrations = () => {
             transition={{ duration: 0.8 }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
               Need a Custom Integration?
             </h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              Our team can build custom integrations for your specific tools and workflows. 
+            <p className="text-lg text-white/90 mb-8">
+              Our team can build custom integrations for your specific tools and workflows.
               Get in touch to discuss your requirements.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

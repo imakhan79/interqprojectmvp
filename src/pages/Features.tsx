@@ -74,7 +74,7 @@ const Features = () => {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto"
           >
-            <h1 className="text-4xl md:text-6xl fancy-heading mb-6 gradient-text-brand">Platform Features</h1>
+            <h1 className="text-4xl md:text-6xl mb-6 bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">Platform Features</h1>
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
               Discover the comprehensive suite of AI-powered tools that transform how organizations 
               identify, assess, and hire top talent.
@@ -111,11 +111,11 @@ const Features = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl fancy-heading mb-4">
+            <h2 className="text-3xl md:text-4xl mb-4 text-white">
               Everything You Need to Hire Smarter
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Our platform combines cutting-edge AI technology with intuitive design to deliver 
+            <p className="text-lg text-white/90 max-w-2xl mx-auto">
+              Our platform combines cutting-edge AI technology with intuitive design to deliver
               an unparalleled hiring experience.
             </p>
           </motion.div>
@@ -162,10 +162,10 @@ const Features = () => {
             transition={{ duration: 0.8 }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-3xl md:text-4xl fancy-heading mb-4">
+            <h2 className="text-3xl md:text-4xl mb-4 text-white">
               Ready to Experience the Future of Hiring?
             </h2>
-            <p className="text-lg text-muted-foreground mb-8">
+            <p className="text-lg text-white/90 mb-8">
               Join thousands of organizations that trust InterQ for their hiring needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

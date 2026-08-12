@@ -59,11 +59,11 @@ const About = () => {
             transition={{ duration: 0.6 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
               Hire Smarter. Get hired faster.
             </h1>
-            <p className="text-xl text-muted-foreground mb-8">
-              InterQ is an AI-powered assessment platform built to fix what traditional hiring gets wrong. We replace resumes, biased interviews, and gut decisions with objective, skill-based evaluations — so companies identify real talent, faster and fairer. 
+            <p className="text-xl text-white/90 mb-8">
+              InterQ is an AI-powered assessment platform built to fix what traditional hiring gets wrong. We replace resumes, biased interviews, and gut decisions with objective, skill-based evaluations — so companies identify real talent, faster and fairer.
               <br /><br />
               InterQ is an AI-powered assessment platform built to fix what traditional hiring gets wrong. We replace resumes, biased interviews, and gut decisions with objective, skill-based evaluations so companies identify real talent, faster and fairer.
             </p>
