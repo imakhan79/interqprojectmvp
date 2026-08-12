@@ -89,10 +89,10 @@ const Features = () => {
                 Book Demo
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg"
+              <Button
+                size="lg"
+                variant="outline"
+                className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg bg-transparent border-white/30 text-white hover:bg-white/10"
                 onClick={() => routerNavigate('/pricing')}
               >
                 View Pricing
@@ -178,10 +178,10 @@ const Features = () => {
                 Get Started Today
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg"
+              <Button
+                size="lg"
+                variant="outline"
+                className="h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg bg-transparent border-white/30 text-white hover:bg-white/10"
                 onClick={() => routerNavigate('/contact')}
               >
                 Contact Sales

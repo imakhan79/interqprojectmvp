@@ -93,7 +93,7 @@ const Product = () => {
             <TabsContent value="assessments">
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                  <h2 className="text-4xl mb-6">Smart MCQ Assessments</h2>
+                  <h2 className="text-4xl mb-6 text-white">Smart MCQ Assessments</h2>
                   <ul className="space-y-4">
                     {[
                       "3,400+ pre-built skills assessments",
@@ -107,7 +107,7 @@ const Product = () => {
                         <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
                           <div className="w-2 h-2 rounded-full bg-primary" />
                         </div>
-                        <span>{item}</span>
+                        <span className="text-white">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -137,7 +137,7 @@ const Product = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                 </div>
                 <div>
-                  <h2 className="text-4xl mb-6">AI-Powered Video Interviews</h2>
+                  <h2 className="text-4xl mb-6 text-white">AI-Powered Video Interviews</h2>
                   <ul className="space-y-4">
                     {[
                       "Real-time AI analysis of responses",
@@ -151,7 +151,7 @@ const Product = () => {
                         <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
                           <div className="w-2 h-2 rounded-full bg-primary" />
                         </div>
-                        <span>{item}</span>
+                        <span className="text-white">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -165,7 +165,7 @@ const Product = () => {
             <TabsContent value="analytics">
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                  <h2 className="text-4xl font-bold mb-6">Deep Analytics & Insights</h2>
+                  <h2 className="text-4xl font-bold mb-6 text-white">Deep Analytics & Insights</h2>
                   <ul className="space-y-4">
                     {[
                       "Real-time performance dashboards",
@@ -179,7 +179,7 @@ const Product = () => {
                         <div className="w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
                           <div className="w-2 h-2 rounded-full bg-primary" />
                         </div>
-                        <span>{item}</span>
+                        <span className="text-white">{item}</span>
                       </li>
                     ))}
                   </ul>
