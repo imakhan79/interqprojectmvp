@@ -51,7 +51,7 @@ const AIAdvantage = () => {
             Why InterQ
           </span>
           <h2 className="text-3xl md:text-5xl font-bold mb-5 text-slate-900">
-            The <span className="text-gradient-brand">AI-Powered</span> Advantage
+            The <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">AI-Powered</span> Advantage
           </h2>
           <p className="text-slate-600 text-lg max-w-2xl mx-auto leading-relaxed">
             Leverage cutting-edge technology to make smarter, faster, and fairer hiring decisions.

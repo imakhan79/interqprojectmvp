@@ -70,7 +70,7 @@ const authUser = useAuth();
             {/* Header */}
             <div className="text-center mb-16">
               <h1 className="text-4xl md:text-6xl font-extrabold mb-6 text-slate-900">
-                Skill <span className="text-gradient-brand">Assessments</span>
+                Skill <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">Assessments</span>
               </h1>
               <p className="text-xl text-slate-600 max-w-2xl mx-auto">
                 Validate your expertise with our industry-standard assessments. Take them anytime, anywhere.
@@ -268,7 +268,7 @@ const authUser = useAuth();
               <div className="text-center mb-12">
                 <span className="inline-block px-4 py-1.5 rounded-full bg-cyan-50 text-cyan-600 text-sm font-semibold mb-4 border border-cyan-100">Coming Next</span>
                 <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-900">
-                  Live <span className="text-gradient-brand">Interview</span>
+                  Live <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">Interview</span>
                 </h2>
                 <p className="text-lg text-slate-500 max-w-2xl mx-auto">
                   After completing your assessment, take the next step with an AI-powered live interview session.

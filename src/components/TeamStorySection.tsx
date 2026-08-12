@@ -47,7 +47,7 @@ const TeamStorySection = () => {
               Our Story
             </div>
             <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-slate-900 leading-tight tracking-tight">
-              Meet the Team <br /> <span className="text-gradient-brand">Behind InterQ</span>
+              Meet the Team <br /> <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">Behind InterQ</span>
             </h2>
             <p className="text-xl text-slate-700 font-medium leading-relaxed mb-6">
               At InterQ, we help you hire the right people — without stress or guesswork.

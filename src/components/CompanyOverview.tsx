@@ -31,7 +31,7 @@ const CompanyOverview = () => {
             About Us
           </span>
           <h2 className="text-4xl lg:text-5xl font-extrabold mb-6 text-slate-900">
-            About <span className="text-gradient-brand">InterQ Technologies Inc.</span>
+            About <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">InterQ Technologies Inc.</span>
           </h2>
           <p className="text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
             Leading the transformation of recruitment through innovative AI technology
