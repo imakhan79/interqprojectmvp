@@ -219,7 +219,7 @@ const Solutions = () => {
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="w-full sm:w-auto h-14 px-8 text-lg border-white/30 text-white hover:bg-white/10" 
+                  className="w-full sm:w-auto h-14 px-8 text-lg bg-transparent border-white/30 text-white hover:bg-white/10"
                   onClick={() => navigate('/product')}
                 >
                   Learn More
@@ -257,7 +257,7 @@ const Solutions = () => {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="w-full border-white/40 text-white hover:bg-white/20" 
+                  className="w-full bg-transparent border-white/40 text-white hover:bg-white/20"
                   onClick={() => navigate('/get-started')}
                 >
                   Contact Enterprise Sales
@@ -275,7 +275,7 @@ const Solutions = () => {
             className="mt-16 md:mt-20 bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-6 md:p-12"
           >
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Calculate Your ROI</h2>
+              <h2 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4 text-white">Calculate Your ROI</h2>
               <p className="text-sm md:text-base text-white/80 mb-6 md:mb-8">
                 See how much time and money you can save with InterQ
               </p>
@@ -285,21 +285,21 @@ const Solutions = () => {
                   className="bg-card rounded-xl p-5 md:p-6 shadow-soft"
                 >
                   <div className="text-3xl md:text-4xl font-bold text-primary mb-2">70%</div>
-                  <div className="text-xs md:text-sm text-white/80">Time Saved</div>
+                  <div className="text-xs md:text-sm text-muted-foreground">Time Saved</div>
                 </motion.div>
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   className="bg-card rounded-xl p-5 md:p-6 shadow-soft"
                 >
                   <div className="text-3xl md:text-4xl font-bold text-primary mb-2">$50K+</div>
-                  <div className="text-xs md:text-sm text-white/80">Annual Savings</div>
+                  <div className="text-xs md:text-sm text-muted-foreground">Annual Savings</div>
                 </motion.div>
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   className="bg-card rounded-xl p-5 md:p-6 shadow-soft"
                 >
                   <div className="text-3xl md:text-4xl font-bold text-primary mb-2">5x</div>
-                  <div className="text-xs md:text-sm text-white/80">Faster Hiring</div>
+                  <div className="text-xs md:text-sm text-muted-foreground">Faster Hiring</div>
                 </motion.div>
               </div>
               <Button size="lg" className="w-full sm:w-auto">Get Detailed ROI Report</Button>
