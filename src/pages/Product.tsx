@@ -93,7 +93,7 @@ const Product = () => {
             <TabsContent value="assessments">
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                  <h2 className="text-4xl fancy-heading mb-6">Smart MCQ Assessments</h2>
+                  <h2 className="text-4xl mb-6">Smart MCQ Assessments</h2>
                   <ul className="space-y-4">
                     {[
                       "3,400+ pre-built skills assessments",
@@ -137,7 +137,7 @@ const Product = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                 </div>
                 <div>
-                  <h2 className="text-4xl fancy-heading mb-6">AI-Powered Video Interviews</h2>
+                  <h2 className="text-4xl mb-6">AI-Powered Video Interviews</h2>
                   <ul className="space-y-4">
                     {[
                       "Real-time AI analysis of responses",
@@ -155,7 +155,7 @@ const Product = () => {
                       </li>
                     ))}
                   </ul>
-                  <Button variant="premium" className="mt-8 w-full sm:w-auto" size="lg" onClick={() => navigate('/ai-interview')}>
+                  <Button variant="premium" className="mt-6 sm:mt-8 w-full sm:w-auto h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg" size="lg" onClick={() => navigate('/ai-interview')}>
                     Watch Interview Demo
                   </Button>
                 </div>
@@ -183,7 +183,7 @@ const Product = () => {
                       </li>
                     ))}
                   </ul>
-                  <Button variant="premium" className="mt-8 w-full sm:w-auto" size="lg" onClick={() => navigate('/interviews')}>
+                  <Button variant="premium" className="mt-6 sm:mt-8 w-full sm:w-auto h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg" size="lg" onClick={() => navigate('/interviews')}>
                     Explore Analytics
                   </Button>
                 </div>
