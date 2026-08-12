@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://interq.com/sitemap.xml
+Sitemap: https://www.interq.online/sitemap.xml
 
 # Optimize crawl
 Crawl-delay: 1
