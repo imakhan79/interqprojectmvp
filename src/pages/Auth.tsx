@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, useLocation, useSearchParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,7 +15,7 @@ import {
 const roleConfig = {
   admin: { icon: Shield, color: "bg-red-500", label: "Admin", gradient: "from-red-500 to-rose-600" },
   company: { icon: Building2, color: "bg-blue-500", label: "Company", gradient: "from-blue-500 to-indigo-600" },
-  recruiter: { icon: Users, color: "bg-green-500", label: "TAP", gradient: "from-green-500 to-emerald-600" },
+  recruiter: { icon: Users, color: "bg-green-500", label: "Talent Acquisition Partner", gradient: "from-green-500 to-emerald-600" },
   jobseeker: { icon: Briefcase, color: "bg-purple-500", label: "Job Seeker", gradient: "from-purple-500 to-violet-600" },
 };
 
@@ -23,13 +23,23 @@ const Auth = () => {
   const { login, signup, isLoading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [searchParams] = useSearchParams();
 
-  const [activeTab, setActiveTab] = useState("signin");
+  // Deep-links from the nav's account type selector arrive as
+  // /auth?tab=signup&accountType=recruiter — honor them on first render so the
+  // account type chosen there carries through to this form.
+  const [activeTab, setActiveTab] = useState(() =>
+    searchParams.get("tab") === "signup" ? "signup" : "signin",
+  );
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [selectedRole, setSelectedRole] = useState<AccountRole>("jobseeker");
+  const [selectedRole, setSelectedRole] = useState<AccountRole>(() => {
+    const requested = searchParams.get("accountType");
+    const validRoles: AccountRole[] = ["jobseeker", "company", "recruiter"];
+    return validRoles.includes(requested as AccountRole) ? (requested as AccountRole) : "jobseeker";
+  });
   const [companyName, setCompanyName] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState("");
@@ -290,7 +300,7 @@ const Auth = () => {
                         <form onSubmit={handleSignup} className="space-y-4">
                           <div className="space-y-2">
                             <Label>I am a...</Label>
-                            <div className="grid grid-cols-2 gap-2">
+                            <div className="flex flex-col gap-2">
                               {(["jobseeker", "company", "recruiter"] as AccountRole[]).map((role) => {
                                 const config = roleConfig[role];
                                 const Icon = config.icon;
@@ -300,13 +310,13 @@ const Auth = () => {
                                     key={role}
                                     type="button"
                                     onClick={() => setSelectedRole(role)}
-                                    className={`flex items-center gap-2 p-3 rounded-lg border-2 transition-all ${
+                                    className={`flex items-center gap-3 p-3 rounded-lg border-2 transition-all ${
                                       selectedRole === role
                                         ? "border-teal-500 bg-teal-50"
                                         : "border-gray-100 hover:border-gray-200"
                                     }`}
                                   >
-                                    <div className={`w-8 h-8 ${config.color} rounded-lg flex items-center justify-center`}>
+                                    <div className={`w-8 h-8 shrink-0 ${config.color} rounded-lg flex items-center justify-center`}>
                                       <Icon className="w-4 h-4 text-white" />
                                     </div>
                                     <span className="text-sm font-medium">{config.label}</span>

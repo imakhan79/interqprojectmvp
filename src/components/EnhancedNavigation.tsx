@@ -3,8 +3,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown, Star, Settings, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useAuth } from "@/contexts/SimpleAuthContext";
+import { useAuth, type AccountRole } from "@/contexts/SimpleAuthContext";
 import { supabase } from "@/integrations/supabase/client";
+import AccountTypeSelector from "@/components/auth/AccountTypeSelector";
 
 interface NavItem {
   label: string;
@@ -18,10 +19,16 @@ const EnhancedNavigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [isAccountTypeOpen, setIsAccountTypeOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { user, signOut } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+
+  const handleAccountTypeSelected = (accountType: AccountRole) => {
+    setIsAccountTypeOpen(false);
+    navigate(`/auth?tab=signup&accountType=${accountType}`);
+  };
 
   const navigationItems: NavItem[] = [
     {
@@ -252,17 +259,25 @@ const EnhancedNavigation = () => {
               ) : (
                 <div className="flex items-center gap-2">
                   <Link to="/auth">
-                      <Button 
-                      variant="ghost" 
-                      size="sm" 
+                      <Button
+                      variant="ghost"
+                      size="sm"
                       className="font-semibold nav-btn-ghost text-white"
                     >
                       Sign In
                     </Button>
                   </Link>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setIsAccountTypeOpen(true)}
+                    className="font-semibold border-2 border-white/25 bg-white/5 text-white hover:bg-white/15 hover:border-white/40"
+                  >
+                    Sign Up
+                  </Button>
                   <Link to="/get-started">
-                    <Button 
-                      size="sm" 
+                    <Button
+                      size="sm"
                       className="font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/40 transition-all duration-200 hover:-translate-y-0.5"
                     >
                       Book Demo
@@ -389,6 +404,17 @@ const EnhancedNavigation = () => {
                             Sign In
                           </Button>
                         </Link>
+                        <Button
+                          variant="outline"
+                          size="lg"
+                          onClick={() => {
+                            setIsMobileMenuOpen(false);
+                            setIsAccountTypeOpen(true);
+                          }}
+                          className="w-full justify-center font-semibold border-2 border-slate-200 text-slate-700 hover:border-cyan-300 hover:text-cyan-600 hover:bg-cyan-50"
+                        >
+                          Sign Up
+                        </Button>
                         <Link to="/get-started" onClick={() => setIsMobileMenuOpen(false)}>
                           <Button size="lg" className="w-full justify-center font-bold bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg">
                             Book Demo
@@ -403,6 +429,12 @@ const EnhancedNavigation = () => {
           )}
         </AnimatePresence>
       </motion.header>
+
+      <AccountTypeSelector
+        open={isAccountTypeOpen}
+        onOpenChange={setIsAccountTypeOpen}
+        onContinue={handleAccountTypeSelected}
+      />
     </>
   );
 };
