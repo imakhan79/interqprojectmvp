@@ -16,11 +16,11 @@ export default function ForgotPassword() {
     setLoading(true);
 
     try {
-      await fetch('https://lenltzlsnlbzwlizmijc.supabase.co/auth/v1/recover', {
+      await fetch('https://uxyucxiqogdnxbfcmlnx.supabase.co/auth/v1/recover', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxlbmx0emxzbmxiendsaXptaWpjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQzMzQxNDgsImV4cCI6MjA3OTkxMDE0OH0.O0y6JNNuUo9WOdd-Yq12M9sTwTc8YduaY1p_AG3NpCE'
+          'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV4eXVjeGlxb2dkbnhiZmNtbG54Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODQ2NDE1MDEsImV4cCI6MjEwMDIxNzUwMX0.oq6g78sQABTGw3OZEc3DTz_6Wf6AKpQMcxwRv0SvodM'
         },
         body: JSON.stringify({ email })
       });
