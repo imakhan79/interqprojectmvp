@@ -1,57 +1,37 @@
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Zap, CheckCircle, Code, Settings, Users, BarChart3, Shield, Globe } from "lucide-react";
- 
+import { ArrowRight, Zap, Code, Settings, Users, BarChart3, Shield, Globe, Building2, Wallet, MessagesSquare, LineChart } from "lucide-react";
+
 
 const Integrations = () => {
   const navigate = useNavigate();
 
-  const integrations = [
+  const integrationCategories = [
     {
       category: "ATS Systems",
-      tools: [
-        { name: "Greenhouse", logo: "🌱", status: "available" },
-        { name: "Lever", logo: "🔧", status: "available" },
-        { name: "Workday", logo: "💼", status: "available" },
-        { name: "Taleo", logo: "📋", status: "available" },
-        { name: "iCIMS", logo: "🎯", status: "available" },
-        { name: "SmartRecruiters", logo: "🚀", status: "available" }
-      ]
+      icon: Building2,
+      description: "Sync candidates, roles, and evaluation results with your applicant tracking system.",
+      examples: "e.g. Greenhouse, Lever, Workday, iCIMS",
     },
     {
       category: "HRIS Systems",
-      tools: [
-        { name: "BambooHR", logo: "🎋", status: "available" },
-        { name: "ADP", logo: "💰", status: "available" },
-        { name: "Gusto", logo: "🌟", status: "available" },
-        { name: "Rippling", logo: "🌊", status: "available" },
-        { name: "Namely", logo: "📛", status: "available" },
-        { name: "Zenefits", logo: "🧘", status: "available" }
-      ]
+      icon: Wallet,
+      description: "Keep hiring data connected to your core HR and payroll systems.",
+      examples: "e.g. BambooHR, ADP, Gusto, Rippling",
     },
     {
       category: "Communication",
-      tools: [
-        { name: "Slack", logo: "💬", status: "available" },
-        { name: "Microsoft Teams", logo: "🏢", status: "available" },
-        { name: "Google Workspace", logo: "📧", status: "available" },
-        { name: "Zoom", logo: "📹", status: "available" },
-        { name: "WebEx", logo: "🌐", status: "available" },
-        { name: "Discord", logo: "🎮", status: "coming-soon" }
-      ]
+      icon: MessagesSquare,
+      description: "Push interview updates and notifications to the tools your team already uses daily.",
+      examples: "e.g. Slack, Microsoft Teams, Zoom",
     },
     {
       category: "Analytics & BI",
-      tools: [
-        { name: "Tableau", logo: "📊", status: "available" },
-        { name: "Power BI", logo: "📈", status: "available" },
-        { name: "Google Analytics", logo: "📉", status: "available" },
-        { name: "Mixpanel", logo: "🎯", status: "available" },
-        { name: "Looker", logo: "👀", status: "available" },
-        { name: "Domo", logo: "🏠", status: "coming-soon" }
-      ]
-    }
+      icon: LineChart,
+      description: "Export hiring and evaluation data into your existing reporting and analytics stack.",
+      examples: "e.g. Tableau, Power BI, Google Analytics",
+    },
   ];
 
   const features = [
@@ -68,7 +48,7 @@ const Integrations = () => {
     {
       icon: Shield,
       title: "Enterprise Security",
-      description: "SOC 2 compliant with end-to-end encryption and audit logs"
+      description: "Built with encryption and access controls at every layer"
     },
     {
       icon: Users,
@@ -182,54 +162,30 @@ const Integrations = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-              Supported Integrations
+              Integration Categories
             </h2>
             <p className="text-lg text-white/90 max-w-2xl mx-auto">
-              We integrate with the tools you already use and love.
+              Our open API is built to connect with the categories of tools hiring teams already rely on.
             </p>
           </motion.div>
 
-          <div className="space-y-12">
-            {integrations.map((category, categoryIndex) => (
+          <div className="grid md:grid-cols-2 gap-6">
+            {integrationCategories.map((category, index) => (
               <motion.div
                 key={category.category}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 + categoryIndex * 0.1 }}
+                transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+                className="bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-all duration-300"
               >
-                <h3 className="text-2xl font-semibold mb-6 text-center text-white">{category.category}</h3>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {category.tools.map((tool, toolIndex) => (
-                    <motion.div
-                      key={tool.name}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.4, delay: 0.6 + categoryIndex * 0.1 + toolIndex * 0.05 }}
-                      className="bg-card border border-border rounded-lg p-4 hover:shadow-lg transition-all duration-300"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <span className="text-2xl">{tool.logo}</span>
-                          <span className="font-medium">{tool.name}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          {tool.status === 'available' && (
-                            <div className="flex items-center gap-1 text-green-600">
-                              <CheckCircle className="h-4 w-4" />
-                              <span className="text-xs font-medium">Available</span>
-                            </div>
-                          )}
-                          {tool.status === 'coming-soon' && (
-                            <div className="flex items-center gap-1 text-yellow-600">
-                              <div className="h-2 w-2 bg-yellow-600 rounded-full animate-pulse" />
-                              <span className="text-xs font-medium">Live</span>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                    <category.icon className="h-6 w-6" aria-hidden="true" />
+                  </div>
+                  <h3 className="text-xl font-semibold">{category.category}</h3>
                 </div>
+                <p className="text-muted-foreground mb-3">{category.description}</p>
+                <p className="text-sm text-muted-foreground/70 italic">{category.examples}</p>
               </motion.div>
             ))}
           </div>
