@@ -9,6 +9,7 @@ import ServiceOverview from "@/components/ServiceOverview";
 import ProblemSection from "@/components/ProblemSection";
 import AIAdvantage from "@/components/AIAdvantage";
 import BenefitsSection from "@/components/BenefitsSection";
+import ProductDemonstration from "@/components/ProductDemonstration";
 import FutureExpansion from "@/components/FutureExpansion";
 import HowItWorks from "@/components/HowItWorks";
 import TestimonialsSection from "@/components/TestimonialsSection";
@@ -34,6 +35,7 @@ const Index = () => {
       <ProblemSection />
       <AIAdvantage />
       <BenefitsSection />
+      <ProductDemonstration />
       <FutureExpansion />
       <HowItWorks />
       <TestimonialsSection />
