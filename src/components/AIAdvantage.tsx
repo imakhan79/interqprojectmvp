@@ -51,10 +51,14 @@ const AIAdvantage = () => {
             Why InterQ
           </span>
           <h2 className="text-3xl md:text-5xl font-bold mb-5 text-slate-900">
-            The <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">AI-Powered</span> Advantage
+            AI does the heavy lifting.{" "}
+            <span className="bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">Humans make the call.</span>
           </h2>
-          <p className="text-slate-600 text-lg max-w-2xl mx-auto leading-relaxed">
-            Leverage cutting-edge technology to make smarter, faster, and fairer hiring decisions.
+          <p className="text-slate-600 text-lg max-w-3xl mx-auto leading-relaxed">
+            Here's the thing about AI-powered hiring tools: efficiency is easy. Judgment is hard. So InterQ uses
+            AI to streamline assessments and surface the signals that matter — then hands things off to real,
+            experienced technical interviewers who know how to tell the difference between someone who memorized
+            the answer and someone who actually understands it. Faster where speed helps. Human where it counts.
           </p>
         </motion.div>
 
