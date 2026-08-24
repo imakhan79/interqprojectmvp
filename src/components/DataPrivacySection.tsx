@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 
 const features = [
   { icon: Lock, title: "AES-256 Encryption", desc: "All data encrypted at rest and in transit with industry-standard protocols." },
-  { icon: Server, title: "Secure Infrastructure", desc: "SOC 2 compliant hosting with continuous monitoring and threat detection." },
+  { icon: Server, title: "Secure Infrastructure", desc: "Hosted on infrastructure built for security and reliability, with continuous monitoring." },
   { icon: UserCheck, title: "Role-Based Access", desc: "Granular permissions ensure only authorized users access sensitive data." },
-  { icon: FileCheck, title: "GDPR-Aligned Practices", desc: "Full compliance with international data protection standards." },
-  { icon: Eye, title: "Confidential Interviews", desc: "Interview recordings and evaluations are handled under strict NDA protocols." },
-  { icon: Shield, title: "Regular Audits", desc: "Third-party security assessments and penetration testing performed quarterly." },
+  { icon: FileCheck, title: "GDPR-Aligned Practices", desc: "Data handling practices designed with GDPR principles in mind." },
+  { icon: Eye, title: "Confidential Interviews", desc: "Interview recordings and evaluations are treated as strictly confidential." },
+  { icon: Shield, title: "Ongoing Security Review", desc: "Continuous internal review to identify and address potential risks as the platform evolves." },
 ];
 
 const DataPrivacySection = () => {
