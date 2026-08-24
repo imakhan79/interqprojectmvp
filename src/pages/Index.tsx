@@ -1,12 +1,12 @@
 import { Helmet } from "react-helmet-async";
 import EnhancedNavigation from "@/components/EnhancedNavigation";
 import HeroSection from "@/components/HeroSection";
-import ProblemSection from "@/components/ProblemSection";
 import TeamStorySection from "@/components/TeamStorySection";
 import CompanyOverview from "@/components/CompanyOverview";
 import TeamSection from "@/components/TeamSection";
 import WhoWeServe from "@/components/WhoWeServe";
 import ServiceOverview from "@/components/ServiceOverview";
+import ProblemSection from "@/components/ProblemSection";
 import AIAdvantage from "@/components/AIAdvantage";
 import FutureExpansion from "@/components/FutureExpansion";
 import HowItWorks from "@/components/HowItWorks";
@@ -25,12 +25,12 @@ const Index = () => {
       </Helmet>
       <EnhancedNavigation />
       <HeroSection />
-      <ProblemSection />
       <TeamStorySection />
       <CompanyOverview />
       <TeamSection />
       <WhoWeServe />
       <ServiceOverview />
+      <ProblemSection />
       <AIAdvantage />
       <FutureExpansion />
       <HowItWorks />
