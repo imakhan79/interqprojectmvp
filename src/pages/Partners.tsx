@@ -32,30 +32,6 @@ const Partners = () => {
     }
   ];
 
-  const successStories = [
-    {
-      company: "TechCorp Solutions",
-      type: "Technology Partner",
-      testimonial: "Integrating InterQ with our ATS system has reduced our time-to-hire by 40%. The API is robust and well-documented.",
-      results: "40% faster hiring, 25% cost reduction",
-      logo: "🚀"
-    },
-    {
-      company: "HR Consulting Group",
-      type: "Consulting Partner",
-      testimonial: "Our clients love the AI-powered assessments. It's become a key differentiator in our service offerings.",
-      results: "150% increase in client satisfaction",
-      logo: "📈"
-    },
-    {
-      company: "Global Recruiters",
-      type: "Implementation Partner",
-      testimonial: "The implementation process was seamless. InterQ's team provided excellent support throughout.",
-      results: "95% client retention rate",
-      logo: "🌍"
-    }
-  ];
-
   const partnerRequirements = [
     "Established business with proven track record",
     "Experience in HR technology or consulting",
@@ -161,51 +137,6 @@ const Partners = () => {
                       </div>
                     ))}
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Success Stories Section */}
-      <section className="py-16 px-4 lg:px-8 bg-muted/30">
-        <div className="container mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Partner Success Stories
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Hear from our partners about their experience working with InterQ
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {successStories.map((story, index) => (
-              <motion.div
-                key={story.company}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
-                className="bg-card border border-border rounded-xl p-6"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="text-2xl">{story.logo}</div>
-                  <div>
-                    <h3 className="font-semibold">{story.company}</h3>
-                    <p className="text-sm text-muted-foreground">{story.type}</p>
-                  </div>
-                </div>
-                <p className="text-muted-foreground mb-4 italic">
-                  "{story.testimonial}"
-                </p>
-                <div className="bg-primary/10 rounded-lg p-3">
-                  <p className="text-sm font-medium text-primary">{story.results}</p>
                 </div>
               </motion.div>
             ))}

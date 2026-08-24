@@ -5,7 +5,17 @@ import EnhancedNavigation from "@/components/EnhancedNavigation";
 import EnhancedFooter from "@/components/EnhancedFooter";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FileQuestion, Video, BarChart3, Shield, Zap, Users } from "lucide-react";
+import { FileQuestion, Video, BarChart3, Shield, Zap, Users, ImageIcon } from "lucide-react";
+
+const ProductVisualPlaceholder = ({ label }: { label: string }) => (
+  <div className="media-rounded media-shadow h-96 relative flex flex-col items-center justify-center gap-3 bg-white/5 border border-white/10 text-center px-6">
+    <div className="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-400/20 flex items-center justify-center">
+      <ImageIcon className="w-7 h-7 text-cyan-300" aria-hidden="true" />
+    </div>
+    <p className="font-semibold text-white">Real {label} screenshot goes here</p>
+    <p className="text-sm text-white/60 max-w-xs">Awaiting an authentic screenshot from the design team — no stock imagery.</p>
+  </div>
+);
  
 
 const Product = () => {
@@ -115,27 +125,13 @@ const Product = () => {
                     Try Assessment Demo
                   </Button>
                 </div>
-                <div className="media-rounded media-shadow h-96 relative">
-                  <img
-                    src="https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=1260"
-                    alt="AI Assessments Dashboard"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                </div>
+                <ProductVisualPlaceholder label="Assessments Dashboard" />
               </div>
             </TabsContent>
 
             <TabsContent value="interviews">
               <div className="grid md:grid-cols-2 gap-12 items-center">
-                <div className="media-rounded media-shadow h-96 relative">
-                  <img
-                    src="https://images.pexels.com/photos/4240505/pexels-photo-4240505.jpeg?auto=compress&cs=tinysrgb&w=1260"
-                    alt="AI Video Interview Session"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                </div>
+                <ProductVisualPlaceholder label="Video Interview" />
                 <div>
                   <h2 className="text-4xl mb-6 text-white">AI-Powered Video Interviews</h2>
                   <ul className="space-y-4">
@@ -187,14 +183,7 @@ const Product = () => {
                     Explore Analytics
                   </Button>
                 </div>
-                <div className="media-rounded media-shadow h-96 relative">
-                  <img
-                    src="https://images.pexels.com/photos/5900165/pexels-photo-5900165.jpeg?auto=compress&cs=tinysrgb&w=1260"
-                    alt="Advanced Analytics Dashboard"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-                </div>
+                <ProductVisualPlaceholder label="Analytics Dashboard" />
               </div>
             </TabsContent>
           </Tabs>
@@ -210,12 +199,12 @@ const Product = () => {
               {
                 icon: Shield,
                 title: "Organizational Security",
-                description: "Bank-level encryption and SOC 2 compliance for your data",
+                description: "Industry-standard encryption and access controls for your data",
               },
               {
                 icon: Zap,
                 title: "Lightning Fast",
-                description: "Reduce hiring time by 70% with automated workflows",
+                description: "Cut hiring time with automated screening and scheduling workflows",
               },
               {
                 icon: Users,

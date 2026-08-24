@@ -27,56 +27,44 @@ const cases = [
   {
     id: "org-hiring",
     title: "Organizational Hiring",
-    desc: "Reduced time-to-hire by 35% across regions.",
+    desc: "Standardize hiring across regions with one unified platform.",
     icon: Building2,
     gradient: "from-blue-500 to-indigo-600",
-    challenge: "Fragmented hiring processes across multiple geographic regions led to inconsistent candidate quality and inefficient resource allocation.",
-    solution: "Implemented InterQ's unified assessment platform, standardizing evaluation criteria and centralizing the hiring workflow for the entire global team.",
-    results: [
-      "35% reduction in average time-to-hire",
-      "22% improvement in first-year employee retention",
-      "Standardized scoring across 12 countries"
+    challenge: "Fragmented hiring processes across multiple geographic regions can lead to inconsistent candidate quality and inefficient resource allocation.",
+    solution: "InterQ's unified assessment platform standardizes evaluation criteria and centralizes the hiring workflow for distributed teams.",
+    capabilities: [
+      "Unified evaluation criteria across every region",
+      "Centralized hiring workflow and reporting",
+      "Consistent, standardized scoring for every candidate"
     ],
-    stats: [
-      { label: "Efficiency", value: "+40%" },
-      { label: "Cost Savings", value: "$250k+" }
-    ]
   },
   {
     id: "campus-recruitment",
     title: "Campus Recruitment",
-    desc: "Automated screening for 10k+ candidates.",
+    desc: "Automate screening for high-volume applicant pools.",
     icon: GraduationCap,
     gradient: "from-purple-500 to-pink-600",
-    challenge: "Handling a high volume of over 10,000 campus applications within a tight 2-week window during peak recruitment season.",
-    solution: "Utilized InterQ's automated AI-powered MCQ assessments to filter candidates based on core competencies before the interview stage.",
-    results: [
-      "100% automated initial screening process",
-      "Identified top 5% talent within 48 hours",
-      "Zero manual grading errors"
+    challenge: "Handling a high volume of campus applications within a tight recruitment window strains manual screening processes.",
+    solution: "InterQ's automated AI-powered MCQ assessments filter candidates on core competencies before the interview stage.",
+    capabilities: [
+      "Automated MCQ screening at scale",
+      "Fast turnaround during high-volume application windows",
+      "Consistent, bias-reduced grading for every applicant"
     ],
-    stats: [
-      { label: "Automated", value: "100%" },
-      { label: "Time Saved", value: "85%" }
-    ]
   },
   {
     id: "technical-interviews",
     title: "Technical Interviews",
-    desc: "Improved evaluation quality with AI feedback.",
+    desc: "Bring consistency and AI-backed insight to every interview.",
     icon: Terminal,
     gradient: "from-emerald-500 to-teal-600",
-    challenge: "Significant variance in technical interview quality and objectivity among different internal interview teams.",
-    solution: "Adopted InterQ's Pair Interviewing platform with built-in coding environments and real-time AI performance monitoring.",
-    results: [
-      "45% increase in technical interview consistency",
-      "Reduced candidate drop-off rate by 18%",
-      "Enhanced expert feedback quality"
+    challenge: "Variance in technical interview quality and objectivity across different internal interview teams makes candidates hard to compare fairly.",
+    solution: "InterQ's Pair Interviewing platform combines built-in coding environments with real-time AI performance signals.",
+    capabilities: [
+      "Built-in coding environment for live evaluation",
+      "Real-time AI performance signals for interviewers",
+      "Structured, comparable scoring across every interview"
     ],
-    stats: [
-      { label: "Consistency", value: "+45%" },
-      { label: "Satisfaction", value: "92%" }
-    ]
   },
 ];
 
@@ -98,13 +86,13 @@ const CaseStudies = () => {
             className="text-center mb-16"
           >
             <div className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-medium mb-6">
-              Success Stories
+              Use Cases
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
-              Empowering <span className="bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">Better Hiring</span>
+              Built for Every <span className="bg-gradient-to-r from-cyan-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">Hiring Scenario</span>
             </h1>
             <p className="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-              Real outcomes from organizations that transformed their recruitment process using InterQ's AI-driven platform.
+              See how InterQ's AI-driven platform adapts to different hiring needs, from organizational scale to technical depth.
             </p>
           </motion.div>
 
@@ -125,15 +113,6 @@ const CaseStudies = () => {
                     </div>
                     <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-smooth">{c.title}</h3>
                     <p className="text-muted-foreground mb-8 flex-1 leading-relaxed">{c.desc}</p>
-
-                    <div className="grid grid-cols-2 gap-4 mb-8">
-                      {c.stats.map(stat => (
-                        <div key={stat.label}>
-                          <div className="text-2xl font-bold text-primary">{stat.value}</div>
-                          <div className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">{stat.label}</div>
-                        </div>
-                      ))}
-                    </div>
 
                     <Button
                       onClick={() => setSelectedCase(c)}
@@ -162,7 +141,7 @@ const CaseStudies = () => {
                 </div>
                 <DialogTitle className="text-3xl font-bold">{selectedCase.title}</DialogTitle>
                 <DialogDescription className="text-lg">
-                  How InterQ transformed recruitment at scale.
+                  How InterQ applies to this hiring scenario.
                 </DialogDescription>
               </DialogHeader>
 
@@ -190,13 +169,13 @@ const CaseStudies = () => {
                 <div className="bg-muted/30 p-6 rounded-xl border border-border/50">
                   <h4 className="flex items-center gap-2 text-lg font-semibold mb-4 text-primary">
                     <BarChart3 className="w-5 h-5" />
-                    Key Results
+                    What InterQ Provides
                   </h4>
                   <ul className="grid sm:grid-cols-2 gap-4">
-                    {selectedCase.results.map((result, idx) => (
+                    {selectedCase.capabilities.map((capability, idx) => (
                       <li key={idx} className="flex items-start gap-3">
                         <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" />
-                        <span className="text-sm font-medium">{result}</span>
+                        <span className="text-sm font-medium">{capability}</span>
                       </li>
                     ))}
                   </ul>
