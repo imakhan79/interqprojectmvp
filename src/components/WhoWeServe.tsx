@@ -50,9 +50,10 @@ const WhoWeServe = () => {
           <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-cyan-50 border border-cyan-100 text-cyan-600 text-xs font-semibold tracking-wider uppercase mb-5">
             Our Audience
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold mb-5 text-slate-900">Who We Serve</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-5 text-slate-900">Built for the people doing the hiring.</h2>
           <p className="text-slate-600 text-lg leading-relaxed">
-            Tailored solutions for every stakeholder in the recruitment ecosystem.
+            For recruiting teams, engineering leaders, and companies who'd rather hire right the first time than
+            fix it later.
           </p>
         </motion.div>
 
