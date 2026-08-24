@@ -3,16 +3,16 @@ import { FileText, Users, Calendar, Video, FileBarChart } from "lucide-react";
 import { motion } from "framer-motion";
 
 const steps = [
-  { icon: FileText, title: "Post Role", description: "Employer posts role & requirements." },
-  { icon: Users, title: "Candidate Invitations", description: "Candidates apply or get invited." },
-  { icon: Calendar, title: "Automated Scheduling", description: "Interview is scheduled automatically." },
-  { icon: Video, title: "Expert Interview", description: "Expert conducts online session (coding / MCQs / pair interview)." },
-  { icon: FileBarChart, title: "Detailed Report", description: "AI-enhanced evaluation report delivered." },
+  { icon: FileText, title: "Post Role", description: "Tell us what you need. We'll take it from there." },
+  { icon: Users, title: "Candidate Invitations", description: "Qualified candidates, invited automatically." },
+  { icon: Calendar, title: "Automated Scheduling", description: "No more email chains just to book a call." },
+  { icon: Video, title: "Expert Interview", description: "A real technical expert, asking the right questions." },
+  { icon: FileBarChart, title: "Detailed Report", description: "A clear answer, not a gut feeling, in your inbox within 24 hours." },
 ];
 
 const HowItWorks: React.FC = () => {
   return (
-    <section id="how-it-works" className="py-24 md:py-28 bg-white relative overflow-hidden">
+    <section id="how-it-works" className="py-24 md:py-28 bg-white relative overflow-hidden scroll-mt-24">
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-cyan-500/[0.03] rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
@@ -25,7 +25,7 @@ const HowItWorks: React.FC = () => {
           <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-cyan-50 border border-cyan-100 text-cyan-600 text-xs font-semibold tracking-wider uppercase mb-5">
             Process
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900">How It Works</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-slate-900">From job post to hire, without the black box.</h2>
         </motion.div>
 
         <div className="relative max-w-4xl mx-auto">
