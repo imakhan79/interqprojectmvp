@@ -3,7 +3,7 @@ import EnhancedNavigation from "@/components/EnhancedNavigation";
 import HeroSection from "@/components/HeroSection";
 import TeamStorySection from "@/components/TeamStorySection";
 import CompanyOverview from "@/components/CompanyOverview";
-import TeamSection from "@/components/TeamSection";
+import TeamPreviewSection from "@/components/TeamPreviewSection";
 import WhoWeServe from "@/components/WhoWeServe";
 import ServiceOverview from "@/components/ServiceOverview";
 import ProblemSection from "@/components/ProblemSection";
@@ -29,7 +29,7 @@ const Index = () => {
       <HeroSection />
       <TeamStorySection />
       <CompanyOverview />
-      <TeamSection />
+      <TeamPreviewSection />
       <WhoWeServe />
       <ServiceOverview />
       <ProblemSection />
