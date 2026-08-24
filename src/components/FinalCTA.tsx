@@ -1,10 +1,22 @@
 import { Button } from "@/components/ui/button";
-import { Sparkles, Briefcase, UserCheck, Users, Building2 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { bookingConfig } from "@/lib/heroConfig";
 
 const FinalCTA = () => {
-  const navigate = useNavigate();
+  const prefersReducedMotion = useReducedMotion();
+
+  const handleBookDemo = () => {
+    if (!bookingConfig.url) {
+      if (import.meta.env.DEV) {
+        console.warn(
+          `[FinalCTA] bookingConfig.url is not set — add the ${bookingConfig.provider} scheduling link in src/lib/heroConfig.ts.`,
+        );
+      }
+      return;
+    }
+    window.open(bookingConfig.url, "_blank", "noopener,noreferrer");
+  };
 
   return (
     <section className="py-24 md:py-28 relative overflow-hidden">
@@ -16,73 +28,38 @@ const FinalCTA = () => {
 
       {/* Animated shapes */}
       <motion.div
-        animate={{ rotate: 360 }}
+        animate={prefersReducedMotion ? undefined : { rotate: 360 }}
         transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
         className="absolute -top-24 -right-24 w-[500px] h-[500px] bg-white/[0.06] rounded-full blur-3xl"
+        aria-hidden="true"
       />
       <motion.div
-        animate={{ rotate: -360 }}
+        animate={prefersReducedMotion ? undefined : { rotate: -360 }}
         transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
         className="absolute -bottom-24 -left-24 w-[400px] h-[400px] bg-white/[0.06] rounded-full blur-3xl"
+        aria-hidden="true"
       />
 
       <div className="container mx-auto px-4 relative z-10 text-center text-white">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-4xl mx-auto"
+          transition={{ duration: prefersReducedMotion ? 0.2 : 0.6, ease: "easeOut" }}
+          className="max-w-3xl mx-auto"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/15 backdrop-blur-md rounded-full mb-8 border border-white/20 text-sm font-semibold tracking-wide">
-            <Sparkles className="w-4 h-4" />
-            <span>Ready to get started?</span>
-          </div>
-
-          <h2 className="text-4xl md:text-6xl font-extrabold mb-8 tracking-tight leading-tight">
-            Transform Your Interviewing Today
+          <h2 className="text-4xl md:text-6xl font-extrabold mb-10 tracking-tight leading-tight">
+            Ready to make technical hiring make sense again?
           </h2>
 
-          <p className="text-xl opacity-90 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Join thousands of companies and professionals enhancing their recruitment process with InterQ.
-          </p>
-
-          <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-stretch sm:items-center">
-            <Button
-              onClick={() => navigate("/create-interview")}
-              size="lg"
-              className="h-14 px-8 text-base bg-white text-cyan-600 hover:bg-white/90 shadow-xl w-full sm:w-auto hover:-translate-y-1 transition-all duration-300 rounded-xl font-semibold"
-            >
-              <Briefcase className="mr-2 w-5 h-5" />
-              TAPs: Start Hiring Smarter
-            </Button>
-
-            <Button
-              onClick={() => navigate("/careers")}
-              size="lg"
-              className="h-14 px-8 text-base bg-transparent border-2 border-white/40 text-white hover:bg-white/10 shadow-xl w-full sm:w-auto hover:-translate-y-1 transition-all duration-300 rounded-xl font-semibold"
-            >
-              <UserCheck className="mr-2 w-5 h-5" />
-              Candidates: Get Interview Ready
-            </Button>
-
-            <Button
-              onClick={() => navigate("/solutions?view=enterprise")}
-              size="lg"
-              className="h-14 px-8 text-base bg-white/15 backdrop-blur-sm text-white hover:bg-white/25 border border-white/20 shadow-xl w-full sm:w-auto hover:-translate-y-1 transition-all duration-300 rounded-xl font-semibold"
-            >
-              <Building2 className="mr-2 w-5 h-5" />
-              For Organizational Hiring
-            </Button>
-
-            <Button
-              onClick={() => navigate("/auth?tab=register")}
-              size="lg"
-              className="h-14 px-8 text-base bg-white/15 backdrop-blur-sm text-white hover:bg-white/25 border border-white/20 shadow-xl w-full sm:w-auto hover:-translate-y-1 transition-all duration-300 rounded-xl font-semibold"
-            >
-              <Users className="mr-2 w-5 h-5" />
-              Experts: Join as Evaluator
-            </Button>
-          </div>
+          <Button
+            onClick={handleBookDemo}
+            size="lg"
+            className="h-14 px-10 text-base bg-white text-cyan-600 hover:bg-white/90 shadow-xl hover:-translate-y-1 transition-all duration-300 rounded-xl font-semibold"
+          >
+            Book a Demo
+            <ArrowRight className="ml-2 w-5 h-5" aria-hidden="true" />
+          </Button>
         </motion.div>
       </div>
     </section>
