@@ -238,6 +238,7 @@ const Auth = () => {
                             <div className="flex items-center justify-between">
                               <Label htmlFor="password">Password</Label>
                               <Button
+                                type="button"
                                 variant="ghost"
                                 size="sm"
                                 className="h-auto p-0 text-xs text-teal-700 hover:text-teal-800"

@@ -157,7 +157,9 @@ const buildUserFromSupabase = async (
     .maybeSingle();
 
   if (profile) {
-    role = (profile.role as AccountRole) || role;
+    // DB rows may hold 'job_seeker' (create-demo-users, older signups); the app
+    // only knows 'jobseeker', so normalize or role routing/guards break.
+    role = (profile.role === "job_seeker" ? "jobseeker" : (profile.role as AccountRole)) || role;
     name = profile.full_name || name;
     companyName = profile.company_name || companyName;
     createdAt = profile.created_at || createdAt;
@@ -283,7 +285,7 @@ export function SimpleAuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!SUPABASE_AUTH_ENABLED) return;
 
-    const { data: subscription } = supabase.auth.onAuthStateChange(async (event, session) => {
+    const { data: subscription } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === "SIGNED_OUT") {
         setUser(prev => (prev && !prev.isDemo ? null : prev));
         if (!isDemo) clearAllStorage();
@@ -291,15 +293,21 @@ export function SimpleAuthProvider({ children }: { children: ReactNode }) {
       }
 
       if (session?.user && !isDemo) {
-        const builtUser = await buildUserFromSupabase(session.user);
-        setUser(builtUser);
-        setIsDemo(false);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(builtUser));
-        localStorage.setItem(SESSION_KEY, JSON.stringify({
-          timestamp: Date.now(),
-          userId: builtUser.id,
-          role: builtUser.role,
-        }));
+        // Defer: awaiting Supabase queries inside this callback runs while
+        // auth-js holds its session lock, which deadlocks every later
+        // supabase call (login/profile fetch hang on the spinner).
+        const authUser = session.user;
+        setTimeout(async () => {
+          const builtUser = await buildUserFromSupabase(authUser);
+          setUser(builtUser);
+          setIsDemo(false);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(builtUser));
+          localStorage.setItem(SESSION_KEY, JSON.stringify({
+            timestamp: Date.now(),
+            userId: builtUser.id,
+            role: builtUser.role,
+          }));
+        }, 0);
       }
     });
 
