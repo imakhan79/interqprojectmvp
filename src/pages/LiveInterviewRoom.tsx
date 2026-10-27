@@ -4,7 +4,7 @@ import { ArrowLeft, Copy, Loader2, Video } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/SimpleAuthContext";
 import { useToast } from "@/hooks/use-toast";
-import { JITSI_DOMAIN, isValidRoomId, liveInterviewUrl, loadJitsiScript } from "@/lib/jitsi";
+import { JITSI_DOMAIN, fetchJitsiToken, isValidRoomId, jitsiRoomName, liveInterviewUrl, loadJitsiScript } from "@/lib/jitsi";
 
 const homeForRole: Record<string, string> = {
   admin: "/admin/interviews",
@@ -29,12 +29,13 @@ export default function LiveInterviewRoom() {
     let api: any;
     let cancelled = false;
 
-    loadJitsiScript()
-      .then(() => {
+    Promise.all([fetchJitsiToken(roomId), loadJitsiScript()])
+      .then(([jwt]) => {
         if (cancelled || !containerRef.current) return;
         const JitsiMeetExternalAPI = (window as any).JitsiMeetExternalAPI;
         api = new JitsiMeetExternalAPI(JITSI_DOMAIN, {
-          roomName: roomId,
+          roomName: jitsiRoomName(roomId),
+          jwt,
           parentNode: containerRef.current,
           width: "100%",
           height: "100%",
@@ -91,7 +92,7 @@ export default function LiveInterviewRoom() {
             )}
             {status === "error" && (
               <p className="p-8 text-center text-muted-foreground">
-                Could not connect to the video service. Check your connection and try again.
+                Could not join the video call. Make sure you're signed in with a real account, then try again.
               </p>
             )}
             <div ref={containerRef} className="h-full w-full" />
