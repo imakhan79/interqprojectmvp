@@ -35,12 +35,14 @@ import {
   FileText,
   Edit,
   Loader2,
+  Video,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/SimpleAuthContext";
 import { useCompanyId } from "@/hooks/useCompanyId";
 import { useRealtimeTable } from "@/hooks/useRealtimeTable";
 import { notifyUser } from "@/lib/notifications";
+import { createInterviewRoomId, liveInterviewUrl } from "@/lib/jitsi";
 
 interface InterviewRow {
   id: string;
@@ -489,6 +491,15 @@ export default function CompanyInterviews() {
               <div className="space-y-2">
                 <Label htmlFor="sched-link">Meeting Link</Label>
                 <Input id="sched-link" value={scheduleForm.meeting_link} onChange={(e) => setScheduleForm({ ...scheduleForm, meeting_link: e.target.value })} placeholder="https://..." />
+                <Button
+                  type="button"
+                  variant="link"
+                  size="sm"
+                  className="h-auto p-0"
+                  onClick={() => setScheduleForm({ ...scheduleForm, meeting_link: liveInterviewUrl(createInterviewRoomId()) })}
+                >
+                  <Video className="w-3.5 h-3.5 mr-1.5" /> Use InterQ video room
+                </Button>
               </div>
             </div>
           </div>

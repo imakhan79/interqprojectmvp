@@ -9,6 +9,7 @@ import { Search, Download, Eye, FileText } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Skeleton } from "@/components/ui/skeleton";
+import { normalizeResult } from "@/lib/assessmentResults";
 
 export default function AdminResults() {
   const [search, setSearch] = useState("");
@@ -21,16 +22,15 @@ export default function AdminResults() {
     queryFn: async () => {
       const { data, count } = await supabase
         .from("assessment_results")
-        .select("*, assessments(title, category)", { count: "exact" })
+        .select("*", { count: "exact" })
         .order("completed_at", { ascending: false })
         .range(page * PAGE_SIZE, (page + 1) * PAGE_SIZE - 1);
-      return { results: data ?? [], total: count ?? 0 };
+      return { results: (data ?? []).map(normalizeResult), total: count ?? 0 };
     },
   });
 
   const filtered = data?.results.filter((r) => {
-    const title = (r.assessments as any)?.title?.toLowerCase() ?? "";
-    const matchSearch = title.includes(search.toLowerCase()) || r.user_id.includes(search);
+    const matchSearch = r.title.toLowerCase().includes(search.toLowerCase()) || r.userId.includes(search);
     const matchPass = passFilter === "all" || (passFilter === "passed" ? r.passed : !r.passed);
     return matchSearch && matchPass;
   }) ?? [];
@@ -41,7 +41,7 @@ export default function AdminResults() {
     if (!filtered.length) return;
     const header = "ID,Assessment,Category,Score,Percentage,Passed,Date\n";
     const rows = filtered.map(r =>
-      `${r.id},"${(r.assessments as any)?.title}","${(r.assessments as any)?.category}",${r.score}/${r.total_points},${Number(r.percentage).toFixed(1)}%,${r.passed},${r.completed_at}`
+      `${r.id},"${r.title}","${r.category ?? ""}",${r.correctAnswers ?? ""}/${r.totalQuestions ?? ""},${r.percent}%,${r.passed},${r.completedAt ?? ""}`
     ).join("\n");
     const blob = new Blob([header + rows], { type: "text/csv" });
     const url = URL.createObjectURL(blob);
@@ -98,16 +98,16 @@ export default function AdminResults() {
               <TableBody>
                 {filtered.map((r) => (
                   <TableRow key={r.id}>
-                    <TableCell className="font-medium text-sm max-w-[200px] truncate">{(r.assessments as any)?.title}</TableCell>
-                    <TableCell><Badge variant="outline" className="text-[10px]">{(r.assessments as any)?.category}</Badge></TableCell>
-                    <TableCell className="font-mono text-xs">{r.user_id.slice(0, 8)}...</TableCell>
-                    <TableCell className="text-sm font-semibold">{r.score}/{r.total_points} ({Number(r.percentage).toFixed(0)}%)</TableCell>
+                    <TableCell className="font-medium text-sm max-w-[200px] truncate">{r.title}</TableCell>
+                    <TableCell><Badge variant="outline" className="text-[10px]">{r.category ?? "—"}</Badge></TableCell>
+                    <TableCell className="font-mono text-xs">{r.userId.slice(0, 8)}...</TableCell>
+                    <TableCell className="text-sm font-semibold">{r.correctAnswers != null && r.totalQuestions != null ? `${r.correctAnswers}/${r.totalQuestions} ` : ""}({r.percent}%)</TableCell>
                     <TableCell>
                       <Badge variant={r.passed ? "default" : "destructive"} className="text-[10px]">
                         {r.passed ? "Pass" : "Fail"}
                       </Badge>
                     </TableCell>
-                    <TableCell className="text-xs text-muted-foreground">{new Date(r.completed_at).toLocaleDateString()}</TableCell>
+                    <TableCell className="text-xs text-muted-foreground">{r.completedAt ? new Date(r.completedAt).toLocaleDateString() : "—"}</TableCell>
                     <TableCell className="text-right">
                       <Button variant="ghost" size="sm" onClick={() => window.location.href = "/professional-report"}>
                         <FileText className="h-4 w-4 mr-2" />

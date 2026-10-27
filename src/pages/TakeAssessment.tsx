@@ -15,6 +15,8 @@ import {
   Check, ListChecks, ArrowLeft, Save,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { supabase } from "@/integrations/supabase/client";
+import { PASS_MARK } from "@/lib/assessmentResults";
 import { assessmentsData, Assessment } from "@/data/assessments";
 import { getQuestionsForAssessment, AssessmentQuestion } from "@/data/assessmentQuestions";
 
@@ -103,22 +105,31 @@ export default function TakeAssessment() {
     const finalScore = Math.round((correctAnswers / questions.length) * 100);
     setScore(finalScore);
 
-    // Save result (mock)
-    const result = {
-      user_id: user?.id,
-      assessment_id: id,
-      score: finalScore,
-      answers,
-      completed_at: new Date().toISOString(),
-      time_taken: assessment?.duration ? (assessment.duration * 60) - timeRemaining : 0
-    };
-
-    console.log("Assessment result:", result);
-
     toast({
       title: "Assessment Completed!",
       description: `You scored ${finalScore}%`,
     });
+
+    // Demo accounts have no Supabase session, so RLS would reject the insert.
+    if (user && !user.isDemo) {
+      supabase.from("assessment_results").insert({
+        user_id: user.id,
+        assessment_id: id,
+        score: finalScore,
+        total_questions: questions.length,
+        correct_answers: correctAnswers,
+        status: finalScore >= PASS_MARK ? "passed" : "failed",
+        completed_at: new Date().toISOString(),
+      }).then(({ error }) => {
+        if (error) {
+          toast({
+            title: "Score not saved",
+            description: "Your result couldn't be saved. Please contact support.",
+            variant: "destructive",
+          });
+        }
+      });
+    }
   }, [answers, questions, id, user, assessment, timeRemaining, isSubmitted]);
 
   // Timer effect

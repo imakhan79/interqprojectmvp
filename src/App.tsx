@@ -128,6 +128,7 @@ const JobDetail = lazy(() => import("./pages/jobseeker/JobDetail"));
 const JobSeekerAssessments = lazy(() => import("./pages/jobseeker/JobSeekerAssessments"));
 const JobSeekerInterviews = lazy(() => import("./pages/jobseeker/Interviews"));
 const InterviewSession = lazy(() => import("./pages/jobseeker/InterviewSession"));
+const LiveInterviewRoom = lazy(() => import("./pages/LiveInterviewRoom"));
 const JobSeekerApplications = lazy(() => import("./pages/jobseeker/Applications"));
 const JobSeekerResults = lazy(() => import("./pages/jobseeker/JobSeekerResults"));
 const JobSeekerOffers = lazy(() => import("./pages/jobseeker/JobSeekerOffers"));
@@ -217,6 +218,7 @@ const App = () => (
               <Route path="/candidate-portal" element={<CandidatePortal />} />
               <Route path="/company-signup" element={<CompanySignup />} />
               <Route path="/join-company" element={<JoinCompany />} />
+              <Route path="/interview/live/:roomId" element={<ProtectedRoute><LiveInterviewRoom /></ProtectedRoute>} />
               <Route path="/company" element={<ProtectedRoute allowedRoles={["company"]}><CompanyLayout /></ProtectedRoute>}>
                 <Route index element={<CompanyDashboard />} />
                 <Route path="jobs" element={<CompanyJobs />} />

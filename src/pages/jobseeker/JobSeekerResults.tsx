@@ -7,6 +7,7 @@ import { useAuth } from "@/contexts/SimpleAuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 import { cn } from "@/lib/utils";
+import { normalizeResult } from "@/lib/assessmentResults";
 
 const JobSeekerResults = () => {
   const { user } = useAuth();
@@ -16,10 +17,10 @@ const JobSeekerResults = () => {
     queryFn: async () => {
       if (!user?.id) return [];
       const { data } = await supabase.from("assessment_results")
-        .select("*, assessments(title, category, difficulty)")
+        .select("*")
         .eq("user_id", user.id)
         .order("completed_at", { ascending: false });
-      return data || [];
+      return (data || []).map(normalizeResult);
     },
     enabled: !!user?.id,
   });
@@ -67,7 +68,7 @@ const JobSeekerResults = () => {
         <Card className="shadow-soft">
           <CardContent className="p-4 text-center">
             <p className="text-2xl font-bold text-amber-600">
-              {results.length > 0 ? Math.round(results.reduce((s: number, r: any) => s + r.percentage, 0) / results.length) : 0}%
+              {results.length > 0 ? Math.round(results.reduce((s, r) => s + r.percent, 0) / results.length) : 0}%
             </p>
             <p className="text-xs text-muted-foreground">Avg Score</p>
           </CardContent>
@@ -83,25 +84,25 @@ const JobSeekerResults = () => {
           ) : results.length === 0 ? (
             <p className="text-sm text-muted-foreground text-center py-6">No assessment results yet.</p>
           ) : (
-            results.map((r: any) => {
-              const rating = getRating(r.percentage);
+            results.map((r) => {
+              const rating = getRating(r.percent);
               return (
                 <div key={r.id} className="flex items-center gap-4 p-4 rounded-xl bg-muted/30 hover:bg-muted/50 transition-colors">
                   <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center", r.passed ? "bg-green-500/10" : "bg-destructive/10")}>
                     {r.passed ? <CheckCircle className="w-5 h-5 text-green-600" /> : <XCircle className="w-5 h-5 text-destructive" />}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-medium text-sm truncate">{(r as any).assessments?.title || "Assessment"}</p>
+                    <p className="font-medium text-sm truncate">{r.title}</p>
                     <div className="flex items-center gap-2 mt-1">
-                      <Badge variant="secondary" className="text-[10px]">{(r as any).assessments?.category}</Badge>
+                      {r.category && <Badge variant="secondary" className="text-[10px]">{r.category}</Badge>}
                       <span className="text-xs text-muted-foreground flex items-center gap-1">
-                        <Clock className="w-3 h-3" /> {r.time_taken_minutes || "—"} min
+                        <Clock className="w-3 h-3" /> {r.completedAt ? new Date(r.completedAt).toLocaleDateString() : "—"}
                       </span>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
                     <div className="text-right">
-                      <p className="text-lg font-bold">{r.percentage}%</p>
+                      <p className="text-lg font-bold">{r.percent}%</p>
                       <span className={cn("px-2 py-0.5 rounded-full text-[10px] font-medium", rating.color)}>{rating.label}</span>
                     </div>
                     <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-primary" onClick={() => window.location.href = "/professional-report"}>
